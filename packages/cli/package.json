@@ -1,0 +1,24 @@
+{
+  "name": "@t7blocks/cli",
+  "version": "0.0.1",
+  "description": "Add T7blocks components to your project",
+  "bin": {
+    "t7": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "ora": "^8.0.0",
+    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "@t7blocks/typescript-config": "workspace:*",
+    "@types/prompts": "^2.4.0"
+  }
+}
