@@ -1,0 +1,10 @@
+{
+  "name": "@t7blocks/eslint-config",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "eslint-config-next": "latest",
+    "@typescript-eslint/eslint-plugin": "latest"
+  }
+}
