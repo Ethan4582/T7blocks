@@ -1,26 +1,146 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+/* ===================================================================
+   Font System
+   Display: Instrument Serif | Body: Plus Jakarta Sans | Mono: JetBrains Mono
+   =================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Google Font variables (loaded in layout.tsx) */
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-body: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
+  --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
+
+  /* Type size tokens */
+  --text-13: 13px;
+  --text-14: 14px;
+  --text-15: 15px;
+  --text-16: 16px;
+  --text-24: 24px;
+  --text-25: 25px;
+  --text-42: 42px;
+
+  /* Raw palette */
+  --color-white: #ffffff;
+  --color-ghost-white: #f9f9f9;
+  --color-white-smoke: #f4f4f4;
+  --color-lavender: #eaeaea;
+  --color-gainsboro: #d8d8d8;
+  --color-gainsboro-1: #e1e1e1;
+  --color-light-gray: #ded2d2;
+  --color-silver: #b8b8b8;
+  --color-gray: #817f7f;
+  --color-charcoal: #4f4c4c;
+  --color-dark-gray: #201d1d;
+  --color-black-1: #151313;
+  --color-black: #000000;
+
+  /* Accent / Brand */
+  --color-green: #a1ff62;
+  --color-blue: #0000ee;
+  --color-tomato: #f84131;
+
+  /* ---- Light-mode (default) ---- */
+  --background: #f4f4f4;
+  --foreground: #201d1d;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #201d1d;
+  --sidebar-hover: #eaeaea;
+  --card: #ffffff;
+  --card-foreground: #201d1d;
+  --accent: #a1ff62;
+  --accent-foreground: #201d1d;
+  --muted: #eaeaea;
+  --muted-foreground: #817f7f;
+  --border: #d8d8d8;
+  --input: #eaeaea;
+  --ring: #a1ff62;
+  --radius: 0.625rem;
+}
+
+/* ---- Dark-mode ---- */
+:root.dark {
+  --background: #141212;
+  --foreground: #f4f4f4;
+  --sidebar: #211e1e;
+  --sidebar-foreground: #f4f4f4;
+  --sidebar-hover: #1e1e1e;
+  --card: #111111;
+  --card-foreground: #f4f4f4;
+  --accent: #a1ff62;
+  --accent-foreground: #000000;
+  --muted: #1e1e1e;
+  --muted-foreground: #817f7f;
+  --border: #1e1e1e;
+  --input: #1e1e1e;
+  --ring: #a1ff62;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    font-size: var(--text-15);
+    line-height: 1.5;
+    letter-spacing: 0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  html { scroll-behavior: smooth; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Typography Utility Classes */
+.type-h1 { font-family: var(--font-display); font-size: var(--text-42); line-height: 1.0; letter-spacing: -1.26px; }
+.type-body { font-family: var(--font-body); font-size: var(--text-15); line-height: 1.56; }
+.type-caption { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: -0.16px; }
+.type-caption-sm { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+
+/* Marquee Animation */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
+

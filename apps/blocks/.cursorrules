@@ -1,0 +1,33 @@
+# T7block Component Creation Rules
+
+When creating or modifying components for the T7block library, you must follow these rules:
+
+## 1. Design & Theme System
+- Always use the design and color system defined in `src/app/globals.css`.
+- Use tailwind utility classes that map to the theme variables (e.g., `bg-background`, `text-foreground`, `bg-sidebar`, `text-accent`).
+- Reference `src/components/theme-provider.tsx` to ensure theme-aware rendering where necessary.
+- **NEVER** use hardcoded hex values (like `#111` or `#fff`) for primary UI elements; use theme tokens instead.
+
+## 2. Appearance & Modes
+- Ensure all components are fully compatible with both **Light** and **Dark** modes.
+- Test contrast ratios for both modes.
+- Use `opacity` or `rgba` with theme variables for subtle states (hover, disabled).
+
+## 3. Responsive Design
+- Design for **Mobile First**.
+- Use Tailwind's responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`) to ensure components look great on all screen sizes.
+- Handle touch targets and scrolling containers specifically for mobile UX.
+
+## 4. Content Architecture
+- Move static data (links, labels, configuration objects) to a separate file inside the `src/lib/` folder.
+- Follow existing patterns in `src/lib/navigation.ts`, `src/lib/componentData.ts`, etc.
+- Maintain a clean separation between UI logic and static content.
+
+## 5. Complexity Management
+- If a component exceeds ~150 lines or contains multiple logical sub-sections, break it into smaller sub-components.
+- Organize complex components into their own folders (e.g., `src/components/landing/header/`).
+- Use descriptive names for sub-pieces (e.g., `SidebarItem`, `SidebarAccordion`).
+
+## 6. Icons & Assets
+- Use `lucide-react` for all iconography.
+- Use the established assets in `public/assets/` for branding.
