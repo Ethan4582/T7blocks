@@ -1,0 +1,6 @@
+src/
+.turbo/
+tsup.config.ts
+tsconfig.json
+RULES.md
+*.map

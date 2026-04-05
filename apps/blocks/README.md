@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# T7blocks
 
-## Getting Started
+**Ship premium landing pages faster.**
 
-First, run the development server:
+T7blocks is a component library built for developers who want their interfaces to feel like high-end Framer templates — without the Framer price tag. Every block is crafted with custom GSAP and Framer Motion animation logic, the kind you see on top-tier product pages and agency sites.
+
+This is not your typical UI library. No generic buttons. No plain modals. Every component is designed to elevate.
+
+---
+
+## What's inside
+
+**Components** — Animated UI blocks built for modern landing pages. Magnetic buttons, scroll-triggered reveals, smooth transitions.
+
+**Hero Sections** — Full hero layouts with cinematic entrances, gradient overlays, and motion that sets the tone immediately.
+
+**Background Effects** — Particle fields, noise textures, mesh gradients, and generative canvas effects for immersive page backgrounds.
+
+**Landing Page Templates** — Full page compositions assembled from T7blocks components. Copy the structure, own the code, ship in hours.
+
+---
+
+## Who it's for
+
+Developers who are tired of building the same polished animations from scratch for every project. If you know how to code but want the design and motion quality of a $500 Framer template — this is built for you.
+
+---
+
+## Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install @t7blocks/ui
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Most components have peer dependencies. Each component page lists exactly what to install.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## CLI — Own the source
 
-## Learn More
+```bash
+npx @t7blocks/cli add button-1
+```
 
-To learn more about Next.js, take a look at the following resources:
+Downloads the raw `.tsx` source directly into your project. No wrappers, no black-box imports — just the code, ready to customize.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Free vs Pro
 
-## Deploy on Vercel
+| | Free | Pro |
+|---|---|---|
+| Animated components | ✓ | ✓ |
+| Hero sections | Preview only | ✓ Full source |
+| Background effects | Selected | ✓ All |
+| Landing page templates | — | ✓ |
+| CLI access | Free components | ✓ All components |
+| npm package | ✓ | ✓ |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pro members get full source access, CLI downloads, and early access to new blocks at **[t7blocks.xyz](https://t7blocks.xyz)**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Tech
+
+- React 18+
+- TypeScript
+- GSAP
+- Framer Motion
+- Lenis (smooth scroll)
+
+Components are framework-agnostic at the output level — they work in Next.js, Vite, Remix, or any React setup.
+
+---
+
+## Documentation
+
+Full component docs, live demos, and props reference at **[t7blocks.xyz](https://t7blocks.xyz)**.
+
+---
+
+## License
+
+Copyright © 2025 Ashirwad Singh. Free components are available for personal and commercial use. Redistribution as a standalone library or template kit is not permitted.
+
+Full terms → [LICENSE](https://github.com/Ethan4582/t7block-free/blob/master/LICENSE)
