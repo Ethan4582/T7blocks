@@ -25,4 +25,15 @@ export const registry: ComponentEntry[] = [
   dependencies: ["framer-motion"],
   description: "A smooth spring-animated button with primary and outline variants.",
 },
+{
+  name: "nature-1",
+  displayName: "Nature 1",
+  category: "background",
+  type: "nature",
+  isPremium: false,
+  demoUrl: null,
+  videoUrl: null,
+  cliCommand: null,
+  description: "A placeholder nature background.",
+},
 ];

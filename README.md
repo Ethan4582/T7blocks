@@ -1,6 +1,34 @@
+<p align="center">
+  <img src="apps/blocks/public/logo.png" alt="T7block Logo" width="80" height="80" style="border-radius: 16px;" />
+</p>
+
+<h1 align="center">T7block</h1>
+
+<p align="center">
+  <strong>Premium, open-source UI components for modern web applications.</strong>
+  <br>
+  <strong>Ship premium landing pages faster.</strong>
+</p>
+
+
+<p align="center">
+  <a href="https://github.com/Ethan4582/t7block/stargazers"><img src="https://img.shields.io/github/stars/Ethan4582/t7block?style=flat-square&color=a1ff62&labelColor=1a1a1a" alt="Stars" /></a>
+  <a href="https://github.com/Ethan4582/t7block/issues"><img src="https://img.shields.io/github/issues/Ethan4582/t7block?style=flat-square&color=a1ff62&labelColor=1a1a1a" alt="Issues" /></a>
+  <a href="https://github.com/Ethan4582/t7block/pulls"><img src="https://img.shields.io/github/issues-pr/Ethan4582/t7block?style=flat-square&color=a1ff62&labelColor=1a1a1a" alt="PRs" /></a>
+</p>
+
+<p align="center">
+  <a href="https://t7blocks.pages.dev">Live Demo</a> •
+  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-components">Components</a> •
+  <a href="#-contributing">Contributing</a> •
+  <a href="#-license">License</a>
+</p>
+
+---
 # T7blocks
 
-**Ship premium landing pages faster.**
+
 
 T7blocks is a component library built for developers who want their interfaces to feel like high-end Framer templates — without the Framer price tag. Every block is crafted with custom GSAP and Framer Motion animation logic, the kind you see on top-tier product pages and agency sites.
 
