@@ -9,13 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@t7blocks/cli": "workspace:*",
+    "@t7blocks/eslint-config": "workspace:*",
+    "@t7blocks/typescript-config": "workspace:*",
+    "@t7blocks/ui": "workspace:*",
+    "framer-motion": "^12.38.0",
     "next": "16.2.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "@t7blocks/ui": "workspace:*",
-    "@t7blocks/typescript-config": "workspace:*",
-    "@t7blocks/eslint-config": "workspace:*",
-    "@t7blocks/cli": "workspace:*"
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
