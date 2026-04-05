@@ -1,17 +1,12 @@
 {
-  "magnetic-button": {
+  "button-1": {
     "isPremium": false,
     "files": [
       {
-        "name": "MagneticButton.tsx",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/main/packages/ui/src/components/button/MagneticButton.tsx"
+        "name": "Button1.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/main/packages/ui/src/components/button/button-1/Button1.tsx"
       }
     ],
     "dependencies": ["framer-motion"]
-  },
-  "gradient-hero": {
-    "isPremium": true,
-    "files": [],
-    "dependencies": []
   }
 }

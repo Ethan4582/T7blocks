@@ -1,5 +1,5 @@
 {
-  "name": "@t7blocks",
+  "name": "@t7blocks/cli",
   "version": "0.0.1",
   "description": "Add T7blocks components to your project",
   "bin": {

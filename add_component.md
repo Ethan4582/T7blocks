@@ -473,7 +473,7 @@ In `packages/cli/src/registry.json`, replace `YOUR_USERNAME`:
 ### 6.3 Build the CLI
 
 ```bash
-pnpm turbo build --filter=@t7blocks/cli
+pnpm turbo build --filter=@t7blocks
 ```
 
 ### 6.4 Publish the CLI
