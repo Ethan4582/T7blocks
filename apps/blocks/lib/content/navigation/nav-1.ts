@@ -1,0 +1,13 @@
+export const codeBlock = `import { Button1 } from '@t7blocks/ui';
+
+export default function NavExample() {
+  return (
+    <Button1
+      label="Menu"
+      variant="outline"
+    />
+  );
+}`;
+
+export const installCommand = `pnpm add @t7blocks/ui framer-motion`;
+export const propsTable = [];

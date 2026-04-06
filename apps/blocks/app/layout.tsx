@@ -47,6 +47,7 @@ export const metadata: Metadata = {
 };
 
 import { SidebarProvider } from "@/components/common/sidebar-provider";
+import { BookmarksProvider } from "@/lib/bookmarks-context";
 
 export default function RootLayout({
   children,
@@ -57,15 +58,17 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
+      className={`dark scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="antialiased bg-background text-foreground overflow-hidden">
+      <body className="antialiased bg-background text-foreground scrollbar-hide">
         <ThemeProvider>
-          <SidebarProvider>
-            <div className="flex h-screen w-full">
-              <LayoutWrapper>{children}</LayoutWrapper>
-            </div>
-          </SidebarProvider>
+          <BookmarksProvider>
+            <SidebarProvider>
+              <div className="flex w-full min-h-screen">
+                <LayoutWrapper>{children}</LayoutWrapper>
+              </div>
+            </SidebarProvider>
+          </BookmarksProvider>
         </ThemeProvider>
       </body>
     </html>

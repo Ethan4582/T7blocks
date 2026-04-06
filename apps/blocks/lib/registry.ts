@@ -1,39 +1,35 @@
 export type ComponentEntry = {
   name: string;
+  slug?: string;
   displayName: string;
-  category: "components" | "hero" | "background";
+  category: string; // broadened from literal types
   type: string;
-  id?: string;
+  id?: number;
   isPremium: boolean;
   demoUrl: string | null;
   videoUrl: string | null;
+  imageUrl?: string | null;
   cliCommand: string | null;
   dependencies?: string[];
   description?: string;
+  tags?: string[];
 };
 
 export const registry: ComponentEntry[] = [
   {
-  name: "button-1",
-  displayName: "Button 1",
-  category: "components",
-  type: "button",
-  isPremium: false,
-  demoUrl: "https://demo.t7blocks.com/components/button/button-1",
-  videoUrl: null,
-  cliCommand: "npx @t7blocks/ui add button-1",
-  dependencies: ["framer-motion"],
-  description: "A smooth spring-animated button with primary and outline variants.",
-},
-{
-  name: "nature-1",
-  displayName: "Nature 1",
-  category: "background",
-  type: "nature",
-  isPremium: false,
-  demoUrl: null,
-  videoUrl: null,
-  cliCommand: null,
-  description: "A placeholder nature background.",
-},
+    id: 1,
+    name: "number-odometer",
+    displayName: "Number Odometer",
+    category: "components",
+    type: "button", // Mapping to existing types if possible
+    isPremium: false,
+    imageUrl: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_one/good_assets/art1.png",
+    videoUrl: "https://cdn.sanity.io/files/3fq51aaa/production/42faf2223c5cc654c81761c9b1256659549b6aba.mp4",
+    demoUrl: "",
+    cliCommand: "npx @t7blocks/cli add number-odometer",
+    description: "Animated number odometer for statistics and counters.",
+    tags: ["number", "animation", "stats", "counter"],
+  },
+  
+ 
 ];

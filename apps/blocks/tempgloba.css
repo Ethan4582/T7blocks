@@ -1,33 +1,5 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Reinforced global hide if needed */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-}
-
-/* Force hide standard scrollbars if requested globally */
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-*::-webkit-scrollbar {
-  display: none;
-}
-
 @custom-variant dark (&:is(.dark *));
 
 /* ===================================================================
@@ -110,7 +82,7 @@
   --border: #d8d8d8;
   --input: #eaeaea;
   --ring: #a1ff62;
-  --radius: 0.5rem;
+  --radius: 0.625rem;
   /* Code block */
   --code-bg: #ffffff;
   --code-header: #f4f4f4;
@@ -130,7 +102,7 @@
   --sidebar: #211e1e;
   --sidebar-foreground: #f4f4f4;
   --sidebar-hover: #1e1e1e;
-  --card: #211e1e;
+  --card: #111111;
   --card-foreground: #f4f4f4;
   /* UI tokens */
   --accent: #a1ff62;
@@ -172,9 +144,6 @@
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
   --font-mono: var(--font-mono);
-
-  --font-haffer-xh: var(--font-haffer-xh);
-  --font-brisa-pro: var(--font-brisa-pro);
 }
 
 /* ===================================================================
@@ -182,8 +151,7 @@
    =================================================================== */
 @layer base {
   * {
-    border-color: var(--border);
-    outline-color: var(--ring);
+    @apply border-border outline-ring/50;
     box-sizing: border-box;
   }
 
@@ -416,22 +384,4 @@
   display: flex;
   width: max-content;
   animation: marquee-scroll 25s linear infinite;
-}
-
-/* Wave animation for hand icon */
-@keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.animate-wave {
-  display: inline-block;
-  transform-origin: 70% 70%;
-  animation: wave 3s infinite ease-in-out;
 }

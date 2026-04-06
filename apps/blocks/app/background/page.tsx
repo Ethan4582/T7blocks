@@ -5,14 +5,14 @@ import { VaultCard } from "@/components/common/VaultCard";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function HeroGallery() {
+export default function BackgroundGallery() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 18;
 
-  const heroes = registry.filter((c) => c.category === "hero");
+  const backgrounds = registry.filter((c) => c.category === "background");
 
-  const totalPages = Math.ceil(heroes.length / itemsPerPage);
-  const displayedItems = heroes.slice(
+  const totalPages = Math.ceil(backgrounds.length / itemsPerPage);
+  const displayedItems = backgrounds.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -20,9 +20,9 @@ export default function HeroGallery() {
   return (
     <div className="p-8 max-w-[1400px] mx-auto w-full min-h-screen">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-3">Hero Sections</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-3">Background Images</h1>
         <p className="text-muted-foreground text-lg opacity-60">
-          Make a stunning first impression with our collection of premium headers.
+          Add style to any section with our custom-styled background collection.
         </p>
       </div>
 
@@ -63,7 +63,7 @@ export default function HeroGallery() {
       ) : (
         <div className="py-24 text-center border border-dashed border-border/30 rounded-3xl bg-[#111113]/50">
           <p className="text-muted-foreground italic opacity-50">
-            No hero sections available yet. Coming soon!
+            No background images available yet. Coming soon!
           </p>
         </div>
       )}
