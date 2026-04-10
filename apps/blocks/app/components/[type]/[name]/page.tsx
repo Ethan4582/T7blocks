@@ -27,10 +27,10 @@ export default async function ComponentPage({ params }: Props) {
   if (!entry) return notFound();
 
   // Dynamically import the content based on type and name
-  // This expects lib/content/[type]/[name].ts to exist
+  // This expects lib/content/components/[type]/[name].ts to exist
   let allContent;
   try {
-    allContent = await import(`@/lib/content/${type}/${name}`);
+    allContent = await import(`@/lib/content/components/${type}/${name}`);
   } catch (err) {
     console.error("Failed to load content:", err);
     return notFound();

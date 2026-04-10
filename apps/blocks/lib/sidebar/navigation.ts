@@ -5,67 +5,97 @@ export interface NavItem {
   href: string;
   icon?: string;
   badge?: string;
+  external?: boolean;
 }
 
 export interface NavAccordion {
   title: string;
   icon?: string;
+  href?: string; // Optional: navigate when toggling
   items: NavItem[];
 }
 
 export interface NavSection {
-  title: string;
+  title?: string;
   items: (NavItem | NavAccordion)[];
 }
 
 // Transform registry entries into navigation items
-const componentItems = registry
-  .filter((c) => c.category === "components")
-  .map((c) => ({
-    title: c.displayName,
-    href: `/components/${c.type}/${c.name}`,
-  }));
-
-const heroItems = registry
-  .filter((c) => c.category === "hero")
-  .map((c) => ({
-    title: c.displayName,
-    href: `/hero/${c.type}/${c.name}`,
-  }));
-
-const backgroundItems = registry
-  .filter((c) => c.category === "background")
-  .map((c) => ({
-    title: c.displayName,
-    href: `/background/${c.type}/${c.name}`,
-  }));
+const getItemsByType = (type: string, category: string = "components") => {
+  return registry
+    .filter((c) => c.category === category && c.type === type)
+    .map((c) => ({
+      title: c.displayName,
+      href: `/${category}/${c.type}/${c.name}`,
+    }));
+};
 
 export const NAVIGATION_DATA: NavSection[] = [
   {
-    title: "",
     items: [
-      { title: "Templates", href: "/templates", icon: "/SVG/installation.svg" },
-      { title: "Gallery", href: "/components", icon: "/SVG/folder.svg" },
+      {
+        title: "Follow for updates",
+        icon: "/SVG/x.svg",
+        href: "https://twitter.com/ashirwadsingh_",
+        external: true,
+      },
+      {
+        title: "Installation",
+        icon: "/SVG/installation.svg",
+        href: "/installation",
+      },
+      {
+        title: "Templates",
+        icon: "/SVG/folder.svg",
+        href: "https://twitter.com/ashirwadsingh_",
+        external: true,
+      },
+      {
+        title: "Gallery",
+        icon: "/SVG/gallery.png",
+        href: "/gallery",
+
+      },
     ],
   },
   {
-    title: "CATEGORIES",
+    title: "Components",
     items: [
       {
-        title: "Components",
-        icon: "/SVG/categories.svg",
-        items: componentItems,
+        title: "Buttons",
+        href: "/components/button",
+        items: getItemsByType("button"),
       },
+      // {
+      //   title: "Scroll Animations",
+      //   href: "/components/scroll",
+      //   items: getItemsByType("scroll"),
+      // },
+      // {
+      //   title: "Loader",
+      //   href: "/components/loader",
+      //   items: getItemsByType("loader"),
+      // },
+      // {
+      //   title: "Page Transitions",
+      //   items: [],
+      // },
+    ],
+  },
+  {
+    items: [
       {
         title: "Hero",
-        icon: "/SVG/svg-65.svg",
-        items: heroItems,
-      },
-      {
-        title: "Background",
-        icon: "/SVG/mirror-rectangular.svg",
-        items: backgroundItems,
+        href: "/hero",
       },
     ],
   },
+  {
+    items: [
+      {
+        title: "Background",
+        href: "/background",
+      },
+    ],
+  }
 ];

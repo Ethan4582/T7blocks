@@ -1,17 +1,56 @@
 @import "tailwindcss";
 
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Reinforced global hide if needed */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Force hide standard scrollbars if requested globally */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /* ===================================================================
    Font System
    Display: Instrument Serif | Body: Plus Jakarta Sans | Mono: JetBrains Mono
+   Loaded via next/font/google in layout.tsx.
+   Haffer / Brisa Pro: referenced from new_global.style.css as design tokens.
    =================================================================== */
 
+/* ===================================================================
+   Raw Color Palette — shared tokens
+   =================================================================== */
 :root {
   /* Google Font variables (loaded in layout.tsx) */
   --font-display: var(--font-instrument-serif), Georgia, serif;
   --font-body: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
+
+  /* Design system font family tokens (from new_global.style.css) */
+  --font-haffer-xh: 'Haffer XH', var(--font-plus-jakarta), sans-serif;
+  --font-brisa-pro: 'Brisa Pro', Georgia, serif;
+  --font-haffer-vf: 'Haffer VF', var(--font-plus-jakarta), sans-serif;
+  --font-haffer-mono: 'Haffer Mono', var(--font-jetbrains), monospace;
 
   /* Type size tokens */
   --text-13: 13px;
@@ -21,6 +60,14 @@
   --text-24: 24px;
   --text-25: 25px;
   --text-42: 42px;
+
+  /* Tracking tokens */
+  --tracking-neg-1-26: -1.26px;
+  --tracking-neg-0-25: -0.25px;
+  --tracking-neg-0-48: -0.48px;
+  --tracking-neg-0-16: -0.16px;
+  --tracking-neg-0-225: -0.225px;
+  --tracking-neg-0-14: -0.14px;
 
   /* Raw palette */
   --color-white: #ffffff;
@@ -33,6 +80,10 @@
   --color-silver: #b8b8b8;
   --color-gray: #817f7f;
   --color-charcoal: #4f4c4c;
+  --color-dark-gray-4: #393636;
+  --color-dark-gray-3: #312e2e;
+  --color-dark-gray-2: #2a2727;
+  --color-dark-gray-1: #282828;
   --color-dark-gray: #201d1d;
   --color-black-1: #151313;
   --color-black: #000000;
@@ -43,6 +94,7 @@
   --color-tomato: #f84131;
 
   /* ---- Light-mode (default) ---- */
+  /* Backgrounds */
   --background: #f4f4f4;
   --foreground: #201d1d;
   --sidebar: #ffffff;
@@ -50,6 +102,7 @@
   --sidebar-hover: #eaeaea;
   --card: #ffffff;
   --card-foreground: #201d1d;
+  /* UI tokens */
   --accent: #a1ff62;
   --accent-foreground: #201d1d;
   --muted: #eaeaea;
@@ -57,18 +110,29 @@
   --border: #d8d8d8;
   --input: #eaeaea;
   --ring: #a1ff62;
-  --radius: 0.625rem;
+  --radius: 0.5rem;
+  /* Code block */
+  --code-bg: #ebebeb;
+  --code-header: #f4f4f4;
+  --code-border: #e1e1e1;
+  --code-text: #201d1d;
+  --code-label: #817f7f;
+  --code-copy: #4f4c4c;
+  /* Gradients */
+  --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #f4f4f4 66.65%);
 }
 
 /* ---- Dark-mode ---- */
 :root.dark {
+  /* Backgrounds */
   --background: #141212;
   --foreground: #f4f4f4;
   --sidebar: #211e1e;
   --sidebar-foreground: #f4f4f4;
   --sidebar-hover: #1e1e1e;
-  --card: #111111;
+  --card: #211e1e;
   --card-foreground: #f4f4f4;
+  /* UI tokens */
   --accent: #a1ff62;
   --accent-foreground: #000000;
   --muted: #1e1e1e;
@@ -76,8 +140,20 @@
   --border: #1e1e1e;
   --input: #1e1e1e;
   --ring: #a1ff62;
+  /* Code block */
+  --code-bg: #212121;
+  --code-header: #151515;
+  --code-border: #1e1e1e;
+  --code-text: #e6edf3;
+  --code-label: rgba(255,255,255,0.45);
+  --code-copy: rgba(255,255,255,0.40);
+  /* Gradients */
+  --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #201d1d 66.65%);
 }
 
+/* ===================================================================
+   Tailwind Theme Bridge
+   =================================================================== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -96,11 +172,18 @@
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
   --font-mono: var(--font-mono);
+
+  --font-haffer-xh: var(--font-haffer-xh);
+  --font-brisa-pro: var(--font-brisa-pro);
 }
 
+/* ===================================================================
+   Global Base Styles
+   =================================================================== */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: var(--ring);
     box-sizing: border-box;
   }
 
@@ -115,27 +198,218 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 400;
     line-height: 1.1;
   }
 
-  a { text-decoration: none; color: inherit; }
+  p,
+  span,
+  label,
+  li,
+  td,
+  th {
+    letter-spacing: 0.02em;
+  }
 
-  html { scroll-behavior: smooth; }
+  a {
+    text-decoration: none;
+    color: inherit;
+    letter-spacing: 0.02em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Light mode icon handling — SVG icons that use dark:invert */
+  :root:not(.dark) img[src$=".svg"] {
+    filter: none;
+  }
 }
 
-/* Typography Utility Classes */
-.type-h1 { font-family: var(--font-display); font-size: var(--text-42); line-height: 1.0; letter-spacing: -1.26px; }
-.type-body { font-family: var(--font-body); font-size: var(--text-15); line-height: 1.56; }
-.type-caption { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: -0.16px; }
-.type-caption-sm { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+/* ===================================================================
+   Typography – Semantic type styles
+   =================================================================== */
 
-/* Marquee Animation */
+/* — From new_global.style.css design system — */
+.type-h1 {
+  font-family: var(--font-haffer-xh);
+  font-size: var(--text-42);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-1-26);
+}
+
+.type-h2 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-24);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-48);
+}
+
+.type-body {
+  font-family: var(--font-body);
+  font-size: var(--text-15);
+  font-weight: 400;
+  line-height: 1.56;
+  letter-spacing: var(--tracking-neg-0-225);
+}
+
+.type-body-16 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-16);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-16);
+}
+
+.type-small-body {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-15);
+  font-weight: 400;
+  line-height: 1.10;
+  letter-spacing: var(--tracking-neg-0-225);
+}
+
+.type-body-14 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-14);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-14);
+}
+
+.type-caption {
+  font-family: var(--font-haffer-mono);
+  font-size: var(--text-13);
+  font-weight: 500;
+  line-height: 1.56;
+  letter-spacing: var(--tracking-neg-0-16);
+}
+
+.type-caption-13 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-13);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-16);
+}
+
+/* — Legacy / Extended type tokens — */
+.type-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 10vw, 192px);
+  font-weight: 400;
+  line-height: 1.00;
+}
+
+.type-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 400;
+  line-height: 1.20;
+}
+
+.type-heading {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.33;
+}
+
+.type-subheading {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.40;
+  letter-spacing: -1px;
+}
+
+.type-body-lg {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.40;
+}
+
+.type-body-sm {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.50;
+}
+
+.type-body-xs {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+.type-button {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.56;
+  letter-spacing: 0.45px;
+}
+
+.type-button-sm {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.type-link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+}
+
+.type-caption-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+}
+
+.type-mono {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.7px;
+}
+
+.type-small {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.50;
+  letter-spacing: 1px;
+}
+
+/* ===================================================================
+   Marquee Animation
+   =================================================================== */
 @keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {
@@ -144,3 +418,20 @@
   animation: marquee-scroll 25s linear infinite;
 }
 
+/* Wave animation for hand icon */
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 3s infinite ease-in-out;
+}

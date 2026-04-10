@@ -1,0 +1,387 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ===================================================================
+   Font System
+   Display: Instrument Serif | Body: Plus Jakarta Sans | Mono: JetBrains Mono
+   Loaded via next/font/google in layout.tsx.
+   Haffer / Brisa Pro: referenced from new_global.style.css as design tokens.
+   =================================================================== */
+
+/* ===================================================================
+   Raw Color Palette — shared tokens
+   =================================================================== */
+:root {
+  /* Google Font variables (loaded in layout.tsx) */
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-body: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
+  --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
+
+  /* Design system font family tokens (from new_global.style.css) */
+  --font-haffer-xh: 'Haffer XH', var(--font-plus-jakarta), sans-serif;
+  --font-brisa-pro: 'Brisa Pro', Georgia, serif;
+  --font-haffer-vf: 'Haffer VF', var(--font-plus-jakarta), sans-serif;
+  --font-haffer-mono: 'Haffer Mono', var(--font-jetbrains), monospace;
+
+  /* Type size tokens */
+  --text-13: 13px;
+  --text-14: 14px;
+  --text-15: 15px;
+  --text-16: 16px;
+  --text-24: 24px;
+  --text-25: 25px;
+  --text-42: 42px;
+
+  /* Tracking tokens */
+  --tracking-neg-1-26: -1.26px;
+  --tracking-neg-0-25: -0.25px;
+  --tracking-neg-0-48: -0.48px;
+  --tracking-neg-0-16: -0.16px;
+  --tracking-neg-0-225: -0.225px;
+  --tracking-neg-0-14: -0.14px;
+
+  /* Raw palette */
+  --color-white: #ffffff;
+  --color-ghost-white: #f9f9f9;
+  --color-white-smoke: #f4f4f4;
+  --color-lavender: #eaeaea;
+  --color-gainsboro: #d8d8d8;
+  --color-gainsboro-1: #e1e1e1;
+  --color-light-gray: #ded2d2;
+  --color-silver: #b8b8b8;
+  --color-gray: #817f7f;
+  --color-charcoal: #4f4c4c;
+  --color-dark-gray-4: #393636;
+  --color-dark-gray-3: #312e2e;
+  --color-dark-gray-2: #2a2727;
+  --color-dark-gray-1: #282828;
+  --color-dark-gray: #201d1d;
+  --color-black-1: #151313;
+  --color-black: #000000;
+
+  /* Accent / Brand */
+  --color-green: #a1ff62;
+  --color-blue: #0000ee;
+  --color-tomato: #f84131;
+
+  /* ---- Light-mode (default) ---- */
+  /* Backgrounds */
+  --background: #f4f4f4;
+  --foreground: #201d1d;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #201d1d;
+  --sidebar-hover: #eaeaea;
+  --card: #ffffff;
+  --card-foreground: #201d1d;
+  /* UI tokens */
+  --accent: #a1ff62;
+  --accent-foreground: #201d1d;
+  --muted: #eaeaea;
+  --muted-foreground: #817f7f;
+  --border: #d8d8d8;
+  --input: #eaeaea;
+  --ring: #a1ff62;
+  --radius: 0.625rem;
+  /* Code block */
+  --code-bg: #ffffff;
+  --code-header: #f4f4f4;
+  --code-border: #e1e1e1;
+  --code-text: #201d1d;
+  --code-label: #817f7f;
+  --code-copy: #4f4c4c;
+  /* Gradients */
+  --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #f4f4f4 66.65%);
+}
+
+/* ---- Dark-mode ---- */
+:root.dark {
+  /* Backgrounds */
+  --background: #141212;
+  --foreground: #f4f4f4;
+  --sidebar: #211e1e;
+  --sidebar-foreground: #f4f4f4;
+  --sidebar-hover: #1e1e1e;
+  --card: #111111;
+  --card-foreground: #f4f4f4;
+  /* UI tokens */
+  --accent: #a1ff62;
+  --accent-foreground: #000000;
+  --muted: #1e1e1e;
+  --muted-foreground: #817f7f;
+  --border: #1e1e1e;
+  --input: #1e1e1e;
+  --ring: #a1ff62;
+  /* Code block */
+  --code-bg: #0d0d0d;
+  --code-header: #151515;
+  --code-border: #1e1e1e;
+  --code-text: #e6edf3;
+  --code-label: rgba(255,255,255,0.45);
+  --code-copy: rgba(255,255,255,0.40);
+  /* Gradients */
+  --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #201d1d 66.65%);
+}
+
+/* ===================================================================
+   Tailwind Theme Bridge
+   =================================================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+/* ===================================================================
+   Global Base Styles
+   =================================================================== */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    font-size: var(--text-15);
+    line-height: 1.5;
+    letter-spacing: 0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  p,
+  span,
+  label,
+  li,
+  td,
+  th {
+    letter-spacing: 0.02em;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    letter-spacing: 0.02em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Light mode icon handling — SVG icons that use dark:invert */
+  :root:not(.dark) img[src$=".svg"] {
+    filter: none;
+  }
+}
+
+/* ===================================================================
+   Typography – Semantic type styles
+   =================================================================== */
+
+/* — From new_global.style.css design system — */
+.type-h1 {
+  font-family: var(--font-haffer-xh);
+  font-size: var(--text-42);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-1-26);
+}
+
+.type-h2 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-24);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-48);
+}
+
+.type-body {
+  font-family: var(--font-body);
+  font-size: var(--text-15);
+  font-weight: 400;
+  line-height: 1.56;
+  letter-spacing: var(--tracking-neg-0-225);
+}
+
+.type-body-16 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-16);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-16);
+}
+
+.type-small-body {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-15);
+  font-weight: 400;
+  line-height: 1.10;
+  letter-spacing: var(--tracking-neg-0-225);
+}
+
+.type-body-14 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-14);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-14);
+}
+
+.type-caption {
+  font-family: var(--font-haffer-mono);
+  font-size: var(--text-13);
+  font-weight: 500;
+  line-height: 1.56;
+  letter-spacing: var(--tracking-neg-0-16);
+}
+
+.type-caption-13 {
+  font-family: var(--font-haffer-vf);
+  font-size: var(--text-13);
+  font-weight: 400;
+  line-height: 1.00;
+  letter-spacing: var(--tracking-neg-0-16);
+}
+
+/* — Legacy / Extended type tokens — */
+.type-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 10vw, 192px);
+  font-weight: 400;
+  line-height: 1.00;
+}
+
+.type-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 400;
+  line-height: 1.20;
+}
+
+.type-heading {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.33;
+}
+
+.type-subheading {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.40;
+  letter-spacing: -1px;
+}
+
+.type-body-lg {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.40;
+}
+
+.type-body-sm {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.50;
+}
+
+.type-body-xs {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+.type-button {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.56;
+  letter-spacing: 0.45px;
+}
+
+.type-button-sm {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.type-link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+}
+
+.type-caption-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+}
+
+.type-mono {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.7px;
+}
+
+.type-small {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.50;
+  letter-spacing: 1px;
+}
+
+/* ===================================================================
+   Marquee Animation
+   =================================================================== */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
