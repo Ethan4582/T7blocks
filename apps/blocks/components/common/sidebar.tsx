@@ -122,7 +122,13 @@ export function Sidebar() {
                         href={item.href}
                         target={(item as any).external ? "_blank" : undefined}
                         rel={(item as any).external ? "noopener noreferrer" : undefined}
-                        onClick={() => !(item as any).external && setOpen(false)}
+                        onClick={() => {
+                          if (!(item as any).external) {
+                            if (typeof window !== "undefined" && window.innerWidth < 768) {
+                              setOpen(false);
+                            }
+                          }
+                        }}
                         className={`
                           flex items-center gap-3 pl-2 pr-3 py-2 rounded-xl text-[13.5px] font-medium transition-all duration-150
                           ${pathname === item.href 
@@ -172,7 +178,13 @@ export function Sidebar() {
                                 href={subItem.href}
                                 target={subItem.external ? "_blank" : undefined}
                                 rel={subItem.external ? "noopener noreferrer" : undefined}
-                                onClick={() => !subItem.external && setOpen(false)}
+                                onClick={() => {
+                                  if (!subItem.external) {
+                                    if (typeof window !== "undefined" && window.innerWidth < 768) {
+                                      setOpen(false);
+                                    }
+                                  }
+                                }}
                                 className={`
                                   flex items-center pl-5 pr-3 py-[7px] text-[13px] rounded-lg transition-colors duration-150
                                   ${pathname === subItem.href 

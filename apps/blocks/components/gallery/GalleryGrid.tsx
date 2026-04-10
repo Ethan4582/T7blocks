@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { ComponentEntry } from "@/lib/registry";
 import { VaultCard } from "@/components/common/VaultCard";
 import { useState, useEffect } from "react";
@@ -12,9 +13,29 @@ interface GalleryGridProps {
 }
 
 export function GalleryGrid({ items, title, description }: GalleryGridProps) {
+  const pathname = usePathname();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 18;
+
+  // Compute dynamic title based on path
+  const getDynamicTitle = () => {
+    if (pathname === "/gallery") return "Vault";
+    
+    // e.g., /components/buttons -> Buttons Vault
+    // e.g., /hero -> Hero Vault
+    const segments = pathname.split("/").filter(Boolean);
+    const lastSegment = segments[segments.length - 1];
+    
+    if (lastSegment) {
+      const formattedSegment = lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1);
+      return `${formattedSegment} Vault`;
+    }
+    
+    return "Component Vault";
+  };
+
+  const dynamicTitle = getDynamicTitle();
 
   const filteredItems = items.filter(item =>
     item.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -37,7 +58,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
       <section className="flex flex-col items-center justify-center pt-20 pb-16 px-4">
         <div className="flex flex-col items-center space-y-3 max-w-4xl text-center">
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight flex items-center justify-center gap-3">
-             Discover the <span className="animate-wave text-4xl">👋</span> Component Vault
+             Discover the <span className="animate-wave text-4xl">👋</span> {dynamicTitle}
           </h1>
           
           <div className="relative w-full max-w-sm mt-8 group mx-auto">

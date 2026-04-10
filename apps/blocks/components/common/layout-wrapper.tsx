@@ -21,8 +21,8 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // Width of sidebar is 260px. Edge-to-edge transition handled by LayoutWrapper.
-  const offset = !isCollapsed ? "md:ml-[260px]" : "ml-0";
+  // Width of sidebar is 260px. Adjusted margin to 270px for balanced spacing.
+  const offset = !isCollapsed ? "md:ml-[270px]" : "ml-0";
 
   return (
     <>
@@ -31,14 +31,14 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         className={`
           flex-1 w-full md:w-auto flex flex-col transition-all duration-375 ease-in-out
           ${offset}
-          min-h-screen bg-background text-foreground
+          min-h-screen bg-background text-foreground shrink-0
         `}
       >
         {/* Centralized High-Fidelity Navbar */}
         <ComponentNavbar />
 
         {/* Content area: Clean, fluid layout with standard scroll */}
-        <div className="flex-1 flex flex-col bg-background">
+        <div className="flex-1 flex flex-col bg-background px-6 md:px-10 lg:px-12">
           {children}
         </div>
       </main>

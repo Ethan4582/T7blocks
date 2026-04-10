@@ -42,12 +42,7 @@ export const NAVIGATION_DATA: NavSection[] = [
       {
         title: "Installation",
         icon: "/SVG/installation.svg",
-        items: [
-          { title: "Install Next.js", href: "#" },
-          { title: "Install Tailwind CSS", href: "#" },
-          { title: "Add utilities", href: "#" },
-          { title: "CLI", href: "#" },
-        ],
+        href: "/installation",
       },
       {
         title: "Templates",
@@ -57,7 +52,7 @@ export const NAVIGATION_DATA: NavSection[] = [
       },
       {
         title: "Gallery",
-        icon: "/SVG/utilities.svg",
+        icon: "/SVG/gallery.png",
         href: "/gallery",
 
       },

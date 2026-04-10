@@ -31,7 +31,7 @@ export function CodeBlock({ code, label, language = "html" }: CodeBlockProps) {
       <div
         className="flex items-center justify-between px-4 py-2"
         style={{
-          background: "rgba(0,0,0,0.02)",
+          background: "var(--code-header)",
           borderBottom: "1px solid var(--code-border)",
         }}
       >
@@ -56,7 +56,7 @@ export function CodeBlock({ code, label, language = "html" }: CodeBlockProps) {
       </div>
 
       {/* Code Content */}
-      <div className="relative p-5 overflow-x-auto ring-1 ring-white/5 bg-[#0a0a0a] rounded-lg">
+      <div className="relative p-5 overflow-x-auto">
         <pre
           className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-all"
           style={{ color: "var(--code-text)" }}

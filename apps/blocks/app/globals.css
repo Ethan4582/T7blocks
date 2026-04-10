@@ -112,7 +112,7 @@
   --ring: #a1ff62;
   --radius: 0.5rem;
   /* Code block */
-  --code-bg: #ffffff;
+  --code-bg: #ebebeb;
   --code-header: #f4f4f4;
   --code-border: #e1e1e1;
   --code-text: #201d1d;
@@ -141,7 +141,7 @@
   --input: #1e1e1e;
   --ring: #a1ff62;
   /* Code block */
-  --code-bg: #0d0d0d;
+  --code-bg: #212121;
   --code-header: #151515;
   --code-border: #1e1e1e;
   --code-text: #e6edf3;
