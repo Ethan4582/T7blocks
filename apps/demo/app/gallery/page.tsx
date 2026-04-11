@@ -26,34 +26,28 @@ export default function GalleryPage() {
    });
 
    return (
-      <div
-         className="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
-           style={{ backgroundImage: "url('https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/Hero20V32037.png')" }}
-      >
+      <div className="min-h-screen hero-bg-surface bg-fixed">
          <div className="min-h-screen bg-black/40 backdrop-blur-[2px]">
             <div className="mx-auto max-w-[1400px] px-6 py-12 sm:px-12 sm:py-20">
-               
-               {/* Header Section: Logo and Title Above */}
-               <div className="mb-10 flex items-center gap-5">
+               <div className="mb-12 flex items-center">
                   <div className="flex flex-col">
-                     <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                        All Components
+                     <h1 className="text-5xl font-normal tracking-tight text-white/90 sm:text-7xl font-serif">
+                        All components
                      </h1>
-                     
                   </div>
                </div>
 
-               {/* Filter & Search Area */}
                <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                   <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide lg:pb-0">
                      {TAGS.map((tag) => (
                         <button
                            key={tag}
                            onClick={() => setActiveTag(tag)}
-                           className={`shrink-0 rounded-md border px-5 py-2 text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${activeTag === tag
-                              ? "bg-white border-white text-black shadow-lg"
-                              : "border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:bg-white/10 hover:text-white backdrop-blur-md"
-                              }`}
+                           className={`shrink-0 rounded-md border px-5 py-2 text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                             activeTag === tag
+                               ? "bg-white border-white text-black shadow-lg"
+                               : "border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:bg-white/10 hover:text-white backdrop-blur-md"
+                           }`}
                         >
                            {tag}
                         </button>
@@ -103,12 +97,9 @@ export default function GalleryPage() {
                                     {component.category}
                                  </span>
                               </div>
-
                               <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-white/50 group-hover:text-white/70 transition-colors">
                                  {component.shortDescription}
                               </p>
-
-                              
                            </div>
                         </Link>
                      ))

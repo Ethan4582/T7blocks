@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Dotlaunchbutton } from "@t7blocks/ui";
 import { launchButtonSchema } from "./prop-schemas/components/button/Launch-Button";

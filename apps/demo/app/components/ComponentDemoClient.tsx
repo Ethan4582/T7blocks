@@ -19,7 +19,6 @@ export default function ComponentDemoClient({
 
   const { component: Component, schema } = entry;
 
-  // Initialize props with defaults from schema
   const initialProps = Object.keys(schema).reduce((acc: any, key: string) => {
     acc[key] = schema[key].default;
     return acc;
