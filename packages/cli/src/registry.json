@@ -1,10 +1,10 @@
 {
-  "button-1": {
+  "launch-button": {
     "isPremium": false,
     "files": [
       {
-        "name": "Button1.tsx",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/button/button-1/Button1.tsx"
+        "name": "Dotlaunchbutton.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/button/DotLaunch/Dotlaunchbutton.tsx"
       }
     ],
     "dependencies": ["framer-motion"]

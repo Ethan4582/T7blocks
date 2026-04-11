@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { 
-  ChevronDown, 
+import {
+  ChevronDown,
   X,
   SquareTerminal,
   Lock,
@@ -18,7 +18,7 @@ export function Sidebar() {
   const router = useRouter();
   const { isOpen, isCollapsed, toggleCollapsed, setOpen } = useSidebar();
   const { theme } = useTheme();
-  
+
   const [openAccordions, setOpenAccordions] = useState<string[]>([]);
 
   // Initialize accordions based on current path
@@ -55,12 +55,12 @@ export function Sidebar() {
 
   return (
     <>
-      <div 
+      <div
         className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[55] md:hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={() => setOpen(false)}
       />
 
-      <aside 
+      <aside
         className={`
           fixed left-3 top-3 bottom-3 z-[60] flex flex-col
           bg-sidebar border border-border/40 
@@ -74,25 +74,25 @@ export function Sidebar() {
         {/* Logo + Close */}
         <div className="pl-4 pr-4 pt-6 pb-5 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 active:scale-95 transition-transform group" onClick={() => setOpen(false)}>
-            <img 
-              src="/assets/logo.png" 
-              alt="T7" 
-              className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-105" 
+            <img
+              src="/assets/logo.png"
+              alt="T7"
+              className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <span className="font-bold text-[17px] tracking-tight text-sidebar-foreground">
               Block
             </span>
           </Link>
-          
+
           <div className="flex items-center gap-1.5">
-            <button 
+            <button
               onClick={toggleCollapsed}
               className="p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors"
               title="Collapse sidebar"
             >
               <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-70" alt="Toggle" />
             </button>
-            <button 
+            <button
               onClick={() => setOpen(false)}
               className="md:hidden p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors"
             >
@@ -131,8 +131,8 @@ export function Sidebar() {
                         }}
                         className={`
                           flex items-center gap-3 pl-2 pr-3 py-2 rounded-xl text-[13.5px] font-medium transition-all duration-150
-                          ${pathname === item.href 
-                            ? "bg-sidebar-hover text-sidebar-foreground shadow-sm" 
+                          ${pathname === item.href
+                            ? "bg-sidebar-hover text-sidebar-foreground shadow-sm"
                             : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/40"}
                         `}
                       >
@@ -161,11 +161,10 @@ export function Sidebar() {
                             <span>{item.title}</span>
                           </div>
                           <div className="flex items-center gap-1.5">
-                            <ChevronDown 
+                            <ChevronDown
                               size={14}
-                              className={`transition-transform duration-200 opacity-50 ${
-                                openAccordions.includes(item.title) ? "rotate-0" : "-rotate-90"
-                              }`} 
+                              className={`transition-transform duration-200 opacity-50 ${openAccordions.includes(item.title) ? "rotate-0" : "-rotate-90"
+                                }`}
                             />
                           </div>
                         </button>
@@ -187,8 +186,8 @@ export function Sidebar() {
                                 }}
                                 className={`
                                   flex items-center pl-5 pr-3 py-[7px] text-[13px] rounded-lg transition-colors duration-150
-                                  ${pathname === subItem.href 
-                                    ? "text-sidebar-foreground font-medium bg-sidebar-hover/50" 
+                                  ${pathname === subItem.href
+                                    ? "text-sidebar-foreground font-medium bg-sidebar-hover/50"
                                     : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/30"}
                                 `}
                               >
