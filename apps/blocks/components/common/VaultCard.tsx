@@ -46,9 +46,18 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
           {/* Top Right: Actions (Eye & Bookmark) - Only if NOT locked */}
           {!item.isPremium && (
             <div className={`absolute top-3 right-3 z-20 flex gap-2 transition-all duration-500 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
-              <div className="w-8 h-8 rounded-full bg-background/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-red-500 shadow-xl">
+              <a 
+                href={item.demoUrl} 
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className="w-8 h-8 rounded-full bg-background/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-accent shadow-xl hover:bg-background/80 transition-all hover:scale-110"
+                title="Open Live Preview"
+              >
                  <Eye className="w-3.5 h-3.5" />
-              </div>
+              </a>
               <button 
                 onClick={(e) => toggleBookmark(item.name, e)}
                 className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shadow-xl transition-all ${bookmarked ? "bg-white text-black" : "bg-background/60 backdrop-blur-md text-foreground/70"}`}
@@ -74,6 +83,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
               muted 
               playsInline 
               loop 
+              preload="auto"
             />
           )}
         </div>

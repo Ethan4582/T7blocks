@@ -14,6 +14,7 @@ export interface ComponentItem {
     image: string;
     url?: string;
   };
+  demoUrl?: string;
 }
 
 export interface ComponentDetailData {

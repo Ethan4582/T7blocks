@@ -244,6 +244,7 @@ export function Hero() {
                 muted
                 playsInline
                 loop
+                preload="auto"
               />
             )}
 
