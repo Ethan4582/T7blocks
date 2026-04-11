@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { ComponentItem } from "@/src/lib/allData";
+import { ComponentItem } from "@/lib/componentData";
 
 interface PreviewCardProps {
   component: ComponentItem;

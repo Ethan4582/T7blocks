@@ -24,7 +24,7 @@ export default function ComponentDemoClient({
     return acc;
   }, {});
 
-  const [props, setProps] = useState(initialProps);
+  const [props, setProps] = useState<Record<string, any>>(initialProps);
 
   return (
     <>

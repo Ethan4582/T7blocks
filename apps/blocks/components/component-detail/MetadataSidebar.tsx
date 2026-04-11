@@ -1,7 +1,7 @@
 "use client";
 
 import { Bug, Heart, Github, ExternalLink } from "lucide-react";
-import { ComponentItem } from "@/src/lib/allData";
+import { ComponentItem } from "@/lib/componentData";
 
 interface MetadataSidebarProps {
   component: ComponentItem;

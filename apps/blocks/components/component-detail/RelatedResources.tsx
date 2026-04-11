@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Eye, Bookmark, Lock as LockIcon, ChevronRight } from "lucide-react";
-import { ComponentItem } from "@/src/lib/allData";
+import { ComponentItem } from "@/lib/componentData";
 
 interface RelatedResourcesProps {
   items: ComponentItem[];
