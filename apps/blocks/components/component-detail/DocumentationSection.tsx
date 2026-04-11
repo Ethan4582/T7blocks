@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { SquareTerminal } from "lucide-react";
-import { ComponentDetailData } from "@/src/lib/componentData";
-import { ComponentItem } from "@/src/lib/allData";
+import { ComponentDetailData, ComponentItem } from "@/lib/componentData";
 import { CodeBlock } from "./CodeBlock";
 
 interface DocumentationSectionProps {

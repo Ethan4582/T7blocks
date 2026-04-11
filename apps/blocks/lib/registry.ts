@@ -23,9 +23,9 @@ export const registry: ComponentEntry[] = [
     category: "components",
     type: "button", // Mapping to existing types if possible
     isPremium: false,
-    imageUrl: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_one/good_assets/art1.png",
-    videoUrl: "https://cdn.sanity.io/files/3fq51aaa/production/42faf2223c5cc654c81761c9b1256659549b6aba.mp4",
-    demoUrl: "https://demo.t7blocks.com/components/button/Launch-Button",
+    imageUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
+    demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button",
     cliCommand: "npx @t7blocks/cli add launch-button",
     description: "A minimalist, premium button featuring a grid-based arrow animation",
     tags: ["Button", "Animation", "Framer Motion"],

@@ -10,7 +10,7 @@ const footerLinks = {
   Resources: [
     { name: "Documentation", href: "#" },
     { name: "Gallery", href: "/gallery" },
-    { name: "Blog", href: "http://blog-t7labs.pages.dev/" },
+    { name: "Customize Blocks", href: "https://demo.t7blocks.xyz/" },
   ],
   Company: [
     { name: "Terms", href: "#" },

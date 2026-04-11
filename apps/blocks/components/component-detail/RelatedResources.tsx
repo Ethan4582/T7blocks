@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Eye, Bookmark, Lock as LockIcon, ChevronRight } from "lucide-react";
-import { ComponentItem } from "@/src/lib/allData";
+import { ComponentItem } from "@/lib/componentData";
 
 interface RelatedResourcesProps {
   items: ComponentItem[];
@@ -76,13 +76,16 @@ function RelatedCard({
           )}
           {!item.isPremium && (
             <div className={`absolute z-20 top-3 right-3 flex items-center gap-2 transition-all duration-300 ${hovered ? "opacity-100" : "opacity-0 translate-y-[-4px]"}`}>
-              <button
-                className="w-8 h-8 rounded-lg bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-red-500 hover:bg-background hover:scale-105 transition-all shadow-sm"
+              <a
+                href={item.demoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-accent hover:bg-background hover:scale-105 transition-all shadow-sm"
                 title="Preview"
-                onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                onClick={(e) => { e.stopPropagation(); }}
               >
                 <Eye className="w-[15px] h-[15px]" />
-              </button>
+              </a>
               <button
                 className="w-8 h-8 rounded-lg bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-foreground hover:bg-background hover:scale-105 transition-all shadow-sm"
                 title="Bookmark"
@@ -95,7 +98,7 @@ function RelatedCard({
           {item.video ? (
             <>
               <img src={item.image} alt={item.name} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hovered ? "opacity-0" : "opacity-100"}`} />
-              <video ref={videoRef} src={item.video} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`} muted playsInline loop />
+              <video ref={videoRef} src={item.video} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`} muted playsInline loop preload="auto" />
             </>
           ) : (
             <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />

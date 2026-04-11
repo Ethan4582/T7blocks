@@ -11,7 +11,7 @@ export interface ComponentData {
   name: string;
   shortDescription: string;
   longDescription: string;
-  image: string;
+  image?: string;
   video: string;
   category: string;
   date: string;
