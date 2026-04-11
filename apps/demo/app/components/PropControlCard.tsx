@@ -10,10 +10,10 @@ export default function PropControlCard({ schema, values, onChange }: PropContro
   if (!schema || !values) return null;
 
   return (
-    <div className="fixed bottom-8 right-8 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-4 w-[240px] shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] z-50 text-white/80 transition-all duration-300 hover:border-white/20">
+    <div className="fixed bottom-8 left-8 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-4 w-[240px] shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] z-50 text-white/80 transition-all duration-300 hover:border-white/20">
       <div className="flex items-center justify-between mb-4 px-1">
         <h3 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/40">Customizer</h3>
-        <div className="w-1.5 h-1.5 rounded-full bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
+       
       </div>
       
       <div className="space-y-5">

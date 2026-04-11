@@ -4,6 +4,7 @@ import { useState } from "react";
 import DemoCanvas from "./DemoCanvas";
 import PropControlCard from "./PropControlCard";
 import { registry } from "@/lib/registry";
+import { components } from "@/lib/gallery";
 
 export default function ComponentDemoClient({ 
   id, 
@@ -12,6 +13,7 @@ export default function ComponentDemoClient({
   id: string; 
   blockUrl?: string;
 }) {
+  const componentData = components.find(c => c.id === id);
   const entry = registry[id];
   if (!entry) return <div>Component not found</div>;
 
@@ -27,7 +29,10 @@ export default function ComponentDemoClient({
 
   return (
     <>
-      <DemoCanvas blockUrl={blockUrl}>
+      <DemoCanvas 
+        blockUrl={blockUrl} 
+        canvasConfig={componentData?.canvas}
+      >
         <Component {...props} />
       </DemoCanvas>
       <PropControlCard

@@ -1,3 +1,11 @@
+export interface CanvasConfig {
+   background?: string;
+   width?: string;
+   height?: string;
+   className?: string; // Additional Tailwind styling
+   infoCard?: string;  // Optional text for a card in the right corner
+}
+
 export interface ComponentData {
    id: string;
    name: string;
@@ -9,8 +17,8 @@ export interface ComponentData {
    date: string;
    tags: string[];
    block_url: string;
+   canvas?: CanvasConfig;
 }
-
 
 export const components: ComponentData[] = [
    {
@@ -24,5 +32,10 @@ export const components: ComponentData[] = [
       date: "2026-04-11",
       tags: ["Framer Motion", "Button", "Micro-interaction", "Next.js"],
       block_url: "https://github.com/Ethan4582/T7blocks/blob/main/packages/ui/src/components/button/launch-button/index.tsx",
+      canvas: {
+         background: "#EBEBEB", // Default as per request
+         height: "100vh",
+         
+      }
    },
 ];
