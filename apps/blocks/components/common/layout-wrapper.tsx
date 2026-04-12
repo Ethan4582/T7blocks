@@ -15,7 +15,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
 
   if (isStandalone) {
     return (
-      <main className="flex-1 flex flex-col min-h-screen overflow-y-auto bg-background text-foreground transition-colors duration-300">
+      <main className="flex-1 flex flex-col min-h-screen overflow-y-auto text-foreground transition-colors duration-300">
         {children}
       </main>
     );
@@ -31,14 +31,14 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         className={`
           flex-1 w-full md:w-auto flex flex-col transition-all duration-375 ease-in-out
           ${offset}
-          min-h-screen bg-background text-foreground shrink-0
+          min-h-screen text-foreground shrink-0
         `}
       >
         {/* Centralized High-Fidelity Navbar */}
         <ComponentNavbar />
 
         {/* Content area: Clean, fluid layout with standard scroll */}
-        <div className="flex-1 flex flex-col bg-background px-6 md:px-10 lg:px-12">
+        <div className="flex-1 flex flex-col px-6 md:px-10 lg:px-12">
           {children}
         </div>
       </main>

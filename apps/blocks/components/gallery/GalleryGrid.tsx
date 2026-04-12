@@ -53,7 +53,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
   }, [searchQuery, items]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
+    <div className="flex flex-col min-h-screen text-foreground overflow-x-hidden transition-colors duration-300">
       {/* Shared Hero Section */}
       <section className="flex flex-col items-center justify-center pt-20 pb-16 px-4">
         <div className="flex flex-col items-center space-y-3 max-w-4xl text-center">

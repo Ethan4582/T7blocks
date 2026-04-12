@@ -6,50 +6,135 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   ChevronDown,
   X,
-  SquareTerminal,
-  Lock,
 } from "lucide-react";
 import { useSidebar } from "@/components/common/sidebar-provider";
-import { useTheme } from "@/components/common/theme-provider";
 import { NAVIGATION_DATA } from "@/lib/sidebar/navigation";
 
-export function Sidebar() {
+function SidebarItem({ 
+  item, 
+  depth = 0, 
+  openId, 
+  setOpenId 
+}: { 
+  item: any; 
+  depth?: number;
+  openId?: string | null;
+  setOpenId?: (id: string | null) => void;
+}) {
   const pathname = usePathname();
   const router = useRouter();
-  const { isOpen, isCollapsed, toggleCollapsed, setOpen } = useSidebar();
-  const { theme } = useTheme();
+  const { setOpen: setSidebarOpen } = useSidebar();
+  
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const itemId = item.title;
+  
+  // If setOpenId is provided (usually level 0), use that for exclusivity
+  // Otherwise use internal state (for nested dropdowns)
+  const isCurrentlyOpen = setOpenId && openId !== undefined ? openId === itemId : internalIsOpen;
 
-  const [openAccordions, setOpenAccordions] = useState<string[]>([]);
-
-  // Initialize accordions based on current path
+  // Auto-open if a child is active
   useEffect(() => {
-    const activeAccordions: string[] = [];
-    NAVIGATION_DATA.forEach(section => {
-      section.items.forEach((item: any) => {
-        if (!item.href && item.items) {
-          const isChildActive = item.items.some((sub: any) => pathname === sub.href);
-          if (isChildActive || (item.href && pathname === item.href)) {
-            activeAccordions.push(item.title);
-          }
-        }
-      });
-    });
-    if (activeAccordions.length > 0) {
-      setOpenAccordions(prev => Array.from(new Set([...prev, ...activeAccordions])));
+    const isAnyChildActive = (items: any[]): boolean => {
+      return items?.some((sub: any) => 
+        pathname === sub.href || (sub.items && isAnyChildActive(sub.items))
+      );
+    };
+    
+    if (item.items && isAnyChildActive(item.items)) {
+      if (setOpenId) setOpenId(itemId);
+      else setInternalIsOpen(true);
     }
-  }, [pathname]);
+  }, [pathname, item.items, itemId, setOpenId]);
 
-  const handleAccordionClick = (item: any) => {
-    // Toggle accordion
-    setOpenAccordions((prev) =>
-      prev.includes(item.title) ? prev.filter((t) => t !== item.title) : [...prev, item.title]
-    );
+  const hasChildren = item.items && item.items.length > 0;
+  
+  // Strict active check - only one item should be highlighted at a time
+  const isSelected = pathname === item.href;
 
-    // Route if href is provided
+  const handleClick = (e: React.MouseEvent) => {
+    // Toggle dropdown if children exist
+    if (hasChildren) {
+      if (setOpenId) {
+        setOpenId(isCurrentlyOpen ? null : itemId);
+      } else {
+        setInternalIsOpen(!internalIsOpen);
+      }
+    }
+    
+    // Navigate if href exists
     if (item.href && !item.isLocked) {
       router.push(item.href);
+      
+      // Close sidebar on mobile
+      if (!hasChildren && typeof window !== "undefined" && window.innerWidth < 768) {
+        setSidebarOpen(false);
+      }
     }
   };
+
+  return (
+    <div className="space-y-0.5">
+      <div className="group relative">
+        <button
+          onClick={handleClick}
+          className={`
+            w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200
+            ${isSelected
+              ? "bg-sidebar-hover text-sidebar-foreground shadow-sm"
+              : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/50"}
+          `}
+        >
+          <div className="flex items-center gap-2.5">
+            {item.icon && (
+              <img 
+                src={item.icon} 
+                alt="" 
+                className={`
+                  w-[15px] h-[15px] shrink-0 transition-all 
+                  dark:brightness-0 dark:invert
+                  ${isSelected ? "opacity-100 scale-110" : "opacity-70 group-hover:opacity-100 group-hover:scale-105"}
+                `} 
+              />
+            )}
+            <span className="flex-1 truncate">{item.title}</span>
+          </div>
+          
+          <div className="flex items-center gap-1.5">
+            {item.badge && (
+              <span className="px-1.5 py-0.5 rounded-md text-[9px] font-bold text-white bg-[#f84131] tracking-wide leading-none">
+                {item.badge}
+              </span>
+            )}
+            {hasChildren && (
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-300 opacity-40 ${isCurrentlyOpen ? "rotate-0" : "-rotate-90"}`}
+              />
+            )}
+          </div>
+        </button>
+      </div>
+      
+      {isCurrentlyOpen && hasChildren && (
+        <div className="relative ml-[19px] mt-1 mb-1 space-y-0.5 border-l-[1.5px] border-muted-foreground/40 pl-4">
+          {item.items.map((subItem: any, idx: number) => (
+            <SidebarItem 
+              key={`${subItem.title}-${idx}`} 
+              item={subItem} 
+              depth={depth + 1} 
+              // Don't pass openId/setOpenId down to let children manage their own state
+              // This fixes the issue where nested items couldn't expand.
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Sidebar() {
+  const { isOpen, toggleCollapsed, setOpen } = useSidebar();
+  const [openId, setOpenId] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
@@ -64,33 +149,37 @@ export function Sidebar() {
         className={`
           fixed left-3 top-3 bottom-3 z-[60] flex flex-col
           bg-sidebar border border-border/40 
-          rounded-[10px]
+          rounded-[12px]
           transition-all duration-375 ease-in-out
-          w-[260px]
-          ${isOpen && !isCollapsed ? "translate-x-0" : "-translate-x-[calc(100%+24px)]"}
-          shadow-xl
+          w-[250px]
+          ${isOpen ? "translate-x-0" : "-translate-x-[calc(100%+24px)]"}
         `}
       >
         {/* Logo + Close */}
-        <div className="pl-4 pr-4 pt-6 pb-5 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 active:scale-95 transition-transform group" onClick={() => setOpen(false)}>
-            <img
-              src="/assets/logo.png"
-              alt="T7"
-              className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-            <span className="font-bold text-[17px] tracking-tight text-sidebar-foreground">
-              Block
+        <div className="pl-5 pr-4 pt-4 pb-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform group" onClick={() => setOpen(false)}>
+            <div className="relative">
+              <img
+                src="/assets/logo.png"
+                alt="T7"
+                className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-105 rounded-[8px] border border-border/10"
+              />
+            </div>
+            <span 
+              className="font-display font-medium text-[22px] tracking-tight text-sidebar-foreground uppercase pt-0.5"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Blocks
             </span>
           </Link>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <button
               onClick={toggleCollapsed}
               className="p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors"
               title="Collapse sidebar"
             >
-              <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-70" alt="Toggle" />
+              <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-60" alt="Toggle" />
             </button>
             <button
               onClick={() => setOpen(false)}
@@ -102,103 +191,25 @@ export function Sidebar() {
         </div>
 
         {/* Navigation Content */}
-        <div className="flex-1 overflow-y-auto pl-1 pr-2 space-y-5 pb-8 scrollbar-none">
+        <div className="flex-1 overflow-y-auto px-1 group space-y-7 pb-10 scrollbar-none">
           {NAVIGATION_DATA.map((section, sIdx) => (
-            <div key={section.title || `section-${sIdx}`} className="pt-2">
+            <div key={section.title || `section-${sIdx}`} className="space-y-2.5">
               {/* Section label */}
               {section.title && (
-                <h4 className="px-3 mb-3 text-[11px] font-semibold tracking-widest uppercase text-muted-foreground/60">
+                <h4 className="px-4 text-[10px] font-extrabold tracking-[0.2em] uppercase text-white">
                   {section.title}
                 </h4>
               )}
 
               {/* Items */}
-              <div className="space-y-0.5">
-                {section.items.map((item) => (
-                  <div key={item.title}>
-                    {"href" in item && !("items" in item) ? (
-                      /* Direct Link Item */
-                      <Link
-                        href={item.href}
-                        target={(item as any).external ? "_blank" : undefined}
-                        rel={(item as any).external ? "noopener noreferrer" : undefined}
-                        onClick={() => {
-                          if (!(item as any).external) {
-                            if (typeof window !== "undefined" && window.innerWidth < 768) {
-                              setOpen(false);
-                            }
-                          }
-                        }}
-                        className={`
-                          flex items-center gap-3 pl-2 pr-3 py-2 rounded-xl text-[13.5px] font-medium transition-all duration-150
-                          ${pathname === item.href
-                            ? "bg-sidebar-hover text-sidebar-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/40"}
-                        `}
-                      >
-                        {item.icon && <img src={item.icon} alt="" className={`w-[16px] h-[16px] shrink-0 dark:invert ${pathname === item.href ? "opacity-100" : "opacity-60"}`} />}
-                        <span className="flex-1 truncate">{item.title}</span>
-                        {(item as any).badge && (
-                          <span className="px-1.5 py-0.5 rounded-md text-[9px] font-bold text-white bg-[#f84131] tracking-wide leading-none">
-                            {(item as any).badge}
-                          </span>
-                        )}
-                      </Link>
-                    ) : (
-                      /* Accordion Item */
-                      <div className="space-y-0.5">
-                        <button
-                          onClick={() => handleAccordionClick(item)}
-                          className={`
-                            w-full flex items-center justify-between pl-2 pr-3 py-2 rounded-xl text-[13.5px] font-medium transition-all duration-150
-                            ${(item as any).href && pathname === (item as any).href
-                              ? "bg-sidebar-hover text-sidebar-foreground shadow-sm"
-                              : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/40"}
-                          `}
-                        >
-                          <div className="flex items-center gap-3">
-                            {(item as any).icon && <img src={(item as any).icon} alt="" className={`w-[16px] h-[16px] dark:invert ${openAccordions.includes(item.title) ? "opacity-100" : "opacity-60"}`} />}
-                            <span>{item.title}</span>
-                          </div>
-                          <div className="flex items-center gap-1.5">
-                            <ChevronDown
-                              size={14}
-                              className={`transition-transform duration-200 opacity-50 ${openAccordions.includes(item.title) ? "rotate-0" : "-rotate-90"
-                                }`}
-                            />
-                          </div>
-                        </button>
-                        {openAccordions.includes(item.title) && (item as any).items?.length > 0 && (
-                          <div className="relative pl-[18px] mt-1 mb-2 space-y-0.5">
-                            <div className="absolute left-[22px] top-0 bottom-2 w-px bg-border/60" aria-hidden="true" />
-                            {(item as any).items.map((subItem: any) => (
-                              <Link
-                                key={subItem.title}
-                                href={subItem.href}
-                                target={subItem.external ? "_blank" : undefined}
-                                rel={subItem.external ? "noopener noreferrer" : undefined}
-                                onClick={() => {
-                                  if (!subItem.external) {
-                                    if (typeof window !== "undefined" && window.innerWidth < 768) {
-                                      setOpen(false);
-                                    }
-                                  }
-                                }}
-                                className={`
-                                  flex items-center pl-5 pr-3 py-[7px] text-[13px] rounded-lg transition-colors duration-150
-                                  ${pathname === subItem.href
-                                    ? "text-sidebar-foreground font-medium bg-sidebar-hover/50"
-                                    : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/30"}
-                                `}
-                              >
-                                {subItem.title}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
+              <div className="px-1 space-y-0.5">
+                {section.items.map((item, iIdx) => (
+                  <SidebarItem 
+                    key={`${item.title}-${iIdx}`} 
+                    item={item} 
+                    openId={openId}
+                    setOpenId={setOpenId}
+                  />
                 ))}
               </div>
             </div>

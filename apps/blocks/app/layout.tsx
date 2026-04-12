@@ -58,13 +58,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
+      className={`dark scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-background`}
     >
       <body className="antialiased bg-background text-foreground scrollbar-hide">
         <ThemeProvider>
           <BookmarksProvider>
             <SidebarProvider>
-              <div className="flex w-full min-h-screen">
+              <div className="flex w-full min-h-screen bg-background">
                 <LayoutWrapper>{children}</LayoutWrapper>
               </div>
             </SidebarProvider>

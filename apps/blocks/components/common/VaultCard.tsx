@@ -60,7 +60,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
               </a>
               <button 
                 onClick={(e) => toggleBookmark(item.name, e)}
-                className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shadow-xl transition-all ${bookmarked ? "bg-white text-black" : "bg-background/60 backdrop-blur-md text-foreground/70"}`}
+                className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shadow-xl transition-all ${bookmarked ? "bg-accent text-accent-foreground" : "bg-background/60 backdrop-blur-md text-foreground/70"}`}
               >
                  <Bookmark className={`w-3.5 h-3.5 ${bookmarked ? "fill-current" : ""}`} />
               </button>
@@ -93,7 +93,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
           <h3 className="text-[14px] font-medium tracking-wide text-foreground/80 group-hover:text-foreground transition-colors truncate">
             {item.displayName}
           </h3>
-          <div className={`w-6 h-6 rounded-full bg-black flex items-center justify-center text-white transition-all duration-375 ease-in-out ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"}`}>
+          <div className={`w-6 h-6 rounded-full bg-sidebar-hover flex items-center justify-center text-foreground transition-all duration-375 ease-in-out ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"}`}>
             <ChevronRight className="w-3 h-3" />
           </div>
         </div>
