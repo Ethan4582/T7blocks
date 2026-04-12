@@ -10,13 +10,15 @@ import {
 import { useSidebar } from "@/components/common/sidebar-provider";
 import { NAVIGATION_DATA } from "@/lib/sidebar/navigation";
 
+import { NavItem } from "@/lib/sidebar/navigation";
+
 function SidebarItem({ 
   item, 
   depth = 0, 
   openId, 
   setOpenId 
 }: { 
-  item: any; 
+  item: NavItem; 
   depth?: number;
   openId?: string | null;
   setOpenId?: (id: string | null) => void;
@@ -28,14 +30,11 @@ function SidebarItem({
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const itemId = item.title;
   
-  // If setOpenId is provided (usually level 0), use that for exclusivity
-  // Otherwise use internal state (for nested dropdowns)
   const isCurrentlyOpen = setOpenId && openId !== undefined ? openId === itemId : internalIsOpen;
 
-  // Auto-open if a child is active
   useEffect(() => {
-    const isAnyChildActive = (items: any[]): boolean => {
-      return items?.some((sub: any) => 
+    const isAnyChildActive = (items: NavItem[]): boolean => {
+      return items?.some((sub) => 
         pathname === sub.href || (sub.items && isAnyChildActive(sub.items))
       );
     };
@@ -48,11 +47,9 @@ function SidebarItem({
 
   const hasChildren = item.items && item.items.length > 0;
   
-  // Strict active check - only one item should be highlighted at a time
   const isSelected = pathname === item.href;
 
   const handleClick = (e: React.MouseEvent) => {
-    // Toggle dropdown if children exist
     if (hasChildren) {
       if (setOpenId) {
         setOpenId(isCurrentlyOpen ? null : itemId);
@@ -61,11 +58,9 @@ function SidebarItem({
       }
     }
     
-    // Navigate if href exists
-    if (item.href && !item.isLocked) {
+    if (item.href) {
       router.push(item.href);
       
-      // Close sidebar on mobile
       if (!hasChildren && typeof window !== "undefined" && window.innerWidth < 768) {
         setSidebarOpen(false);
       }
@@ -115,15 +110,13 @@ function SidebarItem({
         </button>
       </div>
       
-      {isCurrentlyOpen && hasChildren && (
+      {isCurrentlyOpen && hasChildren && item.items && (
         <div className="relative ml-[19px] mt-1 mb-1 space-y-0.5 border-l-[1.5px] border-muted-foreground/40 pl-4">
-          {item.items.map((subItem: any, idx: number) => (
+          {item.items.map((subItem, idx) => (
             <SidebarItem 
               key={`${subItem.title}-${idx}`} 
               item={subItem} 
               depth={depth + 1} 
-              // Don't pass openId/setOpenId down to let children manage their own state
-              // This fixes the issue where nested items couldn't expand.
             />
           ))}
         </div>

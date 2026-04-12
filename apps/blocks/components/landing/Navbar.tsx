@@ -28,9 +28,6 @@ const XIcon = () => (
   </svg>
 );
 
-/* ─────────────────────────────────────────
-   Marquee ticker content
-───────────────────────────────────────── */
 const TICKER_ITEMS = [
   "NEW: PAGE TRANSITION COURSE",
   "NEW: PAGE TRANSITION COURSE",
@@ -40,9 +37,6 @@ const TICKER_ITEMS = [
   "NEW: PAGE TRANSITION COURSE",
 ];
 
-/* ─────────────────────────────────────────
-   Navigation data
-───────────────────────────────────────── */
 const PRODUCTS = [
   { label: "The Vault", badge: null },
   { label: "Page Transition Course", badge: "NEW" },
@@ -57,9 +51,6 @@ const EXPLORE = [
   { label: "Pricing", superscript: null },
 ];
 
-/* ─────────────────────────────────────────
-   Navbar Component
-───────────────────────────────────────── */
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -69,7 +60,6 @@ export function Navbar() {
     setMounted(true);
   }, []);
 
-  // Close on outside click
   useEffect(() => {
     if (!menuOpen) return;
     const handler = (e: MouseEvent) => {
@@ -81,7 +71,6 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, [menuOpen]);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -91,18 +80,14 @@ export function Navbar() {
 
   return (
     <>
-      {/* ── Backdrop ─────────────────────────── */}
       <div
         className={`t7-nav-backdrop ${menuOpen ? "t7-nav-backdrop--visible" : ""}`}
         aria-hidden="true"
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* ── Main wrapper ─────────────────────── */}
       <header className="t7-nav-wrapper" ref={menuRef}>
-        {/* ── Top bar ─────────────────────────── */}
         <nav className="t7-nav-bar" aria-label="Main navigation">
-          {/* Left: hamburger + label */}
           <button
             id="t7-menu-toggle"
             className="t7-nav-menu-btn"
@@ -112,13 +97,11 @@ export function Navbar() {
           >
             <span className="t7-nav-menu-icon" aria-hidden="true">
               {menuOpen ? (
-                /* X */
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                   <line x1="16" y1="4" x2="4" y2="16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               ) : (
-                /* Hamburger */
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <line x1="3" y1="6.5" x2="17" y2="6.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                   <line x1="3" y1="13.5" x2="17" y2="13.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -128,13 +111,11 @@ export function Navbar() {
             <span className="t7-nav-menu-label">Menu</span>
           </button>
 
-          {/* Center: logo asterisk */}
           <Link href="/" className="t7-nav-logo" aria-label="T7Block Home">
             <span className="t7-nav-logo-icon">✦</span>
             <span className="t7-nav-logo-text">T7BLOCK</span>
           </Link>
 
-          {/* Right: CTA buttons */}
           <div className="t7-nav-actions">
             <button className="t7-nav-btn-login">
               Login
@@ -145,7 +126,6 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* ── Expanded mega-menu panel ─────────── */}
         <div
           id="t7-nav-panel"
           className={`t7-nav-panel ${menuOpen ? "t7-nav-panel--open" : ""}`}
@@ -154,7 +134,6 @@ export function Navbar() {
           aria-label="Navigation menu"
         >
           <div className="t7-nav-panel-inner">
-            {/* Column 1 – Products */}
             <div className="t7-nav-col t7-nav-col--products">
               <p className="t7-nav-col-label">OUR BLOCKS</p>
               <ul className="t7-nav-col-list">
@@ -177,7 +156,6 @@ export function Navbar() {
                   </li>
                 ))}
               </ul>
-              {/* Bottom pinned items */}
               <div className="t7-nav-col-bottom">
                 {PRODUCTS.filter((p) => p.isBottom).map((item, i) => (
                   <a key={i} href="#" className="t7-nav-col-link">
@@ -192,10 +170,8 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* Divider */}
             <div className="t7-nav-divider" aria-hidden="true" />
 
-            {/* Column 2 – Explore */}
             <div className="t7-nav-col t7-nav-col--explore">
               <p className="t7-nav-col-label">EXPLORE</p>
               <ul className="t7-nav-col-list">
@@ -211,7 +187,6 @@ export function Navbar() {
                 ))}
               </ul>
 
-              {/* Social icons */}
               <div className="t7-nav-social">
                 <a href="#" className="t7-nav-social-btn" aria-label="LinkedIn">
                   <LinkedInIcon />
@@ -225,10 +200,8 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* Divider */}
             <div className="t7-nav-divider" aria-hidden="true" />
 
-            {/* Column 3 – Featured */}
             <div className="t7-nav-col t7-nav-col--featured">
               <div className="t7-nav-featured-card">
                 <div className="t7-nav-featured-meta">
@@ -257,7 +230,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* ── Marquee ticker ───────────────────── */}
         <div className="t7-nav-ticker" aria-label="Announcements">
           <div className="t7-nav-ticker-track">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((text, i) => (
@@ -270,7 +242,6 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* ── Spacer so content doesn't hide behind navbar ── */}
       <div className="t7-nav-spacer" aria-hidden="true" />
     </>
   );

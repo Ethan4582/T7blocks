@@ -1,9 +1,9 @@
-import { registry } from "@/lib/registry";
+import { registry, toComponentItem } from "@/lib/registry";
 import { notFound } from "next/navigation";
 
 type Props = { params: Promise<{ type: string; name: string }> };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return registry
     .filter((c) => c.category === "background")
     .map((c) => ({
@@ -21,15 +21,14 @@ export default async function BackgroundPage({ params }: Props) {
 
   if (!entry) return notFound();
 
-  // Dynamically import the content based on type and name
-  // This expects lib/content/background/[type]/[name].ts to exist
   let allContent;
   try {
     allContent = await import(`@/lib/content/background/${type}/${name}`);
   } catch (err) {
-    console.error("Failed to load content:", err);
     return notFound();
   }
+
+  const componentItem = toComponentItem(entry);
 
   if (entry.isPremium) {
     return (
@@ -67,7 +66,7 @@ export default async function BackgroundPage({ params }: Props) {
              <span className="text-[10px] uppercase font-bold text-muted-foreground/60 tracking-widest">Properties</span>
              <div className="space-y-2">
                {allContent.propsTable?.length > 0 ? (
-                 allContent.propsTable.map((p: any) => (
+                 allContent.propsTable.map((p: { name: string; type: string }) => (
                     <div key={p.name} className="flex items-center justify-between text-xs py-1.5 border-b border-border/20 last:border-0">
                       <span className="font-mono text-sidebar-foreground font-semibold">{p.name}</span>
                       <span className="text-muted-foreground">{p.type}</span>
