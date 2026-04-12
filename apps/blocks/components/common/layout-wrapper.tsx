@@ -10,7 +10,6 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { isCollapsed } = useSidebar();
   
-  // Standalone pages that don't need the sidebar or header (e.g. landing page or focused templates)
   const isStandalone = pathname === "/" || pathname === "/templates";
 
   if (isStandalone) {
@@ -21,7 +20,6 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // Width of sidebar is 260px. Adjusted margin to 270px for balanced spacing.
   const offset = !isCollapsed ? "md:ml-[270px]" : "ml-0";
 
   return (
@@ -34,10 +32,8 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
           min-h-screen text-foreground shrink-0
         `}
       >
-        {/* Centralized High-Fidelity Navbar */}
         <ComponentNavbar />
 
-        {/* Content area: Clean, fluid layout with standard scroll */}
         <div className="flex-1 flex flex-col px-6 md:px-10 lg:px-12">
           {children}
         </div>

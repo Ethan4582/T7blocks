@@ -54,7 +54,6 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
   return (
     <>
       <header className="flex justify-between items-center px-6 md:px-10 lg:px-12 py-3 sticky top-0 bg-background z-30 border-b border-border/40">
-        {/* Left: sidebar toggle + search */}
         <div className="flex items-center gap-3 flex-1 max-w-[320px]">
           {isCollapsed && (
             <button 
@@ -66,7 +65,6 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
             </button>
           )}
 
-          {/* Search */}
           <div className="relative flex-1 max-w-[240px]">
             <div className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-muted-foreground">
               <Search className="w-3.5 h-3.5" />
@@ -106,7 +104,6 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
           </div>
         </div>
 
-        {/* Right: Actions */}
         <div className="hidden md:flex items-center gap-2">
           <Link 
             href="https://github.com/t7labs/t7blocks" 
@@ -131,7 +128,6 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
             </button>
           )}
 
-          {/* User Menu */}
           <div className="relative group cursor-pointer">
             <div className="w-7 h-7 rounded-full border border-border/50 flex items-center justify-center bg-muted/20 text-muted-foreground hover:text-foreground transition-all">
               <User className="w-3.5 h-3.5" />

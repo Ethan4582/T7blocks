@@ -14,13 +14,11 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
   useEffect(() => {
     if (!videoRef.current) return;
 
-    // If no image is available, the video should always play
     if (!item.imageUrl && item.videoUrl) {
       videoRef.current.play().catch(() => { });
       return;
     }
 
-    // If image exists, control playback based on hover
     if (isHovered && item.videoUrl) { 
       videoRef.current.play().catch(() => { }); 
     }
@@ -36,12 +34,11 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
   return (
     <Link href={href}>
       <div
-        className="group flex flex-col bg-[#211e1e] hover:bg-[#2d2d2d] border border-border/10 rounded-[10px] transition-all duration-300 shadow-sm cursor-pointer p-1 hover:-translate-y-1 /* CARD ROUNDING: Change rounded-[10px] to adjust corner radius */"
+        className="group flex flex-col bg-[#211e1e] hover:bg-[#2d2d2d] border border-border/10 rounded-[10px] transition-all duration-300 shadow-sm cursor-pointer p-1 hover:-translate-y-1"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative w-full aspect-[1.7] overflow-hidden bg-muted/20 rounded-[10px] border border-border/10 /* CARD HEIGHT: Adjust aspect-[X] to change vertical proportions */">
-          {/* Top Left: Locked Badge */}
+        <div className="relative w-full aspect-[1.7] overflow-hidden bg-muted/20 rounded-[10px] border border-border/10">
           {item.isPremium && (
             <div className="absolute top-3 left-3 z-20">
               <div className="flex items-center gap-1.5 bg-background/80 border border-border/30 backdrop-blur-md px-2.5 py-1 rounded-full shadow-sm">
@@ -51,7 +48,6 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
             </div>
           )}
           
-          {/* Top Right: Actions (Eye & Bookmark) - Only if NOT locked */}
           {!item.isPremium && (
             <div className={`absolute top-3 right-3 z-20 flex gap-2 transition-all duration-500 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
               <a 
@@ -75,7 +71,6 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
             </div>
           )}
 
-          {/* Media Rendering Logic */}
           {item.imageUrl && (
             <img 
               src={item.imageUrl} 
@@ -99,8 +94,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
           )}
         </div>
 
-        {/* Card Meta Content */}
-        <div className="px-1.5 pt-4 pb-1.5 flex justify-between items-center bg-transparent mt-1 /* DESCRIPTION GAP: Adjust pt-X to change header-to-title spacing */">
+        <div className="px-1.5 pt-4 pb-1.5 flex justify-between items-center bg-transparent mt-1">
           <h3 className="text-[14px] font-medium tracking-wide text-foreground/80 group-hover:text-foreground transition-colors truncate">
             {item.displayName}
           </h3>

@@ -18,12 +18,8 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 18;
 
-  // Compute dynamic title based on path
   const getDynamicTitle = () => {
     if (pathname === "/gallery") return "Vault";
-    
-    // e.g., /components/buttons -> Buttons Vault
-    // e.g., /hero -> Hero Vault
     const segments = pathname.split("/").filter(Boolean);
     const lastSegment = segments[segments.length - 1];
     
@@ -54,7 +50,6 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
 
   return (
     <div className="flex flex-col min-h-screen text-foreground overflow-x-hidden transition-colors duration-300">
-      {/* Shared Hero Section */}
       <section className="flex flex-col items-center justify-center pt-20 pb-16 px-4">
         <div className="flex flex-col items-center space-y-3 max-w-4xl text-center">
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight flex items-center justify-center gap-3">
@@ -76,7 +71,6 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
         </div>
       </section>
 
-      {/* Shared Grid Content Section */}
       <section className="flex-1 px-4 md:px-8 pb-20 max-w-[1400px] mx-auto w-full">
         {displayedItems.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-muted-foreground border border-dashed border-border/30 rounded-2xl bg-muted/5">
@@ -85,14 +79,13 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
             <p className="text-sm opacity-60 mt-1">Try adjusting your search criteria.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 /* GRID COLUMNS: Change grid-cols-X to adjust card width across screen sizes */">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayedItems.map((item) => (
               <VaultCard key={item.name} item={item} />
             ))}
           </div>
         )}
 
-        {/* High-Fidelity Pagination Controls */}
         {totalPages > 1 && (
           <div className="mt-16 flex items-center justify-center font-medium">
             <div className="flex bg-[#111111] border border-border/10 p-1.5 rounded-lg gap-1 shadow-sm">

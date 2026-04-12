@@ -22,7 +22,6 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  // Sync state or persist it if needed
   const toggleOpen = () => setIsOpen((prev) => !prev);
   const toggleCollapsed = () => setIsCollapsed((prev) => !prev);
   const setOpen = (val: boolean) => setIsOpen(val);

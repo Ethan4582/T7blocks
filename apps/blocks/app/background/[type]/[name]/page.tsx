@@ -21,13 +21,10 @@ export default async function BackgroundPage({ params }: Props) {
 
   if (!entry) return notFound();
 
-  // Dynamically import the content based on type and name
-  // This expects lib/content/background/[type]/[name].ts to exist
   let allContent;
   try {
     allContent = await import(`@/lib/content/background/${type}/${name}`);
   } catch (err) {
-    console.error("Failed to load content:", err);
     return notFound();
   }
 
@@ -67,7 +64,7 @@ export default async function BackgroundPage({ params }: Props) {
              <span className="text-[10px] uppercase font-bold text-muted-foreground/60 tracking-widest">Properties</span>
              <div className="space-y-2">
                {allContent.propsTable?.length > 0 ? (
-                 allContent.propsTable.map((p: any) => (
+                 allContent.propsTable.map((p: { name: string; type: string }) => (
                     <div key={p.name} className="flex items-center justify-between text-xs py-1.5 border-b border-border/20 last:border-0">
                       <span className="font-mono text-sidebar-foreground font-semibold">{p.name}</span>
                       <span className="text-muted-foreground">{p.type}</span>

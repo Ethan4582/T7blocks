@@ -13,7 +13,6 @@ interface DocumentationSectionProps {
 export function DocumentationSection({ detail, component }: DocumentationSectionProps) {
   const [activeTab, setActiveTab] = useState(detail.defaultTab || "Code");
 
-  /* Task 2: Keep only Code and CLI */
   const tabs = ["Code", "CLI"];
 
   return (
@@ -26,7 +25,6 @@ export function DocumentationSection({ detail, component }: DocumentationSection
           Documentation
         </h2>
 
-        {/* Tab Switcher - Task 2: Same row as heading */}
         <div className="flex items-center gap-1.5 p-1 border border-border/40 rounded-xl bg-card/60 w-fit">
           {tabs.map((tab) => {
             const isCLI = tab === "CLI";
@@ -55,7 +53,6 @@ export function DocumentationSection({ detail, component }: DocumentationSection
       </div>
 
       <div className="space-y-8">
-        {/* CLI Tab - Disabled Section (Task 2) */}
         {activeTab === "CLI" && (
           <div className="relative rounded-2xl border border-border/10 overflow-hidden bg-card/40 opacity-40 select-none grayscale pointer-events-none">
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/5 p-6 backdrop-blur-[1px]">
@@ -65,7 +62,6 @@ export function DocumentationSection({ detail, component }: DocumentationSection
               </div>
             </div>
             
-            {/* Blurred placeholder code */}
             <CodeBlock 
               label="Terminal" 
               code={`npx t7blocks add ${detail.slug}\n# Initializing...\n# Fetching assets...`} 
@@ -73,10 +69,8 @@ export function DocumentationSection({ detail, component }: DocumentationSection
           </div>
         )}
 
-        {/* Code Tab - Content (Task 7) */}
         {activeTab === "Code" && (
           <div className="space-y-8 transform transition-all animate-in fade-in slide-in-from-bottom-1 duration-500">
-            {/* Setup Instructions */}
             {detail.setupInstructions && (
               <div className="space-y-4">
                 <h3 className="text-[14px] font-semibold text-foreground/80 tracking-wide uppercase">
@@ -91,7 +85,6 @@ export function DocumentationSection({ detail, component }: DocumentationSection
                   </div>
                 )}
                 
-                {/* Find the script blocks - usually stored as blocks with label like "HTML" */}
                 {detail.codeBlocks.filter(b => b.label.toLowerCase().includes("script") || b.label === "HTML").slice(0, 1).map((block, idx) => (
                    <div key={`setup-container-${idx}`} className="space-y-3">
                      <CodeBlock key={`setup-${idx}`} label={block.label} code={block.code} language="html" />
@@ -103,7 +96,6 @@ export function DocumentationSection({ detail, component }: DocumentationSection
               </div>
             )}
 
-            {/* Steps / Component Blocks (Task 7) */}
             <div className="space-y-6">
               {detail.codeBlocks.filter(b => !b.label.toLowerCase().includes("script") && b.label !== "HTML").map((block, idx) => (
                 <div key={idx} className="space-y-3">
@@ -117,7 +109,6 @@ export function DocumentationSection({ detail, component }: DocumentationSection
                     code={block.code} 
                     language={block.label.toLowerCase().includes("js") || block.label.toLowerCase().includes("react") ? "typescript" : "html"} 
                   />
-                  {/* Task: Descriptive text after each code block */}
                   <div className="pt-2 pb-6">
                     <p className="text-[14px] text-muted-foreground leading-relaxed transition-colors">
                       {component.description} This {block.label ? block.label.toLowerCase() : "component"} implementation provides a robust foundation for building interactive and high-performance user interfaces.
