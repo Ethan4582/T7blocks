@@ -53,7 +53,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
 
   return (
     <>
-      <header className="flex justify-between items-center px-6 md:px-10 lg:px-12 py-3 sticky top-0 bg-background/90 backdrop-blur-xl z-30 border-b border-border/40">
+      <header className="flex justify-between items-center px-6 md:px-10 lg:px-12 py-3 sticky top-0 bg-background z-30 border-b border-border/40">
         {/* Left: sidebar toggle + search */}
         <div className="flex items-center gap-3 flex-1 max-w-[320px]">
           {isCollapsed && (

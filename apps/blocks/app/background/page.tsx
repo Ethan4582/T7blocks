@@ -36,22 +36,22 @@ export default function BackgroundGallery() {
           
           {totalPages > 1 && (
             <div className="mt-16 flex items-center justify-end font-medium">
-              <div className="flex bg-[#111113] border border-border/40 p-1.5 rounded-xl gap-2 shadow-sm">
+              <div className="flex bg-muted border border-border/40 p-1.5 rounded-xl gap-2 shadow-sm">
                 <button
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage((p) => p - 1)}
-                  className="px-4 py-2 flex items-center gap-1.5 rounded-lg transition-all disabled:opacity-30 hover:bg-[#1c1c1f] text-sm"
+                  className="px-4 py-2 flex items-center gap-1.5 rounded-lg transition-all disabled:opacity-30 hover:bg-sidebar-hover text-sm"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span>Previous</span>
                 </button>
-                <div className="flex items-center px-4 text-sm font-bold bg-[#fafafa] text-[#09090b] rounded-md min-w-[32px] justify-center">
+                <div className="flex items-center px-4 text-sm font-bold bg-foreground text-background rounded-md min-w-[32px] justify-center">
                   {currentPage}
                 </div>
                 <button
                   disabled={currentPage === totalPages}
                   onClick={() => setCurrentPage((p) => p + 1)}
-                  className="px-4 py-2 flex items-center gap-1.5 rounded-lg transition-all disabled:opacity-30 hover:bg-[#1c1c1f] text-sm"
+                  className="px-4 py-2 flex items-center gap-1.5 rounded-lg transition-all disabled:opacity-30 hover:bg-sidebar-hover text-sm"
                 >
                   <span>Next</span>
                   <ChevronRight className="w-4 h-4" />
@@ -61,7 +61,7 @@ export default function BackgroundGallery() {
           )}
         </>
       ) : (
-        <div className="py-24 text-center border border-dashed border-border/30 rounded-3xl bg-[#111113]/50">
+        <div className="py-24 text-center border border-dashed border-border/30 rounded-3xl bg-muted/50">
           <p className="text-muted-foreground italic opacity-50">
             No background images available yet. Coming soon!
           </p>
