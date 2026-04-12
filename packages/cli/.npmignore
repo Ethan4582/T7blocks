@@ -3,3 +3,4 @@ src/
 tsup.config.ts
 tsconfig.json
 RULES.md
+.gitignore

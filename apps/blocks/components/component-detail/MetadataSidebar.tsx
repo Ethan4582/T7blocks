@@ -1,6 +1,6 @@
 "use client";
 
-import { Bug, Heart, Github, ExternalLink } from "lucide-react";
+import { Bug, Heart,  ExternalLink } from "lucide-react";
 import { ComponentItem } from "@/lib/componentData";
 
 interface MetadataSidebarProps {
@@ -49,7 +49,7 @@ export function MetadataSidebar({
             target="_blank" 
             className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-border/40 bg-muted text-[13px] font-medium text-foreground hover:bg-muted/80 transition-colors shadow-sm cursor-pointer"
           >
-            <Github className="w-3.5 h-3.5" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} src="/public/SVG/github.svg" className="w-3.5 h-3.5" />
             <span>Contribute</span>
           </a>
         </div>
