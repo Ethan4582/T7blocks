@@ -28,17 +28,8 @@ export default function DemoCanvas({
         width: width,
       }}
     >
-      <div className="absolute top-8 left-8 z-50">
-        <Link
-          href="/gallery"
-          className="glass-button flex items-center gap-2 rounded-xl px-5 py-2.5 text-[10px] font-bold uppercase tracking-widest text-white/90 shadow-2xl"
-        >
-          <span>Gallery</span>
-        </Link>
-      </div>
-
       {blockUrl && (
-        <div className="absolute top-8 right-8 z-50">
+        <div className="absolute top-4 right-4 z-50">
           <Link
             href={blockUrl}
             target="_blank"

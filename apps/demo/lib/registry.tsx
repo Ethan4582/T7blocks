@@ -1,7 +1,4 @@
-"use client";
-
-import React from "react";
-import { Dotlaunchbutton } from "@t7blocks/ui";
+import { Dotlaunchbutton, PopHero } from "@t7blocks/ui";
 import { launchButtonSchema } from "./prop-schemas/components/button/Launch-Button";
 
 export const registry: Record<string, {
@@ -11,5 +8,9 @@ export const registry: Record<string, {
   "Launch-Button": {
     component: Dotlaunchbutton,
     schema: launchButtonSchema,
+  },
+  "Pop-Hero": {
+    component: PopHero,
+    schema: {},
   },
 };

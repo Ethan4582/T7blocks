@@ -8,5 +8,19 @@
       }
     ],
     "dependencies": ["framer-motion"]
+  },
+  "pop-hero": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "PopHero.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/hero/PopHero/PopHero.tsx"
+      },
+      {
+        "name": "PopHero.css",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/hero/PopHero/PopHero.css"
+      }
+    ],
+    "dependencies": ["gsap"]
   }
 }

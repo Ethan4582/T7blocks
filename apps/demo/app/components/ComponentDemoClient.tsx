@@ -34,13 +34,15 @@ export default function ComponentDemoClient({
       >
         <Component {...props} />
       </DemoCanvas>
-      <PropControlCard
-        schema={schema}
-        values={props}
-        onChange={(key, value) =>
-          setProps((prev) => ({ ...prev, [key]: value }))
-        }
-      />
+      {Object.keys(schema).length > 0 && (
+        <PropControlCard
+          schema={schema}
+          values={props}
+          onChange={(key, value) =>
+            setProps((prev) => ({ ...prev, [key]: value }))
+          }
+        />
+      )}
     </>
   );
 }

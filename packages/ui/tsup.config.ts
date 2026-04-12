@@ -7,4 +7,5 @@ export default defineConfig({
   clean: true,
   external: ['react', 'framer-motion'],
   sourcemap: true,
+  injectStyle: true,
 });
