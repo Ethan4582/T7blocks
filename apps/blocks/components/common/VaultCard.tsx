@@ -47,7 +47,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
           {!item.isPremium && (
             <div className={`absolute top-3 right-3 z-20 flex gap-2 transition-all duration-500 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
               <a 
-                href={item.demoUrl} 
+                href={item.demoUrl ?? undefined} 
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => {
