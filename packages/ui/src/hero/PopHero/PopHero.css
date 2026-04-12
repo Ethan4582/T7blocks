@@ -1,0 +1,17 @@
+
+:root {
+  --font-display: 'Instrument Serif', serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pop-hero-main {
+  font-family: var(--font-display), serif;
+}
