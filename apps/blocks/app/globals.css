@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@t7blocks/ui/dist/index.css";
 
 @layer utilities {
   .scrollbar-hide {
