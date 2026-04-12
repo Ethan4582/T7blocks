@@ -54,13 +54,11 @@ export const registry: ComponentEntry[] = [
   category: "hero",
   type: "section",
   isPremium: false,
-  imageUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
-  videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
-  demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button",
+  videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
+  demoUrl: "https://demo.t7blocks.xyz/components/hero/Pop-Hero",
   cliCommand: "npx @t7blocks/cli add pop-hero",
 description: "GSAP animated hero section with pop-up animation to set up your hero section.",
   tags: [ "hero", "gsap", "nature", "minimal" ,"framer motion" , "framer"  ],
 }
- 
 ];
 

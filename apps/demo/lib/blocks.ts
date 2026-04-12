@@ -22,8 +22,8 @@ export const components: ComponentData[] = [
     name: "Pop Hero",
     shortDescription: "Cinematic hero with fluid GSAP pop-up animation.",
     longDescription: "A GSAP-powered hero section featuring fluid pop-up transitions, fullscreen video background, and immersive typography. Designed for modern landing pages, it delivers smooth animations, premium visuals, and high-impact user engagement.",
-    image: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
-    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
+
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
     category: "hero",
     date: "2026-04-11",
     tags: ["GSAP", "Hero", "Animation", "Next.js"],

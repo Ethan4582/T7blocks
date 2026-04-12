@@ -13,6 +13,14 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
 
   useEffect(() => {
     if (!videoRef.current) return;
+
+    // If no image is available, the video should always play
+    if (!item.imageUrl && item.videoUrl) {
+      videoRef.current.play().catch(() => { });
+      return;
+    }
+
+    // If image exists, control playback based on hover
     if (isHovered && item.videoUrl) { 
       videoRef.current.play().catch(() => { }); 
     }
@@ -20,7 +28,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
       videoRef.current.pause(); 
       videoRef.current.currentTime = 0; 
     }
-  }, [isHovered, item.videoUrl]);
+  }, [isHovered, item.videoUrl, item.imageUrl]);
 
   const href = `/${item.category === "components" ? "components" : item.category}/${item.type}/${item.name}`;
   const bookmarked = isBookmarked(item.name);
@@ -67,23 +75,26 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
             </div>
           )}
 
-          {/* Preview Image: High-Fidelity Rendering */}
-          <img 
-            src={item.imageUrl || "/assets/preview.png"} 
-            alt={item.displayName} 
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out ${isHovered && item.videoUrl ? "opacity-0" : "opacity-100"}`} 
-          />
+          {/* Media Rendering Logic */}
+          {item.imageUrl && (
+            <img 
+              src={item.imageUrl} 
+              alt={item.displayName} 
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out 
+                ${isHovered && item.videoUrl ? "opacity-0" : "opacity-100"}`} 
+            />
+          )}
           
-          {/* Video Preview: Dynamic Interaction */}
           {item.videoUrl && (
             <video 
               ref={videoRef} 
               src={item.videoUrl} 
-              className={`absolute inset-0 w-full h-full object-cover rounded-md transition-opacity duration-700 ${isHovered ? "opacity-100" : "opacity-0"}`} 
+              className={`absolute inset-0 w-full h-full object-cover rounded-md transition-opacity duration-700 
+                ${!item.imageUrl || isHovered ? "opacity-100" : "opacity-0"}`} 
               muted 
               playsInline 
               loop 
-              preload="auto"
+              preload="metadata"
             />
           )}
         </div>
