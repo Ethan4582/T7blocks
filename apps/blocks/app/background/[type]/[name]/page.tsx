@@ -1,9 +1,9 @@
-import { registry } from "@/lib/registry";
+import { registry, toComponentItem } from "@/lib/registry";
 import { notFound } from "next/navigation";
 
 type Props = { params: Promise<{ type: string; name: string }> };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return registry
     .filter((c) => c.category === "background")
     .map((c) => ({
@@ -27,6 +27,8 @@ export default async function BackgroundPage({ params }: Props) {
   } catch (err) {
     return notFound();
   }
+
+  const componentItem = toComponentItem(entry);
 
   if (entry.isPremium) {
     return (
