@@ -46,6 +46,7 @@ export const NAVIGATION_DATA: NavSection[] = [
       {
         title: "Components",
         icon: "/SVG/components.svg",
+        href: "/gallery/components",
         items: [
           {
             title: "Buttons",

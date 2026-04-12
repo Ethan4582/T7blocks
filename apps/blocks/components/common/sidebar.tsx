@@ -25,8 +25,12 @@ function SidebarItem({
   const router = useRouter();
   const { setOpen: setSidebarOpen } = useSidebar();
   
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const itemId = item.title;
-  const isOpen = openId === itemId;
+  
+  // If setOpenId is provided (usually level 0), use that for exclusivity
+  // Otherwise use internal state (for nested dropdowns)
+  const isCurrentlyOpen = setOpenId && openId !== undefined ? openId === itemId : internalIsOpen;
 
   // Auto-open if a child is active
   useEffect(() => {
@@ -36,8 +40,9 @@ function SidebarItem({
       );
     };
     
-    if (item.items && isAnyChildActive(item.items) && setOpenId) {
-      setOpenId(itemId);
+    if (item.items && isAnyChildActive(item.items)) {
+      if (setOpenId) setOpenId(itemId);
+      else setInternalIsOpen(true);
     }
   }, [pathname, item.items, itemId, setOpenId]);
 
@@ -48,8 +53,12 @@ function SidebarItem({
 
   const handleClick = (e: React.MouseEvent) => {
     // Toggle dropdown if children exist
-    if (hasChildren && setOpenId) {
-      setOpenId(isOpen ? null : itemId);
+    if (hasChildren) {
+      if (setOpenId) {
+        setOpenId(isCurrentlyOpen ? null : itemId);
+      } else {
+        setInternalIsOpen(!internalIsOpen);
+      }
     }
     
     // Navigate if href exists
@@ -99,22 +108,22 @@ function SidebarItem({
             {hasChildren && (
               <ChevronDown
                 size={14}
-                className={`transition-transform duration-300 opacity-40 ${isOpen ? "rotate-0" : "-rotate-90"}`}
+                className={`transition-transform duration-300 opacity-40 ${isCurrentlyOpen ? "rotate-0" : "-rotate-90"}`}
               />
             )}
           </div>
         </button>
       </div>
       
-      {isOpen && hasChildren && (
+      {isCurrentlyOpen && hasChildren && (
         <div className="relative ml-[19px] mt-1 mb-1 space-y-0.5 border-l-[1.5px] border-muted-foreground/40 pl-4">
           {item.items.map((subItem: any, idx: number) => (
             <SidebarItem 
               key={`${subItem.title}-${idx}`} 
               item={subItem} 
               depth={depth + 1} 
-              openId={null} // Sub-items don't control parent toggles
-              setOpenId={() => {}} 
+              // Don't pass openId/setOpenId down to let children manage their own state
+              // This fixes the issue where nested items couldn't expand.
             />
           ))}
         </div>
@@ -144,20 +153,22 @@ export function Sidebar() {
           transition-all duration-375 ease-in-out
           w-[250px]
           ${isOpen ? "translate-x-0" : "-translate-x-[calc(100%+24px)]"}
-          shadow-2xl shadow-black/20
         `}
       >
         {/* Logo + Close */}
-        <div className="pl-5 pr-4 pt-7 pb-6 flex items-center justify-between">
+        <div className="pl-5 pr-4 pt-4 pb-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform group" onClick={() => setOpen(false)}>
             <div className="relative">
               <img
                 src="/assets/logo.png"
                 alt="T7"
-                className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-105"
+                className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-105 rounded-[8px] border border-border/10"
               />
             </div>
-            <span className="font-bold text-[18px] tracking-tight text-sidebar-foreground uppercase">
+            <span 
+              className="font-display font-medium text-[22px] tracking-tight text-sidebar-foreground uppercase pt-0.5"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               Blocks
             </span>
           </Link>

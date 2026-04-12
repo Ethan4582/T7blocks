@@ -9,6 +9,10 @@
     display: none;
   }
   
+  .font-display {
+    font-family: var(--font-display);
+  }
+
   /* Reinforced global hide if needed */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -43,13 +47,13 @@
 :root {
   /* Google Font variables (loaded in layout.tsx) */
   --font-display: var(--font-instrument-serif), Georgia, serif;
-  --font-body: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
+  --font-body: var(--font-jetbrains), 'JetBrains Mono', monospace;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
 
   /* Design system font family tokens (from new_global.style.css) */
-  --font-haffer-xh: 'Haffer XH', var(--font-plus-jakarta), sans-serif;
+  --font-haffer-xh: 'Haffer XH', var(--font-jetbrains), monospace;
   --font-brisa-pro: 'Brisa Pro', Georgia, serif;
-  --font-haffer-vf: 'Haffer VF', var(--font-plus-jakarta), sans-serif;
+  --font-haffer-vf: 'Haffer VF', var(--font-jetbrains), monospace;
   --font-haffer-mono: 'Haffer Mono', var(--font-jetbrains), monospace;
 
   /* Type size tokens */
@@ -187,6 +191,7 @@
     box-sizing: border-box;
   }
 
+  html, 
   body {
     background-color: var(--background) !important;
     color: var(--foreground);
@@ -200,8 +205,10 @@
 
   html.dark,
   body.dark,
+  .dark,
   .dark body {
     background-color: #141212 !important;
+    color-scheme: dark;
   }
 
   h1,
