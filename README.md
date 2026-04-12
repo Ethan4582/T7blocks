@@ -1,5 +1,5 @@
 <div align="center">
-   <img src="apps/blocks/public/readme.png" alt="T7" width="290" height="220" style="border-radius: 16px;">
+   <img src="apps/blocks/public/black_readme.png" alt="T7" width="280" height="180">
 </div>
 
 <p align="center">
