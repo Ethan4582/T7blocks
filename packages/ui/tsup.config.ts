@@ -5,7 +5,10 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   dts: true,
   clean: true,
-  external: ['react', 'framer-motion'],
+  external: ['react', 'framer-motion', 'gsap'],
   sourcemap: true,
   injectStyle: true,
+  banner: {
+    js: '"use client";',
+  },
 });
