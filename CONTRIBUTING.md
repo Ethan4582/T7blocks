@@ -1,95 +1,109 @@
-# Contributing to T7BLOCKS
+# Contributing to T7blocks
 
-Thank you for your interest in contributing to **T7BLOCKS**. We are building a high-end, premium component library for developers who demand $1000-level Framer design and motion quality within their React applications.
+T7blocks is a high-end animated component library — the kind of motion quality you see on premium Framer templates and agency landing pages.
 
-To maintain our standard of excellence, we have established a specific workflow and set of quality bars for all contributions.
 
-## 🏗 Project Structure
 
-T7BLOCKS is a **Turborepo** monorepo designed for high-performance development and deployment.
+## What we accept
 
-- **`packages/ui`**: The source of truth for all components (`@t7blocks/ui`).
-- **`apps/blocks`**: The documentation and showcase site (deployed on Cloudflare Pages).
-- **`apps/demo`**: The interactive playground for live testing components.
-- **`packages/cli`**: The CLI tool for adding components to user projects via `npx`.
+- Animated components using GSAP or Framer Motion
+- Hero sections with cinematic motion
+- Background effects — particles, gradients, canvas animations
+- Landing page blocks
 
----
+**We do not accept** static components, generic UI widgets, or anything that duplicates what's already in the library. If you're unsure whether your idea fits, open a [GitHub Discussion](https://github.com/Ethan4582/T7blocks/discussions) before building.
 
-## 🎨 Quality Standards
 
-We do not accept "basic" or "standard" UI components. Every submission must feel like it was crafted by a top-tier design agency.
 
-### 1. Motion & Physics
-- Use **Framer Motion** or **GSAP**.
-- Animations must be buttery smooth .
-- Use custom easing or spring physics; avoid linear browser defaults.
+## How to contribute
 
-### 2. Aesthetic Excellence
-- **Typography:** Precise weights and tight letter-spacing.
-- **Modern Effects:** Glassmorphism, subtle gradients, and perfectly calculated shadows.
-- **Responsiveness:** Components must be fluid across all breakpoints.
+Your only job is to build the component and prove it works. The maintainer handles documentation, npm publishing, CLI updates, and deployment.
 
-### 3. Code Integrity
-- **TypeScript:** Strict typing is mandatory. No `any`.
-- **Tailwind CSS:** Use Tailwind for all styling.
-- **Isolation:** Components must be self-contained and not rely on global CSS or external assets beyond standard peer dependencies (`framer-motion`, `lucide-react`, etc.).
+### Step 1 — Fork and set up
 
----
-
-## 🚀 Contributor Workflow
-
-As a contributor, your goal is to build the component, document it, and prove it works. The maintainer will handle the final NPM publishing and CLI synchronization.
-
-### Step 1: Local Development
-Ensure you have `pnpm` installed. Fork the repository and set up your environment:
 ```bash
-git clone https://github.com/YOUR_USERNAME/T7blocks.git
+git clone https://github.com/Ethan4582/T7blocks
 cd T7blocks
 pnpm install
+git checkout -b feat/your-component-name
 ```
 
-### Step 2: Build the Component
-Create your component in `packages/ui`.
-- **Path:** `packages/ui/src/components/[category]/[name]/`
-- **Structure:**
-  - `[Name].tsx`: The component implementation.
-  - `index.ts`: The entry point (exports the component).
-- **Export:** Add your export to `packages/ui/src/index.ts`.
+Requirements: Node.js 20+, pnpm
 
-### Step 3: Register in Documentation (`apps/blocks`)
-Your component needs to live on the showcase site.
-1. **Registry:** Add an entry to `apps/blocks/lib/registry.ts`.
-2. **Content:** Create `apps/blocks/lib/content/[name].ts`. This file should export the `codeBlock` string, `installCommand`, and `propsTable` data.
+### Step 2 — Build your component
 
-### Step 4: Add to Playground (`apps/demo`)
-This is where users can interactively change props.
-1. **Schema:** Create a prop schema in `apps/demo/lib/prop-schemas/components/[name].ts`.
-2. **Page:** Create a dynamic page at `apps/demo/app/components/[category]/[name]/page.tsx`.
+Create your component inside `packages/ui/src/components/[category]/[name]/`
 
-### Step 5: Verification
-Run the dev servers to verify both the documentation and the demo:
+```
+packages/ui/src/components/
+└── button/
+    └── button-1/
+        ├── Button1.tsx   ← your component
+        └── index.ts      ← export
+```
+
+`index.ts`:
+```ts
+export { Button1 } from './Button1';
+```
+
+Then add it to `packages/ui/src/index.ts`:
+```ts
+export { Button1 } from './components/button/button-1';
+```
+
+**Component rules — non-negotiable:**
+- TypeScript strict — no `any`, all props typed
+- Every prop must have a default value
+- No hardcoded colours
+- No global CSS — styles scoped to the component only
+- Animation libs (`framer-motion`, `gsap`) must be peer deps, not bundled
+
+### Step 3 — Test it locally
+
 ```bash
-pnpm turbo dev --filter=blocks --filter=demo
+pnpm turbo build --filter=@t7blocks/ui
 ```
-- Showcase: `http://localhost:3000`
-- Demo: `http://localhost:3001`
 
----
+Build must pass with zero TypeScript errors.
 
-## 🗳 Submission Checklist
+### Step 4 — Open a pull request
 
-Before opening a Pull Request, ensure you have:
+**PR title:**
+```
+feat(ui): add Button1 magnetic spring button
+```
 
-- [ ] Cleaned up all console logs and debugging code.
-- [ ] Strictly typed all component props.
-- [ ] Provided a **High-Quality Screen Recording** (Loom, GIF, or MP4) in the PR description demonstrating the motion.
-- [ ] Verified that the component renders correctly in both light and dark modes (if applicable).
-- [ ] Confirmed the PR follows the [Conventional Commits](https://www.conventionalcommits.org/) format.
+**PR description must include:**
+- A screen recording (Loom, GIF, or MP4) showing the animation
+- List of peer dependencies your component needs
+- Any props worth knowing about
 
----
+That's it. The maintainer takes it from there.
 
-## 📄 Licensing
 
-By contributing, you agree that your code will be licensed under the project's [MIT + Commons Clause License](LICENSE.md).
 
-**Thank you for helping us push the boundaries of web UI!** 🧱✨
+## What the maintainer does after merge
+
+- Writes the documentation page on the showcase site
+- Adds the interactive demo with prop controls
+- Publishes the updated `@t7blocks/ui` to npm
+- Adds your component to the CLI
+- Deploys everything
+
+You do not need to touch any of that.
+
+
+
+## Quality bar
+
+Your component will be rejected if:
+- The animation uses linear easing or feels generic
+- Props are not typed or are missing defaults
+- It doesn't work in Next.js and Vite
+- There is no screen recording in the PR
+
+
+## License
+
+By submitting a PR, you agree your contribution is licensed under the [T7blocks License](LICENSE). Free components allow personal and commercial use. Redistribution as a standalone library is not permitted.

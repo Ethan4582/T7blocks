@@ -1,20 +1,17 @@
 <div align="center">
-  <h1>
-    <img src="apps/blocks/public/logo.png" alt="T7" width="44" height="44" style="vertical-align: middle; border-radius: 10px; margin-right: 2px; margin-bottom: 4px;" />
-    <span style="vertical-align: middle; font-weight: 700; letter-spacing: -0.04em; font-family: 'Instrument Serif', serif;">BLOCKS</span>
-  </h1>
+   <img src="apps/blocks/public/readme.png" alt="T7" width="290" height="220" style="border-radius: 16px;">
 </div>
 
 <p align="center">
-  <strong>High-end UI blocks  the kind designers charge $500–$1,000 to build.</strong>
+  <strong>High-end UI blocks the kind designers charge $500–$1,000 to build.</strong>
 </p>
 
 <div align="center">
 
-[![Docs](https://img.shields.io/badge/Documentation-000000?style=flat-square&logo=readthedocs&logoColor=white)](https://t7blocks.xyz/)
+[![Docs](https://img.shields.io/badge/Doc-de2f4f?style=flat-square&logo=readthedocs&logoColor=white)](https://t7blocks.xyz/)
 [![Demo](https://img.shields.io/badge/Live%20Demo-4940f7?style=flat-square&logo=vercel&logoColor=white)](https://demo.t7blocks.xyz/gallery)
 [![GitHub](https://img.shields.io/badge/GitHub-24292f?style=flat-square&logo=github&logoColor=white)](https://github.com/Ethan4582/T7blocks)
-[![X / Twitter](https://img.shields.io/badge/Follow-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/ashirwadsingh_)
+[![X / Twitter](https://img.shields.io/badge/Updates-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/ashirwadsingh_)
 
 [![License](https://img.shields.io/badge/license-Custom-blue?style=flat-square)](https://github.com/Ethan4582/T7blocks/blob/master/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Ethan4582/T7blocks?style=flat-square&color=blue)](https://github.com/Ethan4582/T7blocks/stargazers)
@@ -32,7 +29,7 @@ Every block is engineered to match the standard of bespoke landing pages built b
 - **Fully owned code** — no wrappers, no vendor lock-in, no black boxes
 - **Zero guesswork** — drop in, customize, ship
 
----
+
 
 ## Installation
 
@@ -42,7 +39,7 @@ npm install @t7blocks/ui
 
 > Most components have peer dependencies. Each component page in the docs provides exact installation instructions for that specific block.
 
----
+
 
 ## CLI — Own the Source
 
@@ -52,13 +49,11 @@ npx @t7blocks/cli add button-1
 
 Instantly pull the raw `.tsx` source directly into your repo. Clean, fully customizable code that belongs to you from day one.
 
----
 
 ## Contributing
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
----
 
 ## Support the Project
 
@@ -72,17 +67,17 @@ If T7 Blocks saves you time, elevates your products, or helps you generate reven
 
 </div>
 
----
+
 
 ## Credits
 
-T7 Blocks occasionally draws inspiration from publicly available UI patterns. Components are fully rewritten as customizable, production-grade blocks for JS, TS, CSS, and Tailwind. If you recognize your work and would like credit, please [open an issue](https://github.com/Ethan4582/T7blocks/issues).
+T7 Blocks draws inspiration from publicly available UI patterns. Components are fully rewritten as customizable, production-grade blocks for JS, TS, CSS, and Tailwind. If you recognize your work and would like credit, please [open an issue](https://github.com/Ethan4582/T7blocks/issues).
 
 ---
 
 ## License
 
-[MIT + Commons Clause](https://github.com/Ethan4582/T7blocks/blob/master/LICENSE) — free for personal and commercial use.
+[MIT + Commons Clause](https://github.com/Ethan4582/T7blocks/blob/master/LICENSE.md) — free for personal and commercial use.
 
 ---
 
