@@ -9,10 +9,13 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
+**/RULES.md
 # testing
 /coverage
-
+AGENTS.md  
+CLAUDE.md  
+add_component.md  
+add1.md  
 # next.js
 /.next/
 /out/
