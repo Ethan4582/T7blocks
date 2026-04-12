@@ -1,10 +1,6 @@
 import { registry } from "@/lib/registry";
 import { notFound } from "next/navigation";
-
-// Since it's Next.js 16 (from package.json), params is likely a Promise.
-// But let's check the current implementation's use. 
-// Looking at the existing file, it was using { params }: Props without await.
-// I will keep it simple but add the dynamic import part.
+import { MetadataSidebar, DocumentationSection, PreviewCard } from "@/components/component-detail";
 
 type Props = { params: Promise<{ type: string; name: string }> };
 
@@ -26,8 +22,7 @@ export default async function ComponentPage({ params }: Props) {
 
   if (!entry) return notFound();
 
-  // Dynamically import the content based on type and name
-  // This expects lib/content/components/[type]/[name].ts to exist
+  // Dynamically import the content
   let allContent;
   try {
     allContent = await import(`@/lib/content/components/${type}/${name}`);
@@ -36,47 +31,66 @@ export default async function ComponentPage({ params }: Props) {
     return notFound();
   }
 
-  if (entry.isPremium) {
-    return (
-      <div>
-        <span>PRO</span>
-        <h1>{entry.displayName}</h1>
-        {entry.videoUrl && <video src={entry.videoUrl} autoPlay muted loop />}
-        <a href="https://pro.t7blocks.com">Get Pro →</a>
-      </div>
-    );
-  }
+  // Construct detail object for DocumentationSection
+  const detail = {
+    slug: entry.name,
+    dependencies: entry.cliCommand ? entry.cliCommand.replace('npm install ', '').split(' ') : [],
+    codeBlocks: [
+      { label: "Component", code: allContent.codeBlock }
+    ],
+    propsTable: allContent.propsTable || []
+  };
 
-  // free component
+  // Map registry entry to ComponentItem type expected by detail components
+  const componentItem = {
+    id: 0,
+    name: entry.displayName,
+    image: entry.imageUrl || "",
+    video: entry.videoUrl || "",
+    slug: entry.name,
+    category: entry.category,
+    description: entry.description || "",
+    publishedDate: "Recent",
+    isPremium: entry.isPremium,
+    tags: entry.tags || [],
+    creator: {
+      name: "T7 Labs",
+      image: "/assets/logo.png"
+    },
+    demoUrl: entry.demoUrl ?? undefined
+  };
+
   return (
-    <div>
-      <h1>{entry.displayName}</h1>
-      <p>{entry.description}</p>
+    <div className="py-10 max-w-[1400px] mx-auto w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* Main Content Area (Column 1-8) */}
+        <div className="lg:col-span-8 space-y-12">
+          {/* Header */}
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
+              {entry.displayName}
+            </h1>
+            <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+              {entry.description}
+            </p>
+          </div>
 
-      {/* dependency install */}
-      <pre>{entry.cliCommand}</pre>
+          {/* Preview */}
+          <PreviewCard component={componentItem} />
 
-      {/* code block — content imported from lib/content/ */}
-      <pre>{allContent.codeBlock}</pre>
+          {/* Documentation Section */}
+          <DocumentationSection detail={detail as any} component={componentItem} />
+        </div>
 
-      {/* props table */}
-      <table>
-        <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
-        <tbody>
-          {allContent.propsTable.map((p: any) => (
-            <tr key={p.name}>
-              <td>{p.name}</td><td>{p.type}</td><td>{p.default}</td><td>{p.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* demo link */}
-      {entry.demoUrl && (
-        <a href={entry.demoUrl} target="_blank" rel="noopener noreferrer">
-          Live Demo →
-        </a>
-      )}
+        {/* Sidebar (Column 9-12) */}
+        <div className="lg:col-span-4">
+          <MetadataSidebar 
+            component={componentItem}
+            bugReportUrl="https://github.com/t7labs/t7blocks/issues"
+            featureRequestUrl="https://github.com/t7labs/t7blocks/issues"
+          />
+        </div>
+      </div>
     </div>
   );
 }

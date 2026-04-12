@@ -59,11 +59,13 @@ export const NAVIGATION_DATA: NavSection[] = [
         title: "Hero",
         icon: "/SVG/svg-65.svg",
         href: "/gallery/hero",
+        items: getItemsByType("section", "hero"),
       },
       {
         title: "Background",
         icon: "/SVG/image.svg",
         href: "/gallery/background",
+        items: getItemsByType("background", "background"),
       },
     ],
   },

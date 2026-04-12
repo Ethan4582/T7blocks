@@ -1,6 +1,6 @@
 export const codeBlock = `import { Dotlaunchbutton } from '@t7blocks/ui';
 
-export default function Example() {
+export default function Home() {
   return (
     <Dotlaunchbutton
       label="Get started"
