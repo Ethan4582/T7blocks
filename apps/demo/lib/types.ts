@@ -4,6 +4,7 @@ export interface CanvasConfig {
   height?: string;
   className?: string;
   infoCard?: string;
+  fontClassName?: string;
 }
 
 export interface ComponentData {

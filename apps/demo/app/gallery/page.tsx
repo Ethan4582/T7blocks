@@ -85,9 +85,13 @@ export default function GalleryPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredComponents = components.filter(c => {
-    const matchesTag = activeTag === "RECENT" || c.category === activeTag;
+    const matchesTag = activeTag === "RECENT" || 
+      c.category.toLowerCase() === activeTag.toLowerCase() || 
+      c.tags.some(t => t.toLowerCase() === activeTag.toLowerCase());
+    
     const matchesSearch = c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+    
     return matchesTag && matchesSearch;
   });
 

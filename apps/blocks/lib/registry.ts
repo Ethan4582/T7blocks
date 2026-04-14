@@ -65,17 +65,18 @@ export const registry: ComponentEntry[] = [
   },
   {
     id: 3,
-    name: "nature-1",
-    displayName: "Nature Background 1",
-    category: "background",
-    type: "nature",
+    name: "scroll-image-pass",
+    displayName: "Scroll Image Pass",
+    category: "components",
+    type: "scroll",
     isPremium: false,
-    videoUrl: null,
-    imageUrl: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_one/good_assets/ferrari.png",
-    demoUrl: null,
-    cliCommand: "npx @t7blocks/cli add nature-1",
-    description: "A beautiful nature background.",
-    tags: ["nature", "background"],
-  }
+    imageUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll_image_pass.mp4",
+    demoUrl: "https://demo.t7blocks.xyz/components/scroll/Scroll-Image-Pass",
+    cliCommand: "npx @t7blocks/cli add scroll-image-pass",
+    description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
+    tags: [ "scroll", "gsap", "images", "work" ,"framer motion" , "framer"  ],
+  },
+  
 ];
 

@@ -1,5 +1,5 @@
 
-export const installCommand = `npm install gsap`;
+export const installCommand = `pnpm add @t7blocks/ui framer-motion gsap`;
 
 export const heroTsxSource =`'use client'
 

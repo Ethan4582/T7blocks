@@ -33,4 +33,22 @@ export const components: ComponentData[] = [
       height: "100vh",
     }
   },
+  {
+    id: "Scroll-Image-Pass",
+    name: "Scroll Image Pass",
+    shortDescription: "Staggered vertical image scroll with GSAP transition",
+  longDescription: "GSAP-powered pinned scroll section with staggered vertical image passes, dynamic title scaling, and a final image-driven layout transition.",
+
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
+    category: "scroll",
+    date: "2026-04-11",
+    tags: ["GSAP", "Scroll", "Animation","Gallery", "Image"],
+    block_url: "https://github.com/Ethan4582/T7blocks/blob/main/packages/ui/src/components/button/scroll-image-pass/index.tsx",
+    canvas: {
+      background: "#FFFFFF",
+      height: "100vh",
+      width: "100%",
+      className: "!block !p-0"
+    }
+  },
 ];
