@@ -1,6 +1,7 @@
 import { registry } from "@/lib/registry";
 import { notFound } from "next/navigation";
 import { DetailView } from "@/components/component-detail/DetailView";
+import { resolveContent } from "@/lib/content";
 
 type Props = { params: Promise<{ type: string; name: string }> };
 
@@ -18,12 +19,9 @@ export default async function HeroDetailPage({ params }: Props) {
   );
   if (!entry) return notFound();
 
-  // Import MUST be here at the page level — Next.js traces this for static export.
-  // A variable dynamic import inside a shared component (DetailView) is NOT resolved
-  // by the bundler and causes 404 in production.
   let allContent: any;
   try {
-    allContent = await import(`@/lib/content/components/${type}/${name}`);
+    allContent = await resolveContent(entry);
   } catch {
     return notFound();
   }
