@@ -1,40 +1,27 @@
-import { registry, toComponentItem } from "@/lib/registry";
-import { notFound } from "next/navigation";
+import { toComponentItem } from "@/lib/registry";
 import { MetadataSidebar, DocumentationSection, PreviewCard } from "@/components/component-detail";
 import { ComponentDetailData } from "@/lib/componentData";
 
+// DetailView accepts pre-resolved entry + content.
+// The dynamic import MUST happen at the page level (not here)
+// so Next.js can statically analyze it during `output: 'export'` builds.
 interface DetailViewProps {
-  category: string;
-  type: string;
-  name: string;
+  entry: any;
+  allContent: any;
 }
 
-export async function DetailView({ category, type, name }: DetailViewProps) {
-  const entry = registry.find(
-    (c) => c.category === category && c.type === type && c.name === name
-  );
-
-  if (!entry) return notFound();
-
-  let allContent;
-  try {
-    // Both hero and components now pull from lib/content/components
-    allContent = await import(`@/lib/content/components/${type}/${name}`);
-  } catch (err) {
-    return notFound();
-  }
-
+export function DetailView({ entry, allContent }: DetailViewProps) {
   const detail: ComponentDetailData = {
     slug: entry.name,
-    dependencies: entry.cliCommand 
-      ? (typeof entry.cliCommand === 'string' 
-          ? entry.cliCommand.replace('npm install ', '').split(' ') 
-          : []) 
+    dependencies: entry.cliCommand
+      ? (typeof entry.cliCommand === 'string'
+          ? entry.cliCommand.replace('npm install ', '').split(' ')
+          : [])
       : [],
     codeBlocks: [
-      { 
-        label: "Component", 
-        code: allContent.codeBlock || allContent.heroTsxSource || allContent.componentCode || "" 
+      {
+        label: "Component",
+        code: allContent.codeBlock || allContent.heroTsxSource || allContent.componentCode || ""
       },
       ...((allContent.heroCssSource || allContent.cssSource) ? [{
         label: "CSS",
@@ -64,7 +51,7 @@ export async function DetailView({ category, type, name }: DetailViewProps) {
         </div>
 
         <div className="lg:col-span-4">
-          <MetadataSidebar 
+          <MetadataSidebar
             component={componentItem}
             bugReportUrl="https://github.com/t7labs/t7blocks/issues"
             featureRequestUrl="https://github.com/t7labs/t7blocks/issues"
