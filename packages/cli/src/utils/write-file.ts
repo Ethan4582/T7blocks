@@ -2,9 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import prompts from 'prompts';
 
-export async function writeComponentFile(filename: string, content: string): Promise<void> {
-  const dir = path.join(process.cwd(), 'components', 'ui');
-  const filepath = path.join(dir, filename);
+export async function writeComponentFile(
+  filename: string,
+  content: string,
+  targetDir: string
+): Promise<void> {
+  const filepath = path.join(targetDir, filename);
 
   if (fs.existsSync(filepath)) {
     const { overwrite } = await prompts({
@@ -13,12 +16,13 @@ export async function writeComponentFile(filename: string, content: string): Pro
       message: `${filename} already exists. Overwrite?`,
       initial: false,
     });
+
     if (!overwrite) {
       console.log(`Skipped ${filename}`);
       return;
     }
   }
 
-  fs.mkdirSync(dir, { recursive: true });
+  fs.mkdirSync(targetDir, { recursive: true });
   fs.writeFileSync(filepath, content, 'utf-8');
 }

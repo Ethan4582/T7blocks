@@ -5,20 +5,40 @@ import registry from '../registry.json';
 export const listCommand = new Command('list')
   .description('List all available components')
   .action(() => {
-    console.log(pc.bold('\nT7blocks components\n'));
+    const grouped: Record<string, string[]> = {};
 
-    const free = Object.entries(registry).filter(([, v]) => !v.isPremium);
-    const pro = Object.entries(registry).filter(([, v]) => v.isPremium);
+    Object.keys(registry).forEach((key) => {
+      const [category, name] = key.split('/');
+      if (!grouped[category]) grouped[category] = [];
+      grouped[category].push(name);
+    });
 
-    console.log(pc.green('Free'));
-    for (const [name] of free) {
-      console.log(`  ${name}`);
+    const { hero, ...rest } = grouped;
+
+    console.log('');
+    console.log(pc.bold(pc.white('  ┌─ T7Blocks ─────────────────────┐')));
+    console.log('');
+
+    Object.entries(rest).forEach(([category, names]) => {
+      console.log(`  ${pc.bold(pc.cyan('  ' + category.toUpperCase()))}`);
+      names.forEach((name, i) => {
+        const isLast = i === names.length - 1;
+        console.log(`    ${pc.dim(isLast ? '└──' : '├──')} ${pc.white(name)}`);
+      });
+      console.log('');
+    });
+
+    if (hero?.length) {
+      console.log(`  ${pc.bold(pc.magenta('  HERO'))}`);
+      hero.forEach((name, i) => {
+        const isLast = i === hero.length - 1;
+        console.log(`    ${pc.dim(isLast ? '└──' : '├──')} ${pc.white(name)}`);
+      });
+      console.log('');
     }
 
-    console.log(pc.yellow('\nPro'));
-    for (const [name] of pro) {
-      console.log(`  ${name}  ${pc.dim('→ pro.t7blocks.com')}`);
-    }
-
+    console.log(pc.bold(pc.white('  └──────────────────────────────────┘')));
+    console.log('');
+    console.log(pc.dim(`  Run: npx @t7blocks/cli add <name>`));
     console.log('');
   });

@@ -50,7 +50,7 @@ export default function DemoCanvas({
         </div>
       )}
       
-      <div className="relative z-10 w-full flex items-center justify-center">
+      <div className={`relative z-10 w-full ${className.includes('!block') ? 'block' : 'flex items-center justify-center'}`}>
         {children}
       </div>
     </div>
