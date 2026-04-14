@@ -53,6 +53,11 @@ export const NAVIGATION_DATA: NavSection[] = [
             href: "/gallery/button",
             items: getItemsByType("button"),
           },
+          {
+            title: "Scroll",
+            href: "/gallery/scroll",
+            items: getItemsByType("scroll"),
+          },
         ],
       },
       {

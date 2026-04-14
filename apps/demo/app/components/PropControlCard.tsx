@@ -58,7 +58,7 @@ function renderControl(key: string, config: any, value: any, onChange: (key: str
     );
   }
 
-  if (config.type === "text" || config.type === "color") {
+  if (config.type === "text" || config.type === "string" || config.type === "color") {
     return (
       <div className="relative flex items-center gap-2">
         <input

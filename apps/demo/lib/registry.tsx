@@ -1,5 +1,6 @@
-import { Dotlaunchbutton, PopHero } from "@t7blocks/ui";
+import { Dotlaunchbutton, PopHero, ScrollimagePass } from "@t7blocks/ui";
 import { launchButtonSchema } from "./prop-schemas/components/button/Launch-Button";
+import { scrollImagePassSchema } from "./prop-schemas/components/scroll/ScrollimagePass";
 
 export const registry: Record<string, {
   component: React.ComponentType<any>;
@@ -12,5 +13,9 @@ export const registry: Record<string, {
   "Pop-Hero": {
     component: PopHero,
     schema: {},
+  },
+  "Scroll-Image-Pass": {
+    component: ScrollimagePass,
+    schema: scrollImagePassSchema,
   },
 };

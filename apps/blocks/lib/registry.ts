@@ -63,6 +63,20 @@ export const registry: ComponentEntry[] = [
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
     tags: [ "hero", "gsap", "nature", "minimal" ,"framer motion" , "framer"  ],
   },
+  {
+    id: 3,
+    name: "scroll-image-pass",
+    displayName: "Scroll Image Pass",
+    category: "components",
+    type: "scroll",
+    isPremium: false,
+    imageUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll_image_pass.mp4",
+    demoUrl: "https://demo.t7blocks.xyz/components/scroll/Scroll-Image-Pass",
+    cliCommand: "npx @t7blocks/cli add scroll-image-pass",
+    description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
+    tags: [ "scroll", "gsap", "images", "work" ,"framer motion" , "framer"  ],
+  },
   
 ];
 

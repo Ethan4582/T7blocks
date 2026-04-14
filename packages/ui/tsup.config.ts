@@ -5,7 +5,7 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   dts: true,
   clean: true,
-  external: ['react', 'framer-motion', 'gsap'],
+  external: ['react', 'framer-motion', 'gsap', 'next', 'next/font/google'],
   sourcemap: true,
   injectStyle: true,
   banner: {
