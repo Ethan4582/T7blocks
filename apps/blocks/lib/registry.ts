@@ -63,19 +63,6 @@ export const registry: ComponentEntry[] = [
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
     tags: [ "hero", "gsap", "nature", "minimal" ,"framer motion" , "framer"  ],
   },
-  {
-    id: 3,
-    name: "nature-1",
-    displayName: "Nature Background 1",
-    category: "background",
-    type: "nature",
-    isPremium: false,
-    videoUrl: null,
-    imageUrl: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_one/good_assets/ferrari.png",
-    demoUrl: null,
-    cliCommand: "npx @t7blocks/cli add nature-1",
-    description: "A beautiful nature background.",
-    tags: ["nature", "background"],
-  }
+  
 ];
 

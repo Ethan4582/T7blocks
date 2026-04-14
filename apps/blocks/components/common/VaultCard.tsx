@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Lock, Eye, Bookmark, ChevronRight } from "lucide-react";
 import { ComponentEntry } from "@/lib/registry";
-import { useBookmarks } from "@/lib/bookmarks-context";
+import { useBookmarks } from "@/components/common/bookmarks-context";
 
 export function VaultCard({ item }: { item: ComponentEntry }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -19,12 +19,12 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
       return;
     }
 
-    if (isHovered && item.videoUrl) { 
-      videoRef.current.play().catch(() => { }); 
+    if (isHovered && item.videoUrl) {
+      videoRef.current.play().catch(() => { });
     }
-    else { 
-      videoRef.current.pause(); 
-      videoRef.current.currentTime = 0; 
+    else {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
   }, [isHovered, item.videoUrl, item.imageUrl]);
 
@@ -47,11 +47,11 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
               </div>
             </div>
           )}
-          
+
           {!item.isPremium && (
             <div className={`absolute top-3 right-3 z-20 flex gap-2 transition-all duration-500 ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
-              <a 
-                href={item.demoUrl ?? undefined} 
+              <a
+                href={item.demoUrl ?? undefined}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => {
@@ -60,35 +60,35 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
                 className="w-8 h-8 rounded-full bg-background/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-accent shadow-xl hover:bg-background/80 transition-all hover:scale-110"
                 title="Open Live Preview"
               >
-                 <Eye className="w-3.5 h-3.5" />
+                <Eye className="w-3.5 h-3.5" />
               </a>
-              <button 
+              <button
                 onClick={(e) => toggleBookmark(item.name, e)}
                 className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shadow-xl transition-all ${bookmarked ? "bg-accent text-accent-foreground" : "bg-background/60 backdrop-blur-md text-foreground/70"}`}
               >
-                 <Bookmark className={`w-3.5 h-3.5 ${bookmarked ? "fill-current" : ""}`} />
+                <Bookmark className={`w-3.5 h-3.5 ${bookmarked ? "fill-current" : ""}`} />
               </button>
             </div>
           )}
 
           {item.imageUrl && (
-            <img 
-              src={item.imageUrl} 
-              alt={item.displayName} 
+            <img
+              src={item.imageUrl}
+              alt={item.displayName}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out 
-                ${isHovered && item.videoUrl ? "opacity-0" : "opacity-100"}`} 
+                ${isHovered && item.videoUrl ? "opacity-0" : "opacity-100"}`}
             />
           )}
-          
+
           {item.videoUrl && (
-            <video 
-              ref={videoRef} 
-              src={item.videoUrl} 
+            <video
+              ref={videoRef}
+              src={item.videoUrl}
               className={`absolute inset-0 w-full h-full object-cover rounded-md transition-opacity duration-700 
-                ${!item.imageUrl || isHovered ? "opacity-100" : "opacity-0"}`} 
-              muted 
-              playsInline 
-              loop 
+                ${!item.imageUrl || isHovered ? "opacity-100" : "opacity-0"}`}
+              muted
+              playsInline
+              loop
               preload="metadata"
             />
           )}

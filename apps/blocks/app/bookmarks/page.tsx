@@ -2,13 +2,13 @@
 
 import { Bookmark, Search } from "lucide-react";
 import Link from "next/link";
-import { useBookmarks } from "@/lib/bookmarks-context";
+import { useBookmarks } from "@/components/common/bookmarks-context";
 import { registry } from "@/lib/registry";
 import { VaultCard } from "@/components/common/VaultCard";
 
 export default function BookmarksPage() {
   const { bookmarks } = useBookmarks();
-  
+
   const bookmarkedItems = registry.filter(item => bookmarks.includes(item.name));
 
   return (
@@ -27,11 +27,11 @@ export default function BookmarksPage() {
           <p className="text-muted-foreground mb-8 max-w-[300px]">
             Add items to your bookmarks to keep them accessible.
           </p>
-          <Link 
-              href="/gallery" 
-              className="px-6 py-2.5 bg-foreground text-background rounded-full font-medium text-sm transition-opacity hover:opacity-90"
+          <Link
+            href="/gallery"
+            className="px-6 py-2.5 bg-foreground text-background rounded-full font-medium text-sm transition-opacity hover:opacity-90"
           >
-              Browse Gallery
+            Browse Gallery
           </Link>
         </div>
       ) : (

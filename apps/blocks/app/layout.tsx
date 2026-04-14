@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 import { SidebarProvider } from "@/components/common/sidebar-provider";
-import { BookmarksProvider } from "@/lib/bookmarks-context";
+import { BookmarksProvider } from "@/components/common/bookmarks-context";
 
 export default function RootLayout({
   children,
