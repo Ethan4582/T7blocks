@@ -1,7 +1,6 @@
+export const installDependenciesCommand = `pnpm add @t7blocks/ui framer-motion gsap`;
 
-export const installCommand = `pnpm add @t7blocks/ui framer-motion gsap`;
-
-export const heroTsxSource =`'use client'
+export const heroTsxSource = `'use client'
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';

@@ -200,3 +200,5 @@ export const propsTable = [
   },
 ];
 
+export const codeBlock = componentCode;
+

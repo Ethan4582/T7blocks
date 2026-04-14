@@ -23,7 +23,10 @@ export default async function GalleryTypePage({ params }: Props) {
   const { type } = await params;
 
   const filteredItems = registry.filter(
-    (c) => c.category === type || c.type === type
+    (c) => 
+      c.category.toLowerCase() === type.toLowerCase() || 
+      c.type.toLowerCase() === type.toLowerCase() ||
+      c.tags?.some(tag => tag.toLowerCase() === type.toLowerCase())
   );
 
   const displayTitle = type.charAt(0).toUpperCase() + type.slice(1);

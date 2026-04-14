@@ -32,9 +32,21 @@ export default async function ComponentPage({ params }: Props) {
 
   const detail: ComponentDetailData = {
     slug: entry.name,
-    dependencies: entry.cliCommand ? entry.cliCommand.replace('npm install ', '').split(' ') : [],
+    setupInstructions: true,
+    dependencies: entry.cliCommand 
+      ? (typeof entry.cliCommand === 'string' 
+          ? entry.cliCommand.replace('npm install ', '').split(' ') 
+          : []) 
+      : [],
     codeBlocks: [
-      { label: "Component", code: allContent.codeBlock }
+      { 
+        label: "Component", 
+        code: allContent.codeBlock || allContent.componentCode || allContent.heroTsxSource || "" 
+      },
+      ...((allContent.heroCssSource || allContent.cssSource) ? [{
+        label: "CSS",
+        code: allContent.heroCssSource || allContent.cssSource
+      }] : [])
     ]
   };
 

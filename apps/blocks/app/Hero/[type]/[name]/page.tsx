@@ -32,9 +32,20 @@ export default async function HeroPage({ params }: Props) {
 
   const detail: ComponentDetailData = {
     slug: entry.name,
-    dependencies: entry.cliCommand ? entry.cliCommand.replace('npm install ', '').split(' ') : [],
+    dependencies: entry.cliCommand 
+      ? (typeof entry.cliCommand === 'string' 
+          ? entry.cliCommand.replace('npm install ', '').split(' ') 
+          : []) 
+      : [],
     codeBlocks: [
-      { label: "Component", code: allContent.codeBlock || allContent.heroTsxSource }
+      { 
+        label: "Component", 
+        code: allContent.codeBlock || allContent.heroTsxSource || allContent.componentCode || "" 
+      },
+      ...((allContent.heroCssSource || allContent.cssSource) ? [{
+        label: "CSS",
+        code: allContent.heroCssSource || allContent.cssSource
+      }] : [])
     ]
   };
 

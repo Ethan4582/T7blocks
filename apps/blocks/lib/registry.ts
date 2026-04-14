@@ -11,7 +11,12 @@ export type ComponentEntry = {
   demoUrl: string | null;
   videoUrl: string | null;
   imageUrl?: string | null;
-  cliCommand: string | null;
+  cliCommand: string | {
+    pnpmCommand: string;
+    npmCommand: string;
+    yarnCommand: string;
+    bunCommand: string;
+  };
   dependencies?: string[];
   description?: string;
   tags?: string[];
@@ -46,7 +51,12 @@ export const registry: ComponentEntry[] = [
     imageUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button",
-    cliCommand: "npx @t7blocks/cli add launch-button",
+    cliCommand: {
+      pnpmCommand: `pnpm dlx @t7blocks/cli add launch-button`,
+      npmCommand: `npm  @t7blocks/cli add launch-button`,
+      yarnCommand: `yarn dlx @t7blocks/cli add launch-button`,
+      bunCommand: `bun  @t7blocks/cli add launch-button`,
+    },  
     description: "A minimalist, premium button featuring a grid-based arrow animation",
     tags: ["Button", "Animation", "framer Motion" , "minimal" , "framer "],
   },
@@ -59,7 +69,12 @@ export const registry: ComponentEntry[] = [
     isPremium: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/hero/Pop-Hero",
-    cliCommand: "npx @t7blocks/cli add pop-hero",
+    cliCommand: {
+      pnpmCommand: `pnpm dlx @t7blocks/cli add pop-hero`,
+      npmCommand: `npm  @t7blocks/cli add pop-hero`,
+      yarnCommand: `yarn dlx @t7blocks/cli add pop-hero`,
+      bunCommand: `bun  @t7blocks/cli add pop-hero`,
+    },
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
     tags: [ "hero", "gsap", "nature", "minimal" ,"framer motion" , "framer"  ],
   },
@@ -70,10 +85,14 @@ export const registry: ComponentEntry[] = [
     category: "components",
     type: "scroll",
     isPremium: false,
-    imageUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
-    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll_image_pass.mp4",
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll-image-pass.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/scroll/Scroll-Image-Pass",
-    cliCommand: "npx @t7blocks/cli add scroll-image-pass",
+    cliCommand: {
+      pnpmCommand: `pnpm dlx @t7blocks/cli add scroll-image-pass`,
+      npmCommand: `npm  @t7blocks/cli add scroll-image-pass`,
+      yarnCommand: `yarn dlx @t7blocks/cli add scroll-image-pass`,
+      bunCommand: `bun  @t7blocks/cli add scroll-image-pass`,
+    },
     description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
     tags: [ "scroll", "gsap", "images", "work" ,"framer motion" , "framer"  ],
   },
