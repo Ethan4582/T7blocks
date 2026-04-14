@@ -1,5 +1,5 @@
 {
-  "launch-button": {
+  "button/dot-launch": {
     "isPremium": false,
     "files": [
       {
@@ -9,7 +9,29 @@
     ],
     "dependencies": ["framer-motion"]
   },
-  "pop-hero": {
+
+
+
+   "scroll/scroll-image-pass": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "ScrollimagePass.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/scroll/ScrollimagePass/ScrollimagePass.tsx"
+      }
+    ],
+    "dependencies": ["gsap"]
+  },
+
+
+
+
+
+
+
+
+
+  "hero/pop-hero": {
     "isPremium": false,
     "files": [
       {
