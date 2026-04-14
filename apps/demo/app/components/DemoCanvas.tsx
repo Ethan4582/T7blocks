@@ -3,26 +3,26 @@ import { CanvasConfig } from "@/lib/gallery";
 
 const DEFAULT_BG = "#EBEBEB";
 
-export default function DemoCanvas({ 
-  children, 
+export default function DemoCanvas({
+  children,
   blockUrl,
   canvasConfig
-}: { 
+}: {
   children: React.ReactNode;
   blockUrl?: string;
   canvasConfig?: CanvasConfig;
 }) {
-  const { 
-    background = DEFAULT_BG, 
-    width = "100%", 
-    height = "100vh", 
-    className = "" 
+  const {
+    background = DEFAULT_BG,
+    width = "100%",
+    height = "100vh",
+    className = ""
   } = canvasConfig || {};
 
   return (
-    <div 
+    <div
       className={`relative flex items-center justify-center overflow-hidden transition-all duration-500 font-sans ${className}`}
-      style={{ 
+      style={{
         backgroundColor: background,
         minHeight: height,
         width: width,
@@ -49,7 +49,7 @@ export default function DemoCanvas({
           </p>
         </div>
       )}
-      
+
       <div className={`relative z-10 w-full ${className.includes('!block') ? 'block' : 'flex items-center justify-center'}`}>
         {children}
       </div>

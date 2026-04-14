@@ -11,7 +11,7 @@ export const components: ComponentData[] = [
     category: "button",
     date: "2026-04-11",
     tags: ["Framer Motion", "Button", "Micro-interaction", "Next.js"],
-    block_url: "https://github.com/Ethan4582/T7blocks/blob/main/packages/ui/src/components/button/launch-button/index.tsx",
+    block_url: "https://t7blocks.xyz/components/button/launch-button",
     canvas: {
       background: "#EBEBEB",
       height: "100vh",
@@ -27,7 +27,7 @@ export const components: ComponentData[] = [
     category: "hero",
     date: "2026-04-11",
     tags: ["GSAP", "Hero", "Animation", "Next.js"],
-    block_url: "https://github.com/Ethan4582/T7blocks/blob/main/packages/ui/src/hero/PopHero/PopHero.tsx",
+    block_url: "https://t7blocks.xyz/hero/section/pop-hero",
     canvas: {
       background: "#000000",
       height: "100vh",
@@ -37,13 +37,13 @@ export const components: ComponentData[] = [
     id: "Scroll-Image-Pass",
     name: "Scroll Image Pass",
     shortDescription: "Staggered vertical image scroll with GSAP transition",
-  longDescription: "GSAP-powered pinned scroll section with staggered vertical image passes, dynamic title scaling, and a final image-driven layout transition.",
+    longDescription: "GSAP-powered pinned scroll section with staggered vertical image passes, dynamic title scaling, and a final image-driven layout transition.",
 
-    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll-image-pass.mp4",
     category: "scroll",
     date: "2026-04-11",
-    tags: ["GSAP", "Scroll", "Animation","Gallery", "Image"],
-    block_url: "https://github.com/Ethan4582/T7blocks/blob/main/packages/ui/src/components/button/scroll-image-pass/index.tsx",
+    tags: ["GSAP", "Scroll", "Animation", "Gallery", "Image"],
+    block_url: "https://t7blocks.xyz/components/scroll/scroll-image-pass",
     canvas: {
       background: "#FFFFFF",
       height: "100vh",
