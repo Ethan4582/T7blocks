@@ -48,7 +48,7 @@ export const components: ComponentData[] = [
       background: "#FFFFFF",
       height: "100vh",
       width: "100vw",
-      className: "!block !p-0 !m-0 !w-screen !h-screen"
+      className: "!block !p-0 !m-0 "
     }
   },
 ];
