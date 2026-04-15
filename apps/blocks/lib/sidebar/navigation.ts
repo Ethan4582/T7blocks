@@ -50,7 +50,7 @@ export const NAVIGATION_DATA: NavSection[] = [
         items: [
           {
             title: "Buttons",
-            href: "/gallery/button",
+           
             items: getItemsByType("button"),
           },
           {
