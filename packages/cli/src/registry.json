@@ -21,11 +21,22 @@
       }
     ],
     "dependencies": ["gsap"]
+
   },
-
-
-
-
+ "scroll/sticky-scroll": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "StickyScroll.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/scroll/StickyScroll/StickyScroll.tsx"
+      },
+      {
+        "name": "StickyScroll.css",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/scroll/StickyScroll/StickyScroll.css"
+      }
+    ],
+    "dependencies": ["gsap"]
+  },
 
 
 
