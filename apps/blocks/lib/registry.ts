@@ -48,7 +48,7 @@ export const registry: ComponentEntry[] = [
     category: "components",
     type: "button",
     isPremium: false,
-    imageUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
+  
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button",
     cliCommand: {

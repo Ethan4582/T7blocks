@@ -111,7 +111,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border/40 bg-muted/20 hover:bg-muted text-[12px] font-medium transition-all"
           >
             <img src="/SVG/github.svg" alt="Github" className="w-3.5 h-3.5 text-muted-foreground" />
-            <span>Contribute</span>
+            
             {stars !== null && (
               <span className="flex items-center gap-1 pl-1.5 ml-1 border-l border-border/40 text-muted-foreground text-[11px] font-semibold">
                 ★ {stars > 999 ? (stars / 1000).toFixed(1) + "k" : stars}
