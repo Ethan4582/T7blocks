@@ -51,4 +51,19 @@ export const components: ComponentData[] = [
       className: "!block !p-0 !m-0 "
     }
   },
+  {
+    id: "Sticky-Scroll",
+    name: "Sticky Scroll",
+    shortDescription: "Staggered vertical image scroll with GSAP transition",
+    longDescription: "GSAP-powered pinned scroll section with staggered vertical image passes, dynamic title scaling, and a final image-driven layout transition.",
+
+    video: "https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
+    category: "scroll",
+    date: "2026-04-11",
+    tags: ["GSAP", "Scroll", "Animation", "Gallery", "Image"],
+    block_url: "https://t7blocks.xyz/components/scroll/sticky-scroll",
+    canvas: {
+      background: "#FFFFFF"
+    }
+  },
 ];

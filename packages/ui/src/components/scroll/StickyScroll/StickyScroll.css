@@ -1,0 +1,77 @@
+.stickyScroll_container {
+  width: 100%;
+}
+
+.stickyScroll_section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.stickyScroll_hero h1 {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: 400;
+  font-size: 200px;
+  color: #fff;
+  letter-spacing: -8px;
+  line-height: 90%;
+  z-index: 2;
+}
+
+.stickyScroll_img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1000px;
+  height: 700px;
+}
+
+.stickyScroll_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .stickyScroll_hero h1 {
+    font-size: 120px;
+    letter-spacing: -4px;
+  }
+
+  .stickyScroll_img {
+    width: 80vw;
+    height: 55vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .stickyScroll_hero h1 {
+    font-size: 64px;
+    letter-spacing: -2px;
+    padding: 0 12px;
+  }
+
+  .stickyScroll_img {
+    width: 90vw;
+    height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .stickyScroll_hero h1 {
+    font-size: 42px;
+  }
+
+  .stickyScroll_img {
+    width: 92vw;
+    height: 45vh;
+  }
+}

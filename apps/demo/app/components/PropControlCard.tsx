@@ -1,4 +1,3 @@
-import React from 'react';
 
 type PropControlCardProps = {
   schema: any;
@@ -10,7 +9,17 @@ export default function PropControlCard({ schema, values, onChange }: PropContro
   if (!schema || !values) return null;
 
   return (
-    <div className="fixed bottom-8 left-8 p-4 w-[240px] z-50 text-white/80 rounded-2xl glass-panel">
+    <div className="
+       fixed z-50 text-white/80 rounded-2xl glass-panel
+ // i want to tp be on left side
+  bottom-1 left-1/2 -translate-x-1.75/2
+  w-[48vw] max-w-[320px] p-3
+
+  sm:bottom-8 sm:left-8 sm:translate-x-0
+  sm:w-[240px] sm:p-4
+
+  backdrop-blur-xl
+    ">
       <div className="flex items-center justify-between mb-4 px-1">
         <h3 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/40">Customizer</h3>
       </div>
@@ -87,6 +96,19 @@ function renderControl(key: string, config: any, value: any, onChange: (key: str
         onChange={(e) => onChange(key, Number(e.target.value))}
         className={baseStyles}
       />
+    );
+  }
+   // it should be button when click toggele true or false
+  if (config.type === "boolean") {
+    return (
+      <button
+        id={key}
+        type="button"
+        onClick={() => onChange(key, !value)}
+        className={baseStyles}
+      >
+        {value ? "True" : "False"}
+      </button>
     );
   }
 

@@ -95,7 +95,24 @@ export const registry: ComponentEntry[] = [
     },
     description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
     tags: [ "scroll", "gsap", "images", "work" ,"framer motion" , "framer"  ],
-  },
+  },{
+    id:4,
+    name:"sticky-scroll",
+    displayName:"Sticky Scroll",
+    category:"components",
+    type:"scroll",
+    isPremium:false,
+    videoUrl:"https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
+    demoUrl:"https://demo.t7blocks.xyz/components/scroll/Sticky-Scroll",
+    cliCommand:{
+      pnpmCommand: `pnpm dlx @t7blocks/cli add sticky-scroll`,
+      npmCommand: `npm  @t7blocks/cli add sticky-scroll`,
+      yarnCommand: `yarn dlx @t7blocks/cli add sticky-scroll`,
+      bunCommand: `bun  @t7blocks/cli add sticky-scroll`,
+    },
+    description: "Sticky scroll with GSAP ScrollTrigger.",
+    tags: [ "scroll", "ScrollTrigger","gsap", "images", "work" ,"framer motion" , "framer"  ],
+  }
   
 ];
 

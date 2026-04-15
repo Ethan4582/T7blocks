@@ -1,1 +1,0 @@
-// shared prop types go here
