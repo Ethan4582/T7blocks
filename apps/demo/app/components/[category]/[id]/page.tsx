@@ -1,16 +1,16 @@
 import { Metadata } from "next";
 import { components } from "@/lib/gallery";
-import ComponentDemoClient from "@/app/components/ComponentDemoClient";
+import ComponentDemoClient from "@/app/components/canvas/ComponentDemoClient";
 
 type Props = {
   params: Promise<{ category: string; id: string }>;
 };
 
 export async function generateStaticParams() {
-   return components.map((component) => ({
-      category: component.category,
-      id: component.id,
-   }));
+  return components.map((component) => ({
+    category: component.category,
+    id: component.id,
+  }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -34,9 +34,9 @@ export default async function ComponentPage({ params }: Props) {
 
   return (
     <div className="relative">
-      <ComponentDemoClient 
-         id={id} 
-         blockUrl={componentData.block_url} 
+      <ComponentDemoClient
+        id={id}
+        blockUrl={componentData.block_url}
       />
     </div>
   );
