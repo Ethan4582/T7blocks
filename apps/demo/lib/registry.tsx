@@ -1,7 +1,9 @@
-import { Dotlaunchbutton, PopHero, ScrollimagePass, StickyScroll } from "@t7blocks/ui";
+import { Dotlaunchbutton, PopHero, ScrollimagePass, StickyScroll, PullSwitch } from "@t7blocks/ui";
+import PullSwitchDemo from "@/app/components/canvas/PullSwitchDemo";
 import { launchButtonSchema } from "./prop-schemas/components/button/Launch-Button";
 import { scrollImagePassSchema } from "./prop-schemas/components/scroll/ScrollimagePass";
-import { stickyScrollSchema } from "./prop-schemas/components/scroll/StickyScrol";
+import { stickyScrollSchema } from "./prop-schemas/components/scroll/StickyScroll";
+import { pullSwitchSchema } from "./prop-schemas/components/misc/PullSwitch";
 
 export const registry: Record<string, {
   component: React.ComponentType<any>;
@@ -23,4 +25,9 @@ export const registry: Record<string, {
     component: StickyScroll,
     schema: stickyScrollSchema,
   },
+  "pull-switch": {
+    component: PullSwitchDemo,
+    schema: pullSwitchSchema,
+  },
 };
+

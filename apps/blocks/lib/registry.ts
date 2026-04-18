@@ -112,6 +112,23 @@ export const registry: ComponentEntry[] = [
     },
     description: "Sticky scroll with GSAP ScrollTrigger.",
     tags: [ "scroll", "ScrollTrigger","gsap", "images", "work" ,"framer motion" , "framer"  ],
+  },{
+    id:5,
+    name:"pull-switch",
+    displayName:"Pull Switch",
+    category:"components",
+    type:"misc",
+    isPremium:false,
+    videoUrl:"https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
+    demoUrl:"https://demo.t7blocks.xyz/components/misc/PullSwitch",
+    cliCommand:{
+      pnpmCommand: `pnpm dlx @t7blocks/cli add pullswitch`,
+      npmCommand: `npm  @t7blocks/cli add pullswitch`,
+      yarnCommand: `yarn dlx @t7blocks/cli add pullswitch`,
+      bunCommand: `bun  @t7blocks/cli add pullswitch`,
+    },
+    description: "Pull switch with GSAP ScrollTrigger.",
+    tags: [ "misc","gsap", "button" ,"Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
   }
   
 ];

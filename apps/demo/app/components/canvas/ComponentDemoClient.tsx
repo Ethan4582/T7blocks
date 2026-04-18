@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import DemoCanvas from "./DemoCanvas";
+
 import PropControlCard from "./PropControlCard";
 import { registry } from "@/lib/registry";
 import { components } from "@/lib/gallery";
+import DemoCanvas from "./DemoCanvas";
 
-export default function ComponentDemoClient({ 
-  id, 
-  blockUrl 
-}: { 
-  id: string; 
+export default function ComponentDemoClient({
+  id,
+  blockUrl
+}: {
+  id: string;
   blockUrl?: string;
 }) {
   const componentData = components.find(c => c.id === id);
@@ -28,8 +29,8 @@ export default function ComponentDemoClient({
 
   return (
     <>
-      <DemoCanvas 
-        blockUrl={blockUrl} 
+      <DemoCanvas
+        blockUrl={blockUrl}
         canvasConfig={componentData?.canvas}
       >
         <Component {...props} />
