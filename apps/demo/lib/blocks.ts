@@ -72,7 +72,7 @@ export const components: ComponentData[] = [
   shortDescription: "Interactive pull-cord switch to toggle light and dark mode",
   longDescription: "A canvas-based pull-cord switch component with physics-driven rope interaction. Users can drag and pull the cord to toggle between light and dark themes, with smooth motion, realistic constraints, and animated color transitions.",
   
-  video: "https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
+  video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
   category: "misc",
   date: "2026-04-11",
   tags: ["Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],

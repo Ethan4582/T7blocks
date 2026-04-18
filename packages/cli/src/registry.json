@@ -39,6 +39,17 @@
   },
 
 
+  "misc/pull-switch": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "PullSwitch.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/misc/PullSwitch/PullSwitch.tsx"
+      }
+    ],
+    "dependencies": ["gsap"]
+  },
+
 
 
 
