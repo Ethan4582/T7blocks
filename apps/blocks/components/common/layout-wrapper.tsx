@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Sidebar } from "@/components/common/sidebar";
 import { useSidebar } from "@/components/common/sidebar-provider";
 import { ComponentNavbar } from "@/components/component-detail/ComponentNavbar";
+import { SearchModal } from "@/components/common/search-modal";
 import React from "react";
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
@@ -25,6 +26,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Sidebar />
+      <SearchModal />
       <main 
         className={`
           flex-1 flex flex-col transition-all duration-375 ease-in-out

@@ -19,9 +19,6 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
   const [mounted, setMounted] = useState(false);
   const [stars, setStars] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchFocused, setSearchFocused] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const isDark = theme === "dark";
 
@@ -32,24 +29,6 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
       .then((d) => { if (d.stargazers_count !== undefined) setStars(d.stargazers_count); })
       .catch(() => setStars(24));
   }, []);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        searchInputRef.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
-
-  const searchResults = searchQuery.length > 1
-    ? registry.filter(c =>
-        c.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        c.tags?.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()))
-      ).slice(0, 6)
-    : [];
 
   return (
     <>
@@ -65,43 +44,26 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
             </button>
           )}
 
-          <div className="relative flex-1 max-w-[240px]">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-muted-foreground">
-              <Search className="w-3.5 h-3.5" />
-            </div>
-            <input
-              ref={searchInputRef}
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => setSearchFocused(true)}
-              onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
-              className="w-full bg-muted/50 border border-border/40 rounded-lg py-1.5 pl-8 pr-10 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-ring/40 transition-all placeholder:text-muted-foreground/40"
-            />
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <kbd className="inline-flex items-center gap-0.5 rounded bg-muted/60 px-1.5 py-0.5 text-[9px] font-medium text-muted-foreground/60 border border-border/30">
-                <Command className="w-2.5 h-2.5" />K
-              </kbd>
-            </div>
-            {searchFocused && searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1.5 bg-card border border-border rounded-xl shadow-2xl z-50 overflow-hidden">
-                {searchResults.map((r) => (
-                  <Link 
-                    key={r.name} 
-                    href={`/${r.category === 'components' ? 'components' : r.category}/${r.type}/${r.name}`} 
-                    className="flex items-center gap-3 px-3 py-2.5 hover:bg-muted transition-colors border-b border-border/20 last:border-0"
-                  >
-                    <img src={r.imageUrl || "/assets/preview.png"} alt={r.displayName} className="w-9 h-6 rounded object-cover flex-shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-[13px] font-medium text-foreground truncate">{r.displayName}</p>
-                      <p className="text-[11px] text-muted-foreground uppercase">{r.category}</p>
-                    </div>
-                  </Link>
-                ))}
+            <div 
+              onClick={() => {
+                window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, metaKey: true }));
+              }}
+              className="flex-1 max-w-[240px] cursor-pointer"
+            >
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-muted-foreground">
+                  <Search className="w-3.5 h-3.5" />
+                </div>
+                <div className="w-full bg-muted/50 border border-border/40 rounded-lg py-1.5 pl-8 pr-10 text-[13px] text-muted-foreground/40 transition-all select-none">
+                  Search...
+                </div>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                  <kbd className="inline-flex items-center gap-0.5 rounded bg-muted/60 px-1.5 py-0.5 text-[9px] font-medium text-muted-foreground/60 border border-border/30">
+                    <Command className="w-2.5 h-2.5" />K
+                  </kbd>
+                </div>
               </div>
-            )}
-          </div>
+            </div>
         </div>
 
         <div className="hidden md:flex items-center gap-2">
