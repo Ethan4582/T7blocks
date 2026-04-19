@@ -61,59 +61,70 @@ function RelatedCard({
   return (
     <Link href={`/component/${item.slug}`}>
       <div
-        className="group/card flex flex-col bg-card dark:bg-[#1c1c1c] hover:bg-[#e4e4e7] dark:hover:bg-[#2a2a2a] border border-border/60 rounded-xl transition-all duration-300 shadow-sm cursor-pointer p-1.5"
+        className="group/card space-y-4 cursor-pointer"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <div className="relative w-full aspect-[1.45] overflow-hidden bg-muted/20 dark:bg-[#111] rounded-lg border border-border/10">
+        <div className="relative w-full aspect-[1.7] overflow-hidden bg-[#0D0D0D] rounded-2xl border border-white/5 transition-all duration-500 group-hover/card:border-white/10 shadow-2xl">
+          {/* Play status icon */}
+          <div className="absolute top-4 left-4 z-20">
+             <div className="w-9 h-9 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center">
+                <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-white border-b-[5px] border-b-transparent ml-1" />
+             </div>
+          </div>
+
           {item.isPremium && (
-            <div className="absolute top-3 left-3 z-20">
-              <div className="flex items-center gap-1.5 bg-background border border-border backdrop-blur-md px-2.5 py-1 rounded-full shadow-sm">
-                <LockIcon className="w-3 h-3 text-accent" />
-                <span className="text-[11px] font-semibold text-foreground tracking-wider">Locked</span>
+            <div className="absolute top-4 right-4 z-20">
+              <div className="bg-black/40 border border-white/10 backdrop-blur-xl px-3 py-1 rounded-full">
+                <span className="text-[10px] font-bold text-white/50 tracking-widest uppercase">Premium</span>
               </div>
             </div>
           )}
-          {!item.isPremium && (
-            <div className={`absolute z-20 top-3 right-3 flex items-center gap-2 transition-all duration-300 ${hovered ? "opacity-100" : "opacity-0 translate-y-[-4px]"}`}>
-              <a
-                href={item.demoUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-accent hover:bg-background hover:scale-105 transition-all shadow-sm"
-                title="Preview"
-                onClick={(e) => { e.stopPropagation(); }}
-              >
-                <Eye className="w-[15px] h-[15px]" />
-              </a>
-              <button
-                className="w-8 h-8 rounded-lg bg-background/80 backdrop-blur-md border border-border flex items-center justify-center text-foreground hover:bg-background hover:scale-105 transition-all shadow-sm"
-                title="Bookmark"
-                onClick={(e) => { e.preventDefault(); e.stopPropagation(); onToggleBookmark(); }}
-              >
-                <Bookmark className={`w-[15px] h-[15px] ${isBookmarked ? "fill-foreground" : ""}`} />
-              </button>
-            </div>
-          )}
+
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+
           {item.video ? (
             <>
-              <img src={item.image} alt={item.name} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hovered ? "opacity-0" : "opacity-100"}`} />
-              <video ref={videoRef} src={item.video} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`} muted playsInline loop preload="auto" />
+              {item.image && (
+                 <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${hovered ? "opacity-0 scale-105" : "opacity-100 scale-100"}`} 
+                 />
+              )}
+              <video 
+                ref={videoRef} 
+                src={item.video} 
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${(!item.image || hovered) ? "opacity-100 scale-100 placeholder-black" : "opacity-0 scale-105"}`} 
+                muted 
+                playsInline 
+                loop 
+                autoPlay={!item.image}
+              />
             </>
           ) : (
-            <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+            <img 
+               src={item.image} 
+               alt={item.name} 
+               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-110" 
+            />
           )}
         </div>
 
-        <div className="px-2 pt-3.5 pb-2 flex justify-between items-center bg-transparent mt-1">
-          <h3 className="text-[15px] font-semibold tracking-wide text-foreground/85 group-hover:text-foreground transition-colors truncate">
-            {item.name}
-          </h3>
-          {!item.isPremium && (
-            <div className={`w-6 h-6 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/80 transition-all duration-300 ${hovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`}>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </div>
-          )}
+        <div className="px-1 flex justify-between items-center transition-all duration-300">
+          <div>
+            <h3 className="text-[17px] font-medium tracking-tight text-foreground transition-colors">
+              {item.name}
+            </h3>
+            {item.category && (
+               <p className="text-[12px] text-muted-foreground/40 font-medium uppercase tracking-widest mt-1">
+                 {item.category}
+               </p>
+            )}
+          </div>
+          <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-foreground/40 group-hover/card:bg-[#A1FF62]/10 group-hover/card:text-[#A1FF62] transition-all">
+            <ChevronRight className="w-4 h-4" />
+          </div>
         </div>
       </div>
     </Link>

@@ -1,4 +1,13 @@
-export const componentCode=`"use client";
+export const T7blocksCliCommand = {
+  pnpmCommand: `pnpm dlx @t7blocks/cli add knob-toggle`,
+  npmCommand: `npm  @t7blocks/cli add knob-toggle`,
+  yarnCommand: `yarn dlx @t7blocks/cli add knob-toggle`,
+  bunCommand: `bun  @t7blocks/cli add knob-toggle`,
+};
+
+export const Code1FileName = 'KnobToggle.tsx';
+
+export const Code1 = `"use client";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -86,12 +95,7 @@ export const propsTable =`
 | soundSrc       | string  | undefined      | URL to an audio file to play when toggled                             |
 `
 
-
-export const instructions=`
-1. Add the KnobToggle component to your layout.tsx file.
-2. update the bgLight and bgDark props to your desired colors.
-3. add root and root.dark class to your global.css file.
-`
+// usage of the component 
 export const setupCode1 =`
 export default function RootLayout({
   children,
@@ -113,6 +117,8 @@ export default function RootLayout({
 }
 `
 
+export const setupCode1FileName="layout.tsx";
+export const setupCode2FileName="global.css";
 export const setupCode2 =`
 :root {
   --background: #ffffff;

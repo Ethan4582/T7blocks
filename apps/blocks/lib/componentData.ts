@@ -9,11 +9,6 @@ export interface ComponentItem {
   publishedDate: string;
   isPremium: boolean;
   tags: string[];
-  creator: {
-    name: string;
-    image: string;
-    url?: string;
-  };
   demoUrl?: string;
 }
 
@@ -26,4 +21,22 @@ export interface ComponentDetailData {
     label: string;
     code: string;
   }>;
+  setupBlocks?: Array<{
+    label: string;
+    code: string;
+  }>;
+  props?: string;
+  propsTable?: string;
+  installCommand?: string | {
+    npm: string;
+    pnpm: string;
+    yarn: string;
+    bun: string;
+  } | null;
+    T7blocksCliCommand: string | {
+    pnpmCommand: string;
+    npmCommand: string;
+    yarnCommand: string;
+    bunCommand: string;
+  };
 }

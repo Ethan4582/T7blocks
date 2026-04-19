@@ -12,11 +12,11 @@ export function PreviewCard({ component }: PreviewCardProps) {
     <div
       className="relative rounded-xl overflow-hidden border border-border bg-card p-1.5"
     >
-      <div className="relative aspect-[16/9] rounded-lg overflow-hidden bg-muted/10 dark:bg-[#0e0e0e]">
+      <div className="relative rounded-lg overflow-hidden bg-muted/10 dark:bg-[#0e0e0e] w-full">
         {component.video ? (
           <video
             src={component.video}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-auto block object-contain"
             autoPlay
             muted
             playsInline
@@ -28,7 +28,7 @@ export function PreviewCard({ component }: PreviewCardProps) {
             <img 
               src={component.image} 
               alt={component.name} 
-              className="w-full h-full object-cover" 
+              className="w-full h-auto block object-contain" 
             />
           )
         )}

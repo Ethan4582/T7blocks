@@ -1,4 +1,9 @@
-export const installCommand = `pnpm add @t7blocks/ui gsap`;
+export const installCommand = {
+  "npm": "npm add @t7blocks/ui gsap",
+  "pnpm": "pnpm add @t7blocks/ui gsap",
+  "yarn": "yarn add @t7blocks/ui gsap",
+  "bun": "bun add @t7blocks/ui gsap"
+}
 
 
 export const componentCode =`'use client';

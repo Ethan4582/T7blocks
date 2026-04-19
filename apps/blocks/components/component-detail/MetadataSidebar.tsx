@@ -8,7 +8,8 @@ interface MetadataSidebarProps {
   bugReportUrl: string;
   featureRequestUrl: string;
   editUrl?: string;
-  onPageComponents?: { id: string; name: string }[];
+  activeSection?: string;
+  availableSections?: { id: string; name: string }[];
 }
 
 export function MetadataSidebar({
@@ -16,41 +17,49 @@ export function MetadataSidebar({
   bugReportUrl,
   featureRequestUrl,
   editUrl = "#",
-  onPageComponents = [],
+  activeSection = "install",
+  availableSections = [],
 }: MetadataSidebarProps) {
-  const componentsList = onPageComponents.length > 0 
-    ? onPageComponents 
-    : [{ id: component.id, name: component.name }];
+  const sections = availableSections.length > 0 
+    ? availableSections 
+    : [
+        { id: "install", name: "Install" },
+        { id: "usage", name: "Usage" },
+        { id: "code", name: "Code" },
+        { id: "props", name: "Props" }
+      ];
 
   return (
-    <div className="space-y-7 lg:sticky lg:top-12 lg:self-start w-full min-w-[100px] pb-10">
+    <div className="space-y-10 lg:sticky lg:top-12 lg:self-start w-full min-w-[100px] pb-10">
       {/* ─── Navigation Header ─── */}
-      <div className="px-1">
-        <div className="flex items-center gap-2 text-muted-foreground/40 mb-4 font-medium">
-          <Menu className="w-3.5 h-3.5" />
-          <span className="text-[12px] tracking-tight">On this page</span>
-        </div>
+      {sections.length > 0 && (
+        <div className="px-1 animate-in fade-in slide-in-from-right-2 duration-500">
+          <div className="flex items-center gap-2 text-muted-foreground/40 mb-4 font-medium">
+            <Menu className="w-3.5 h-3.5" />
+            <span className="text-[12px] tracking-tight uppercase">On this page</span>
+          </div>
 
-        {/* ─── Component List ─── */}
-        <div className="border-l border-white/5 ml-1.5 space-y-0.5">
-          {componentsList.map((item) => {
-            const isActive = item.id === component.id;
-            return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={`block py-1.5 px-4 transition-all duration-200 -ml-px border-l ${
-                  isActive 
-                    ? "border-rose-500 text-rose-500/90 font-medium text-[13px]" 
-                    : "border-transparent text-muted-foreground/60 hover:text-foreground/80 text-[13px]"
-                }`}
-              >
-                {item.name}
-              </a>
-            );
-          })}
+          {/* ─── Dynamic Section List ─── */}
+          <div className="border-l border-white/5 ml-1.5 space-y-0.5">
+            {sections.map((section) => {
+              const isActive = activeSection === section.id;
+              return (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={`block py-1.5 px-4 transition-all duration-300 -ml-px border-l-2 ${
+                    isActive 
+                      ? "border-[#A1FF62] text-foreground font-bold text-[13px]" 
+                      : "border-transparent text-muted-foreground/40 hover:text-foreground/80 text-[13px]"
+                  }`}
+                >
+                  {section.name}
+                </a>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ─── Tags Section ─── */}
       {component.tags && component.tags.length > 0 && (

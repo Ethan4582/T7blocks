@@ -3,66 +3,85 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { highlightCode } from "@/lib/syntax-highlighter";
+import { useToast } from "@/components/common/toast-provider";
 
 interface CodeBlockProps {
-  code: string;
-  label: string;
+  files?: Array<{ label: string; code: string; language?: string; icon?: string }>;
+  code?: string;
+  label?: string;
   language?: string;
 }
 
-export function CodeBlock({ code, label, language = "html" }: CodeBlockProps) {
+export function CodeBlock({ files, code, label, language = "html" }: CodeBlockProps) {
+  const [activeFileIndex, setActiveFileIndex] = useState(0);
   const [copied, setCopied] = useState(false);
+  const { showToast } = useToast();
+
+  const currentFiles = files || [{ label: label || "code", code: code || "", language }];
+  const activeFile = currentFiles[activeFileIndex];
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(code);
+    if (!activeFile) return;
+    navigator.clipboard.writeText(activeFile.code);
     setCopied(true);
+    
+    // Simplified toast messages as requested
+    let toastLabel = activeFile.label.toLowerCase();
+    if (toastLabel.includes('command')) {
+       showToast("Install command copied");
+    } else {
+       showToast("Command copied");
+    }
+
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <div
-      className="rounded-xl overflow-hidden shadow-sm transition-all"
-      style={{
-        background: "var(--code-bg)",
-        border: "1px solid var(--code-border)",
-      }}
+      className="rounded-xl overflow-hidden shadow-sm transition-all bg-[#0A0A0A] border border-white/5"
     >
       {/* Code Header */}
       <div
-        className="flex items-center justify-between px-4 py-2"
-        style={{
-          background: "var(--code-header)",
-          borderBottom: "1px solid var(--code-border)",
-        }}
+        className="flex items-center justify-between px-3 py-1.5 bg-[#0D0D0D] border-b border-white/5"
       >
-        <span
-          className="text-[11px] font-medium font-mono uppercase tracking-wider"
-          style={{ color: "var(--code-label)" }}
-        >
-          {label}
-        </span>
+        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pr-4">
+          {currentFiles.map((file, idx) => (
+            <button
+               key={idx}
+               onClick={() => setActiveFileIndex(idx)}
+               className={`flex items-center gap-2 px-3 py-1.5 text-[11px] font-bold rounded-lg transition-all whitespace-nowrap ${
+                 activeFileIndex === idx 
+                   ? "bg-white/5 text-foreground shadow-sm" 
+                   : "text-muted-foreground/40 hover:text-foreground/60 hover:bg-white/[0.02]"
+               }`}
+            >
+              {file.icon && <img src={file.icon} alt="" className="w-3.5 h-3.5 opacity-80" />}
+              <span>{file.label.split(' ')[0].toLowerCase()}</span>
+            </button>
+          ))}
+        </div>
+
         <button
           onClick={copyToClipboard}
-          className="flex items-center gap-1.5 text-[11px] transition-all hover:opacity-100 opacity-70 group"
+          className="flex items-center gap-1.5 text-[11px] transition-all hover:opacity-100 opacity-60 group shrink-0 px-2 py-1 hover:bg-white/5 rounded-md"
           style={{ color: "var(--code-copy)" }}
         >
           {copied ? (
-            <Check className="w-3.5 h-3.5 text-accent" />
+            <Check className="w-3.5 h-3.5 text-[#A1FF62]" />
           ) : (
             <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
           )}
-          <span className="font-medium">{copied ? "Copied" : "Copy"}</span>
+          <span className="font-bold text-[10px] uppercase tracking-wider">{copied ? "Copied" : "Copy"}</span>
         </button>
       </div>
 
-      {/* Code Content */}
-      <div className="relative p-5 overflow-x-auto">
+      {/* Code Content - Clearly visible internal scroll */}
+      <div className="relative p-6 overflow-y-auto max-h-[450px] custom-scrollbar scroll-smooth [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-track]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-white/20">
         <pre
           className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-all"
-          style={{ color: "var(--code-text)" }}
         >
           <code
-            dangerouslySetInnerHTML={{ __html: highlightCode(code, language) }}
+            dangerouslySetInnerHTML={{ __html: highlightCode(activeFile.code, activeFile.language || language) }}
             className="block whitespace-pre"
           />
         </pre>
