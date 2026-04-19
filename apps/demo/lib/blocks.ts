@@ -6,7 +6,7 @@ export const components: ComponentData[] = [
     name: "Launch Button",
     shortDescription: "Sleek button with fluid square arrow animation.",
     longDescription: "A high-fidelity interactive button designed with Framer Motion. Features a unique grid-based arrow animation that activates on hover. Fully customizable props for colors, speed, and labels make it perfect for any landing page launch action.",
-    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/launch_button.mp4",
     category: "button",
     date: "2026-04-11",
     tags: ["Framer Motion", "Button", "Micro-interaction", "Next.js"],

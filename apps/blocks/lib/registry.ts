@@ -11,12 +11,6 @@ export type ComponentEntry = {
   demoUrl: string | null;
   videoUrl: string | null;
   imageUrl?: string | null;
-  cliCommand: string | {
-    pnpmCommand: string;
-    npmCommand: string;
-    yarnCommand: string;
-    bunCommand: string;
-  };
   dependencies?: string[];
   description?: string;
   tags?: string[];
@@ -33,10 +27,6 @@ export const toComponentItem = (entry: ComponentEntry): ComponentItem => ({
   publishedDate: "Recent",
   isPremium: entry.isPremium,
   tags: entry.tags || [],
-  creator: {
-    name: "T7 Labs",
-    image: "/assets/logo.png"
-  },
   demoUrl: entry.demoUrl ?? undefined
 });
 
@@ -49,14 +39,14 @@ export const registry: ComponentEntry[] = [
     type: "button",
     isPremium: false,
   
-    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/launch_button.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button",
-    cliCommand: {
-      pnpmCommand: `pnpm dlx @t7blocks/cli add launch-button`,
-      npmCommand: `npm  @t7blocks/cli add launch-button`,
-      yarnCommand: `yarn dlx @t7blocks/cli add launch-button`,
-      bunCommand: `bun  @t7blocks/cli add launch-button`,
-    },  
+    // cliCommand: {
+    //   pnpmCommand: `pnpm dlx @t7blocks/cli add launch-button`,
+    //   npmCommand: `npm  @t7blocks/cli add launch-button`,
+    //   yarnCommand: `yarn dlx @t7blocks/cli add launch-button`,
+    //   bunCommand: `bun  @t7blocks/cli add launch-button`,
+    // },  
     description: "A minimalist, premium button featuring a grid-based arrow animation",
     tags: ["Button", "Animation", "framer Motion" , "minimal" , "framer "],
   },
@@ -69,12 +59,12 @@ export const registry: ComponentEntry[] = [
     isPremium: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/hero/Pop-Hero",
-    cliCommand: {
-      pnpmCommand: `pnpm dlx @t7blocks/cli add pop-hero`,
-      npmCommand: `npm  @t7blocks/cli add pop-hero`,
-      yarnCommand: `yarn dlx @t7blocks/cli add pop-hero`,
-      bunCommand: `bun  @t7blocks/cli add pop-hero`,
-    },
+    // cliCommand: {
+    //   pnpmCommand: `pnpm dlx @t7blocks/cli add pop-hero`,
+    //   npmCommand: `npm  @t7blocks/cli add pop-hero`,
+    //   yarnCommand: `yarn dlx @t7blocks/cli add pop-hero`,
+    //   bunCommand: `bun  @t7blocks/cli add pop-hero`,
+    // },
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
     tags: [ "hero", "gsap", "nature", "minimal" ,"framer motion" , "framer"  ],
   },
@@ -87,12 +77,12 @@ export const registry: ComponentEntry[] = [
     isPremium: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll-image-pass.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/scroll/Scroll-Image-Pass",
-    cliCommand: {
-      pnpmCommand: `pnpm dlx @t7blocks/cli add scroll-image-pass`,
-      npmCommand: `npm  @t7blocks/cli add scroll-image-pass`,
-      yarnCommand: `yarn dlx @t7blocks/cli add scroll-image-pass`,
-      bunCommand: `bun  @t7blocks/cli add scroll-image-pass`,
-    },
+    // cliCommand: {
+    //   pnpmCommand: `pnpm dlx @t7blocks/cli add scroll-image-pass`,
+    //   npmCommand: `npm  @t7blocks/cli add scroll-image-pass`,
+    //   yarnCommand: `yarn dlx @t7blocks/cli add scroll-image-pass`,
+    //   bunCommand: `bun  @t7blocks/cli add scroll-image-pass`,
+    // },
     description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
     tags: [ "scroll", "gsap", "images", "work" ,"framer motion" , "framer"  ],
   },{
@@ -104,12 +94,12 @@ export const registry: ComponentEntry[] = [
     isPremium:false,
     videoUrl:"https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
     demoUrl:"https://demo.t7blocks.xyz/components/scroll/Sticky-Scroll",
-    cliCommand:{
-      pnpmCommand: `pnpm dlx @t7blocks/cli add sticky-scroll`,
-      npmCommand: `npm  @t7blocks/cli add sticky-scroll`,
-      yarnCommand: `yarn dlx @t7blocks/cli add sticky-scroll`,
-      bunCommand: `bun  @t7blocks/cli add sticky-scroll`,
-    },
+    // cliCommand:{
+    //   pnpmCommand: `pnpm dlx @t7blocks/cli add sticky-scroll`,
+    //   npmCommand: `npm  @t7blocks/cli add sticky-scroll`,
+    //   yarnCommand: `yarn dlx @t7blocks/cli add sticky-scroll`,
+    //   bunCommand: `bun  @t7blocks/cli add sticky-scroll`,
+    // },
     description: "Sticky scroll with GSAP ScrollTrigger.",
     tags: [ "scroll", "ScrollTrigger","gsap", "images", "work" ,"framer motion" , "framer"  ],
   },{
@@ -121,12 +111,12 @@ export const registry: ComponentEntry[] = [
     isPremium:false,
     videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
     demoUrl:"https://demo.t7blocks.xyz/components/misc/pull-switch",
-    cliCommand:{
-      pnpmCommand: `pnpm dlx @t7blocks/cli add pullswitch`,
-      npmCommand: `npm  @t7blocks/cli add pullswitch`,
-      yarnCommand: `yarn dlx @t7blocks/cli add pullswitch`,
-      bunCommand: `bun  @t7blocks/cli add pullswitch`,
-    },
+    // cliCommand:{
+    //   pnpmCommand: `pnpm dlx @t7blocks/cli add pullswitch`,
+    //   npmCommand: `npm  @t7blocks/cli add pullswitch`,
+    //   yarnCommand: `yarn dlx @t7blocks/cli add pullswitch`,
+    //   bunCommand: `bun  @t7blocks/cli add pullswitch`,
+    // },
     description: "Interactive pull-cord switch to toggle light and dark mode",
     tags: [ "misc","gsap", "button" ,"Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
   },{
@@ -138,12 +128,7 @@ export const registry: ComponentEntry[] = [
     isPremium:false,
     videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/KnobButton.mp4",
     demoUrl:"https://demo.t7blocks.xyz/components/button/knob-toggle",
-    cliCommand:{
-      pnpmCommand: `pnpm dlx @t7blocks/cli add knob-toggle`,
-      npmCommand: `npm  @t7blocks/cli add knob-toggle`,
-      yarnCommand: `yarn dlx @t7blocks/cli add knob-toggle`,
-      bunCommand: `bun  @t7blocks/cli add knob-toggle`,
-    },
+   
     description: "A knob toggle to switch between light and dark mode with sound effect",
     tags: [ "button" ,"Animation", "Theme", "Dark Mode", "Interaction","sound"],
   }

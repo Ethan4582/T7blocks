@@ -1,21 +1,33 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import { registry } from "@/lib/registry";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 
-export default function TagPage() {
-  const { tag } = useParams();
-  const normalizedTag = typeof tag === 'string' ? tag.toLowerCase() : '';
+export function generateStaticParams() {
+  const tags = new Set<string>();
+  registry.forEach(item => {
+    item.tags?.forEach(tag => tags.add(tag.toLowerCase()));
+  });
+  
+  return Array.from(tags).map((tag) => ({
+    tag: tag,
+  }));
+}
+
+export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+  const resolvedParams = await params;
+  const tag = resolvedParams?.tag;
+  
+  if (!tag) {
+    return null;
+  }
+  
+  const normalizedTag = tag.toLowerCase();
   
   // Filter registry based on tag
   const filteredItems = registry.filter(item => 
     item.tags?.some(t => t.toLowerCase() === normalizedTag)
   );
 
-  const displayTag = typeof tag === 'string' 
-    ? tag.charAt(0).toUpperCase() + tag.slice(1) 
-    : '';
+  const displayTag = tag.charAt(0).toUpperCase() + tag.slice(1);
 
   return (
     <GalleryGrid 

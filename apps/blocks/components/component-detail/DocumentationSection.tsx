@@ -1,126 +1,219 @@
 "use client";
 
-import { useState } from "react";
-import { SquareTerminal, Code2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { ComponentDetailData, ComponentItem } from "@/lib/componentData";
 import { CodeBlock } from "./CodeBlock";
+
+function PropsTable({ content }: { content: string }) {
+  if (!content) return null;
+
+  // Simple parsing of markdown tables
+  const lines = content.split('\n').filter(l => l.trim().includes('|') && !l.includes('---'));
+  
+  if (lines.length > 0) {
+    const headers = lines[0].split('|').filter(Boolean).map(h => h.trim());
+    const rows = lines.slice(1).map(row => row.split('|').filter(Boolean).map(r => r.trim()));
+
+    return (
+      <div className="overflow-hidden rounded-2xl border border-white/5 bg-[#0A0A0A]">
+        <div className="overflow-x-auto custom-scrollbar">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-white/5 bg-white/[0.02]">
+                {headers.map((header, i) => (
+                  <th key={i} className="px-6 py-4 text-[11px] font-bold text-muted-foreground/30 uppercase tracking-widest whitespace-nowrap">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {rows.map((row, i) => (
+                <tr key={i} className="group hover:bg-white/[0.01] transition-colors">
+                  {row.map((cell, j) => {
+                     const isType = headers[j]?.toLowerCase().includes('type');
+                     const isName = headers[j]?.toLowerCase().includes('name') || headers[j]?.toLowerCase().includes('prop');
+                     return (
+                      <td key={j} className="px-6 py-5">
+                        <span className={`text-[13.5px] ${
+                          isType ? 'font-mono text-blue-400 bg-blue-400/5 px-2 py-0.5 rounded border border-blue-400/10' : 
+                          isName ? 'font-bold text-foreground' : 'text-muted-foreground/60'
+                        }`}>
+                          {cell}
+                        </span>
+                      </td>
+                     );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-8 rounded-3xl border border-white/5 bg-[#0A0A0A] text-muted-foreground/60 leading-relaxed text-[15px]">
+      {content}
+    </div>
+  );
+}
 
 interface DocumentationSectionProps {
   detail: ComponentDetailData;
   component: ComponentItem;
+  onModeChange?: (mode: "CLI" | "Code") => void;
 }
 
-export function DocumentationSection({ detail, component }: DocumentationSectionProps) {
-  const [activeTab, setActiveTab] = useState("Code");
+export function DocumentationSection({ detail, component, onModeChange }: DocumentationSectionProps) {
+  const [activeMode, setActiveMode] = useState<"CLI" | "Code">("CLI");
 
-  const tabs = ["CLI", "Code"];
+  useEffect(() => {
+    onModeChange?.(activeMode);
+  }, [activeMode, onModeChange]);
+  
+  const pmIcons = {
+    pnpm: "/SVG/pnpm.svg",
+    npm: "/SVG/npm_icon.svg",
+    yarn: "/SVG/yarn.svg",
+    bun: "/SVG/bun.svg"
+  };
+
+  // Helper to format PM files
+  const formatPMFiles = (source: any) => {
+    if (!source) return [];
+    if (typeof source === 'object' && source.pnpm) {
+      return (["pnpm", "npm", "yarn", "bun"] as const).map(pm => ({
+        label: `${pm}`,
+        code: source[pm],
+        icon: pmIcons[pm],
+        language: "bash"
+      }));
+    }
+    if (typeof source === 'object' && source.pnpmCommand) {
+      return (["pnpm", "npm", "yarn", "bun"] as const).map(pm => ({
+        label: `${pm}`,
+        code: source[`${pm}Command`],
+        icon: pmIcons[pm],
+        language: "bash"
+      }));
+    }
+    const base = typeof source === "string" ? source : "";
+    return (["pnpm", "npm", "yarn", "bun"] as const).map(pm => ({
+        label: `${pm}`,
+        code: pm === 'pnpm' ? base : (pm === 'npm' ? base.replace('pnpm add', 'npm install').replace('pnpm dlx', 'npx') : base.replace('pnpm', pm)),
+        icon: pmIcons[pm],
+        language: "bash"
+    }));
+  };
+
+  const cliFiles = formatPMFiles(detail.T7blocksCliCommand);
+  const installFiles = formatPMFiles(detail.installCommand);
+
+  const hasCLI = cliFiles.length > 0;
+  const hasInstall = installFiles.length > 0;
+  const hasUsage = detail.setupBlocks && detail.setupBlocks.length > 0;
+  const hasCode = detail.codeBlocks && detail.codeBlocks.length > 0;
+  const hasProps = !!(detail.props || detail.propsTable);
 
   return (
-    <div className="space-y-8 pt-6">
-      <div className="flex flex-wrap items-center justify-between gap-6 border-b border-white/5 pb-6">
-        <h2
-          className="text-2xl md:text-3xl font-medium text-foreground tracking-tight"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          Documentation
-        </h2>
+    <div className="space-y-12">
+      <div className="flex flex-wrap items-center justify-between gap-6 border-b border-white/5 pb-12">
+        <div className="space-y-1">
+           <h2 className="text-[28px] font-medium tracking-tight text-foreground font-serif">Documentation</h2>
+           <p className="text-[13px] text-muted-foreground/40 font-medium tracking-wide uppercase">Integration Guide</p>
+        </div>
 
-        <div className="flex items-center gap-1 p-1 border border-white/5 rounded-xl bg-[#0A0A0A] w-fit shadow-2xl">
-          {tabs.map((tab) => {
-            const isCLI = tab === "CLI";
-            const isActive = activeTab === tab;
+        <div className="flex items-center gap-1 p-1 border border-white/5 rounded-2xl bg-[#0A0A0A] w-fit shadow-2xl">
+          {["CLI", "Code"].map((mode) => {
+            const isActive = activeMode === mode;
             return (
               <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`relative px-6 py-2 text-[13px] font-bold transition-all duration-300 rounded-lg flex items-center gap-2 ${
+                key={mode}
+                onClick={() => setActiveMode(mode as any)}
+                className={`relative px-10 py-2.5 text-[12px] font-bold transition-all duration-500 rounded-xl flex items-center gap-2 ${
                   isActive
-                    ? "bg-[#1A1A1A] text-foreground shadow-[0_0_20px_rgba(0,0,0,0.4)] border border-white/5"
-                    : "text-muted-foreground hover:text-foreground/80 hover:bg-white/[0.02]"
+                    ? "bg-[#161616] text-foreground shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-white/10"
+                    : "text-muted-foreground/30 hover:text-foreground/80 hover:bg-white/[0.02]"
                 }`}
               >
-                {isCLI ? <SquareTerminal className="w-4 h-4 opacity-70" /> : <Code2 className="w-4 h-4 opacity-70" />}
-                {tab}
-                {isCLI && (
-                  <div className="absolute -top-2 -right-2 flex items-center gap-1 bg-[#A1FF62] px-1.5 py-0.5 rounded-full border border-[#0A0A0A] shadow-[0_2px_10px_rgba(161,255,98,0.3)] scale-[0.75] z-10">
-                    <div className="w-1 h-1 rounded-full bg-[#0A0A0A] animate-pulse" />
-                    <span className="text-[10px] font-black text-[#0A0A0A] leading-none tracking-tighter">SOON</span>
-                  </div>
-                )}
+                <span>{mode}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      <div className="space-y-10">
-        {activeTab === "CLI" && (
-          <div className="relative rounded-3xl border border-white/5 overflow-hidden bg-[#0A0A0A]/40 opacity-50 select-none grayscale pointer-events-none transition-all duration-500">
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 p-8 backdrop-blur-[2px]">
-              <div className="text-center space-y-2">
-                <p className="text-[16px] font-bold text-foreground/80 tracking-tight">Coming Soon</p>
-                <p className="text-[13px] text-muted-foreground/50 max-w-[240px] mx-auto leading-relaxed">
-                  The T7Blocks CLI is currently in active development to help you ship faster.
-                </p>
-              </div>
-            </div>
-            
-            <CodeBlock 
-              label="Terminal" 
-              code={`npx t7blocks add ${detail.slug}\n# Initializing development environment...\n# Fetching component assets...`} 
-            />
-          </div>
-        )}
-
-        {activeTab === "Code" && (
-          <div className="space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-700">
-            {detail.setupInstructions && (
-              <div className="space-y-5">
-                <h3 className="text-[13px] font-bold text-foreground/40 tracking-[0.15em] uppercase">
-                  Step 1: Environment Setup
-                </h3>
-                {detail.dependencies && detail.dependencies.length > 0 && (
-                  <div className="flex items-center gap-3 mb-6 flex-wrap">
-                    <span className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest border border-white/5 px-2 py-1 rounded bg-white/[0.02]">Dependencies</span>
-                    {detail.dependencies.map((dep) => (
-                      <span key={dep} className="text-[11px] px-3 py-1 rounded-full bg-blue-500/5 text-blue-400 font-mono border border-blue-500/10 shadow-sm">{dep}</span>
-                    ))}
-                  </div>
-                )}
-                
-                {detail.codeBlocks.filter(b => b.label.toLowerCase().includes("script") || b.label === "HTML").slice(0, 1).map((block, idx) => (
-                   <div key={`setup-container-${idx}`} className="space-y-4">
-                     <CodeBlock key={`setup-${idx}`} label={block.label} code={block.code} language="html" />
-                     <p className="text-[14px] text-muted-foreground/70 leading-relaxed font-medium">
-                       Ensure the required scripts are properly integrated into your project structure before proceeding with the main implementation.
-                     </p>
-                   </div>
-                ))}
-              </div>
-            )}
-
-            <div className="space-y-12">
-              {detail.codeBlocks.filter(b => !b.label.toLowerCase().includes("script") && b.label !== "HTML").map((block, idx) => (
-                <div key={idx} className="space-y-5">
-                  {(detail.setupInstructions || idx > 0) && (
-                    <h3 className="text-[13px] font-bold text-foreground/40 tracking-[0.15em] uppercase">
-                      {`Step ${idx + (detail.setupInstructions ? 2 : 1)}: ${block.label || "Implementation"}`}
-                    </h3>
-                  )}
-                  <CodeBlock 
-                    label={block.label || "Component"} 
-                    code={block.code} 
-                    language={block.label.toLowerCase().includes("js") || block.label.toLowerCase().includes("react") ? "typescript" : "html"} 
-                  />
-                  <div className="pt-2">
-                    <p className="text-[14px] text-muted-foreground/60 leading-relaxed font-medium max-w-3xl">
-                      This {block.label ? block.label.toLowerCase() : "component"} structure provides a high-performance foundation tailored for seamless integration into modern web architectures.
+      <div className="space-y-32 animate-in fade-in slide-in-from-bottom-6 duration-1000">
+        
+        {activeMode === "CLI" && (
+           <div className="space-y-16" id="install" data-section>
+              {hasCLI && (
+                <div className="space-y-10">
+                  <CodeBlock files={cliFiles} />
+                  <div className="p-10 rounded-[32px] bg-white/[0.01] border border-white/5">
+                    <p className="text-[17px] text-muted-foreground/60 leading-relaxed max-w-3xl font-medium">
+                       The T7Blocks CLI allows you to automatically add this component and its dependencies to your project directory. 
+                       It handles file creation, dependency management, and style configuration automatically.
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
+           </div>
+        )}
+
+        {activeMode === "Code" && (
+           <div className="space-y-32">
+              {/* Install Section */}
+              {hasInstall && (
+                <div className="space-y-10" id="install" data-section>
+                  <h3 className="text-[14px] font-bold text-foreground/20 tracking-[0.25em] uppercase px-1">Install</h3>
+                  <CodeBlock files={installFiles} />
+                </div>
+              )}
+
+              {/* Usage Section */}
+              {hasUsage && (
+                <div className="space-y-10" id="usage" data-section>
+                  <div className="flex items-center justify-between px-1">
+                    <h3 className="text-[14px] font-bold text-foreground/20 tracking-[0.25em] uppercase">Usage</h3>
+                    {detail.dependencies && detail.dependencies.length > 0 && (
+                      <div className="flex items-center gap-2">
+                         {detail.dependencies.map((dep) => (
+                           <span key={dep} className="text-[10px] px-2.5 py-1 rounded-lg bg-white/5 text-muted-foreground/60 font-mono border border-white/5">{dep}</span>
+                         ))}
+                      </div>
+                    )}
+                  </div>
+                  <CodeBlock 
+                    files={detail.setupBlocks?.map(b => ({ ...b, label: b.label.toLowerCase() }))} 
+                  />
+                </div>
+              )}
+
+              {/* Code Section */}
+              {hasCode && (
+                <div className="space-y-10" id="code" data-section>
+                  <h3 className="text-[14px] font-bold text-foreground/20 tracking-[0.25em] uppercase px-1">Implementation</h3>
+                  <CodeBlock 
+                    files={detail.codeBlocks.map(b => ({ 
+                      ...b, 
+                      label: b.label.toLowerCase(),
+                      language: b.label.toLowerCase().endsWith('.css') ? 'css' : 'typescript'
+                    }))} 
+                  />
+                </div>
+              )}
+
+              {/* Props Section */}
+              {hasProps && (
+                <div className="space-y-10" id="props" data-section>
+                  <h3 className="text-[14px] font-bold text-foreground/20 tracking-[0.25em] uppercase px-1">Properties</h3>
+                  <PropsTable content={detail.propsTable || detail.props || ""} />
+                </div>
+              )}
+           </div>
         )}
       </div>
     </div>

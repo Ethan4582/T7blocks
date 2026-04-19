@@ -14,7 +14,13 @@ export async function generateStaticParams() {
 }
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
-  const { tag } = await params;
+  const resolvedParams = await params;
+  const tag = resolvedParams?.tag;
+  
+  if (!tag) {
+    return null;
+  }
+  
   const normalizedTag = tag.toLowerCase();
   
   // Filter registry based on tag
