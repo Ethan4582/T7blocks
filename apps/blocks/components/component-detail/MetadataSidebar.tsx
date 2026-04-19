@@ -60,12 +60,13 @@ export function MetadataSidebar({
           </h3>
           <div className="flex flex-wrap gap-1.5 ml-px">
             {component.tags.map((tag) => (
-              <span 
+              <a 
                 key={tag}
-                className="px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/5 text-[11px] text-muted-foreground/60 whitespace-nowrap"
+                href={`/category/${tag.toLowerCase()}`}
+                className="px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/5 text-[11px] text-muted-foreground/60 hover:text-foreground hover:bg-white/10 transition-colors whitespace-nowrap"
               >
                 {tag}
-              </span>
+              </a>
             ))}
           </div>
         </div>
