@@ -136,7 +136,7 @@ export const registry: ComponentEntry[] = [
     category:"components",
     type:"button",
     isPremium:false,
-    videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
+    videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/KnobButton.mp4",
     demoUrl:"https://demo.t7blocks.xyz/components/button/knob-toggle",
     cliCommand:{
       pnpmCommand: `pnpm dlx @t7blocks/cli add knob-toggle`,

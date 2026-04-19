@@ -6,7 +6,6 @@ export const components: ComponentData[] = [
     name: "Launch Button",
     shortDescription: "Sleek button with fluid square arrow animation.",
     longDescription: "A high-fidelity interactive button designed with Framer Motion. Features a unique grid-based arrow animation that activates on hover. Fully customizable props for colors, speed, and labels make it perfect for any landing page launch action.",
-    image: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_img/arrow_img.png",
     video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/arrow_button_demo.mp4",
     category: "button",
     date: "2026-04-11",
@@ -75,7 +74,7 @@ export const components: ComponentData[] = [
   video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
   category: "misc",
   date: "2026-04-11",
-  tags: ["Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
+  tags: ["Canvas", "Animation","button", "Theme", "Dark Mode", "Interaction"],
   block_url: "https://t7blocks.xyz/components/misc/pull-switch",
   canvas: {
     background: "transparent", 
@@ -91,7 +90,7 @@ export const components: ComponentData[] = [
   shortDescription: "A knob toggle to switch between light and dark mode",
   longDescription: "A premium knob toggle component with smooth sliding, sound effects, and instant theme switching. Perfect for adding a tactile, high-quality interaction to your website.",
   
-  video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
+  video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/KnobButton.mp4",
   category: "button",
   date: "2026-04-11",
   tags: ["Button", "Animation", "Theme", "Dark Mode", "Interaction","sound"],
