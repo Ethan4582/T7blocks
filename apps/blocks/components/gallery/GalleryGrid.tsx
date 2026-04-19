@@ -71,7 +71,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
         </div>
       </section>
 
-      <section className="flex-1 px-4 md:px-8 pb-20 max-w-[1400px] mx-auto w-full">
+      <section className="flex-1 pb-20 w-full">
         {displayedItems.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-muted-foreground border border-dashed border-border/30 rounded-2xl bg-muted/5">
             <Search className="w-12 h-12 mb-4 opacity-10" />

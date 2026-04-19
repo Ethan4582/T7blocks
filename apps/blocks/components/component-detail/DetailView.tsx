@@ -1,10 +1,8 @@
 import { toComponentItem } from "@/lib/registry";
 import { MetadataSidebar, DocumentationSection, PreviewCard } from "@/components/component-detail";
 import { ComponentDetailData } from "@/lib/componentData";
+import { ChevronRight } from "lucide-react";
 
-// DetailView accepts pre-resolved entry + content.
-// The dynamic import MUST happen at the page level (not here)
-// so Next.js can statically analyze it during `output: 'export'` builds.
 interface DetailViewProps {
   entry: any;
   allContent: any;
@@ -33,14 +31,18 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
   const componentItem = toComponentItem(entry);
 
   return (
-    <div className="py-10 max-w-[1400px] mx-auto w-full px-6 md:px-10 lg:px-12">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-8 space-y-12">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
+    <div className="py-6 w-full px-0 overflow-x-hidden">
+      <div className="flex flex-col lg:flex-row items-start gap-x-12">
+        {/* ─── Left Content (Constrained & Shifted Left) ─── */}
+        <div className="flex-1 min-w-0 max-w-5xl space-y-10">
+      
+         
+
+          <div className="space-y-1.5">
+            <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground font-serif">
               {entry.displayName}
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+            <p className="text-muted-foreground text-[15px] max-w-2xl leading-relaxed font-medium opacity-50">
               {entry.description}
             </p>
           </div>
@@ -50,7 +52,8 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
           <DocumentationSection detail={detail} component={componentItem} />
         </div>
 
-        <div className="lg:col-span-4">
+        {/* ─── Right Sidebar (Docks to Window Edge) ─── */}
+        <div className="w-full lg:w-[240px] lg:shrink-0 ml-auto pr-0 pt-4">
           <MetadataSidebar
             component={componentItem}
             bugReportUrl="https://github.com/t7labs/t7blocks/issues"

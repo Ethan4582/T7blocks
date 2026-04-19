@@ -126,7 +126,7 @@ function SidebarItem({
 }
 
 export function Sidebar() {
-  const { isOpen, toggleCollapsed, setOpen } = useSidebar();
+    const { isOpen, isCollapsed, toggleCollapsed, setOpen } = useSidebar();
   const [openId, setOpenId] = useState<string | null>(null);
 
   if (!isOpen) return null;
@@ -140,12 +140,12 @@ export function Sidebar() {
 
       <aside
         className={`
-          fixed left-3 top-3 bottom-3 z-[60] flex flex-col
-          bg-sidebar border border-border/40 
-          rounded-[12px]
+          fixed left-0 top-0 bottom-0 z-[60] flex flex-col
+          bg-sidebar border-r border-border/40 
+          rounded-none
           transition-all duration-375 ease-in-out
           w-[250px]
-          ${isOpen ? "translate-x-0" : "-translate-x-[calc(100%+24px)]"}
+          ${(isOpen && !isCollapsed) ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         {/* Logo + Close */}

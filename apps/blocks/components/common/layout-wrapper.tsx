@@ -20,21 +20,21 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     );
   }
 
-  const offset = !isCollapsed ? "md:ml-[270px]" : "ml-0";
+  const offset = !isCollapsed ? "md:ml-[230px]" : "ml-0";
 
   return (
     <>
       <Sidebar />
       <main 
         className={`
-          flex-1 w-full md:w-auto flex flex-col transition-all duration-375 ease-in-out
+          flex-1 flex flex-col transition-all duration-375 ease-in-out
           ${offset}
-          min-h-screen text-foreground shrink-0
+          min-h-screen text-foreground min-w-0 overflow-x-hidden
         `}
       >
         <ComponentNavbar />
 
-        <div className="flex-1 flex flex-col px-6 md:px-10 lg:px-12">
+        <div className="flex-1 flex flex-col px-6 md:px-10 lg:pl-[72px] lg:pr-[12px]">
           {children}
         </div>
       </main>
