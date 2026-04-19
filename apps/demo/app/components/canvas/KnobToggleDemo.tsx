@@ -26,12 +26,12 @@ export default function KnobToggleDemo(props: any) {
 
   const isDark = theme === 'dark';
 
-  const background = isDark ? '#09090b' : '#f8fafc';
+  const background = isDark ? 'https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/blue_orange.png' : 'https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/blue_water_bg.png';
 
   return (
     <div 
       className="relative w-full h-full min-h-screen flex flex-col items-center justify-center transition-colors duration-500"
-      style={{ backgroundColor: background }}
+      style={{ backgroundImage: `url(${background})` }}
     >
       <div className="relative z-10 scale-75 md:scale-100">
         <KnobToggle {...props} />

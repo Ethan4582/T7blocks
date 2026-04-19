@@ -37,7 +37,7 @@ function GalleryCard({ component }: { component: ComponentData }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative aspect-[1.45/1] overflow-hidden rounded-xl bg-white/5 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-blue-500/10 border border-white/10">
+      <div className="relative aspect-[1.6/1] overflow-hidden rounded-xl bg-white/5 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-blue-500/10 border border-white/10">
         {component.image && (
           <Image
             src={component.image}
@@ -85,13 +85,13 @@ export default function GalleryPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredComponents = components.filter(c => {
-    const matchesTag = activeTag === "RECENT" || 
-      c.category.toLowerCase() === activeTag.toLowerCase() || 
+    const matchesTag = activeTag === "RECENT" ||
+      c.category.toLowerCase() === activeTag.toLowerCase() ||
       c.tags.some(t => t.toLowerCase() === activeTag.toLowerCase());
-    
+
     const matchesSearch = c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    
+
     return matchesTag && matchesSearch;
   });
 
@@ -114,8 +114,8 @@ export default function GalleryPage() {
                   key={tag}
                   onClick={() => setActiveTag(tag)}
                   className={`shrink-0 rounded-md border px-5 py-2 text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${activeTag === tag
-                      ? "bg-white border-white text-black shadow-lg"
-                      : "border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:bg-white/10 hover:text-white backdrop-blur-md"
+                    ? "bg-white border-white text-black shadow-lg"
+                    : "border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:bg-white/10 hover:text-white backdrop-blur-md"
                     }`}
                 >
                   {tag}

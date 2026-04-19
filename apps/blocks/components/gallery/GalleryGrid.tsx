@@ -31,7 +31,8 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
     return "Component Vault";
   };
 
-  const dynamicTitle = getDynamicTitle();
+  const dynamicTitle = title || getDynamicTitle();
+  const dynamicDescription = description || "Discover high-performance components for your next project.";
 
   const filteredItems = items.filter(item =>
     item.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -55,6 +56,9 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight flex items-center justify-center gap-3">
              Discover the <span className="animate-wave text-4xl">👋</span> {dynamicTitle}
           </h1>
+          <p className="text-muted-foreground/60 text-lg max-w-2xl mx-auto">
+            {dynamicDescription}
+          </p>
           
           <div className="relative w-full max-w-sm mt-8 group mx-auto">
             <div className="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none text-muted-foreground/30">
@@ -71,7 +75,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
         </div>
       </section>
 
-      <section className="flex-1 px-4 md:px-8 pb-20 max-w-[1400px] mx-auto w-full">
+      <section className="flex-1 pb-20 w-full pr-10 md:pr-16">
         {displayedItems.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-muted-foreground border border-dashed border-border/30 rounded-2xl bg-muted/5">
             <Search className="w-12 h-12 mb-4 opacity-10" />

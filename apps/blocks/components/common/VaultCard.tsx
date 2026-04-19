@@ -60,7 +60,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
                 className="w-8 h-8 rounded-full bg-background/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-accent shadow-xl hover:bg-background/80 transition-all hover:scale-110"
                 title="Open Live Preview"
               >
-                <Eye className="w-3.5 h-3.5" />
+                <Eye className="w-3.5 h-3.5" color="red" />
               </a>
               <button
                 onClick={(e) => toggleBookmark(item.name, e)}
