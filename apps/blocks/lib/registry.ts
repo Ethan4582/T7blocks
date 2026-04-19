@@ -129,7 +129,23 @@ export const registry: ComponentEntry[] = [
     },
     description: "Interactive pull-cord switch to toggle light and dark mode",
     tags: [ "misc","gsap", "button" ,"Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
+  },{
+    id:6,
+    name:"knob-toggle",
+    displayName:"Knob Toggle",
+    category:"components",
+    type:"button",
+    isPremium:false,
+    videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
+    demoUrl:"https://demo.t7blocks.xyz/components/misc/pull-switch",
+    cliCommand:{
+      pnpmCommand: `pnpm dlx @t7blocks/cli add knobtoggle`,
+      npmCommand: `npm  @t7blocks/cli add knobtoggle`,
+      yarnCommand: `yarn dlx @t7blocks/cli add knobtoggle`,
+      bunCommand: `bun  @t7blocks/cli add knobtoggle`,
+    },
+    description: "A knob toggle to switch between light and dark mode with sound effect",
+    tags: [ "button" ,"Animation", "Theme", "Dark Mode", "Interaction","sound"],
   }
   
 ];
-

@@ -50,14 +50,19 @@ export const NAVIGATION_DATA: NavSection[] = [
         items: [
           {
             title: "Buttons",
-           
-            items: getItemsByType("button"),
+            href: "/gallery/button",
+
           },
           {
             title: "Scroll",
             href: "/gallery/scroll",
             items: getItemsByType("scroll"),
           },
+          {
+            title: "Misc",
+            href: "/gallery/misc",
+            items: getItemsByType("misc"),
+          }
         ],
       },
       {

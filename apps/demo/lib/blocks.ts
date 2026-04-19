@@ -78,11 +78,30 @@ export const components: ComponentData[] = [
   tags: ["Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
   block_url: "https://t7blocks.xyz/components/misc/pull-switch",
   canvas: {
-    background: "transparent", // Handled by PullSwitchDemo wrapper for reactivity
+    background: "transparent", 
     height: "100vh",
     width: "100vw",
     className: "!block !p-0 !m-0 !overflow-hidden",
   }
 
+},
+{
+  id: "knob-toggle",
+  name: "Knob Toggle",
+  shortDescription: "A knob toggle to switch between light and dark mode",
+  longDescription: "A premium knob toggle component with smooth sliding, sound effects, and instant theme switching. Perfect for adding a tactile, high-quality interaction to your website.",
+  
+  video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
+  category: "button",
+  date: "2026-04-11",
+  tags: ["Button", "Animation", "Theme", "Dark Mode", "Interaction","sound"],
+  block_url: "https://t7blocks.xyz/components/button/knob-toggle",
+  canvas: {
+    background: "transparent",
+    height: "100vh",
+    width: "100vw",
+    className: "!block !p-0 !m-0 !overflow-hidden",
+  }
 }
+
 ];

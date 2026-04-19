@@ -2,6 +2,7 @@
 //button
 export { Dotlaunchbutton } from './components/button/DotLaunch';  
 export { PullSwitch } from "./components/misc/PullSwitch";
+export { KnobToggle } from "./components/button/KnobToggle";
 
 
 
