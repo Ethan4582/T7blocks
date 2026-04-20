@@ -148,7 +148,7 @@ export function Sidebar() {
           ${(isOpen && !isCollapsed) ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        {/* Logo + Close */}
+     
         <div className="pl-5 pr-4 pt-4 pb-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform group" onClick={() => setOpen(false)}>
             <div className="relative">
@@ -183,18 +183,18 @@ export function Sidebar() {
           </div>
         </div>
 
-        {/* Navigation Content */}
+       
         <div className="flex-1 overflow-y-auto px-1 group space-y-7 pb-10 scrollbar-none">
           {NAVIGATION_DATA.map((section, sIdx) => (
             <div key={section.title || `section-${sIdx}`} className="space-y-2.5">
-              {/* Section label */}
+            
               {section.title && (
                 <h4 className="px-4 text-[10px] font-extrabold tracking-[0.2em] uppercase text-white">
                   {section.title}
                 </h4>
               )}
 
-              {/* Items */}
+         
               <div className="px-1 space-y-0.5">
                 {section.items.map((item, iIdx) => (
                   <SidebarItem 

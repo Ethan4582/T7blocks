@@ -30,5 +30,8 @@ export default async function HeroDetailPage({ params }: Props) {
     return notFound();
   }
 
-  return <DetailView entry={entry} allContent={allContent} />;
+  // Convert module object to plain object for client component serialization
+  const serializableContent = { ...allContent };
+  
+  return <DetailView entry={entry} allContent={serializableContent} />;
 }

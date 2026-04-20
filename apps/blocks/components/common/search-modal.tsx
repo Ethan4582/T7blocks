@@ -74,13 +74,13 @@ export function SearchModal() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-      {/* Overlay */}
+     
       <div 
         className="absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity duration-300"
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Modal */}
+    
       <div className="relative w-full max-w-xl bg-[#0F0F0F] border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
         <div className="flex items-center px-4 py-4 border-b border-white/5">
           <Search className="w-5 h-5 text-muted-foreground/50 mr-3" />

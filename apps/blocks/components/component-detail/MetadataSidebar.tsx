@@ -33,7 +33,7 @@ export function MetadataSidebar({
   return (
     <div className="space-y-6 lg:sticky lg:top-12 lg:self-start w-full min-w-[100px] pb-8">
       
-      {/* ─── Navigation Header ─── */}
+      
       {sections.length > 0 && (
         <div className="px-1">
           <div className="flex items-center gap-2 text-muted-foreground/70 mb-3 font-medium">
@@ -64,7 +64,7 @@ export function MetadataSidebar({
         </div>
       )}
 
-      {/* ─── Tags Section ─── */}
+    
       {component.tags && component.tags.length > 0 && (
         <div className="px-1 space-y-2.5">
           <h3 className="text-[11px] font-bold text-foreground/40 tracking-[0.15em] uppercase ml-px">
@@ -84,7 +84,7 @@ export function MetadataSidebar({
         </div>
       )}
 
-      {/* ─── Contribute Section ─── */}
+      
       <div className="px-1 space-y-2">
         <h3 className="text-[11px] font-bold text-foreground/40 tracking-[0.15em] uppercase ml-px">
           Contribute
@@ -123,12 +123,11 @@ export function MetadataSidebar({
         </div>
       </div>
 
-      {/* ─── Divider ─── */}
       <div className="px-1 mt-2 mb-1">
         <div className="border-t border-white/15" />
       </div>
 
-      {/* ─── Sponsor Button ─── */}
+     
       <div className="px-1 mt-0">
         <a
           href="https://github.com/sponsors/t7labs"

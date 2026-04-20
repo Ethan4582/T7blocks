@@ -12,7 +12,7 @@ export function Steps({ children }: { children: React.ReactNode }) {
 export function Step({ children, title }: { children: React.ReactNode, title?: string }) {
   return (
     <div className="relative [counter-increment:step]">
-      {/* Circle with number */}
+    
       <div className="absolute -left-[45px] top-0 flex h-8 w-8 items-center justify-center rounded-full border-4 border-[#141212] bg-[#211e1e] text-[12px] font-bold text-foreground/90 shadow-sm z-10 before:content-[counter(step)] ring-1 ring-border/50">
       </div>
       

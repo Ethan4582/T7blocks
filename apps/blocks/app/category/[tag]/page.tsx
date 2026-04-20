@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   });
 
   return Array.from(tags).map((tag) => ({
-    tag: tag,
+    tag: tag.toLowerCase(),
   }));
 }
 
