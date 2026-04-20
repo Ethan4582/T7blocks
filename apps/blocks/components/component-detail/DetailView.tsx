@@ -68,12 +68,14 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
     .slice(0, 2)
     .map(toComponentItem);
 
-  const availableSections = docMode === "Code" ? [
-    { id: "install", name: "Install" },
-    ...(detail.setupBlocks?.length && detail.setupBlocks.length > 0 ? [{ id: "usage", name: "Usage" }] : []),
-    ...(detail.codeBlocks?.length && detail.codeBlocks.length > 0 ? [{ id: "code", name: "Code" }] : []),
-    ...((detail.props || detail.propsTable) ? [{ id: "props", name: "Props" }] : [])
-  ] : [];
+  const availableSections = docMode === "CLI" 
+    ? [{ id: "install", name: "CLI" }]
+    : [
+        { id: "install", name: "Install" },
+        ...(detail.setupBlocks?.length && detail.setupBlocks.length > 0 ? [{ id: "usage", name: "Usage" }] : []),
+        ...(detail.codeBlocks?.length && detail.codeBlocks.length > 0 ? [{ id: "code", name: "Code" }] : []),
+        ...((detail.props || detail.propsTable) ? [{ id: "props", name: "Props" }] : [])
+      ];
 
   return (
     <div className="py-6 w-full px-0 overflow-x-hidden">
