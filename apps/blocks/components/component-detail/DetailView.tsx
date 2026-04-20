@@ -65,63 +65,61 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
 
   const relatedItems = registry
     .filter(item => item.name !== entry.name && (item.type === entry.type || item.category === entry.category))
-    .slice(0, 2)
-    .map(toComponentItem);
+    .slice(0, 2);
 
-  const availableSections = docMode === "Code" ? [
-    { id: "install", name: "Install" },
-    ...(detail.setupBlocks?.length && detail.setupBlocks.length > 0 ? [{ id: "usage", name: "Usage" }] : []),
-    ...(detail.codeBlocks?.length && detail.codeBlocks.length > 0 ? [{ id: "code", name: "Code" }] : []),
-    ...((detail.props || detail.propsTable) ? [{ id: "props", name: "Props" }] : [])
-  ] : [];
+  const availableSections = docMode === "CLI" 
+    ? [{ id: "install", name: "CLI" }]
+    : [
+        { id: "install", name: "Install" },
+        ...(detail.setupBlocks?.length && detail.setupBlocks.length > 0 ? [{ id: "usage", name: "Usage" }] : []),
+        ...(detail.codeBlocks?.length && detail.codeBlocks.length > 0 ? [{ id: "code", name: "Code" }] : []),
+        ...((detail.props || detail.propsTable) ? [{ id: "props", name: "Props" }] : [])
+      ];
 
   return (
-    <div className="py-6 w-full px-0 overflow-x-hidden">
-      <div className="flex flex-col lg:flex-row items-start gap-x-12">
-        {/* ─── Left Content ─── */}
-        <div className="flex-1 min-w-0 max-w-5xl space-y-16">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-7xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
-              {entry.displayName}
-            </h1>
-            <p className="text-muted-foreground text-[18px] max-w-2xl leading-relaxed font-medium opacity-60">
-              {entry.description}
-            </p>
-          </div>
+    <div className="w-full h-[calc(100vh-64px)] lg:h-[calc(100vh-72px)] overflow-hidden">
+      <div className="flex flex-col lg:flex-row h-full items-start gap-x-12">
+       
+        <div className="flex-1 w-full h-full overflow-y-auto custom-scrollbar pt-6 pb-20 px-1 lg:px-4">
+          <div className="max-w-5xl space-y-16">
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-7xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
+                {entry.displayName}
+              </h1>
+              <p className="text-muted-foreground text-[18px] max-w-2xl leading-relaxed font-medium opacity-60">
+                {entry.description}
+              </p>
+            </div>
 
-          <PreviewCard component={componentItem} />
+            <PreviewCard component={componentItem} />
 
-          <div className="space-y-32">
-            <DocumentationSection 
-               detail={detail} 
-               component={componentItem} 
-               onModeChange={setDocMode}
-            />
-            
-            {relatedItems.length > 0 && (
-              <div className="space-y-12">
-                 <h2 className="text-[24px] font-medium tracking-tight text-foreground font-serif">Related resources</h2>
-                 <RelatedResources 
-                    items={relatedItems} 
-                    bookmarks={[]} 
-                    onToggleBookmark={() => {}} 
-                 />
-              </div>
-            )}
+            <div className="space-y-32">
+              <DocumentationSection 
+                 detail={detail} 
+                 component={componentItem} 
+                 onModeChange={setDocMode}
+              />
+              
+              {relatedItems.length > 0 && (
+                <div className="space-y-10 pt-4 border-t border-white/5">
+                   <h2 className="text-[28px] md:text-[32px] font-medium tracking-tight text-foreground font-serif">Related resources</h2>
+                   <RelatedResources 
+                      items={relatedItems} 
+                   />
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* ─── Right Sidebar ─── */}
-        <div className="w-full lg:w-[280px] lg:shrink-0 ml-auto pt-4 relative">
-          <div className="lg:sticky lg:top-24">
-            <MetadataSidebar
-              component={componentItem}
-              activeSection={activeSection}
-              availableSections={availableSections}
-              bugReportUrl="https://github.com/t7labs/t7blocks/issues"
-              featureRequestUrl="https://github.com/t7labs/t7blocks/issues"
-            />
-          </div>
+        <div className="hidden lg:block w-[280px] h-full overflow-y-auto no-scrollbar shrink-0 pt-6 pr-4">
+          <MetadataSidebar
+            component={componentItem}
+            activeSection={activeSection}
+            availableSections={availableSections}
+            bugReportUrl="https://github.com/t7labs/t7blocks/issues"
+            featureRequestUrl="https://github.com/t7labs/t7blocks/issues"
+          />
         </div>
       </div>
     </div>

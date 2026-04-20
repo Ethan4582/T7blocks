@@ -121,8 +121,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
     <div className="space-y-12">
       <div className="flex flex-wrap items-center justify-between gap-6 border-b border-white/5 pb-12">
         <div className="space-y-1">
-           <h2 className="text-[28px] font-medium tracking-tight text-foreground font-serif">Documentation</h2>
-           <p className="text-[13px] text-muted-foreground/40 font-medium tracking-wide uppercase">Integration Guide</p>
+           <h2 className="text-[34px] font-medium tracking-tight text-foreground font-serif">Documentation</h2>
         </div>
 
         <div className="flex items-center gap-1 p-1 border border-white/5 rounded-2xl bg-[#0A0A0A] w-fit shadow-2xl">
@@ -165,7 +164,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
 
         {activeMode === "Code" && (
            <div className="space-y-32">
-              {/* Install Section */}
+              
               {hasInstall && (
                 <div className="space-y-10" id="install" data-section>
                   <h3 className="text-[14px] font-bold text-foreground/20 tracking-[0.25em] uppercase px-1">Install</h3>
@@ -173,7 +172,6 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                 </div>
               )}
 
-              {/* Usage Section */}
               {hasUsage && (
                 <div className="space-y-10" id="usage" data-section>
                   <div className="flex items-center justify-between px-1">
@@ -192,7 +190,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                 </div>
               )}
 
-              {/* Code Section */}
+             
               {hasCode && (
                 <div className="space-y-10" id="code" data-section>
                   <h3 className="text-[14px] font-bold text-foreground/20 tracking-[0.25em] uppercase px-1">Implementation</h3>
@@ -206,7 +204,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                 </div>
               )}
 
-              {/* Props Section */}
+            
               {hasProps && (
                 <div className="space-y-10" id="props" data-section>
                   <h3 className="text-[14px] font-bold text-foreground/20 tracking-[0.25em] uppercase px-1">Properties</h3>

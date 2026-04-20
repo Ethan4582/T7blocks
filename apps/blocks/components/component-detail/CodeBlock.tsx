@@ -40,7 +40,7 @@ export function CodeBlock({ files, code, label, language = "html" }: CodeBlockPr
     <div
       className="rounded-xl overflow-hidden shadow-sm transition-all bg-[#0A0A0A] border border-white/5"
     >
-      {/* Code Header */}
+     
       <div
         className="flex items-center justify-between px-3 py-1.5 bg-[#0D0D0D] border-b border-white/5"
       >
@@ -75,8 +75,14 @@ export function CodeBlock({ files, code, label, language = "html" }: CodeBlockPr
         </button>
       </div>
 
-      {/* Code Content - Clearly visible internal scroll */}
-      <div className="relative p-6 overflow-y-auto max-h-[450px] custom-scrollbar scroll-smooth [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-track]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-white/20">
+     
+      <div 
+        className="relative p-6 overflow-auto max-h-[450px] overscroll-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent 
+                   [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar]:h-1.5 
+                   [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full 
+                   hover:[&::-webkit-scrollbar-thumb]:bg-white/20 
+                   [&::-webkit-scrollbar-track]:bg-transparent"
+      >
         <pre
           className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-all"
         >

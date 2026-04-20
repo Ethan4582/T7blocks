@@ -23,6 +23,12 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
 
   const offset = !isCollapsed ? "md:ml-[230px]" : "ml-0";
 
+  const segments = pathname.split('/').filter(Boolean);
+  const isComponentDetail = 
+    pathname.startsWith("/components/") || 
+    (pathname.startsWith("/hero/") && segments.length > 2);
+  
+
   return (
     <>
       <Sidebar />
@@ -31,7 +37,8 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         className={`
           flex-1 flex flex-col transition-all duration-375 ease-in-out
           ${offset}
-          min-h-screen text-foreground min-w-0 overflow-x-hidden
+          ${isComponentDetail ? "h-screen overflow-hidden" : "min-h-screen"}
+          text-foreground min-w-0
         `}
       >
         <ComponentNavbar />

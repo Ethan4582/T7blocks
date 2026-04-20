@@ -122,7 +122,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
         </button>
       </header>
 
-      {/* Mobile Menu */}
+    
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[49px] bg-background z-40 p-6 space-y-3 border-t border-border overflow-y-auto">
           <Link href="/gallery" className="block py-3 text-foreground font-medium border-b border-border/30" onClick={() => setMobileMenuOpen(false)}>Gallery</Link>
