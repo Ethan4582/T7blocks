@@ -21,14 +21,18 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
     return null;
   }
   
-  const normalizedTag = tag.toLowerCase();
+  const decodedTag = decodeURIComponent(tag);
+  const normalizedTag = decodedTag.toLowerCase();
   
   // Filter registry based on tag
   const filteredItems = registry.filter(item => 
     item.tags?.some(t => t.toLowerCase() === normalizedTag)
   );
 
-  const displayTag = tag.charAt(0).toUpperCase() + tag.slice(1);
+  const displayTag = decodedTag
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 
   return (
     <GalleryGrid 

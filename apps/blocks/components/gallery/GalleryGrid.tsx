@@ -24,7 +24,11 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
     const lastSegment = segments[segments.length - 1];
     
     if (lastSegment) {
-      const formattedSegment = lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1);
+      const decoded = decodeURIComponent(lastSegment);
+      const formattedSegment = decoded
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
       return `${formattedSegment} Vault`;
     }
     
@@ -53,8 +57,8 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
     <div className="flex flex-col min-h-screen text-foreground overflow-x-hidden transition-colors duration-300">
       <section className="flex flex-col items-center justify-center pt-20 pb-16 px-4">
         <div className="flex flex-col items-center space-y-3 max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight flex items-center justify-center gap-3">
-             Discover the <span className="animate-wave text-4xl">👋</span> {dynamicTitle}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight flex items-center justify-center gap-2 md:gap-3 flex-wrap">
+             Discover the <span className="animate-wave text-3xl sm:text-4xl md:text-5xl">👋</span> {dynamicTitle}
           </h1>
           <p className="text-muted-foreground/60 text-lg max-w-2xl mx-auto">
             {dynamicDescription}
@@ -69,7 +73,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={`Search ${items.length}+ resources...`}
-              className="w-full bg-[#211e1e] rounded-full py-3 pl-12 pr-6 text-[15px] text-foreground focus:outline-none transition-all shadow-sm placeholder:text-muted-foreground/20"
+              className="w-full bg-white dark:bg-[#211e1e] border border-black/5 dark:border-border/10 rounded-full py-3 pl-12 pr-6 text-[15px] text-foreground focus:outline-none transition-all shadow-sm placeholder:text-muted-foreground/20"
             />
           </div>
         </div>
@@ -77,7 +81,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
 
       <section className="flex-1 pb-20 w-full pr-10 md:pr-16">
         {displayedItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 text-muted-foreground border border-dashed border-border/30 rounded-2xl bg-muted/5">
+          <div className="flex flex-col items-center justify-center py-24 text-muted-foreground border border-dashed border-black/10 dark:border-border/30 rounded-2xl bg-black/[0.02] dark:bg-muted/5">
             <Search className="w-12 h-12 mb-4 opacity-10" />
             <p className="text-lg font-medium">No results found for &quot;{searchQuery}&quot;</p>
             <p className="text-sm opacity-60 mt-1">Try adjusting your search criteria.</p>
@@ -92,7 +96,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
 
         {totalPages > 1 && (
           <div className="mt-16 flex items-center justify-center font-medium">
-            <div className="flex bg-[#111111] border border-border/10 p-1.5 rounded-lg gap-1 shadow-sm">
+            <div className="flex bg-white dark:bg-[#111111] border border-black/5 dark:border-border/10 p-1.5 rounded-lg gap-1 shadow-sm">
                <button
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(p => p - 1)}
@@ -101,7 +105,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
                 Previous
               </button>
               
-              <div className="flex items-center px-3.5 text-[13px] font-bold bg-white text-black rounded-md min-w-[32px] justify-center mx-1">
+              <div className="flex items-center px-3.5 text-[13px] font-bold bg-foreground text-background dark:bg-white dark:text-black rounded-md min-w-[32px] justify-center mx-1">
                 {currentPage}
               </div>
 

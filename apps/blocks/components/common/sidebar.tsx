@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   ChevronDown,
-  X,
 } from "lucide-react";
 import { useSidebar } from "@/components/common/sidebar-provider";
 import { NAVIGATION_DATA } from "@/lib/sidebar/navigation";
@@ -76,7 +75,7 @@ function SidebarItem({
             w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200
             ${isSelected
               ? "bg-sidebar-hover text-sidebar-foreground shadow-sm"
-              : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/50"}
+              : "text-foreground/70 dark:text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/50"}
           `}
         >
           <div className="flex items-center gap-2.5">
@@ -86,7 +85,7 @@ function SidebarItem({
                 alt="" 
                 className={`
                   w-[15px] h-[15px] shrink-0 transition-all 
-                  dark:brightness-0 dark:invert
+                  dark:invert
                   ${isSelected ? "opacity-100 scale-110" : "opacity-70 group-hover:opacity-100 group-hover:scale-105"}
                 `} 
               />
@@ -172,24 +171,24 @@ export function Sidebar() {
               className="p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors"
               title="Collapse sidebar"
             >
-              <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-60" alt="Toggle" />
+                <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-60" alt="Toggle" />
             </button>
             <button
               onClick={() => setOpen(false)}
               className="md:hidden p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors"
             >
-              <X size={18} />
+              <img src="/SVG/X1.svg" className="w-[12px] h-[12px] dark:invert opacity-60" alt="Close" />
             </button>
           </div>
         </div>
 
        
-        <div className="flex-1 overflow-y-auto px-1 group space-y-7 pb-10 scrollbar-none">
+        <div className="flex-1 overflow-y-auto px-1 space-y-7 pb-10 scrollbar-none">
           {NAVIGATION_DATA.map((section, sIdx) => (
             <div key={section.title || `section-${sIdx}`} className="space-y-2.5">
             
               {section.title && (
-                <h4 className="px-4 text-[10px] font-extrabold tracking-[0.2em] uppercase text-white">
+                <h4 className="px-4 text-[10px] font-extrabold tracking-[0.2em] uppercase text-foreground/65 dark:text-white">
                   {section.title}
                 </h4>
               )}

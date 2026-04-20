@@ -80,7 +80,7 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
     <div className="w-full h-[calc(100vh-64px)] lg:h-[calc(100vh-72px)] overflow-hidden">
       <div className="flex flex-col lg:flex-row h-full items-start gap-x-12">
        
-        <div className="flex-1 w-full h-full overflow-y-auto custom-scrollbar pt-6 pb-20 px-1 lg:px-4">
+        <div className="flex-1 w-full h-full overflow-y-auto custom-scrollbar pt-6 pb-2 px-1 lg:px-4">
           <div className="max-w-5xl space-y-16">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-7xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
