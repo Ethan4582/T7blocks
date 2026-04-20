@@ -55,6 +55,10 @@ Instantly pull the raw `.tsx` source directly into your repo. Clean, fully custo
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 
+## Analytics
+
+![Alt](https://repobeats.axiom.co/api/embed/7a31a7c3c7e50ef942a507146c5cd7961e3b015e.svg "Repobeats analytics image")
+
 ## Support the Project
 
 If T7 Blocks saves you time, elevates your products, or helps you generate revenue — please consider sponsoring. Your support funds the continued development of new, high-quality components.

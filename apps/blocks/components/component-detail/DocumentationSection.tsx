@@ -7,7 +7,6 @@ import { CodeBlock } from "./CodeBlock";
 function PropsTable({ content }: { content: any }) {
   if (!content || typeof content !== 'string') return null;
 
-  // Simple parsing of markdown tables
   const lines = content.split('\n').filter(l => l.trim().includes('|') && !l.includes('---'));
   
   if (lines.length > 0) {
