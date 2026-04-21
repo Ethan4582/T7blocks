@@ -59,8 +59,11 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-background`}
+      className={`scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-background`}
     >
+      <head>
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="eba86b33-bfb7-4084-850e-76db8408fef4"></script>
+      </head>
       <body className="antialiased bg-background text-foreground scrollbar-hide">
         <ThemeProvider>
           <ToastProvider>

@@ -83,7 +83,7 @@ export function SearchModal() {
     
       <div className="relative w-full max-w-xl bg-white dark:bg-[#0F0F0F] border border-black/5 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
         <div className="flex items-center px-4 py-4 border-b border-black/5 dark:border-white/5">
-          <Search className="w-5 h-5 text-muted-foreground/50 mr-3" />
+          <Search className="w-5 h-5 text-[#737373] dark:text-muted-foreground/50 mr-3" />
           <input
             ref={inputRef}
             type="text"
@@ -94,7 +94,7 @@ export function SearchModal() {
               setSelectedIndex(0);
             }}
             onKeyDown={onKeyDown}
-            className="flex-1 bg-transparent border-none outline-none text-[15px] text-foreground placeholder:text-muted-foreground/30"
+            className="flex-1 bg-transparent border-none outline-none text-[15px] text-foreground placeholder:text-[#8c8c8c] dark:placeholder:text-muted-foreground/30"
           />
           <div className="flex items-center gap-2">
             <kbd className="hidden sm:flex items-center gap-1 rounded bg-black/[0.03] dark:bg-white/5 border border-black/10 dark:border-white/10 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground/50 h-5">
@@ -104,7 +104,7 @@ export function SearchModal() {
               onClick={() => setIsOpen(false)}
               className="p-1 rounded-md hover:bg-black/[0.03] dark:hover:bg-white/5 transition-colors"
             >
-              <X className="w-4 h-4 text-muted-foreground/50" />
+              <X className="w-4 h-4 text-[#737373] dark:text-muted-foreground/50" />
             </button>
           </div>
         </div>
@@ -114,13 +114,13 @@ export function SearchModal() {
             query === "" ? (
               <div className="py-2">
                 <div className="px-4 py-2">
-                  <p className="text-[11px] font-semibold text-muted-foreground/55 dark:text-muted-foreground/30 uppercase tracking-wider">Follow for updates</p>
+                  <p className="text-[11px] font-semibold text-[#404040] dark:text-muted-foreground/30 uppercase tracking-wider">Follow for updates</p>
                 </div>
                 <div className="px-2 space-y-0.5">
                   <a 
                     href="https://twitter.com/ashirwadsingh_" 
                     target="_blank"
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/[0.03] dark:hover:bg-white/[0.03] text-[13px] text-muted-foreground/70 transition-colors group"
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/[0.03] dark:hover:bg-white/[0.03] text-[13px] text-[#262626] dark:text-muted-foreground/70 transition-colors group"
                   >
                     <X className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity" />
                     <span>Twitter @ashirwadsingh_</span>
@@ -128,13 +128,13 @@ export function SearchModal() {
                 </div>
 
                 <div className="px-4 py-2 mt-4">
-                  <p className="text-[11px] font-semibold text-muted-foreground/55 dark:text-muted-foreground/30 uppercase tracking-wider">Gallery</p>
+                  <p className="text-[11px] font-semibold text-[#404040] dark:text-muted-foreground/30 uppercase tracking-wider">Gallery</p>
                 </div>
                 <div className="px-2 space-y-0.5">
                   <Link 
                     href="/gallery" 
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/[0.03] dark:hover:bg-white/[0.03] text-[13px] text-muted-foreground/70 transition-colors group"
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/[0.03] dark:hover:bg-white/[0.03] text-[13px] text-[#262626] dark:text-muted-foreground/70 transition-colors group"
                   >
                     <LayoutGrid className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity" />
                     <span>Browse Gallery</span>
@@ -149,7 +149,7 @@ export function SearchModal() {
           ) : (
             <div className="py-2">
                <div className="px-4 py-2">
-                  <p className="text-[11px] font-semibold text-muted-foreground/55 dark:text-muted-foreground/30 uppercase tracking-wider">Sections and Blocks</p>
+                  <p className="text-[11px] font-semibold text-[#404040] dark:text-muted-foreground/30 uppercase tracking-wider">Sections and Blocks</p>
                 </div>
               <div className="px-2 space-y-1">
                 {filteredResults.map((item, index) => (
@@ -177,7 +177,7 @@ export function SearchModal() {
                         <p className={`text-[13px] font-medium transition-colors ${selectedIndex === index ? "text-foreground" : "text-muted-foreground/70"}`}>
                           {item.displayName}
                         </p>
-                        <p className="text-[10px] text-muted-foreground/55 dark:text-muted-foreground/30 uppercase tracking-wider font-semibold">
+                        <p className="text-[10px] text-[#525252] dark:text-muted-foreground/30 uppercase tracking-wider font-semibold">
                           {item.category} • {item.type}
                         </p>
                       </div>

@@ -20,7 +20,7 @@ function PropsTable({ content }: { content: any }) {
             <thead>
               <tr className="border-b border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02]">
                 {headers.map((header, i) => (
-                  <th key={i} className="px-6 py-4 text-[11px] font-bold text-muted-foreground/30 uppercase tracking-widest whitespace-nowrap">
+                  <th key={i} className="px-6 py-4 text-[11px] font-bold text-[#737373] dark:text-muted-foreground/30 uppercase tracking-widest whitespace-nowrap">
                     {header}
                   </th>
                 ))}
@@ -36,7 +36,7 @@ function PropsTable({ content }: { content: any }) {
                       <td key={j} className="px-6 py-5">
                         <span className={`text-[13.5px] ${
                           isType ? 'font-mono text-blue-400 bg-blue-400/5 px-2 py-0.5 rounded border border-blue-400/10' : 
-                          isName ? 'font-bold text-foreground' : 'text-muted-foreground/60'
+                          isName ? 'font-bold text-[#262626] dark:text-foreground' : 'text-[#262626] dark:text-muted-foreground/60'
                         }`}>
                           {cell}
                         </span>
@@ -53,7 +53,7 @@ function PropsTable({ content }: { content: any }) {
   }
 
   return (
-    <div className="p-8 rounded-3xl border border-black/5 dark:border-white/5 bg-white dark:bg-[#0A0A0A] text-muted-foreground/60 leading-relaxed text-[15px]">
+    <div className="p-8 rounded-3xl border border-black/5 dark:border-white/5 bg-white dark:bg-[#0A0A0A] text-[#262626] dark:text-muted-foreground/60 leading-relaxed text-[15px]">
       {content}
     </div>
   );
@@ -120,7 +120,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
     <div className="space-y-12">
       <div className="flex flex-wrap items-center justify-between gap-6 border-b border-black/5 dark:border-white/5 pb-12">
         <div className="space-y-1">
-           <h2 className="text-[34px] font-medium tracking-tight text-foreground font-serif">Documentation</h2>
+           <h2 className="text-[34px] font-medium tracking-tight text-[#262626] dark:text-foreground font-serif">Documentation</h2>
         </div>
 
         <div className="flex items-center gap-1 p-1 border border-black/5 dark:border-white/5 rounded-xl bg-white dark:bg-[#0A0A0A] w-fit shadow-2xl">
@@ -132,8 +132,8 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                 onClick={() => setActiveMode(mode as any)}
                 className={`relative px-10 py-2.5 text-[12px] font-bold transition-all duration-500 rounded-lg flex items-center gap-2 ${
                   isActive
-                    ? "bg-black/[0.04] dark:bg-[#161616] text-foreground shadow-sm dark:shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-black/5 dark:border-white/10"
-                    : "text-muted-foreground/30 hover:text-foreground/80 hover:bg-black/[0.01] dark:hover:bg-white/[0.02]"
+                    ? "bg-black/[0.04] dark:bg-[#161616] text-[#262626] dark:text-foreground shadow-sm dark:shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-black/5 dark:border-white/10"
+                    : "text-[#262626] dark:text-muted-foreground/70 transition-colors hover:text-[#262626] dark:hover:text-foreground/80 hover:bg-black/[0.01] dark:hover:bg-white/[0.02]"
                 }`}
               >
                 <span>{mode}</span>
@@ -151,7 +151,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                 <div className="space-y-10">
                   <CodeBlock files={cliFiles} />
                   <div className="p-10 rounded-[32px] bg-black/[0.01] dark:bg-white/[0.01] border border-black/5 dark:border-white/5">
-                    <p className="text-[17px] text-muted-foreground/60 leading-relaxed max-w-3xl font-medium">
+                    <p className="text-[#404040] dark:text-muted-foreground/60 text-[17px] leading-relaxed max-w-3xl font-medium">
                        The T7Blocks CLI allows you to automatically add this component and its dependencies to your project directory. 
                        It handles file creation, dependency management, and style configuration automatically.
                     </p>
@@ -166,7 +166,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
               
               {hasInstall && (
                 <div className="space-y-10" id="install" data-section>
-                  <h3 className="text-[14px] font-bold text-foreground/60 dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Install</h3>
+                  <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Install</h3>
                   <CodeBlock files={installFiles} />
                 </div>
               )}
@@ -174,11 +174,11 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
               {hasUsage && (
                 <div className="space-y-10" id="usage" data-section>
                   <div className="flex items-center justify-between px-1">
-                    <h3 className="text-[14px] font-bold text-foreground/60 dark:text-foreground/20 tracking-[0.25em] uppercase">Usage</h3>
+                    <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase">Usage</h3>
                     {detail.dependencies && detail.dependencies.length > 0 && (
                       <div className="flex items-center gap-2">
                          {detail.dependencies.map((dep) => (
-                           <span key={dep} className="text-[10px] px-2.5 py-1 rounded-lg bg-black/[0.04] dark:bg-white/5 text-muted-foreground/60 font-mono border border-black/5 dark:border-white/5">{dep}</span>
+                           <span key={dep} className="text-[10px] px-2.5 py-1 rounded-lg bg-black/[0.04] dark:bg-white/5 text-[#737373] dark:text-muted-foreground/60 font-mono border border-black/5 dark:border-white/5">{dep}</span>
                          ))}
                       </div>
                     )}
@@ -192,7 +192,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
              
               {hasCode && (
                 <div className="space-y-10" id="code" data-section>
-                  <h3 className="text-[14px] font-bold text-foreground/60 dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Implementation</h3>
+                  <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Implementation</h3>
                   <CodeBlock 
                     files={detail.codeBlocks.map(b => ({ 
                       ...b, 
@@ -202,15 +202,14 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                   />
                 </div>
               )}
-
-            
-              {hasProps && (
-                <div className="space-y-10" id="props" data-section>
-                  <h3 className="text-[14px] font-bold text-foreground/60 dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Properties</h3>
-                  <PropsTable content={detail.propsTable || detail.props || ""} />
-                </div>
-              )}
            </div>
+        )}
+
+        {hasProps && (
+          <div className="space-y-10" id="props" data-section>
+            <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Properties</h3>
+            <PropsTable content={detail.propsTable || detail.props || ""} />
+          </div>
         )}
       </div>
     </div>

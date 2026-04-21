@@ -1,60 +1,57 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
+import React, { createContext, useContext, useCallback, useEffect, useState } from "react";
+import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "next-themes";
 
 type Theme = "light" | "dark";
 
 interface ThemeContextValue {
-  theme: Theme;
+  theme: Theme | undefined;
   toggleTheme: () => void;
+  setTheme: (theme: string) => void;
 }
 
-const ThemeContext = createContext<ThemeContextValue>({
-  theme: "dark",
-  toggleTheme: () => {},
-});
+const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function useTheme() {
-  return useContext(ThemeContext);
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  return (
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      storageKey="t7-theme"
+    >
+      <ThemeContent>{children}</ThemeContent>
+    </NextThemesProvider>
+  );
+}
+
+function ThemeContent({ children }: { children: React.ReactNode }) {
+  const { theme, setTheme, resolvedTheme } = useNextTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const saved = localStorage.getItem("t7-theme") as Theme | null;
-    const initial = saved || "dark";
-    setTheme(initial);
-    applyTheme(initial);
-  }, []);
-
-  const applyTheme = useCallback((t: Theme) => {
-    const root = document.documentElement;
-    if (t === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-    // Force repaint for CSS variable changes
-    root.style.colorScheme = t;
   }, []);
 
   const toggleTheme = useCallback(() => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    localStorage.setItem("t7-theme", next);
-    applyTheme(next);
-  }, [theme, applyTheme]);
+    const currentTheme = theme === "system" ? resolvedTheme : theme;
+    setTheme(currentTheme === "dark" ? "light" : "dark");
+  }, [theme, resolvedTheme, setTheme]);
 
-  // Prevent hydration mismatch flicker
-  if (!mounted) {
-    return <>{children}</>;
-  }
+  // Use resolvedTheme when 'system' is active to keep components in sync
+  const currentTheme = (mounted ? (theme === "system" ? resolvedTheme : theme) : "dark") as Theme;
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

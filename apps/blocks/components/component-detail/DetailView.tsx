@@ -67,13 +67,17 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
     .filter(item => item.name !== entry.name && (item.type === entry.type || item.category === entry.category))
     .slice(0, 2);
 
+  const hasProps = !!(detail.props || detail.propsTable);
   const availableSections = docMode === "CLI" 
-    ? [{ id: "install", name: "CLI" }]
+    ? [
+        { id: "install", name: "CLI" },
+        ...(hasProps ? [{ id: "props", name: "Props" }] : [])
+      ]
     : [
         { id: "install", name: "Install" },
         ...(detail.setupBlocks?.length && detail.setupBlocks.length > 0 ? [{ id: "usage", name: "Usage" }] : []),
         ...(detail.codeBlocks?.length && detail.codeBlocks.length > 0 ? [{ id: "code", name: "Code" }] : []),
-        ...((detail.props || detail.propsTable) ? [{ id: "props", name: "Props" }] : [])
+        ...(hasProps ? [{ id: "props", name: "Props" }] : [])
       ];
 
   return (
@@ -86,7 +90,7 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
               <h1 className="text-4xl md:text-7xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
                 {entry.displayName}
               </h1>
-              <p className="text-muted-foreground text-[18px] max-w-2xl leading-relaxed font-medium opacity-60">
+              <p className="text-[#404040] dark:text-muted-foreground/60 text-[18px] max-w-2xl leading-relaxed font-medium">
                 {entry.description}
               </p>
             </div>
