@@ -55,7 +55,12 @@ function SidebarItem({
     
     if (item.href) {
       trackNavIntent("sidebar", item.title, parentTitle);
-      router.push(item.href);
+      
+      if (item.external) {
+        window.open(item.href, "_blank", "noopener,noreferrer");
+      } else {
+        router.push(item.href);
+      }
       
       if (!hasChildren && typeof window !== "undefined" && window.innerWidth < 768) {
         setSidebarOpen(false);
@@ -130,13 +135,13 @@ export function Sidebar() {
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[55] md:hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[150] md:hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={() => setOpen(false)}
       />
 
       <aside
         className={`
-          fixed left-0 top-0 bottom-0 z-[60] flex flex-col
+          fixed left-0 top-0 bottom-0 z-[200] flex flex-col
           bg-sidebar border-r border-border/40 
           rounded-none
           transition-all duration-375 ease-in-out
