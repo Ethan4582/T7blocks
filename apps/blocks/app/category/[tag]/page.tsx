@@ -1,5 +1,6 @@
 import { registry } from "@/lib/registry";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
+import { CategoryTracker } from "@/components/common/category-tracker";
 
 // Required for static export
 export async function generateStaticParams() {
@@ -35,10 +36,13 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
     .join(' ');
 
   return (
-    <GalleryGrid 
-      items={filteredItems} 
-      title={`${displayTag} Vault`}
-      description={`Discover high-performance components built with ${displayTag}.`}
-    />
+    <>
+      <CategoryTracker tag={decodedTag} />
+      <GalleryGrid 
+        items={filteredItems} 
+        title={`${displayTag} Vault`}
+        description={`Discover high-performance components built with ${displayTag}.`}
+      />
+    </>
   );
 }

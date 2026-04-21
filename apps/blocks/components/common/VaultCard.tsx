@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Lock, Eye, Bookmark, ChevronRight } from "lucide-react";
 import { ComponentEntry } from "@/lib/registry";
 import { useBookmarks } from "@/components/common/bookmarks-context";
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
 
 export function VaultCard({ item }: { item: ComponentEntry }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -58,6 +59,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
               rel="noreferrer"
               onClick={(e) => {
                 e.stopPropagation();
+                trackEvent(ANALYTICS_EVENTS.DEMO_OPENED, { id: item.name });
               }}
               className="w-8 h-8 rounded-full bg-white/60 dark:bg-background/60 backdrop-blur-md border border-black/10 dark:border-white/10 flex items-center justify-center text-accent shadow-xl hover:bg-white/80 dark:hover:bg-background/80 transition-all hover:scale-110"
               title="Open Live Preview"

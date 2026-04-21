@@ -149,7 +149,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
            <div className="space-y-16" id="install" data-section>
               {hasCLI && (
                 <div className="space-y-10">
-                  <CodeBlock files={cliFiles} />
+                  <CodeBlock files={cliFiles} componentId={component.name} />
                   <div className="p-10 rounded-[32px] bg-black/[0.01] dark:bg-white/[0.01] border border-black/5 dark:border-white/5">
                     <p className="text-[#404040] dark:text-muted-foreground/60 text-[17px] leading-relaxed max-w-3xl font-medium">
                        The T7Blocks CLI allows you to automatically add this component and its dependencies to your project directory. 
@@ -167,7 +167,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
               {hasInstall && (
                 <div className="space-y-10" id="install" data-section>
                   <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Install</h3>
-                  <CodeBlock files={installFiles} />
+                  <CodeBlock files={installFiles} componentId={component.name} />
                 </div>
               )}
 
@@ -185,6 +185,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                   </div>
                   <CodeBlock 
                     files={detail.setupBlocks?.map(b => ({ ...b, label: b.label.toLowerCase() }))} 
+                    componentId={component.name}
                   />
                 </div>
               )}
@@ -199,6 +200,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                       label: b.label.toLowerCase(),
                       language: b.label.toLowerCase().endsWith('.css') ? 'css' : 'typescript'
                     }))} 
+                    componentId={component.name}
                   />
                 </div>
               )}

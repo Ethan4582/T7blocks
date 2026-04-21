@@ -2,6 +2,7 @@
 
 import { Info, Lightbulb, SquarePen, Heart, Menu } from "lucide-react";
 import { ComponentItem } from "@/lib/componentData";
+import { trackNavIntent, trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
 
 interface MetadataSidebarProps {
   component: ComponentItem;
@@ -75,6 +76,7 @@ export function MetadataSidebar({
               <a
                 key={tag}
                 href={`/category/${tag.toLowerCase()}`}
+                onClick={() => trackNavIntent("tag", tag)}
                 className="px-2.5 py-1 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-[11px] text-[#666666] dark:text-muted-foreground hover:text-foreground hover:bg-black/[0.08] dark:hover:bg-white/10 transition-colors whitespace-nowrap"
               >
                 {tag}
@@ -132,6 +134,7 @@ export function MetadataSidebar({
         <a
           href="https://github.com/sponsors/t7labs"
           target="_blank"
+          onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "sponsor", location: "metadata_sidebar" })}
           className="flex items-center justify-center gap-2 w-full h-10 bg-black/[0.05] hover:bg-black/[0.08] dark:bg-white/5 dark:hover:bg-white/10 border border-black/5 dark:border-white/5 rounded-[8px] transition-all duration-300 group shadow-sm text-foreground no-underline"
         >
           <Heart className="w-3.5 h-3.5 text-[#A1FF62] fill-[#A1FF62] group-hover:scale-110 transition-transform duration-300" />

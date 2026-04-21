@@ -21,7 +21,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     );
   }
 
-  const offset = !isCollapsed ? "md:ml-[230px]" : "ml-0";
+  const offset = !isCollapsed ? "md:ml-[250px]" : "ml-0";
 
   const segments = pathname.split('/').filter(Boolean);
   const isComponentDetail = 

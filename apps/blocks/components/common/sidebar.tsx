@@ -8,15 +8,18 @@ import {
 } from "lucide-react";
 import { useSidebar } from "@/components/common/sidebar-provider";
 import { NAVIGATION_DATA } from "@/lib/sidebar/navigation";
+import { trackNavIntent } from "@/lib/analytics/analytics";
 
 import { NavItem } from "@/lib/sidebar/navigation";
 
 function SidebarItem({ 
   item, 
-  depth = 0
+  depth = 0,
+  parentTitle
 }: { 
   item: NavItem; 
   depth?: number;
+  parentTitle?: string;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -51,7 +54,13 @@ function SidebarItem({
     }
     
     if (item.href) {
-      router.push(item.href);
+      trackNavIntent("sidebar", item.title, parentTitle);
+      
+      if (item.external) {
+        window.open(item.href, "_blank", "noopener,noreferrer");
+      } else {
+        router.push(item.href);
+      }
       
       if (!hasChildren && typeof window !== "undefined" && window.innerWidth < 768) {
         setSidebarOpen(false);
@@ -109,6 +118,7 @@ function SidebarItem({
               key={`${subItem.title}-${idx}`} 
               item={subItem} 
               depth={depth + 1} 
+              parentTitle={item.title}
             />
           ))}
         </div>
@@ -125,13 +135,13 @@ export function Sidebar() {
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[55] md:hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[150] md:hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={() => setOpen(false)}
       />
 
       <aside
         className={`
-          fixed left-0 top-0 bottom-0 z-[60] flex flex-col
+          fixed left-0 top-0 bottom-0 z-[200] flex flex-col
           bg-sidebar border-r border-border/40 
           rounded-none
           transition-all duration-375 ease-in-out

@@ -1,16 +1,16 @@
 "use client";
 
 import React, { createContext, useContext, useState, useCallback, ReactNode } from "react";
-import { Check, Info } from "lucide-react";
+import { Check } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Toast {
   id: number;
   message: string;
-  type?: "success" | "info";
 }
 
 interface ToastContextType {
-  showToast: (message: string, type?: "success" | "info") => void;
+  showToast: (message: string) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -26,40 +26,45 @@ export function useToast() {
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const showToast = useCallback((message: string, type: "success" | "info" = "success") => {
-    const id = Date.now();
-    setToasts((prev) => [...prev, { id, message, type }]);
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 3000);
+  const removeToast = useCallback((id: number) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
+
+  const showToast = useCallback((message: string) => {
+    const id = Date.now();
+    setToasts((prev) => [...prev, { id, message }]);
+    setTimeout(() => removeToast(id), 2500);
+  }, [removeToast]);
 
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <div className="fixed top-6 right-6 z-[9999] flex flex-col gap-3 pointer-events-none">
-        {toasts.map((toast) => (
-          <div
-            key={toast.id}
-            className="flex items-center gap-4 px-5 py-3.5 bg-[#0D0D0D] border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in slide-in-from-right-10 fade-in duration-500 pointer-events-auto min-w-[240px] backdrop-blur-xl"
-          >
-            <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${toast.type === 'success' ? 'bg-[#A1FF62]/10' : 'bg-blue-500/10'}`}>
-              {toast.type === 'success' ? (
-                <Check className="w-4 h-4 text-[#A1FF62]" />
-              ) : (
-                <Info className="w-4 h-4 text-theme-accent" />
-              )}
-            </div>
-            <div className="flex flex-col gap-0.5">
-               <p className="text-[14px] font-semibold text-foreground leading-tight tracking-tight">
-                 {toast.message}
-               </p>
-               <p className="text-[11px] text-[#A1FF62] font-black uppercase tracking-[0.05em] opacity-80">
-                 Copied to clipboard
-               </p>
-            </div>
-          </div>
-        ))}
+      <div className="fixed top-12 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 pointer-events-none">
+        <AnimatePresence>
+          {toasts.map((toast) => (
+            <motion.div
+              key={toast.id}
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+              className="flex items-center bg-[#1a1a1a] dark:bg-[#121212] border border-white/5 rounded-2xl p-3 min-w-[280px] shadow-2xl pointer-events-auto"
+            >
+              <div className="flex items-center justify-center pl-1 pr-4">
+                <div className="flex items-center justify-center w-6 h-6 rounded-full border-2 border-[#A1FF62]">
+                  <Check className="w-3.5 h-3.5 text-[#A1FF62]" strokeWidth={3} />
+                </div>
+              </div>
+
+              <div className="w-[1px] h-8 bg-white/10" />
+
+              <div className="flex-1 pl-6 pr-4">
+                <p className="text-[13px] font-medium text-white tracking-tight">
+                  {toast.message}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </ToastContext.Provider>
   );

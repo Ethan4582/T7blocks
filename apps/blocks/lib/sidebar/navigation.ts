@@ -29,7 +29,7 @@ export const NAVIGATION_DATA: NavSection[] = [
     items: [
       {
         title: "Follow for updates",
-        icon: "/SVG/x.svg",
+        icon: "/SVG/x1.svg",
         href: "https://twitter.com/ashirwadsingh_",
         external: true,
       },
