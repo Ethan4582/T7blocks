@@ -36,7 +36,7 @@ export function MetadataSidebar({
       
       {sections.length > 0 && (
         <div className="px-1">
-          <div className="flex items-center gap-2 text-foreground/65 dark:text-foreground/90 mb-3 font-medium">
+          <div className="flex items-center gap-2 text-[#404040] dark:text-foreground/90 mb-3 font-medium">
             <Menu className="w-3 h-3" />
             <span className="text-[11px] tracking-[0.15em] uppercase font-bold">
               On this page
@@ -53,7 +53,7 @@ export function MetadataSidebar({
                   className={`block py-1.5 px-4 transition-all duration-200 -ml-px border-l-2 ${
                     isActive
                       ? "border-[#A1FF62] text-[#A1FF62] font-semibold text-[13px]"
-                      : "border-transparent text-muted-foreground hover:text-foreground text-[13px]"
+                      : "border-transparent text-[#666666] dark:text-muted-foreground hover:text-foreground text-[13px]"
                   }`}
                 >
                   {section.name}
@@ -67,7 +67,7 @@ export function MetadataSidebar({
     
       {component.tags && component.tags.length > 0 && (
         <div className="px-1 space-y-2.5">
-          <h3 className="text-[11px] font-bold text-foreground/65 dark:text-foreground/90 tracking-[0.15em] uppercase ml-px">
+          <h3 className="text-[11px] font-bold text-[#404040] dark:text-foreground/90 tracking-[0.15em] uppercase ml-px">
             Tags
           </h3>
           <div className="flex flex-wrap gap-1.5 ml-px">
@@ -75,7 +75,7 @@ export function MetadataSidebar({
               <a
                 key={tag}
                 href={`/category/${tag.toLowerCase()}`}
-                className="px-2.5 py-1 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-[11px] text-muted-foreground hover:text-foreground hover:bg-black/[0.08] dark:hover:bg-white/10 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-[11px] text-[#666666] dark:text-muted-foreground hover:text-foreground hover:bg-black/[0.08] dark:hover:bg-white/10 transition-colors whitespace-nowrap"
               >
                 {tag}
               </a>

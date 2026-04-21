@@ -59,8 +59,25 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-background`}
+      className={`scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-background`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var theme = localStorage.getItem('t7-theme') || 'dark';
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+                document.documentElement.style.colorScheme = theme;
+              })()
+            `,
+          }}
+        />
+      </head>
       <body className="antialiased bg-background text-foreground scrollbar-hide">
         <ThemeProvider>
           <ToastProvider>

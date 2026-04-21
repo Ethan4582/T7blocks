@@ -13,36 +13,31 @@ import { NavItem } from "@/lib/sidebar/navigation";
 
 function SidebarItem({ 
   item, 
-  depth = 0, 
-  openId, 
-  setOpenId 
+  depth = 0
 }: { 
   item: NavItem; 
   depth?: number;
-  openId?: string | null;
-  setOpenId?: (id: string | null) => void;
 }) {
   const pathname = usePathname();
   const router = useRouter();
   const { setOpen: setSidebarOpen } = useSidebar();
   
-  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const itemId = item.title;
+  const storageKey = `sidebar-state-${itemId}`;
   
-  const isCurrentlyOpen = setOpenId && openId !== undefined ? openId === itemId : internalIsOpen;
+  // Default to true for depth 0 (main sections) to avoid collapse flash
+  const [internalIsOpen, setInternalIsOpen] = useState(depth === 0);
 
   useEffect(() => {
-    const isAnyChildActive = (items: NavItem[]): boolean => {
-      return items?.some((sub) => 
-        pathname === sub.href || (sub.items && isAnyChildActive(sub.items))
-      );
-    };
-    
-    if (item.items && isAnyChildActive(item.items)) {
-      if (setOpenId) setOpenId(itemId);
-      else setInternalIsOpen(true);
+    if (typeof window !== "undefined") {
+      const savedState = localStorage.getItem(storageKey);
+      if (savedState !== null) {
+        setInternalIsOpen(savedState === "true");
+      }
     }
-  }, [pathname, item.items, itemId, setOpenId]);
+  }, [storageKey, depth]);
+  
+  const isCurrentlyOpen = internalIsOpen;
 
   const hasChildren = item.items && item.items.length > 0;
   
@@ -50,11 +45,9 @@ function SidebarItem({
 
   const handleClick = (e: React.MouseEvent) => {
     if (hasChildren) {
-      if (setOpenId) {
-        setOpenId(isCurrentlyOpen ? null : itemId);
-      } else {
-        setInternalIsOpen(!internalIsOpen);
-      }
+      const newState = !internalIsOpen;
+      setInternalIsOpen(newState);
+      localStorage.setItem(storageKey, newState ? "true" : "false");
     }
     
     if (item.href) {
@@ -75,7 +68,7 @@ function SidebarItem({
             w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200
             ${isSelected
               ? "bg-sidebar-hover text-sidebar-foreground shadow-sm"
-              : "text-foreground/70 dark:text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/50"}
+              : "text-[#525252] dark:text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover/50"}
           `}
         >
           <div className="flex items-center gap-2.5">
@@ -125,8 +118,7 @@ function SidebarItem({
 }
 
 export function Sidebar() {
-    const { isOpen, isCollapsed, toggleCollapsed, setOpen } = useSidebar();
-  const [openId, setOpenId] = useState<string | null>(null);
+  const { isOpen, isCollapsed, toggleCollapsed, setOpen } = useSidebar();
 
   if (!isOpen) return null;
 
@@ -188,7 +180,7 @@ export function Sidebar() {
             <div key={section.title || `section-${sIdx}`} className="space-y-2.5">
             
               {section.title && (
-                <h4 className="px-4 text-[10px] font-extrabold tracking-[0.2em] uppercase text-foreground/65 dark:text-white">
+                <h4 className="px-4 text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#404040] dark:text-white">
                   {section.title}
                 </h4>
               )}
@@ -199,8 +191,6 @@ export function Sidebar() {
                   <SidebarItem 
                     key={`${item.title}-${iIdx}`} 
                     item={item} 
-                    openId={openId}
-                    setOpenId={setOpenId}
                   />
                 ))}
               </div>

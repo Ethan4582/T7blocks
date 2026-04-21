@@ -95,7 +95,7 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
         </div>
 
         <div className="px-1.5 pt-4 pb-1.5 flex justify-between items-center bg-transparent mt-1">
-          <h3 className="text-[14px] font-medium tracking-wide text-foreground/85 dark:text-foreground/80 group-hover:text-foreground transition-colors truncate">
+          <h3 className="text-[14px] font-medium tracking-wide text-foreground dark:text-foreground/80 group-hover:text-foreground transition-colors truncate">
             {item.displayName}
           </h3>
           <div className={`w-6 h-6 rounded-full bg-black/[0.03] dark:bg-sidebar-hover flex items-center justify-center text-foreground transition-all duration-375 ease-in-out ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3"}`}>

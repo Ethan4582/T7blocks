@@ -60,9 +60,9 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight flex items-center justify-center gap-2 md:gap-3 flex-wrap">
              Discover the <span className="animate-wave text-3xl sm:text-4xl md:text-5xl">👋</span> {dynamicTitle}
           </h1>
-          <p className="text-muted-foreground/60 text-lg max-w-2xl mx-auto">
-            {dynamicDescription}
-          </p>
+          <p className="text-[#404040] dark:text-muted-foreground/60 text-lg max-w-2xl mx-auto">
+                {dynamicDescription}
+              </p>
           
           <div className="relative w-full max-w-sm mt-8 group mx-auto">
             <div className="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none text-muted-foreground/30">
@@ -73,7 +73,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={`Search ${items.length}+ resources...`}
-              className="w-full bg-white dark:bg-[#211e1e] border border-black/5 dark:border-border/10 rounded-full py-3 pl-12 pr-6 text-[15px] text-foreground focus:outline-none transition-all shadow-sm placeholder:text-muted-foreground/20"
+              className="w-full bg-white dark:bg-[#211e1e] border border-black/5 dark:border-border/10 rounded-xl py-3 pl-12 pr-6 text-[15px] text-foreground focus:outline-none transition-all shadow-sm placeholder:text-muted-foreground/45 dark:placeholder:text-muted-foreground/20"
             />
           </div>
         </div>
