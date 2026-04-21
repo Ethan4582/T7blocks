@@ -62,21 +62,7 @@ export default function RootLayout({
       className={`scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-background`}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var theme = localStorage.getItem('t7-theme') || 'dark';
-                if (theme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-                document.documentElement.style.colorScheme = theme;
-              })()
-            `,
-          }}
-        />
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="eba86b33-bfb7-4084-850e-76db8408fef4"></script>
       </head>
       <body className="antialiased bg-background text-foreground scrollbar-hide">
         <ThemeProvider>
