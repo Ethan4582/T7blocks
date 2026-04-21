@@ -8,15 +8,18 @@ import {
 } from "lucide-react";
 import { useSidebar } from "@/components/common/sidebar-provider";
 import { NAVIGATION_DATA } from "@/lib/sidebar/navigation";
+import { trackNavIntent } from "@/lib/analytics/analytics";
 
 import { NavItem } from "@/lib/sidebar/navigation";
 
 function SidebarItem({ 
   item, 
-  depth = 0
+  depth = 0,
+  parentTitle
 }: { 
   item: NavItem; 
   depth?: number;
+  parentTitle?: string;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -51,6 +54,7 @@ function SidebarItem({
     }
     
     if (item.href) {
+      trackNavIntent("sidebar", item.title, parentTitle);
       router.push(item.href);
       
       if (!hasChildren && typeof window !== "undefined" && window.innerWidth < 768) {
@@ -109,6 +113,7 @@ function SidebarItem({
               key={`${subItem.title}-${idx}`} 
               item={subItem} 
               depth={depth + 1} 
+              parentTitle={item.title}
             />
           ))}
         </div>

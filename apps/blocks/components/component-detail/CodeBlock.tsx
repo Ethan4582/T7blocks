@@ -4,15 +4,17 @@ import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { highlightCode } from "@/lib/syntax-highlighter";
 import { useToast } from "@/components/common/toast-provider";
+import { trackCopy } from "@/lib/analytics/analytics";
 
 interface CodeBlockProps {
   files?: Array<{ label: string; code: string; language?: string; icon?: string }>;
   code?: string;
   label?: string;
   language?: string;
+  componentId?: string;
 }
 
-export function CodeBlock({ files, code, label, language = "html" }: CodeBlockProps) {
+export function CodeBlock({ files, code, label, language = "html", componentId = "unknown" }: CodeBlockProps) {
   const [activeFileIndex, setActiveFileIndex] = useState(0);
   const [copied, setCopied] = useState(false);
   const { showToast } = useToast();
@@ -34,6 +36,10 @@ export function CodeBlock({ files, code, label, language = "html" }: CodeBlockPr
     }
 
     setTimeout(() => setCopied(false), 2000);
+
+    // Track event
+    const isBash = activeFile.language === 'bash' || activeFile.label.toLowerCase().includes('pnpm') || activeFile.label.toLowerCase().includes('npm');
+    trackCopy(isBash ? "cli" : "manual", componentId);
   };
 
   return (

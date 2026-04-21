@@ -8,6 +8,7 @@ import {
 import { registry } from "@/lib/registry";
 import { useTheme } from "@/components/common/theme-provider";
 import { useSidebar } from "@/components/common/sidebar-provider";
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
 
 interface ComponentNavbarProps {
   bugReportUrl?: string;
@@ -70,6 +71,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
           <Link 
             href="https://github.com/t7labs/t7blocks" 
             target="_blank" 
+            onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "github", location: "navbar" })}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border/40 bg-muted/20 hover:bg-muted text-[12px] font-medium transition-all"
           >
             <img src="/SVG/github.svg" alt="Github" className="w-3.5 h-3.5 text-muted-foreground" />
@@ -102,7 +104,9 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
                 <a href={bugReportUrl} target="_blank" className="flex items-center gap-2 px-3 py-2 text-[12px] font-medium text-foreground hover:bg-muted rounded-lg transition-colors">
                   <Bug className="w-3.5 h-3.5" /><span>Report bug</span>
                 </a>
-                <a href="https://github.com/sponsors/Ethan4582" target="_blank" className="flex items-center gap-2 px-3 py-2 text-[12px] font-medium text-foreground hover:bg-muted rounded-lg transition-colors">
+                <a href="https://github.com/sponsors/Ethan4582" target="_blank" 
+                  onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "sponsor", location: "navbar" })}
+                  className="flex items-center gap-2 px-3 py-2 text-[12px] font-medium text-foreground hover:bg-muted rounded-lg transition-colors">
                   <Heart className="w-3.5 h-3.5 text-pink-500" /><span>Sponsor</span>
                 </a>
               </div>
@@ -111,6 +115,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/t7labs/t7bl
 
           <Link 
             href="/waitlist" 
+            onClick={() => trackEvent(ANALYTICS_EVENTS.UPGRADE_CLICKED, { location: "navbar" })}
             className="flex items-center gap-1.5 bg-foreground text-background px-3.5 py-1.5 rounded-lg text-[12px] font-semibold transition-all hover:opacity-90 active:scale-[0.98] shadow-sm"
           >
             <Lock className="w-3.5 h-3.5" /><span>Get All-Access</span>

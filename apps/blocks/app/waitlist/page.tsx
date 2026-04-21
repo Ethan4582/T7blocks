@@ -2,6 +2,7 @@
 
 import { Lock, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
 
 export default function WaitlistPage() {
   const [email, setEmail] = useState("");
@@ -23,7 +24,11 @@ export default function WaitlistPage() {
 
       {!submitted ? (
         <form 
-          onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+          onSubmit={(e) => { 
+            e.preventDefault(); 
+            setSubmitted(true); 
+            trackEvent(ANALYTICS_EVENTS.WAITLIST_JOINED, { email });
+          }}
           className="w-full max-w-md flex flex-col md:flex-row gap-3 bg-muted/20 p-2 rounded-2xl border border-border/40 mb-16"
         >
           <input 

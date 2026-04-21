@@ -5,6 +5,7 @@ import { Search, X, ChevronRight, Hash, FileText, LayoutGrid } from "lucide-reac
 import { registry, ComponentEntry } from "@/lib/registry";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
 
 export function SearchModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +53,7 @@ export function SearchModal() {
 
   const handleSelect = (item: ComponentEntry) => {
     const href = `/${item.category === 'components' ? 'components' : item.category}/${item.type}/${item.name}`;
+    trackEvent(ANALYTICS_EVENTS.SEARCH_USED, { query, selected: item.name });
     router.push(href);
     setIsOpen(false);
   };
@@ -120,6 +122,7 @@ export function SearchModal() {
                   <a 
                     href="https://twitter.com/ashirwadsingh_" 
                     target="_blank"
+                    onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "twitter", location: "search_modal" })}
                     className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-black/[0.03] dark:hover:bg-white/[0.03] text-[13px] text-[#262626] dark:text-muted-foreground/70 transition-colors group"
                   >
                     <X className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity" />

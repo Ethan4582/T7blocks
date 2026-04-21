@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { toComponentItem, registry } from "@/lib/registry";
 import { MetadataSidebar, DocumentationSection, PreviewCard, RelatedResources } from "@/components/component-detail";
 import { ComponentDetailData } from "@/lib/componentData";
+import { trackComponentView } from "@/lib/analytics/analytics";
 
 interface DetailViewProps {
   entry: any;
@@ -50,6 +51,10 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
   };
 
   const componentItem = toComponentItem(entry);
+
+  useEffect(() => {
+    trackComponentView(entry.name, entry.category || "ui");
+  }, [entry.name, entry.category]);
 
   useEffect(() => {
     const observerOptions = { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 };
