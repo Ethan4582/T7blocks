@@ -1,9 +1,4 @@
-/**
- * Umami Analytics Utility
- * 
- * High-intent action tracking with event deduplication to conserve 
- * free-tier limits.
- */
+
 
 export const ANALYTICS_EVENTS = {
   // Core Engagement

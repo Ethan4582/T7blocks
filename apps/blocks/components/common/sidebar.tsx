@@ -130,7 +130,6 @@ function SidebarItem({
 export function Sidebar() {
   const { isOpen, isCollapsed, toggleCollapsed, setOpen } = useSidebar();
 
-  if (!isOpen) return null;
 
   return (
     <>

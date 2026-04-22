@@ -45,6 +45,7 @@ export default function RootLayout({
       className={`${instrumentSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col relative bg-[#010101] text-white">
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="eba86b33-bfb7-4084-850e-76db8408fef4"></script>
         {children}
       </body>
     </html>
