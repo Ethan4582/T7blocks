@@ -21,7 +21,8 @@ export function useSidebar() {
 
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(true);
+  const isStandalone = pathname === "/" || pathname === "/templates";
+  const [isOpen, setIsOpen] = useState(!isStandalone);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Sync state on route change

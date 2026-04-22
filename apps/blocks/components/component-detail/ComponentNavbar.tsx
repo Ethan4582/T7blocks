@@ -132,7 +132,6 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
         </button>
       </header>
 
-
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[60px] bg-background z-40 p-6 space-y-3 border-t border-border overflow-y-auto animate-in slide-in-from-top-5 duration-300">
           <Link href="/gallery" className="block py-3 text-foreground font-medium border-b border-border/30" onClick={() => setMobileMenuOpen(false)}>Gallery</Link>

@@ -129,6 +129,9 @@ function SidebarItem({
 
 export function Sidebar() {
   const { isOpen, isCollapsed, toggleCollapsed, setOpen } = useSidebar();
+  const pathname = usePathname();
+
+  if (!isOpen) return null;
 
 
   return (

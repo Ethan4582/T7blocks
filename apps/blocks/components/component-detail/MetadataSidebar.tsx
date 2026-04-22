@@ -33,8 +33,6 @@ export function MetadataSidebar({
 
   return (
     <div className="space-y-6 lg:sticky lg:top-12 lg:self-start w-full min-w-[100px] pb-8">
-      
-      
       {sections.length > 0 && (
         <div className="px-1">
           <div className="flex items-center gap-2 text-[#404040] dark:text-foreground/90 mb-3 font-medium">
@@ -65,7 +63,6 @@ export function MetadataSidebar({
         </div>
       )}
 
-    
       {component.tags && component.tags.length > 0 && (
         <div className="px-1 space-y-2.5">
           <h3 className="text-[11px] font-bold text-[#404040] dark:text-foreground/90 tracking-[0.15em] uppercase ml-px">
@@ -86,7 +83,6 @@ export function MetadataSidebar({
         </div>
       )}
 
-      
       <div className="px-1 space-y-2">
         <h3 className="text-[11px] font-bold text-foreground/65 dark:text-foreground/90 tracking-[0.15em] uppercase ml-px">
           Contribute
@@ -129,7 +125,6 @@ export function MetadataSidebar({
         <div className="border-t border-black/10 dark:border-white/15" />
       </div>
 
-     
       <div className="px-1 mt-0">
         <a
           href="https://github.com/sponsors/t7labs"
