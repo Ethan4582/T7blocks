@@ -1,7 +1,6 @@
 export function highlightCode(code: string, language: string): string {
   if (!code) return "";
 
-  // 1. Escape HTML characters
   let text = code
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -10,7 +9,6 @@ export function highlightCode(code: string, language: string): string {
   const lang = language.toLowerCase();
   const tokens: string[] = [];
   
-  // Helper to add a token and return a placeholder
   const addToken = (content: string, className: string) => {
     const index = tokens.length;
     const placeholder = `___SH_TOKEN_${index}___`;
@@ -18,31 +16,17 @@ export function highlightCode(code: string, language: string): string {
     return placeholder;
   };
 
-  // 2. Extract tokens based on language
   if (lang === "javascript" || lang === "typescript" || lang === "tsx" || lang === "json" || lang === "ts") {
-    // Comments - process first to avoid matching content inside
     text = text.replace(/\/\/.*/g, m => addToken(m, "sh-comment"));
     text = text.replace(/\/\*[\s\S]*?\*\//g, m => addToken(m, "sh-comment"));
-    
-    // Strings (including template literals and escaped quotes)
     text = text.replace(/`[\s\S]*?`/g, m => addToken(m, "sh-string"));
     text = text.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, m => addToken(m, "sh-string"));
-    
-    // JSX/TSX Tags and Components (e.g., <div, <KnobToggle, </div)
     text = text.replace(/(&lt;\/?)([A-Z][\w\.]*)/g, (m, p1, p2) => p1 + addToken(p2, "sh-keyword"));
     text = text.replace(/(&lt;\/?)([a-z][\w]*)/g, (m, p1, p2) => p1 + addToken(p2, "sh-tag"));
-    
-    // Keywords (more robust regex)
     const keywords = /\b(import|export|from|const|let|var|function|return|if|else|for|while|await|async|type|interface|class|default|new|try|catch|string|number|boolean|any|unknown|void|null|undefined|true|false|Readonly|ReactNode|component|params|props|static|public|private|protected|readonly)\b/g;
     text = text.replace(keywords, m => addToken(m, "sh-keyword"));
-    
-    // Attributes in JSX/TSX
     text = text.replace(/([\s\{])([\w-]+)(?==)/g, (m, s, a) => s + addToken(a, "sh-attr"));
-    
-    // Function names
     text = text.replace(/\b([a-z_][a-z0-9_]*)(?=\s*\()/gi, m => addToken(m, "sh-fn"));
-    
-    // Numbers
     text = text.replace(/\b(\d+)\b/g, m => addToken(m, "sh-num"));
   } else if (lang === "css") {
     text = text.replace(/\/\*[\s\S]*?\*\//g, m => addToken(m, "sh-comment"));
@@ -62,8 +46,6 @@ export function highlightCode(code: string, language: string): string {
     text = text.replace(/(\s)([\w-]+)(=)/g, (m, s, a, e) => s + addToken(a, "sh-attr") + e);
   }
 
-  // 3. Final pass: replace placeholders with tokens
-  // Replace in a single loop to avoid double replacements
   return text.replace(/___SH_TOKEN_(\d+)___/g, (match, index) => {
     return tokens[parseInt(index, 10)] || match;
   });

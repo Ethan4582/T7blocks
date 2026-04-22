@@ -3,61 +3,7 @@
 import { useState, useEffect } from "react";
 import { ComponentDetailData, ComponentItem } from "@/lib/componentData";
 import { CodeBlock } from "./CodeBlock";
-
-function PropsTable({ content }: { content: any }) {
-  if (!content || typeof content !== 'string') return null;
-
-  const lines = content.split('\n').filter(l => l.trim().includes('|') && !l.includes('---'));
-  
-  if (lines.length > 0) {
-    const headers = lines[0].split('|').filter(Boolean).map(h => h.trim());
-    const rows = lines.slice(1).map(row => row.split('|').filter(Boolean).map(r => r.trim()));
-
-    return (
-      <div className="overflow-hidden rounded-2xl border border-black/10 dark:border-white/5 bg-white dark:bg-[#141212]">
-        <div className="overflow-x-auto custom-scrollbar">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-black/10 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02]">
-                {headers.map((header, i) => (
-                  <th key={i} className="px-6 py-4 text-[11px] font-bold text-[#737373] dark:text-muted-foreground/30 uppercase tracking-widest whitespace-nowrap">
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-black/10 dark:divide-white/5">
-              {rows.map((row, i) => (
-                <tr key={i} className="group hover:bg-black/[0.01] dark:hover:bg-white/[0.01] transition-colors">
-                  {row.map((cell, j) => {
-                     const isType = headers[j]?.toLowerCase().includes('type');
-                     const isName = headers[j]?.toLowerCase().includes('name') || headers[j]?.toLowerCase().includes('prop');
-                     return (
-                      <td key={j} className="px-6 py-5">
-                        <span className={`text-[13.5px] ${
-                          isType ? 'font-mono text-blue-400 bg-blue-400/5 px-2 py-0.5 rounded border border-blue-400/10' : 
-                          isName ? 'font-bold text-[#262626] dark:text-foreground' : 'text-[#262626] dark:text-muted-foreground/60'
-                        }`}>
-                          {cell}
-                        </span>
-                      </td>
-                     );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="p-8 rounded-3xl border border-black/10 dark:border-white/5 bg-white dark:bg-[#141212] text-[#262626] dark:text-muted-foreground/60 leading-relaxed text-[15px]">
-      {content}
-    </div>
-  );
-}
+import { PropsTable } from "./PropsTable";
 
 interface DocumentationSectionProps {
   detail: ComponentDetailData;
@@ -142,12 +88,12 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
         </div>
       </div>
 
-      <div className="space-y-16 animate-in fade-in slide-in-from-bottom-6 duration-1000"> {/* SECTION_SPACING: Adjust here for vertical gaps between Install/Implementation/Props */}
+      <div className="space-y-16 animate-in fade-in slide-in-from-bottom-6 duration-1000">
         
         {activeMode === "CLI" && (
            <div className="space-y-10" id="install" data-section>
               {hasCLI && (
-                <div className="space-y-6"> {/* INNER_SPACING: Adjust gap between code and description */}
+                <div className="space-y-6">
                   <CodeBlock files={cliFiles} componentId={component.name} />
                   <div className="p-6 rounded-[22px] bg-black/[0.01] dark:bg-white/[0.01] border border-black/5 dark:border-white/5">
                     <p className="text-[#404040] dark:text-muted-foreground/60 text-[14px] leading-relaxed max-w-3xl font-medium">
@@ -161,7 +107,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
         )}
 
         {activeMode === "Code" && (
-           <div className="space-y-16"> {/* INNER_SPACING: Adjust gap between major blocks */}
+           <div className="space-y-16">
               
               {hasInstall && (
                 <div className="space-y-6" id="install" data-section>
@@ -189,7 +135,6 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                 </div>
               )}
 
-             
               {hasCode && (
                 <div className="space-y-6" id="code" data-section>
                   <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase px-1">Implementation</h3>

@@ -80,7 +80,7 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
                   {entry.description}
                 </p>
                 <div className="shrink-0 md:pb-1">
-                  <CopyPromptDropdown componentName={entry.displayName} />
+                  <CopyPromptDropdown componentName={entry.displayName} files={[...setupBlocks, ...codeBlocks]} />
                 </div>
               </div>
             </div>

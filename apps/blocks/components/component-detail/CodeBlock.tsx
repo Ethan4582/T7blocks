@@ -46,12 +46,8 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
   const showScrollbars = isLarge && !isCLI;
 
   return (
-    <div
-      className="rounded-xl overflow-hidden shadow-sm transition-all bg-[var(--code-header)] border border-[var(--code-border)]"
-    >
-      <div
-        className="flex items-center justify-between px-4 py-2 bg-[var(--code-header)] border-b border-[var(--code-border)]"
-      >
+    <div className="rounded-xl overflow-hidden shadow-sm transition-all bg-[var(--code-header)] border border-[var(--code-border)]">
+      <div className="flex items-center justify-between px-4 py-2 bg-[var(--code-header)] border-b border-[var(--code-border)]">
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pr-4">
           {currentFiles.map((file, idx) => (
             <button
@@ -84,13 +80,8 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
       </div>
 
       <div className="p-1.5 bg-[var(--code-header)]">
-        <div 
-          className={`relative p-6 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-[var(--code-border)] bg-[var(--code-bg)]
-                     ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}
-        >
-          <pre
-            className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text text-[var(--code-text)]"
-          >
+        <div className={`relative p-6 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-[var(--code-border)] bg-[var(--code-bg)] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
+          <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text text-[var(--code-text)]">
             <code
               dangerouslySetInnerHTML={{ __html: highlightCode(activeFile.code, activeFile.language || (activeFile.label.endsWith('.css') ? 'css' : language)) }}
               className="block whitespace-pre"
