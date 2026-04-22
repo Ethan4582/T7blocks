@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 interface SidebarContextValue {
   isOpen: boolean;
@@ -19,8 +20,20 @@ export function useSidebar() {
 }
 
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Sync state on route change
+  useEffect(() => {
+    const isStandalone = pathname === "/" || pathname === "/templates";
+    if (isStandalone) {
+      setIsOpen(false);
+    } else if (typeof window !== "undefined" && window.innerWidth >= 768) {
+      // Auto-open on desktop when moving to a component page
+      setIsOpen(true);
+    }
+  }, [pathname]);
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
   const toggleCollapsed = () => setIsCollapsed((prev) => !prev);

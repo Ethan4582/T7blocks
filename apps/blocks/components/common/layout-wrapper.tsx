@@ -12,16 +12,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const { isCollapsed } = useSidebar();
   
   const isStandalone = pathname === "/" || pathname === "/templates";
-
-  if (isStandalone) {
-    return (
-      <main className="flex-1 flex flex-col min-h-screen overflow-y-auto text-foreground transition-colors duration-300">
-        {children}
-      </main>
-    );
-  }
-
-  const offset = !isCollapsed ? "md:ml-[250px]" : "ml-0";
+  const offset = (!isCollapsed && !isStandalone) ? "md:ml-[250px]" : "ml-0";
 
   const segments = pathname.split('/').filter(Boolean);
   const isComponentDetail = 
@@ -41,9 +32,9 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
           text-foreground min-w-0
         `}
       >
-        <ComponentNavbar />
+        {!isStandalone && <ComponentNavbar />}
 
-        <div className="flex-1 flex flex-col px-6 md:px-10 lg:pl-[72px] lg:pr-[12px]">
+        <div className={`flex-1 flex flex-col ${isStandalone ? "" : "px-6 md:px-10 lg:pl-[72px] lg:pr-[12px]"}`}>
           {children}
         </div>
       </main>
