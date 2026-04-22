@@ -24,13 +24,63 @@
 }
 
 /* Force hide standard scrollbars if requested globally */
-* {
+*:not(.scrollbar-visible) {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-*::-webkit-scrollbar {
+*:not(.scrollbar-visible)::-webkit-scrollbar {
   display: none;
 }
+
+.scrollbar-visible {
+  scrollbar-width: thin !important;
+  -ms-overflow-style: auto !important;
+}
+.scrollbar-visible::-webkit-scrollbar {
+  display: block !important;
+}
+
+.scrollbar-minimal {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(128, 128, 128, 0.2) transparent !important;
+}
+
+.scrollbar-minimal::-webkit-scrollbar {
+  width: 4px !important;
+  height: 4px !important;
+  display: block !important;
+}
+
+.scrollbar-minimal::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+.scrollbar-minimal::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.15) !important;
+  border-radius: 10px !important;
+}
+
+.scrollbar-minimal::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.scrollbar-minimal::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.scrollbar-minimal::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* Syntax Highlighting Classes to avoid var() collision */
+.sh-keyword { color: var(--sh-keyword); }
+.sh-string { color: var(--sh-string); }
+.sh-comment { color: var(--sh-comment); }
+.sh-tag { color: var(--sh-tag); }
+.sh-attr { color: var(--sh-attr); }
+.sh-value { color: var(--sh-value); }
+.sh-fn { color: var(--sh-fn); }
+.sh-num { color: var(--sh-num); }
 
 @custom-variant dark (&:is(.dark *));
 
@@ -116,12 +166,23 @@
   --ring: #a1ff62;
   --radius: 0.5rem;
   /* Code block */
-  --code-bg: #ebebeb;
-  --code-header: #f4f4f4;
-  --code-border: #e1e1e1;
-  --code-text: #201d1d;
-  --code-label: #817f7f;
-  --code-copy: #4f4c4c;
+  --code-bg: #f6f8fa;
+  --code-header: #ffffff;
+  --code-border: #d0d7de;
+  --code-text: #24292f;
+  --code-label: #57606a;
+  --code-copy: #57606a;
+  
+  /* Syntax Highlighting - Light */
+  --sh-keyword: #cf222e;
+  --sh-string: #0a3069;
+  --sh-comment: #6e7781;
+  --sh-tag: #116329;
+  --sh-attr: #953800;
+  --sh-value: #0a3069;
+  --sh-fn: #8250df;
+  --sh-num: #0550ae;
+  
   /* Gradients */
   --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #f4f4f4 66.65%);
 }
@@ -145,12 +206,23 @@
   --input: #1e1e1e;
   --ring: #a1ff62;
   /* Code block */
-  --code-bg: #212121;
-  --code-header: #151515;
-  --code-border: #1e1e1e;
+  --code-bg: #141212;
+  --code-header: #211e1e;
+  --code-border: #2a2a2a;
   --code-text: #e6edf3;
-  --code-label: rgba(255,255,255,0.45);
-  --code-copy: rgba(255,255,255,0.40);
+  --code-label: #7d8590;
+  --code-copy: #7d8590;
+
+  /* Syntax Highlighting - Dark */
+  --sh-keyword: #ff7b72;
+  --sh-string: #a5d6ff;
+  --sh-comment: #8b949e;
+  --sh-tag: #7ee787;
+  --sh-attr: #ffa657;
+  --sh-value: #a5d6ff;
+  --sh-fn: #d2a8ff;
+  --sh-num: #79c0ff;
+  
   /* Gradients */
   --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #201d1d 66.65%);
 }

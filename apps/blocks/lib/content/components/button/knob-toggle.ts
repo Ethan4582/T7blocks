@@ -96,8 +96,7 @@ export const propsTable =`
 `
 
 // usage of the component 
-export const setupCode1 =`
-export default function RootLayout({
+export const setupCode1 =`export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

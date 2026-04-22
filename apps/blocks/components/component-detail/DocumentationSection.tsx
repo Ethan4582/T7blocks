@@ -14,11 +14,11 @@ function PropsTable({ content }: { content: any }) {
     const rows = lines.slice(1).map(row => row.split('|').filter(Boolean).map(r => r.trim()));
 
     return (
-      <div className="overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 bg-white dark:bg-[#0A0A0A]">
+      <div className="overflow-hidden rounded-2xl border border-black/10 dark:border-white/5 bg-white dark:bg-[#141212]">
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02]">
+              <tr className="border-b border-black/10 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02]">
                 {headers.map((header, i) => (
                   <th key={i} className="px-6 py-4 text-[11px] font-bold text-[#737373] dark:text-muted-foreground/30 uppercase tracking-widest whitespace-nowrap">
                     {header}
@@ -26,7 +26,7 @@ function PropsTable({ content }: { content: any }) {
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-black/5 dark:divide-white/5">
+            <tbody className="divide-y divide-black/10 dark:divide-white/5">
               {rows.map((row, i) => (
                 <tr key={i} className="group hover:bg-black/[0.01] dark:hover:bg-white/[0.01] transition-colors">
                   {row.map((cell, j) => {
@@ -53,7 +53,7 @@ function PropsTable({ content }: { content: any }) {
   }
 
   return (
-    <div className="p-8 rounded-3xl border border-black/5 dark:border-white/5 bg-white dark:bg-[#0A0A0A] text-[#262626] dark:text-muted-foreground/60 leading-relaxed text-[15px]">
+    <div className="p-8 rounded-3xl border border-black/10 dark:border-white/5 bg-white dark:bg-[#141212] text-[#262626] dark:text-muted-foreground/60 leading-relaxed text-[15px]">
       {content}
     </div>
   );
@@ -79,7 +79,6 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
     bun: "/SVG/bun.svg"
   };
 
-  // Helper to format PM files
   const formatPMFiles = (source: any) => {
     if (!source) return [];
     if (typeof source === 'object' && source.pnpm) {
@@ -123,7 +122,7 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
            <h2 className="text-[34px] font-medium tracking-tight text-[#262626] dark:text-foreground font-serif">Documentation</h2>
         </div>
 
-        <div className="flex items-center gap-1 p-1 border border-black/5 dark:border-white/5 rounded-xl bg-white dark:bg-[#0A0A0A] w-fit shadow-2xl">
+        <div className="flex items-center gap-1 p-1 border border-black/5 dark:border-white/5 rounded-xl bg-white dark:bg-[#141212] w-fit shadow-2xl">
           {["CLI", "Code"].map((mode) => {
             const isActive = activeMode === mode;
             return (
@@ -143,15 +142,15 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
         </div>
       </div>
 
-      <div className="space-y-32 animate-in fade-in slide-in-from-bottom-6 duration-1000">
+      <div className="space-y-16 animate-in fade-in slide-in-from-bottom-6 duration-1000"> {/* SECTION_SPACING: Adjust here for vertical gaps between Install/Implementation/Props */}
         
         {activeMode === "CLI" && (
-           <div className="space-y-16" id="install" data-section>
+           <div className="space-y-10" id="install" data-section>
               {hasCLI && (
-                <div className="space-y-10">
+                <div className="space-y-6"> {/* INNER_SPACING: Adjust gap between code and description */}
                   <CodeBlock files={cliFiles} componentId={component.name} />
-                  <div className="p-10 rounded-[32px] bg-black/[0.01] dark:bg-white/[0.01] border border-black/5 dark:border-white/5">
-                    <p className="text-[#404040] dark:text-muted-foreground/60 text-[17px] leading-relaxed max-w-3xl font-medium">
+                  <div className="p-6 rounded-[22px] bg-black/[0.01] dark:bg-white/[0.01] border border-black/5 dark:border-white/5">
+                    <p className="text-[#404040] dark:text-muted-foreground/60 text-[14px] leading-relaxed max-w-3xl font-medium">
                        The T7Blocks CLI allows you to automatically add this component and its dependencies to your project directory. 
                        It handles file creation, dependency management, and style configuration automatically.
                     </p>
@@ -162,19 +161,19 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
         )}
 
         {activeMode === "Code" && (
-           <div className="space-y-32">
+           <div className="space-y-16"> {/* INNER_SPACING: Adjust gap between major blocks */}
               
               {hasInstall && (
-                <div className="space-y-10" id="install" data-section>
-                  <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Install</h3>
+                <div className="space-y-6" id="install" data-section>
+                  <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase px-1">Install</h3>
                   <CodeBlock files={installFiles} componentId={component.name} />
                 </div>
               )}
 
               {hasUsage && (
-                <div className="space-y-10" id="usage" data-section>
+                <div className="space-y-6" id="usage" data-section>
                   <div className="flex items-center justify-between px-1">
-                    <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase">Usage</h3>
+                    <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase">Usage</h3>
                     {detail.dependencies && detail.dependencies.length > 0 && (
                       <div className="flex items-center gap-2">
                          {detail.dependencies.map((dep) => (
@@ -192,8 +191,8 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
 
              
               {hasCode && (
-                <div className="space-y-10" id="code" data-section>
-                  <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Implementation</h3>
+                <div className="space-y-6" id="code" data-section>
+                  <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase px-1">Implementation</h3>
                   <CodeBlock 
                     files={detail.codeBlocks.map(b => ({ 
                       ...b, 
@@ -208,8 +207,8 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
         )}
 
         {hasProps && (
-          <div className="space-y-10" id="props" data-section>
-            <h3 className="text-[14px] font-bold text-[#737373] dark:text-foreground/20 tracking-[0.25em] uppercase px-1">Properties</h3>
+          <div className="space-y-6" id="props" data-section>
+            <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase px-1">Properties</h3>
             <PropsTable content={detail.propsTable || detail.props || ""} />
           </div>
         )}
@@ -217,4 +216,3 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
     </div>
   );
 }
-
