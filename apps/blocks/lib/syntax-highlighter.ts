@@ -11,7 +11,7 @@ export function highlightCode(code: string, language: string): string {
   
   const addToken = (content: string, className: string) => {
     const index = tokens.length;
-    const placeholder = `___SH_TOKEN_${index}___`;
+    const placeholder = `__TOKEN_${index}__`;
     tokens.push(`<span class="${className}">${content}</span>`);
     return placeholder;
   };
@@ -46,7 +46,13 @@ export function highlightCode(code: string, language: string): string {
     text = text.replace(/(\s)([\w-]+)(=)/g, (m, s, a, e) => s + addToken(a, "sh-attr") + e);
   }
 
-  return text.replace(/___SH_TOKEN_(\d+)___/g, (match, index) => {
-    return tokens[parseInt(index, 10)] || match;
-  });
+  let i = 0;
+  while (text.includes("__TOKEN_") && i < 5) {
+    text = text.replace(/__TOKEN_(\d+)__/g, (match, index) => {
+      return tokens[parseInt(index, 10)] || match;
+    });
+    i++;
+  }
+
+  return text;
 }

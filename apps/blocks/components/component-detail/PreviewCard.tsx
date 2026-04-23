@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
 import { ComponentItem } from "@/lib/componentData";
 
 interface PreviewCardProps {
@@ -10,9 +9,9 @@ interface PreviewCardProps {
 export function PreviewCard({ component }: PreviewCardProps) {
   return (
     <div
-      className="relative rounded-xl overflow-hidden border border-border bg-card p-1.5"
+      className="relative rounded-xl overflow-hidden border border-black/5 dark:border-white/5 bg-white dark:bg-[#141212] p-1.5 shadow-2xl"
     >
-      <div className="relative rounded-lg overflow-hidden bg-muted/10 dark:bg-[#0e0e0e] w-full">
+      <div className="relative rounded-lg overflow-hidden bg-black/[0.02] dark:bg-[#0e0e0e] w-full group">
         {component.video ? (
           <video
             src={component.video}

@@ -62,16 +62,22 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
 
   const relatedItems = registry.filter(item => item.name !== entry.name && (item.type === entry.type || item.category === entry.category)).slice(0, 2);
   const hasProps = !!(detail.props || detail.propsTable);
+  
   const availableSections = docMode === "CLI"
     ? [{ id: "install", name: "CLI" }, ...(hasProps ? [{ id: "props", name: "Props" }] : [])]
-    : [{ id: "install", name: "Install" }, ...(detail.setupBlocks?.length ? [{ id: "usage", name: "Usage" }] : []), ...(detail.codeBlocks?.length ? [{ id: "code", name: "Code" }] : []), ...(hasProps ? [{ id: "props", name: "Props" }] : [])];
+    : [
+        { id: "install", name: "Install" }, 
+        ...(detail.codeBlocks?.length ? [{ id: "code", name: "Code" }] : []), 
+        ...(detail.setupBlocks?.length ? [{ id: "usage", name: "Usage" }] : []), 
+        ...(hasProps ? [{ id: "props", name: "Props" }] : [])
+      ];
 
   return (
     <div className="w-full h-[calc(100vh-64px)] lg:h-[calc(100vh-72px)] overflow-hidden">
       <div className="flex flex-col lg:flex-row h-full items-start gap-x-12">
         <div className="flex-1 w-full h-full overflow-y-auto custom-scrollbar pt-6 pb-2 px-1 lg:px-4">
-          <div className="max-w-5xl space-y-12">
-            <div className="space-y-4">
+          <div className="max-w-5xl space-y-10">
+            <div className="space-y-1.5">
               <h1 className="text-4xl md:text-7xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
                 {entry.displayName}
               </h1>
@@ -80,16 +86,16 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
                   {entry.description}
                 </p>
                 <div className="shrink-0 md:pb-1">
-                  <CopyPromptDropdown componentName={entry.displayName} files={[...setupBlocks, ...codeBlocks]} />
+                  <CopyPromptDropdown componentName={entry.displayName} files={[...codeBlocks, ...setupBlocks]} />
                 </div>
               </div>
             </div>
 
-            <div className="-mt-4">
+            <div className="-mt-2">
               <PreviewCard component={componentItem} />
             </div>
 
-            <div className="space-y-32">
+            <div className="space-y-24">
               <DocumentationSection detail={detail} component={componentItem} onModeChange={setDocMode} />
               {relatedItems.length > 0 && (
                 <div className="space-y-10 pt-4 border-t border-white/5">

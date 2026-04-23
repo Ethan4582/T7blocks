@@ -1,8 +1,8 @@
 export const T7blocksCliCommand = {
   pnpmCommand: `pnpm dlx @t7blocks/cli add knob-toggle`,
-  npmCommand: `npm  @t7blocks/cli add knob-toggle`,
+  npmCommand: `npx @t7blocks/cli add knob-toggle`,
   yarnCommand: `yarn dlx @t7blocks/cli add knob-toggle`,
-  bunCommand: `bun  @t7blocks/cli add knob-toggle`,
+  bunCommand: `bunx @t7blocks/cli add knob-toggle`,
 };
 
 export const Code1FileName = 'KnobToggle.tsx';
