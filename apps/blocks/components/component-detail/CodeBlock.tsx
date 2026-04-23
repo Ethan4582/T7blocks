@@ -31,7 +31,7 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
     if (toastLabel.includes('command')) {
        showToast("Install command copied");
     } else {
-       showToast("Command copied");
+       showToast("Code copied to clipboard");
     }
 
     setTimeout(() => setCopied(false), 2000);
@@ -40,51 +40,66 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
     trackCopy(isBash ? "cli" : "manual", componentId);
   };
 
+  const copyFileName = (e: React.MouseEvent, fileName: string) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(fileName);
+    showToast(`File name copied: ${fileName}`);
+  };
+
   const isCLI = ['bash', 'sh', 'terminal'].includes(activeFile.language || language) || activeFile.label.toLowerCase().includes('npm') || activeFile.label.toLowerCase().includes('pnpm');
   const lineCount = activeFile.code.split('\n').length;
   const isLarge = lineCount > 10 || activeFile.code.length > 500;
   const showScrollbars = isLarge && !isCLI;
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-sm transition-all bg-[var(--code-header)] border border-[var(--code-border)]">
-      <div className="flex items-center justify-between px-4 py-2 bg-[var(--code-header)] border-b border-[var(--code-border)]">
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pr-4">
-          {currentFiles.map((file, idx) => (
-            <button
-               key={idx}
-               onClick={() => setActiveFileIndex(idx)}
-               className={`flex items-center gap-2 px-3 py-1.5 text-[11px] font-bold rounded-md transition-all whitespace-nowrap ${
-                 activeFileIndex === idx 
-                   ? "bg-[var(--code-bg)] text-foreground border border-[var(--code-border)] shadow-sm" 
-                   : "text-muted-foreground/50 hover:text-foreground/70"
-               }`}
-            >
-              {file.icon && <img src={file.icon} alt="" className="w-3.5 h-3.5 opacity-80" />}
-              <span>{file.label.split(' ')[0].toLowerCase()}</span>
-            </button>
-          ))}
+    <div className="rounded-xl overflow-hidden bg-[#fafafa] dark:bg-[#171515] border border-black/[0.05] dark:border-white/[0.05]">
+      <div className="flex items-center justify-between px-3 py-2 bg-black/[0.02] dark:bg-white/[0.02] border-b border-black/[0.05] dark:border-white/[0.05]">
+        <div className="flex items-center p-1 bg-black/[0.03] dark:bg-white/[0.03] rounded-lg gap-0.5 overflow-x-auto no-scrollbar">
+          {currentFiles.map((file, idx) => {
+            const fileName = file.label.split(' ')[0].toLowerCase();
+            return (
+              <button
+                key={idx}
+                onClick={() => setActiveFileIndex(idx)}
+                className={`flex items-center gap-2 px-3.5 py-1.5 text-[11px] font-medium rounded-md transition-all whitespace-nowrap ${
+                  activeFileIndex === idx 
+                    ? "bg-white dark:bg-[#222222] text-[#262626] dark:text-white shadow-sm border border-black/[0.05] dark:border-white/[0.05]" 
+                    : "text-[#737373] dark:text-muted-foreground/40 hover:text-[#262626] dark:hover:text-foreground/80"
+                }`}
+              >
+                {file.icon && <img src={file.icon} alt="" className="w-3.5 h-3.5 opacity-80" />}
+                <span 
+                  onClick={(e) => copyFileName(e, fileName)}
+                  className="hover:text-primary transition-colors cursor-copy"
+                >
+                  {fileName}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         <button
           onClick={copyToClipboard}
-          className="flex items-center gap-1.5 text-[11px] transition-all hover:opacity-100 opacity-60 group shrink-0 px-2.5 py-1.5 hover:bg-black/[0.04] dark:hover:bg-white/5 rounded-md"
-          style={{ color: "var(--code-copy)" }}
+          className="flex items-center gap-2 px-4 py-2 text-[11px] font-medium transition-all rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/5 group active:scale-95"
         >
           {copied ? (
             <Check className="w-3.5 h-3.5 text-[#A1FF62]" />
           ) : (
-            <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+            <Copy className="w-3.5 h-3.5 text-[#737373] dark:text-muted-foreground/40 group-hover:text-foreground transition-colors" />
           )}
-          <span className="font-bold text-[10px] uppercase tracking-wider">{copied ? "Copied" : "Copy"}</span>
+          <span className={`uppercase tracking-widest text-[10px] ${copied ? 'text-[#A1FF62]' : 'text-[#737373] dark:text-muted-foreground/40 group-hover:text-foreground'}`}>
+            {copied ? "Copied" : "Copy"}
+          </span>
         </button>
       </div>
 
-      <div className="p-1.5 bg-[var(--code-header)]">
-        <div className={`relative p-6 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-[var(--code-border)] bg-[var(--code-bg)] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
-          <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text text-[var(--code-text)]">
+      <div className="p-1.5">
+        <div className={`relative p-6 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#171515] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
+          <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text text-[var(--code-text)] no-underline decoration-none">
             <code
               dangerouslySetInnerHTML={{ __html: highlightCode(activeFile.code, activeFile.language || (activeFile.label.endsWith('.css') ? 'css' : language)) }}
-              className="block whitespace-pre"
+              className="block whitespace-pre no-underline decoration-none"
             />
           </pre>
         </div>

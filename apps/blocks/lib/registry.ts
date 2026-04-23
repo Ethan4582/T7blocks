@@ -33,20 +33,14 @@ export const toComponentItem = (entry: ComponentEntry): ComponentItem => ({
 export const registry: ComponentEntry[] = [
   {
     id: 1,
-    name: "launch-button",
-    displayName: "Launch Button",
+    name: "dot-launch",
+    displayName: "Dot Launch Button",
     category: "components",
     type: "button",
     isPremium: false,
 
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/launch_button.mp4",
-    demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button",
-    // cliCommand: {
-    //   pnpmCommand: `pnpm dlx @t7blocks/cli add launch-button`,
-    //   npmCommand: `npm  @t7blocks/cli add launch-button`,
-    //   yarnCommand: `yarn dlx @t7blocks/cli add launch-button`,
-    //   bunCommand: `bun  @t7blocks/cli add launch-button`,
-    // },  
+    demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button", 
     description: "A minimalist, premium button featuring a grid-based arrow animation",
     tags: ["Button", "Animation", "framer Motion", "minimal", "framer "],
   },
@@ -59,12 +53,7 @@ export const registry: ComponentEntry[] = [
     isPremium: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/hero/Pop-Hero",
-    // cliCommand: {
-    //   pnpmCommand: `pnpm dlx @t7blocks/cli add pop-hero`,
-    //   npmCommand: `npm  @t7blocks/cli add pop-hero`,
-    //   yarnCommand: `yarn dlx @t7blocks/cli add pop-hero`,
-    //   bunCommand: `bun  @t7blocks/cli add pop-hero`,
-    // },
+
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
     tags: ["hero", "gsap", "nature", "minimal", "framer motion", "framer"],
   },
