@@ -52,7 +52,7 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
   const showScrollbars = isLarge && !isCLI;
 
   return (
-    <div className="rounded-xl overflow-hidden bg-[#fafafa] dark:bg-[#111111] border border-black/[0.05] dark:border-white/[0.05]">
+    <div className="rounded-xl overflow-hidden bg-[#fafafa] dark:bg-[#171515] border border-black/[0.05] dark:border-white/[0.05]">
       <div className="flex items-center justify-between px-3 py-2 bg-black/[0.02] dark:bg-white/[0.02] border-b border-black/[0.05] dark:border-white/[0.05]">
         <div className="flex items-center p-1 bg-black/[0.03] dark:bg-white/[0.03] rounded-lg gap-0.5 overflow-x-auto no-scrollbar">
           {currentFiles.map((file, idx) => {
@@ -95,7 +95,7 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
       </div>
 
       <div className="p-1.5">
-        <div className={`relative p-6 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#0c0c0c] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
+        <div className={`relative p-6 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#171515] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
           <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text text-[var(--code-text)] no-underline decoration-none">
             <code
               dangerouslySetInnerHTML={{ __html: highlightCode(activeFile.code, activeFile.language || (activeFile.label.endsWith('.css') ? 'css' : language)) }}

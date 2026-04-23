@@ -78,11 +78,11 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
         <div className="flex-1 w-full h-full overflow-y-auto custom-scrollbar pt-6 pb-2 px-1 lg:px-4">
           <div className="max-w-5xl space-y-10">
             <div className="space-y-1.5">
-              <h1 className="text-4xl md:text-7xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
+              <h1 className="text-5xl md:text-6xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
                 {entry.displayName}
               </h1>
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <p className="text-[#404040] dark:text-muted-foreground/60 text-[18px] max-w-2xl leading-relaxed font-medium">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <p className="text-[#404040] dark:text-muted-foreground/60 text-[16px] max-w-2xl leading-relaxed font-medium">
                   {entry.description}
                 </p>
                 <div className="shrink-0 md:pb-1">
