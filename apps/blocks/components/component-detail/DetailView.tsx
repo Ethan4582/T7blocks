@@ -119,7 +119,7 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
           <div className="mb-4">
             <SidebarActions demoUrl={entry.demoUrl} />
           </div>
-          <MetadataSidebar component={componentItem} activeSection={activeSection} availableSections={availableSections} bugReportUrl="https://github.com/Ethan4582/T7blocks/issues" featureRequestUrl="https://github.com/Ethan4582/T7blocks/issues" />
+          <MetadataSidebar component={componentItem} activeSection={activeSection} availableSections={availableSections} />
         </div>
       </div>
     </div>

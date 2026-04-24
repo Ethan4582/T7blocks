@@ -72,13 +72,12 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
             href="https://github.com/Ethan4582/T7blocks"
             target="_blank"
             onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "github", location: "navbar" })}
-            className="flex items-center justify-center w-9 h-9 rounded-full border border-border/60 bg-muted/20 hover:bg-muted text-muted-foreground hover:text-foreground transition-all group relative shrink-0"
-            title={`GitHub Repository${stars ? ` (${stars})` : ''}`}
+            className="flex items-center gap-2.5 px-3 h-9 rounded-xl border border-border/60 bg-muted/20 hover:bg-muted transition-all shrink-0 group"
           >
-            <img src="/SVG/github.svg" alt="GitHub" className="w-4 h-4 transition-colors" />
+            <img src="/SVG/github.svg" alt="GitHub" className="w-4 h-4 dark:invert opacity-80 group-hover:opacity-100 transition-opacity" />
             {stars !== null && (
-              <span className="absolute -top-1.5 -right-1.5 bg-[#A1FF62] text-black text-[9px] font-black px-1.5 rounded-full border border-white dark:border-black py-0.5 scale-90 group-hover:scale-100 transition-transform">
-                {stars > 999 ? (stars / 1000).toFixed(1) + "k" : stars}
+              <span className="text-[13px] font-bold text-foreground dark:text-[#A1FF62]">
+                {stars > 999 ? (stars / 1000).toFixed(1) + "K" : stars}
               </span>
             )}
           </Link>
