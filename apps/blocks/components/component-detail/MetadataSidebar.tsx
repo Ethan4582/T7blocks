@@ -6,18 +6,12 @@ import { trackNavIntent, trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/an
 
 interface MetadataSidebarProps {
   component: ComponentItem;
-  bugReportUrl: string;
-  featureRequestUrl: string;
-  editUrl?: string;
   activeSection?: string;
   availableSections?: { id: string; name: string }[];
 }
 
 export function MetadataSidebar({
   component,
-  bugReportUrl,
-  featureRequestUrl,
-  editUrl = "#",
   activeSection = "install",
   availableSections = [],
 }: MetadataSidebarProps) {
@@ -89,7 +83,7 @@ export function MetadataSidebar({
         </h3>
         <div className="space-y-1 ml-px">
           <a
-            href={bugReportUrl}
+            href={`https://github.com/Ethan4582/T7blocks/issues/new?template=bug_report.md&title=[BUG]%20${component.category}/${component.slug || component.name}`}
             target="_blank"
             className="flex items-center gap-3 text-[#5a5a5a] dark:text-[#bdbdbd] hover:text-foreground transition-all duration-200"
           >
@@ -99,7 +93,7 @@ export function MetadataSidebar({
             </span>
           </a>
           <a
-            href={featureRequestUrl}
+            href={`https://github.com/Ethan4582/T7blocks/issues/new?template=feature_request.md&title=[FEATURE]%20${component.category}/${component.slug || component.name}`}
             target="_blank"
             className="flex items-center gap-3 text-[#5a5a5a] dark:text-[#bdbdbd] hover:text-foreground transition-all duration-200"
           >
@@ -109,13 +103,13 @@ export function MetadataSidebar({
             </span>
           </a>
           <a
-            href={editUrl}
+            href="https://github.com/Ethan4582/T7blocks/issues/new?template=new-block.md&title=[NEW%20BLOCK]%20"
             target="_blank"
             className="flex items-center gap-3 text-[#5a5a5a] dark:text-[#bdbdbd] hover:text-foreground transition-all duration-200"
           >
             <SquarePen className="w-3.5 h-3.5 text-blue-400/70" />
             <span className="text-[13px] font-medium tracking-tight">
-              Edit this page
+              Add new block
             </span>
           </a>
         </div>
