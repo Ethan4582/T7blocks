@@ -83,9 +83,9 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
   return (
     <div className="w-full h-[calc(100vh-64px)] lg:h-[calc(100vh-72px)] overflow-hidden">
       <div className="flex flex-col lg:flex-row h-full items-start gap-x-12">
-        <div className="flex-1 w-full h-full overflow-y-auto custom-scrollbar pt-6 pb-2 px-1 lg:px-4">
+        <article className="flex-1 w-full h-full overflow-y-auto no-scrollbar pt-6 pb-2 px-1 lg:px-4">
           <div className="max-w-5xl space-y-10">
-            <div className="space-y-1.5">
+            <header className="space-y-1.5">
               <h1 className="text-5xl md:text-6xl font-medium tracking-tight text-foreground font-serif leading-[1.1]">
                 {entry.displayName}
               </h1>
@@ -97,7 +97,7 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
                   <CopyPromptDropdown componentName={entry.displayName} files={[...codeBlocks, ...setupBlocks]} />
                 </div>
               </div>
-            </div>
+            </header>
 
             <div className="-mt-2">
               <PreviewCard component={componentItem} />
@@ -106,21 +106,21 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
             <div className="space-y-24">
               <DocumentationSection detail={detail} component={componentItem} onModeChange={setDocMode} />
               {relatedItems.length > 0 && (
-                <div className="space-y-10 pt-4 border-t border-white/5">
+                <section className="space-y-10 pt-4 border-t border-white/5" aria-label="Related resources">
                   <h2 className="text-[28px] md:text-[32px] font-medium tracking-tight text-foreground font-serif">Related resources</h2>
                   <RelatedResources items={relatedItems} />
-                </div>
+                </section>
               )}
             </div>
           </div>
-        </div>
+        </article>
 
-        <div className="hidden lg:block w-[280px] h-full overflow-y-auto no-scrollbar shrink-0 pt-6 pr-4">
-          <div className="mb-4">
+        <aside className="hidden lg:block w-[280px] h-full overflow-y-auto no-scrollbar shrink-0 pt-6 pr-4">
+          <section className="mb-4" aria-label="Component actions">
             <SidebarActions demoUrl={entry.demoUrl} />
-          </div>
+          </section>
           <MetadataSidebar component={componentItem} activeSection={activeSection} availableSections={availableSections} />
-        </div>
+        </aside>
       </div>
     </div>
   );

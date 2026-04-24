@@ -17,11 +17,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://demo.t7blocks.xyz"),
   title: {
-    default: "T7Blocks | Premium UI Components",
-    template: "%s | T7Blocks",
+    default: "T7BLOCKS Demos | Interactive Component Showcase",
+    template: "%s | T7BLOCKS Demo",
   },
-  description: "Handcrafted, high-performance UI components and interactive demos by T7Blocks.",
+  description: "Live interactive demos and prop controls for T7BLOCKS animated components.",
   icons: {
     icon: "/assets/logo.png",
     apple: "/assets/logo.png",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://demo.t7blocks.xyz",
-    siteName: "T7Blocks Gallery",
+    siteName: "T7BLOCKS Demos",
   },
 };
 

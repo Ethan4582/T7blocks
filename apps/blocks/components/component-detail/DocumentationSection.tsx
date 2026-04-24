@@ -105,42 +105,35 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
       <div className="space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-1000">
         
         {activeMode === "CLI" && (
-           <div className="space-y-10" id="install" data-section>
+           <section className="space-y-10" id="install" data-section aria-label="Installation via CLI">
               {hasCLI && (
                 <div className="space-y-6">
-                  <CodeBlock files={cliFiles} componentId={component.name} />
+                  <CodeBlock files={cliFiles} componentId={component.name} language="bash" />
                 </div>
               )}
-           </div>
+           </section>
         )}
 
         {activeMode === "Code" && (
            <div className="space-y-12">
               {hasInstall && (
-                <div className="space-y-6 -mt-2" id="install" data-section>
+                <section className="space-y-6 -mt-2" id="install" data-section aria-label="Manual installation">
                   <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase px-1">Install</h3>
-                  <CodeBlock files={installFiles} componentId={component.name} />
-                </div>
+                  <CodeBlock files={installFiles} componentId={component.name} language="bash" />
+                </section>
               )}
 
               {hasCode && (
-                <div className="space-y-6" id="code" data-section>
+                <section className="space-y-6" id="code" data-section aria-label="Component implementation">
                   <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase px-1">Implementation</h3>
-                  <CodeBlock 
-                    files={detail.codeBlocks.map(b => ({ 
-                      ...b, 
-                      label: b.label.toLowerCase(),
-                      language: b.label.toLowerCase().endsWith('.css') ? 'css' : 'typescript'
-                    }))} 
-                    componentId={component.name}
-                  />
-                </div>
+                  <CodeBlock files={detail.codeBlocks} componentId={component.name} language="typescript" />
+                </section>
               )}
            </div>
         )}
 
         {hasUsage && (
-          <div className="space-y-6" id="usage" data-section>
+          <section className="space-y-6" id="usage" data-section aria-label="Component usage">
             <div className="flex items-center justify-between px-1">
               <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase">Usage</h3>
               {detail.dependencies && detail.dependencies.length > 0 && (
@@ -151,18 +144,15 @@ export function DocumentationSection({ detail, component, onModeChange }: Docume
                 </div>
               )}
             </div>
-            <CodeBlock 
-              files={detail.setupBlocks?.map(b => ({ ...b, label: b.label.toLowerCase() }))} 
-              componentId={component.name}
-            />
-          </div>
+            <CodeBlock files={detail.setupBlocks} componentId={component.name} language="typescript" />
+          </section>
         )}
 
         {hasProps && (
-          <div className="space-y-6" id="props" data-section>
+          <section className="space-y-6" id="props" data-section aria-label="Component properties">
             <h3 className="text-[14px] font-bold text-[#737373] dark:text-white tracking-[0.25em] uppercase px-1">Properties</h3>
             <PropsTable content={detail.propsTable || detail.props || ""} />
-          </div>
+          </section>
         )}
       </div>
     </div>

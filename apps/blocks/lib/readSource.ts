@@ -15,8 +15,8 @@ export function readSourceFile(category: string, type: string, fileName: string)
     return dirs;
   };
 
-  const localDirs = getSearchDirectories(process.cwd());
-  const fallbackDirs = getSearchDirectories(path.join(process.cwd(), "..", ".."));
+  const localDirs = getSearchDirectories(path.join(/*turbopackIgnore: true*/ process.cwd()));
+  const fallbackDirs = getSearchDirectories(path.join(/*turbopackIgnore: true*/ process.cwd(), "..", ".."));
   
   const allDirs = [...localDirs, ...fallbackDirs];
 

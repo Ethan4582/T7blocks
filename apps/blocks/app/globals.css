@@ -13,7 +13,6 @@
     font-family: var(--font-display);
   }
 
-  /* Reinforced global hide if needed */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -23,7 +22,6 @@
   }
 }
 
-/* Force hide standard scrollbars if requested globally */
 *:not(.scrollbar-visible) {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -64,58 +62,29 @@
   background: transparent !important;
 }
 
-.scrollbar-minimal::-webkit-scrollbar-track {
-  background: transparent !important;
-}
-
 .scrollbar-minimal::-webkit-scrollbar-corner {
   background: transparent !important;
 }
 
-/* Syntax Highlighting Classes to avoid var() collision */
-.sh-keyword { color: var(--sh-keyword); }
-.sh-string { color: var(--sh-string); }
-.sh-comment { color: var(--sh-comment); }
-.sh-tag { color: var(--sh-tag); }
-.sh-attr { color: var(--sh-attr); }
-.sh-value { color: var(--sh-value); }
-.sh-fn { color: var(--sh-fn); }
-.sh-num { color: var(--sh-num); }
-
 @custom-variant dark (&:is(.dark *));
 
-/* ===================================================================
-   Font System
-   Display: Instrument Serif | Body: Plus Jakarta Sans | Mono: JetBrains Mono
-   Loaded via next/font/google in layout.tsx.
-   Haffer / Brisa Pro: referenced from new_global.style.css as design tokens.
-   =================================================================== */
-
-/* ===================================================================
-   Raw Color Palette — shared tokens
-   =================================================================== */
 :root {
-  /* Google Font variables (loaded in layout.tsx) */
   --font-display: var(--font-instrument-serif), Georgia, serif;
   --font-body: var(--font-jetbrains), 'JetBrains Mono', monospace;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
 
-  /* Design system font family tokens (from new_global.style.css) */
   --font-haffer-xh: 'Haffer XH', var(--font-jetbrains), monospace;
   --font-brisa-pro: 'Brisa Pro', Georgia, serif;
   --font-haffer-vf: 'Haffer VF', var(--font-jetbrains), monospace;
   --font-haffer-mono: 'Haffer Mono', var(--font-jetbrains), monospace;
 
-  /* Type size tokens */
   --text-13: 13px;
   --text-14: 14px;
   --text-15: 15px;
   --text-16: 16px;
   --text-24: 24px;
-  --text-25: 25px;
   --text-42: 42px;
 
-  /* Tracking tokens */
   --tracking-neg-1-26: -1.26px;
   --tracking-neg-0-25: -0.25px;
   --tracking-neg-0-48: -0.48px;
@@ -123,7 +92,6 @@
   --tracking-neg-0-225: -0.225px;
   --tracking-neg-0-14: -0.14px;
 
-  /* Raw palette */
   --color-white: #ffffff;
   --color-ghost-white: #f9f9f9;
   --color-white-smoke: #f4f4f4;
@@ -142,13 +110,8 @@
   --color-black-1: #151313;
   --color-black: #000000;
 
-  /* Accent / Brand */
   --color-green: #a1ff62;
-  --color-blue: #0000ee;
-  --color-tomato: #f84131;
 
-  /* ---- Light-mode (default) ---- */
-  /* Backgrounds */
   --background: #f4f4f4;
   --foreground: #201d1d;
   --sidebar: #ffffff;
@@ -156,7 +119,6 @@
   --sidebar-hover: #eaeaea;
   --card: #ffffff;
   --card-foreground: #201d1d;
-  /* UI tokens */
   --accent: #a1ff62;
   --accent-foreground: #201d1d;
   --muted: #eaeaea;
@@ -165,7 +127,6 @@
   --input: #eaeaea;
   --ring: #a1ff62;
   --radius: 0.5rem;
-  /* Code block */
   --code-bg: #f6f8fa;
   --code-header: #ffffff;
   --code-border: #d0d7de;
@@ -173,7 +134,6 @@
   --code-label: #57606a;
   --code-copy: #57606a;
   
-  /* Syntax Highlighting - Light */
   --sh-keyword: #cf222e;
   --sh-string: #0a3069;
   --sh-comment: #6e7781;
@@ -183,13 +143,10 @@
   --sh-fn: #8250df;
   --sh-num: #0550ae;
   
-  /* Gradients */
   --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #f4f4f4 66.65%);
 }
 
-/* ---- Dark-mode ---- */
 :root.dark {
-  /* Backgrounds */
   --background: #141212;
   --foreground: #f4f4f4;
   --sidebar: #211e1e;
@@ -197,7 +154,6 @@
   --sidebar-hover: #262626;
   --card: #211e1e;
   --card-foreground: #f4f4f4;
-  /* UI tokens */
   --accent: #a1ff62;
  
   --muted: #1e1e1e;
@@ -205,7 +161,6 @@
   --border: #2a2a2a;
   --input: #1e1e1e;
   --ring: #a1ff62;
-  /* Code block */
   --code-bg: #141212;
   --code-header: #211e1e;
   --code-border: #2a2a2a;
@@ -213,7 +168,6 @@
   --code-label: #7d8590;
   --code-copy: #7d8590;
 
-  /* Syntax Highlighting - Dark */
   --sh-keyword: #ff7b72;
   --sh-string: #a5d6ff;
   --sh-comment: #8b949e;
@@ -223,13 +177,9 @@
   --sh-fn: #d2a8ff;
   --sh-num: #79c0ff;
   
-  /* Gradients */
   --gradient-radial: radial-gradient(circle at 100% 100%, #000000 66.65%, #201d1d 66.65%);
 }
 
-/* ===================================================================
-   Tailwind Theme Bridge
-   =================================================================== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -253,9 +203,6 @@
   --font-brisa-pro: var(--font-brisa-pro);
 }
 
-/* ===================================================================
-   Global Base Styles
-   =================================================================== */
 @layer base {
   * {
     border-color: var(--border);
@@ -311,17 +258,11 @@
     scroll-behavior: smooth;
   }
 
-  /* Light mode icon handling — SVG icons that use dark:invert */
   :root:not(.dark) img[src$=".svg"] {
     filter: none;
   }
 }
 
-/* ===================================================================
-   Typography – Semantic type styles
-   =================================================================== */
-
-/* — From new_global.style.css design system — */
 .type-h1 {
   font-family: var(--font-haffer-xh);
   font-size: var(--text-42);
@@ -384,14 +325,6 @@
   font-weight: 400;
   line-height: 1.00;
   letter-spacing: var(--tracking-neg-0-16);
-}
-
-/* — Legacy / Extended type tokens — */
-.type-display-xl {
-  font-family: var(--font-display);
-  font-size: clamp(72px, 10vw, 192px);
-  font-weight: 400;
-  line-height: 1.00;
 }
 
 .type-h3 {
@@ -484,9 +417,6 @@
   letter-spacing: 1px;
 }
 
-/* ===================================================================
-   Marquee Animation
-   =================================================================== */
 @keyframes marquee-scroll {
   0% {
     transform: translateX(0);
@@ -503,7 +433,6 @@
   animation: marquee-scroll 25s linear infinite;
 }
 
-/* Wave animation for hand icon */
 @keyframes wave {
   0% { transform: rotate(0deg); }
   10% { transform: rotate(14deg); }
@@ -519,4 +448,15 @@
   display: inline-block;
   transform-origin: 70% 70%;
   animation: wave 3s infinite ease-in-out;
+}
+
+@layer utilities {
+  .sh-keyword { color: var(--sh-keyword) !important; }
+  .sh-string { color: var(--sh-string) !important; }
+  .sh-comment { color: var(--sh-comment) !important; }
+  .sh-tag { color: var(--sh-tag) !important; }
+  .sh-attr { color: var(--sh-attr) !important; }
+  .sh-value { color: var(--sh-value) !important; }
+  .sh-fn { color: var(--sh-fn) !important; }
+  .sh-num { color: var(--sh-num) !important; }
 }

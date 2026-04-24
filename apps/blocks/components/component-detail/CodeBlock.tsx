@@ -87,9 +87,20 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
 
       <div className="p-1">
         <div className={`relative p-3.5 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#171515] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
-          <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text text-[var(--code-text)] no-underline decoration-none">
+          <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text no-underline decoration-none">
             <code
-              dangerouslySetInnerHTML={{ __html: highlightCode(activeFile.code, activeFile.language || (activeFile.label.endsWith('.css') ? 'css' : language)) }}
+              dangerouslySetInnerHTML={{ 
+                __html: highlightCode(
+                  activeFile.code, 
+                  activeFile.language || 
+                  (activeFile.label.toLowerCase().endsWith('.css') ? 'css' : 
+                   activeFile.label.toLowerCase().endsWith('.tsx') || 
+                   activeFile.label.toLowerCase().endsWith('.ts') || 
+                   activeFile.label.toLowerCase().endsWith('.js') || 
+                   activeFile.label.toLowerCase().endsWith('.jsx') ? 'typescript' : 
+                   language)
+                ) 
+              }}
               className="block whitespace-pre no-underline decoration-none"
             />
           </pre>

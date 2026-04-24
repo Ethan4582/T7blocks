@@ -31,18 +31,39 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "T7BLOCK — Component Library by t7labs",
-  description:
-    "A premium, modular component library for modern web applications. Built by t7labs.",
+  metadataBase: new URL("https://t7blocks.xyz"),
+  title: {
+    default: "T7BLOCKS — Premium Animated Component Library",
+    template: "%s | T7BLOCKS"
+  },
+  description: "High-end animated components for modern web applications. Motion quality of premium Framer templates and agency landing pages.",
+  keywords: ["react", "nextjs", "framer motion", "gsap", "animations", "components", "ui library", "motion design"],
+  authors: [{ name: "t7labs" }],
+  creator: "t7labs",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://t7blocks.xyz",
+    title: "T7BLOCKS — Premium Animated Component Library",
+    description: "High-end animated components for modern web applications.",
+    siteName: "T7BLOCKS",
+    images: [{
+      url: "/assets/logo.png",
+      width: 1200,
+      height: 630,
+      alt: "T7BLOCKS"
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "T7BLOCKS — Premium Animated Component Library",
+    description: "High-end animated components for modern web applications.",
+    images: ["/assets/logo.png"],
+    creator: "@t7labs",
+  },
   icons: {
     icon: "/assets/logo.png",
     apple: "/assets/logo.png",
-  },
-  openGraph: {
-    title: "T7block — Component Library",
-    description:
-      "A premium, modular component library for modern web applications. Built by t7labs.",
-    images: ["/assets/logo.png"],
   },
 };
 
