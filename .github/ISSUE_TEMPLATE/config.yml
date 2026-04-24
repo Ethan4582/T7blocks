@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/Ethan4582/T7blocks/discussions
+    about: Ask questions, share ideas, and showcase your work.
+  - name: 💖 Sponsor T7blocks
+    url: https://github.com/sponsors/Ethan4582
+    about: Help us keep the motion high-end and the library growing.

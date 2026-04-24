@@ -83,7 +83,7 @@ export function MetadataSidebar({
         </h3>
         <div className="space-y-1 ml-px">
           <a
-            href={`https://github.com/Ethan4582/T7blocks/issues/new?template=bug_report.md&title=[BUG]%20${component.category}/${component.slug || component.name}`}
+            href={`https://github.com/Ethan4582/T7blocks/issues/new?template=1-bug_report.md&title=[BUG]%20${component.category}/${component.slug || component.name}`}
             target="_blank"
             className="flex items-center gap-3 text-[#5a5a5a] dark:text-[#bdbdbd] hover:text-foreground transition-all duration-200"
           >
@@ -93,7 +93,7 @@ export function MetadataSidebar({
             </span>
           </a>
           <a
-            href={`https://github.com/Ethan4582/T7blocks/issues/new?template=feature_request.md&title=[FEATURE]%20${component.category}/${component.slug || component.name}`}
+            href={`https://github.com/Ethan4582/T7blocks/issues/new?template=2-feature_request.md&title=[FEATURE]%20${component.category}/${component.slug || component.name}`}
             target="_blank"
             className="flex items-center gap-3 text-[#5a5a5a] dark:text-[#bdbdbd] hover:text-foreground transition-all duration-200"
           >
@@ -103,7 +103,7 @@ export function MetadataSidebar({
             </span>
           </a>
           <a
-            href="https://github.com/Ethan4582/T7blocks/issues/new?template=new-block.md&title=[NEW%20BLOCK]%20"
+            href="https://github.com/Ethan4582/T7blocks/issues/new?template=3-new-block.md&title=[NEW%20BLOCK]%20"
             target="_blank"
             className="flex items-center gap-3 text-[#5a5a5a] dark:text-[#bdbdbd] hover:text-foreground transition-all duration-200"
           >
