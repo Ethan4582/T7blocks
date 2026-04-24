@@ -83,7 +83,7 @@ export function SearchModal() {
       />
 
     
-      <div className="relative w-full max-w-xl bg-white dark:bg-[#0F0F0F] border border-black/5 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div className="relative w-full max-w-xl bg-white dark:bg-[#171515] border border-black/5 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
         <div className="flex items-center px-4 py-4 border-b border-black/5 dark:border-white/5">
           <Search className="w-5 h-5 text-[#737373] dark:text-muted-foreground/50 mr-3" />
           <input

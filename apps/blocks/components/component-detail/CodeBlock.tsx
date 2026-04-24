@@ -40,12 +40,6 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
     trackCopy(isBash ? "cli" : "manual", componentId);
   };
 
-  const copyFileName = (e: React.MouseEvent, fileName: string) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(fileName);
-    showToast(`File name copied: ${fileName}`);
-  };
-
   const isCLI = ['bash', 'sh', 'terminal'].includes(activeFile.language || language) || activeFile.label.toLowerCase().includes('npm') || activeFile.label.toLowerCase().includes('pnpm');
   const lineCount = activeFile.code.split('\n').length;
   const isLarge = lineCount > 10 || activeFile.code.length > 500;
@@ -68,10 +62,7 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
                 }`}
               >
                 {file.icon && <img src={file.icon} alt="" className="w-3.5 h-3.5 opacity-80" />}
-                <span 
-                  onClick={(e) => copyFileName(e, fileName)}
-                  className="hover:text-primary transition-colors cursor-copy"
-                >
+                <span>
                   {fileName}
                 </span>
               </button>
@@ -94,8 +85,8 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
         </button>
       </div>
 
-      <div className="p-1.5">
-        <div className={`relative p-6 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#171515] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
+      <div className="p-1">
+        <div className={`relative p-3.5 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#171515] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
           <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text text-[var(--code-text)] no-underline decoration-none">
             <code
               dangerouslySetInnerHTML={{ __html: highlightCode(activeFile.code, activeFile.language || (activeFile.label.endsWith('.css') ? 'css' : language)) }}

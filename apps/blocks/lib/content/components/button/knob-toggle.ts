@@ -19,7 +19,9 @@ export const propsTable =`
 `
 
 // usage of the component 
-export const setupCode1 =`export default function RootLayout({
+export const setupCode1 = `import { KnobToggle } from "@/components/T7blocks/KnobToggle";
+
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -27,7 +29,7 @@ export const setupCode1 =`export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className=\`$\{geistSans.variable} $\{geistMono.variable} antialiased\`
+        className={\`\${geistSans.variable} \${geistMono.variable} antialiased\`}
       >
         {children}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -36,19 +38,23 @@ export const setupCode1 =`export default function RootLayout({
       </body>
     </html>
   );
-}
-`
+}`;
 
 export const setupCode1FileName="layout.tsx";
 export const setupCode2FileName="global.css";
-export const setupCode2 =`
-:root {
+export const setupCode2 =`:root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-:root.dark {
+.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 `

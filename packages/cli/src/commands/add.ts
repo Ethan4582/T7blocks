@@ -58,6 +58,8 @@ export const addCommand = new Command('add')
       if (entry.dependencies.length > 0) {
         console.log(pc.dim(`\nInstall dependencies:`));
         console.log(pc.cyan(`  pnpm add ${entry.dependencies.join(' ')}\n`));
+        // or npm install command
+        console.log(pc.cyan(`  npm install ${entry.dependencies.join(' ')}\n`));
       }
     } catch (err) {
       spinner.fail(pc.red('Failed to add component'));
