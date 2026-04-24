@@ -4,6 +4,7 @@ import {
   Instrument_Serif,
   Plus_Jakarta_Sans,
   JetBrains_Mono,
+  Libre_Caslon_Text,
 } from "next/font/google";
 import { LayoutWrapper } from "@/components/common/layout-wrapper";
 import { ThemeProvider } from "@/components/common/theme-provider";
@@ -30,13 +31,21 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const libreCaslon = Libre_Caslon_Text({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["italic"],
+  variable: "--font-libre-caslon",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://t7blocks.xyz"),
   title: {
-    default: "T7BLOCKS — Premium Animated Component Library",
+    default: "T7BLOCKS — Premium Component Library",
     template: "%s | T7BLOCKS"
   },
-  description: "High-end animated components for modern web applications. Motion quality of premium Framer templates and agency landing pages.",
+  description: "High-end components for modern web applications. Motion quality of premium Framer templates and agency landing pages.",
   keywords: ["react", "nextjs", "framer motion", "gsap", "animations", "components", "ui library", "motion design"],
   authors: [{ name: "t7labs" }],
   creator: "t7labs",
@@ -44,7 +53,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://t7blocks.xyz",
-    title: "T7BLOCKS — Premium Animated Component Library",
+    title: "T7BLOCKS — Premium  Component Library",
     description: "High-end animated components for modern web applications.",
     siteName: "T7BLOCKS",
     images: [{
@@ -56,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "T7BLOCKS — Premium Animated Component Library",
+    title: "T7BLOCKS — Premium  Component Library",
     description: "High-end animated components for modern web applications.",
     images: ["/assets/logo.png"],
     creator: "@t7labs",
@@ -80,7 +89,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-background`}
+      className={`scrollbar-hide ${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} ${libreCaslon.variable} bg-background`}
     >
       <head>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="eba86b33-bfb7-4084-850e-76db8408fef4"></script>

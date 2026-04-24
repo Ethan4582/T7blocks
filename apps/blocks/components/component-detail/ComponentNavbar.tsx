@@ -118,6 +118,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
 
           <Link
             href="/waitlist"
+            target="_blank"
             onClick={() => trackEvent(ANALYTICS_EVENTS.UPGRADE_CLICKED, { location: "navbar" })}
             className="flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-lg text-[11px] font-bold transition-all hover:opacity-90 active:scale-[0.98] shrink-0"
           >
@@ -137,7 +138,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
           <Link href="/bookmarks" className="block py-3 text-foreground font-medium border-b border-border/30" onClick={() => setMobileMenuOpen(false)}>Bookmarks</Link>
           <a href={bugReportUrl} target="_blank" className="block py-3 text-foreground font-medium border-b border-border/30">Report Bug</a>
           <a href="https://github.com/sponsors/Ethan4582" target="_blank" className="block py-3 text-foreground font-medium border-b border-border/30">Sponsor</a>
-          <Link href="/waitlist" className="block py-3 text-foreground font-bold text-[#A1FF62]" onClick={() => setMobileMenuOpen(false)}>Get All-Access</Link>
+          <Link href="/waitlist" target="_blank" className="block py-3 text-foreground font-bold text-[#A1FF62]" onClick={() => setMobileMenuOpen(false)}>Get All-Access</Link>
         </div>
       )}
     </>

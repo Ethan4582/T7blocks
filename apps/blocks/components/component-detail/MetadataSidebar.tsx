@@ -121,7 +121,7 @@ export function MetadataSidebar({
 
       <div className="px-1 mt-0">
         <a
-          href="https://github.com/sponsors/t7labs"
+          href="https://github.com/sponsors/Ethan4582/"
           target="_blank"
           onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "sponsor", location: "metadata_sidebar" })}
           className="flex items-center justify-center gap-2 w-full h-10 bg-black/[0.05] hover:bg-black/[0.08] dark:bg-white/5 dark:hover:bg-white/10 border border-black/5 dark:border-white/5 rounded-[8px] transition-all duration-300 group shadow-sm text-foreground no-underline"

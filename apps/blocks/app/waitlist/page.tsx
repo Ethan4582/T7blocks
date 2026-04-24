@@ -1,62 +1,145 @@
 "use client";
 
-import { Lock, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
+import { FAQ_DATA } from "@/lib/waitlist/faqData";
+import Image from "next/image";
 
-export default function WaitlistPage() {
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="relative w-full">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full text-left backdrop-blur-[6px] bg-white/5 border border-white/10 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 group"
+      >
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-medium text-white text-[15px] leading-none truncate pr-4">
+            {question}
+          </p>
+          <div className="relative w-2.5 h-2.5 shrink-0">
+            <div className={`absolute w-3 h-[1.2px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+            <div className={`absolute w-[1.2px] h-3 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`} />
+          </div>
+        </div>
+        {isOpen && (
+          <div className="mt-3 text-white/60 text-sm leading-relaxed animate-in fade-in slide-in-from-top-1 duration-200">
+            {answer}
+          </div>
+        )}
+      </button>
+    </div>
+  );
+}
+
+export default function WaitlistingPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setSubmitted(true);
+    trackEvent(ANALYTICS_EVENTS.WAITLIST_JOINED, { email });
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
-      <div className="w-16 h-16 rounded-3xl bg-accent/20 border border-border flex items-center justify-center mb-8 rotate-3 shadow-xl">
-        <Lock className="w-8 h-8 text-accent-foreground" />
-      </div>
+    <div className="text-white text-[16px] leading-[normal] w-full font-sans">
+      <div className="bg-[#151518] text-[12px] min-h-screen">
+        <div className="content-center items-center flex flex-col h-min justify-start overflow-hidden relative bg-[#151518] gap-[0px] min-h-[900px]">
 
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 max-w-2xl px-4">
-        Unlock the Full Vault of Premium UI Components
-      </h1>
-      
-      <p className="text-muted-foreground text-lg mb-12 max-w-[500px]">
-        Get all-access to my private collection of high-performance React blocks. Join the waitlist for early access.
-      </p>
-
-      {!submitted ? (
-        <form 
-          onSubmit={(e) => { 
-            e.preventDefault(); 
-            setSubmitted(true); 
-            trackEvent(ANALYTICS_EVENTS.WAITLIST_JOINED, { email });
-          }}
-          className="w-full max-w-md flex flex-col md:flex-row gap-3 bg-muted/20 p-2 rounded-2xl border border-border/40 mb-16"
-        >
-          <input 
-            type="email" 
-            required 
-            placeholder="enter your email..."
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 bg-transparent px-4 py-3 focus:outline-none placeholder:text-muted-foreground/30 text-sm font-medium"
-          />
-          <button 
-            type="submit"
-            className="group px-6 py-3 bg-foreground text-background rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-95"
+          {/* Background Gradients */}
+          <div
+            aria-label="Blur 1"
+            className="absolute w-[31%] left-[-80px] top-[-80px] aspect-[0.824324_/_1] blur-[100px] -rotate-45 z-[0] shrink-[0] opacity-[0.9] pointer-events-none"
           >
-            <span>Secure My Spot</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
-        </form>
-      ) : (
-        <div className="mb-16 py-4 px-8 bg-accent/10 border border-accent/20 rounded-2xl text-accent-foreground font-semibold flex items-center gap-3 animate-in fade-in zoom-in duration-500">
-           ✨ You&apos;re on the list! We&apos;ll notify you soon.
-        </div>
-      )}
+            <div className="overflow-hidden absolute w-full left-0 top-0 aspect-[0.831818_/_1] bg-[rgb(255,_139,_33)] blur-[100px] rounded-[100%]"></div>
+            <div className="aspect-square overflow-hidden absolute w-[60%] left-[50%] top-0 bg-white translate-x-[-50%] rounded-[100%]"></div>
+          </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40">
-           {["200+ Blocks", "Framer Motion", "GSAP Ready", "Lifetime Access"].map((item) => (
-             <span key={item} className="text-xs font-mono uppercase tracking-[0.2em]">{item}</span>
-           ))}
+          <div
+            aria-label="Blur 2"
+            className="absolute w-[31%] top-[-80px] right-[-80px] aspect-[0.824324_/_1] blur-[100px] rotate-45 z-[0] shrink-[0] opacity-[0.9] pointer-events-none"
+          >
+            <div className="overflow-hidden absolute w-full left-0 top-0 aspect-[0.831818_/_1] bg-[rgb(255,_139,_33)] blur-[100px] rounded-[100%]"></div>
+            <div className="aspect-square overflow-hidden absolute w-[60%] left-[50%] top-0 bg-white translate-x-[-50%] rounded-[100%]"></div>
+          </div>
+
+          {/* Header */}
+          <header className="relative z-10 flex justify-center -mb-8 mt-8">
+            <div className="w-[160px] h-[104px]">
+              <Image
+                src="/wait.png"
+                alt="T7 Block Logo"
+                width={160}
+                height={104}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </header>
+
+          {/* Hero Section */}
+          <main className="content-center items-center flex flex-col h-min justify-center overflow-hidden relative w-full gap-[10px] max-w-[600px] pt-4 pr-10 pb-10 pl-10 z-[1] shrink-[0] text-center">
+            <div className="flex flex-col justify-start relative whitespace-pre-wrap  pb-2 w-full">
+              <h1 className="font-bold text-center text-white text-[48px] tracking-[-1.44px] leading-[50px] font-serif">
+                 Join the T7Blocks <br/> Waitlist Today
+              </h1>
+            </div>
+            <div className="flex flex-col justify-start relative whitespace-pre-wrap w-full max-w-[480px] shrink-[0]">
+              <p className="text-center text-white/80 text-[16px] leading-[24px] font-sans line-clamp-3">
+               Get early access to premium components built to the standard of top agency work and your first few are on us.
+              </p>
+            </div>
+
+            <div className="relative w-full shrink-[0] mt-4">
+              <div className="items-center flex size-full justify-center relative">
+                {!submitted ? (
+                  <form onSubmit={handleSubmit} className="flex relative w-full text-[rgb(21,_21,_24)] gap-[0px]">
+                    <input
+                      type="email"
+                      required
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="block overflow-clip w-full bg-white/4 shadow-[rgb(255,139,33)_0px_0px_0px_0px_inset,_rgba(255,255,255,0.08)_0px_0px_0px_1px_inset] text-white text-[16px] leading-[16px] pt-4 pr-[164px] pb-4 pl-6 rounded-xl outline-none focus:shadow-[rgb(255,139,33)_0px_0px_0px_1px_inset,_rgba(255,255,255,0.08)_0px_0px_0px_1px_inset]"
+                    />
+                    <div className="absolute top-[5px] right-[5px] bottom-[5px]">
+                      <button
+                        type="submit"
+                        className="inline-block font-bold h-full overflow-clip text-center whitespace-pre w-[140px] bg-[rgb(255,_139,_33)] text-[16px] tracking-[-0.48px] leading-[16px] z-[1] rounded-[0.4375rem] hover:brightness-110 active:scale-95 transition-all"
+                      >
+                        Get Notified
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <div className="py-4 px-6 bg-[rgb(255,_139,_33)]/10 border border-[rgb(255,_139,_33)]/20 rounded-xl text-[rgb(255,_139,_33)] font-semibold animate-in fade-in zoom-in duration-300 w-full">
+                    ✨ You&apos;re on the list!
+                  </div>
+                )}
+              </div>
+            </div>
+          </main>
+
+          {/* FAQ Section */}
+          <section className="content-center items-center flex flex-col h-min justify-center overflow-hidden relative w-full gap-[12px] max-w-[600px] pt-4 pr-10 pb-32 pl-10 z-[1] shrink-[0]">
+            <div className="flex flex-col justify-start relative whitespace-pre-wrap w-full max-w-[480px] shrink-[0]">
+              <p className="italic text-center text-white text-[20px] leading-[30px] font-serif">
+                Frequently Asked Questions
+              </p>
+            </div>
+
+            <div className="relative w-full z-[2]">
+              <div className="content-start items-start flex flex-col h-min justify-start relative w-full gap-[8px]">
+                {FAQ_DATA.map((faq, index) => (
+                  <FAQItem key={index} question={faq.question} answer={faq.answer} />
+                ))}
+              </div>
+            </div>
+          </section>
+
+        </div>
       </div>
     </div>
   );
