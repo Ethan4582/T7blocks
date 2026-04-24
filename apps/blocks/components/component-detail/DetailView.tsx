@@ -61,14 +61,22 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
   }, [docMode]);
 
   const relatedItems = registry.filter(item => item.name !== entry.name && (item.type === entry.type || item.category === entry.category)).slice(0, 2);
+  const hasCLI = !!detail.T7blocksCliCommand;
+  const hasInstall = !!detail.installCommand;
+  const hasCode = (detail.codeBlocks?.length ?? 0) > 0;
+  const hasUsage = (detail.setupBlocks?.length ?? 0) > 0;
   const hasProps = !!(detail.props || detail.propsTable);
   
   const availableSections = docMode === "CLI"
-    ? [{ id: "install", name: "CLI" }, ...(hasProps ? [{ id: "props", name: "Props" }] : [])]
+    ? [
+        ...(hasCLI ? [{ id: "install", name: "CLI" }] : []), 
+        ...(hasUsage ? [{ id: "usage", name: "Usage" }] : []),
+        ...(hasProps ? [{ id: "props", name: "Props" }] : [])
+      ]
     : [
-        { id: "install", name: "Install" }, 
-        ...(detail.codeBlocks?.length ? [{ id: "code", name: "Code" }] : []), 
-        ...(detail.setupBlocks?.length ? [{ id: "usage", name: "Usage" }] : []), 
+        ...(hasInstall ? [{ id: "install", name: "Install" }] : []), 
+        ...(hasCode ? [{ id: "code", name: "Code" }] : []), 
+        ...(hasUsage ? [{ id: "usage", name: "Usage" }] : []), 
         ...(hasProps ? [{ id: "props", name: "Props" }] : [])
       ];
 

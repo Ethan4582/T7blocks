@@ -20,8 +20,7 @@ export const propsTable = `
 `
 
 export const setupCode1FileName = "page.tsx";
-export const setupCode1 = `
-import { StickyScroll } from "@t7blocks/ui";
+export const setupCode1 = `import { StickyScroll } from "@/components/T7blocks/StickyScroll";
 
 export default function Home() {
   return (

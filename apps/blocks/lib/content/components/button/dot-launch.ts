@@ -12,16 +12,18 @@ export const Code1FileName="Dotlaunchbutton.tsx";
 export const installCommand = `pnpm add framer-motion`;
 
 export const setupCode1FileName="page.tsx";
-export const setupCode1=`import { Dotlaunchbutton } from '@t7blocks/ui';
+export const setupCode1=`import { Dotlaunchbutton } from "@/components/T7blocks/Dotlaunchbutton";
 
 export default function Home() {
   return (
-    <Dotlaunchbutton
-      label="Get started"
-      accentColor="#18db38"
-      btnColor="#111111"
-      animationSpeed={155}
-    />
+    <div className="h-screen flex items-center justify-center">
+      <Dotlaunchbutton
+        label="Get started"
+        accentColor="#18db38"
+        btnColor="#111111"
+        animationSpeed={155}
+      />
+    </div>
   );
 }`
 

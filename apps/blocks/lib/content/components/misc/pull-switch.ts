@@ -3,10 +3,10 @@ export const installCommand = `pnpm add gsap`;
 export const Code1FileName = "PullSwitch.tsx";
 
 export const T7blocksCliCommand = {
-  pnpmCommand: `pnpm dlx @t7blocks/cli add pullswitch`,
-  npmCommand: `npx @t7blocks/cli add pullswitch`,
-  yarnCommand: `yarn dlx @t7blocks/cli add pullswitch`,
-  bunCommand: `bunx @t7blocks/cli add pullswitch`,
+  pnpmCommand: `pnpm dlx @t7blocks/cli add pull-switch`,
+  npmCommand: `npx @t7blocks/cli add pull-switch`,
+  yarnCommand: `yarn dlx @t7blocks/cli add pull-switch`,
+  bunCommand: `bunx @t7blocks/cli add pull-switch`,
 };
 
 export const propsTable = `
@@ -21,13 +21,12 @@ export const propsTable = `
 | bgDark              | string  | "#1a1a1a"        | Background color of the page in dark mode        |
 `  
 
-export const instructions = `
+export const usageInstructions = `
 1. Add the PullSwitch component to your layout.tsx file.
 2. Update the bgLight and bgDark props to your desired colors.
 `
 export const setupCode1FileName = "layout.tsx";
-export const setupCode1 = `
-import { PullSwitch } from "@t7blocks/ui";
+export const setupCode1 = `import PullSwitch from "@/components/T7blocks/PullSwitch";
 
 export default function RootLayout({
   children,
@@ -38,10 +37,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
-        <PullSwitch
-          bgLight="#ffffff" 
-          bgDark="#000000"  
-        />
+        <div className="fixed top-0 right-12">
+          <PullSwitch bgLight="#ffffff" bgDark="#000000" />
+        </div>
       </body>
     </html>
   );

@@ -33,8 +33,8 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
 
   return (
     <>
-      <header className="flex justify-between items-center px-4 md:px-10 py-3 sticky top-0 bg-background/80 backdrop-blur-md z-[100] border-b border-border/40">
-        <div className="flex items-center gap-3 flex-1 max-w-[320px]">
+      <header className="flex justify-between items-center px-2.5 md:px-8 py-2.5 sticky top-0 bg-background/80 backdrop-blur-md z-[100] border-b border-border/40">
+        <div className="flex items-center gap-3 flex-1 max-w-[280px]">
           {isCollapsed && (
             <button
               onClick={toggleCollapsed}
@@ -49,13 +49,13 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
             onClick={() => {
               window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, metaKey: true }));
             }}
-            className="flex-1 max-w-[240px] cursor-pointer"
+            className="flex-1 max-w-[210px] cursor-pointer"
           >
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-muted-foreground">
                 <Search className="w-3.5 h-3.5" />
               </div>
-              <div className="w-full bg-muted/50 border border-border/40 rounded-lg py-1.5 pl-8 pr-10 text-[13px] text-muted-foreground/40 transition-all select-none">
+              <div className="w-full bg-muted/50 border border-border/40 rounded-lg py-2 pl-8 pr-10 text-[13px] text-muted-foreground/40 transition-all select-none">
                 Search...
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -120,7 +120,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
           <Link
             href="/waitlist"
             onClick={() => trackEvent(ANALYTICS_EVENTS.UPGRADE_CLICKED, { location: "navbar" })}
-            className="flex items-center gap-2 bg-foreground text-background px-4 py-1.5 rounded-lg text-[11px] font-bold transition-all hover:opacity-90 active:scale-[0.98] shrink-0"
+            className="flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-lg text-[11px] font-bold transition-all hover:opacity-90 active:scale-[0.98] shrink-0"
           >
             <Lock className="w-3 h-3" />
             <span>Get All-Access</span>

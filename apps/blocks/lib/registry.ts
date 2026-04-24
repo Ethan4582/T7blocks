@@ -66,12 +66,7 @@ export const registry: ComponentEntry[] = [
     isPremium: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll-image-pass.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/scroll/Scroll-Image-Pass",
-    // cliCommand: {
-    //   pnpmCommand: `pnpm dlx @t7blocks/cli add scroll-image-pass`,
-    //   npmCommand: `npm  @t7blocks/cli add scroll-image-pass`,
-    //   yarnCommand: `yarn dlx @t7blocks/cli add scroll-image-pass`,
-    //   bunCommand: `bun  @t7blocks/cli add scroll-image-pass`,
-    // },
+   
     description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
     tags: ["scroll", "gsap", "images", "work", "framer motion", "framer"],
   }, {

@@ -65,7 +65,7 @@ Copy-paste this component to your project:
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <button className="flex items-center gap-1.5 group cursor-pointer border-none bg-transparent p-0 outline-none">
+      <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all group cursor-pointer border border-transparent hover:bg-black/[0.04] dark:hover:bg-[#171515] hover:border-black/5 dark:hover:border-white/5 outline-none">
         <Copy className="w-3.5 h-3.5 text-muted-foreground transition-colors group-hover:text-foreground" />
         <span className="text-muted-foreground group-hover:text-foreground text-[14px] font-bold tracking-tight transition-colors">
           Copy Prompt
@@ -74,8 +74,8 @@ Copy-paste this component to your project:
 
       {showDropdown && (
         <>
-          <div className="absolute bottom-full right-0 w-full h-4 bg-transparent" />
-          <div className="absolute bottom-full right-0 mb-2 w-[125px] bg-white dark:bg-[#121212] border border-black/10 dark:border-white/10 rounded-lg z-[150] p-1 animate-in fade-in slide-in-from-bottom-1 pointer-events-auto shadow-xl ring-0">
+          <div className="absolute top-full right-0 w-full h-4 bg-transparent" />
+          <div className="absolute top-full right-0 mt-2 w-[125px] bg-white dark:bg-[#171515] border border-black/10 dark:border-white/10 rounded-lg z-[150] p-1 animate-in fade-in slide-in-from-top-1 pointer-events-auto shadow-xl ring-0">
             <div className="space-y-0">
               {[
                 { id: "v0", label: "V0", icon: "/SVG/v0.png", bright: true },

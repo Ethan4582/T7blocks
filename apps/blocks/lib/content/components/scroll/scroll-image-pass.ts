@@ -17,8 +17,7 @@ export const propsTable = `
 `
 
 export const setupCode1FileName = "page.tsx";
-export const setupCode1 = `
-import { ScrollimagePass } from "@t7blocks/ui";
+export const setupCode1 = `import { ScrollimagePass } from "@/components/T7blocks/ScrollimagePass";
 
 export default function Home() {
   return (
@@ -26,5 +25,4 @@ export default function Home() {
       <ScrollimagePass />
     </main>
   );
-}
-`
+}`
