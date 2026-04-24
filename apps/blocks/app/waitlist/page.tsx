@@ -37,11 +37,23 @@ export default function WaitlistingPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    
     setSubmitted(true);
     trackEvent(ANALYTICS_EVENTS.WAITLIST_JOINED, { email });
+
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_WAITLIST_URL;
+      await fetch(`${baseUrl}/waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+    } catch (error) {
+      console.error("Waitlist submission failed:", error);
+    }
   };
 
   return (
@@ -66,7 +78,7 @@ export default function WaitlistingPage() {
             <div className="aspect-square overflow-hidden absolute w-[60%] left-[50%] top-0 bg-white translate-x-[-50%] rounded-[100%]"></div>
           </div>
 
-          {/* Header */}
+         
           <header className="relative z-10 flex justify-center -mb-8 mt-8">
             <div className="w-[160px] h-[104px]">
               <Image
@@ -79,7 +91,7 @@ export default function WaitlistingPage() {
             </div>
           </header>
 
-          {/* Hero Section */}
+        
           <main className="content-center items-center flex flex-col h-min justify-center overflow-hidden relative w-full gap-[10px] max-w-[600px] pt-4 pr-10 pb-10 pl-10 z-[1] shrink-[0] text-center">
             <div className="flex flex-col justify-start relative whitespace-pre-wrap  pb-2 w-full">
               <h1 className="font-bold text-center text-white text-[48px] tracking-[-1.44px] leading-[50px] font-serif">
@@ -122,7 +134,6 @@ export default function WaitlistingPage() {
             </div>
           </main>
 
-          {/* FAQ Section */}
           <section className="content-center items-center flex flex-col h-min justify-center overflow-hidden relative w-full gap-[12px] max-w-[600px] pt-4 pr-10 pb-32 pl-10 z-[1] shrink-[0]">
             <div className="flex flex-col justify-start relative whitespace-pre-wrap w-full max-w-[480px] shrink-[0]">
               <p className="italic text-center text-white text-[20px] leading-[30px] font-serif">
