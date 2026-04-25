@@ -2,9 +2,9 @@
 
 import { Bookmark, Search } from "lucide-react";
 import Link from "next/link";
-import { useBookmarks } from "@/components/common/bookmarks-context";
+import { useBookmarks } from "@/components/providers/bookmarks-context";
 import { registry } from "@/lib/registry";
-import { VaultCard } from "@/components/common/VaultCard";
+import { VaultCard } from "@/components/ui/card/VaultCard";
 
 export default function BookmarksPage() {
   const { bookmarks } = useBookmarks();

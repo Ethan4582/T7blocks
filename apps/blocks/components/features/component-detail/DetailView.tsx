@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { toComponentItem, registry } from "@/lib/registry";
-import { MetadataSidebar, DocumentationSection, PreviewCard, RelatedResources, CopyPromptDropdown, SidebarActions } from "@/components/component-detail";
+import { MetadataSidebar, DocumentationSection, PreviewCard, RelatedResources, CopyPromptDropdown, SidebarActions } from "@/components/features/component-detail";
 import { ComponentDetailData } from "@/lib/componentData";
 import { trackComponentView } from "@/lib/analytics/analytics";
 
@@ -66,19 +66,19 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
   const hasCode = (detail.codeBlocks?.length ?? 0) > 0;
   const hasUsage = (detail.setupBlocks?.length ?? 0) > 0;
   const hasProps = !!(detail.props || detail.propsTable);
-  
+
   const availableSections = docMode === "CLI"
     ? [
-        ...(hasCLI ? [{ id: "install", name: "CLI" }] : []), 
-        ...(hasUsage ? [{ id: "usage", name: "Usage" }] : []),
-        ...(hasProps ? [{ id: "props", name: "Props" }] : [])
-      ]
+      ...(hasCLI ? [{ id: "install", name: "CLI" }] : []),
+      ...(hasUsage ? [{ id: "usage", name: "Usage" }] : []),
+      ...(hasProps ? [{ id: "props", name: "Props" }] : [])
+    ]
     : [
-        ...(hasInstall ? [{ id: "install", name: "Install" }] : []), 
-        ...(hasCode ? [{ id: "code", name: "Code" }] : []), 
-        ...(hasUsage ? [{ id: "usage", name: "Usage" }] : []), 
-        ...(hasProps ? [{ id: "props", name: "Props" }] : [])
-      ];
+      ...(hasInstall ? [{ id: "install", name: "Install" }] : []),
+      ...(hasCode ? [{ id: "code", name: "Code" }] : []),
+      ...(hasUsage ? [{ id: "usage", name: "Usage" }] : []),
+      ...(hasProps ? [{ id: "props", name: "Props" }] : [])
+    ];
 
   return (
     <div className="w-full h-[calc(100vh-64px)] lg:h-[calc(100vh-72px)] overflow-hidden">

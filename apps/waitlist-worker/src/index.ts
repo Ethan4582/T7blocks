@@ -56,7 +56,7 @@ app.get('/dashboard', (c, next) => {
       c.env.t7blocks_waitlist.prepare("SELECT COUNT(*) as count FROM waitlist WHERE created_at > datetime('now', '-1 day')"),
       c.env.t7blocks_waitlist.prepare("SELECT COUNT(*) as count FROM waitlist WHERE created_at > datetime('now', '-7 days')"),
       c.env.t7blocks_waitlist.prepare("SELECT COUNT(*) as count FROM waitlist WHERE created_at > datetime('now', '-30 days')"),
-      c.env.t7blocks_waitlist.prepare('SELECT email, created_at FROM waitlist ORDER BY created_at DESC LIMIT 50')
+      c.env.t7blocks_waitlist.prepare('SELECT email, created_at FROM waitlist ORDER BY created_at DESC LIMIT 500')
     ]);
 
     const statsResults = results as any[];

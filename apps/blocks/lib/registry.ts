@@ -78,12 +78,7 @@ export const registry: ComponentEntry[] = [
     isPremium: false,
     videoUrl: "https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/scroll/Sticky-Scroll",
-    // cliCommand:{
-    //   pnpmCommand: `pnpm dlx @t7blocks/cli add sticky-scroll`,
-    //   npmCommand: `npm  @t7blocks/cli add sticky-scroll`,
-    //   yarnCommand: `yarn dlx @t7blocks/cli add sticky-scroll`,
-    //   bunCommand: `bun  @t7blocks/cli add sticky-scroll`,
-    // },
+   
     description: "Sticky scroll with GSAP ScrollTrigger.",
     tags: ["scroll", "ScrollTrigger", "gsap", "images", "work", "framer motion", "framer"],
   }, {
@@ -95,12 +90,6 @@ export const registry: ComponentEntry[] = [
     isPremium: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/misc/pull-switch",
-    // cliCommand:{
-    //   pnpmCommand: `pnpm dlx @t7blocks/cli add pullswitch`,
-    //   npmCommand: `npm  @t7blocks/cli add pullswitch`,
-    //   yarnCommand: `yarn dlx @t7blocks/cli add pullswitch`,
-    //   bunCommand: `bun  @t7blocks/cli add pullswitch`,
-    // },
     description: "Interactive pull-cord switch to toggle light and dark mode",
     tags: ["misc", "gsap", "button", "Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
   }, {

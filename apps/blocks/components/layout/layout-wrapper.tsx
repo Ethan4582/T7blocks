@@ -1,24 +1,24 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Sidebar } from "@/components/common/sidebar";
-import { useSidebar } from "@/components/common/sidebar-provider";
-import { ComponentNavbar } from "@/components/component-detail/ComponentNavbar";
-import { SearchModal } from "@/components/common/search-modal";
+import { Sidebar } from "@/components/layout/sidebar";
+import { useSidebar } from "@/components/providers/sidebar-provider";
+import { ComponentNavbar } from "@/components/features/component-detail/ComponentNavbar";
+import { SearchModal } from "@/components/features/search/search-modal";
 import React from "react";
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { isCollapsed } = useSidebar();
-  
+
   const isStandalone = pathname === "/" || pathname === "/templates" || pathname === "/waitlisting" || pathname === "/waitlist" || pathname === "/dashboard";
   const offset = (!isCollapsed && !isStandalone) ? "md:ml-[250px]" : "ml-0";
 
   const segments = pathname.split('/').filter(Boolean);
-  const isComponentDetail = 
-    pathname.startsWith("/components/") || 
+  const isComponentDetail =
+    pathname.startsWith("/components/") ||
     (pathname.startsWith("/hero/") && segments.length > 2);
-  
+
 
   return (
     <>
@@ -28,7 +28,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
           <SearchModal />
         </>
       )}
-      <main 
+      <main
         className={`
           flex-1 flex flex-col transition-all duration-375 ease-in-out
           ${offset}

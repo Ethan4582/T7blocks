@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Lock, Eye, Bookmark, ChevronRight } from "lucide-react";
 import { ComponentEntry } from "@/lib/registry";
-import { useBookmarks } from "@/components/common/bookmarks-context";
+import { useBookmarks } from "@/components/providers/bookmarks-context";
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
 
 export function VaultCard({ item }: { item: ComponentEntry }) {

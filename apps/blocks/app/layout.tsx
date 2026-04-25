@@ -6,8 +6,8 @@ import {
   JetBrains_Mono,
   Libre_Caslon_Text,
 } from "next/font/google";
-import { LayoutWrapper } from "@/components/common/layout-wrapper";
-import { ThemeProvider } from "@/components/common/theme-provider";
+import { LayoutWrapper } from "@/components/layout/layout-wrapper";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -76,9 +76,9 @@ export const metadata: Metadata = {
   },
 };
 
-import { SidebarProvider } from "@/components/common/sidebar-provider";
-import { BookmarksProvider } from "@/components/common/bookmarks-context";
-import { ToastProvider } from "@/components/common/toast-provider";
+import { SidebarProvider } from "@/components/providers/sidebar-provider";
+import { BookmarksProvider } from "@/components/providers/bookmarks-context";
+import { ToastProvider } from "@/components/providers/toast-provider";
 
 export default function RootLayout({
   children,

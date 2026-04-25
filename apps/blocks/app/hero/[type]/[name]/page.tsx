@@ -1,6 +1,6 @@
 import { registry } from "@/lib/registry";
 import { notFound } from "next/navigation";
-import { DetailView } from "@/components/component-detail/DetailView";
+import { DetailView } from "@/components/features/component-detail/DetailView";
 import { readSourceFile } from "@/lib/readSource";
 
 import { Metadata } from "next";
@@ -16,9 +16,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { type, name } = await params;
   const entry = registry.find(
-    (c) => 
-      c.category.toLowerCase() === "hero" && 
-      c.type.toLowerCase() === type.toLowerCase() && 
+    (c) =>
+      c.category.toLowerCase() === "hero" &&
+      c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
 
@@ -51,26 +51,26 @@ export default async function HeroDetailPage({ params }: Props) {
   const { type, name } = await params;
 
   const entry = registry.find(
-    (c) => 
-      c.category.toLowerCase() === "hero" && 
-      c.type.toLowerCase() === type.toLowerCase() && 
+    (c) =>
+      c.category.toLowerCase() === "hero" &&
+      c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
   if (!entry) return notFound();
 
   let allContent: any
   try {
-  
+
     allContent = await import(`@/lib/content/components/${type}/${name}`);
   } catch (err) {
     console.error(`[HeroDetail] Failed to load component: ${type}/${name}`, err);
     return notFound();
   }
 
- 
+
   const serializableContent = { ...allContent };
 
-  
+
   for (let i = 1; i <= 10; i++) {
     const fileNameKey = `Code${i}FileName`;
     const codeKey = `Code${i}`;
@@ -82,8 +82,8 @@ export default async function HeroDetailPage({ params }: Props) {
       }
     }
   }
-  
- 
+
+
   if (serializableContent.codeBlockFileName && !serializableContent.codeBlock) {
     try {
       serializableContent.codeBlock = readSourceFile(entry.category, type, serializableContent.codeBlockFileName);

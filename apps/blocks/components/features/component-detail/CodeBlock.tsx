@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
-import { highlightCode } from "@/lib/syntax-highlighter";
-import { useToast } from "@/components/common/toast-provider";
+import { highlightCode } from "@/lib/utils/syntax-highlighter";
+import { useToast } from "@/components/providers/toast-provider";
 import { trackCopy } from "@/lib/analytics/analytics";
 
 interface CodeBlockProps {
@@ -26,12 +26,12 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
     if (!activeFile) return;
     navigator.clipboard.writeText(activeFile.code);
     setCopied(true);
-    
+
     let toastLabel = activeFile.label.toLowerCase();
     if (toastLabel.includes('command')) {
-       showToast("Install command copied");
+      showToast("Install command copied");
     } else {
-       showToast("Code copied to clipboard");
+      showToast("Code copied to clipboard");
     }
 
     setTimeout(() => setCopied(false), 2000);
@@ -55,11 +55,10 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
               <button
                 key={idx}
                 onClick={() => setActiveFileIndex(idx)}
-                className={`flex items-center gap-2 px-3.5 py-1.5 text-[11px] font-medium rounded-md transition-all whitespace-nowrap ${
-                  activeFileIndex === idx 
-                    ? "bg-white dark:bg-[#222222] text-[#262626] dark:text-white shadow-sm border border-black/[0.05] dark:border-white/[0.05]" 
-                    : "text-[#737373] dark:text-muted-foreground/40 hover:text-[#262626] dark:hover:text-foreground/80"
-                }`}
+                className={`flex items-center gap-2 px-3.5 py-1.5 text-[11px] font-medium rounded-md transition-all whitespace-nowrap ${activeFileIndex === idx
+                  ? "bg-white dark:bg-[#222222] text-[#262626] dark:text-white shadow-sm border border-black/[0.05] dark:border-white/[0.05]"
+                  : "text-[#737373] dark:text-muted-foreground/40 hover:text-[#262626] dark:hover:text-foreground/80"
+                  }`}
               >
                 {file.icon && <img src={file.icon} alt="" className="w-3.5 h-3.5 opacity-80" />}
                 <span>
@@ -89,17 +88,17 @@ export function CodeBlock({ files, code, label, language = "html", componentId =
         <div className={`relative p-3.5 overflow-auto max-h-[500px] overscroll-y-auto rounded-lg border border-black/[0.05] dark:border-white/[0.05] bg-white dark:bg-[#171515] ${showScrollbars ? 'scrollbar-minimal' : 'no-scrollbar'}`}>
           <pre className="text-[13.5px] leading-[1.8] font-mono whitespace-pre select-text no-underline decoration-none">
             <code
-              dangerouslySetInnerHTML={{ 
+              dangerouslySetInnerHTML={{
                 __html: highlightCode(
-                  activeFile.code, 
-                  activeFile.language || 
-                  (activeFile.label.toLowerCase().endsWith('.css') ? 'css' : 
-                   activeFile.label.toLowerCase().endsWith('.tsx') || 
-                   activeFile.label.toLowerCase().endsWith('.ts') || 
-                   activeFile.label.toLowerCase().endsWith('.js') || 
-                   activeFile.label.toLowerCase().endsWith('.jsx') ? 'typescript' : 
-                   language)
-                ) 
+                  activeFile.code,
+                  activeFile.language ||
+                  (activeFile.label.toLowerCase().endsWith('.css') ? 'css' :
+                    activeFile.label.toLowerCase().endsWith('.tsx') ||
+                      activeFile.label.toLowerCase().endsWith('.ts') ||
+                      activeFile.label.toLowerCase().endsWith('.js') ||
+                      activeFile.label.toLowerCase().endsWith('.jsx') ? 'typescript' :
+                      language)
+                )
               }}
               className="block whitespace-pre no-underline decoration-none"
             />

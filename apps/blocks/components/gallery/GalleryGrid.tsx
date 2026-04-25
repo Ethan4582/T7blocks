@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { ComponentEntry } from "@/lib/registry";
-import { VaultCard } from "@/components/common/VaultCard";
+import { VaultCard } from "@/components/ui/card/VaultCard";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 
@@ -22,7 +22,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
     if (pathname === "/gallery") return "Vault";
     const segments = pathname.split("/").filter(Boolean);
     const lastSegment = segments[segments.length - 1];
-    
+
     if (lastSegment) {
       const decoded = decodeURIComponent(lastSegment);
       const formattedSegment = decoded
@@ -31,7 +31,7 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
         .join(' ');
       return `${formattedSegment} Vault`;
     }
-    
+
     return "Component Vault";
   };
 
@@ -58,12 +58,12 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
       <section className="flex flex-col items-center justify-center pt-20 pb-16 px-4">
         <div className="flex flex-col items-center space-y-3 max-w-4xl text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight flex items-center justify-center gap-2 md:gap-3 flex-wrap">
-             Discover the <span className="animate-wave text-3xl sm:text-4xl md:text-5xl">👋</span> {dynamicTitle}
+            Discover the <span className="animate-wave text-3xl sm:text-4xl md:text-5xl">👋</span> {dynamicTitle}
           </h1>
           <p className="text-[#404040] dark:text-muted-foreground/60 text-lg max-w-2xl mx-auto">
-                {dynamicDescription}
-              </p>
-          
+            {dynamicDescription}
+          </p>
+
           <div className="relative w-full max-w-sm mt-8 group mx-auto">
             <div className="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none text-muted-foreground/30">
               <Search className="w-5 h-5" />
@@ -97,14 +97,14 @@ export function GalleryGrid({ items, title, description }: GalleryGridProps) {
         {totalPages > 1 && (
           <div className="mt-16 flex items-center justify-center font-medium">
             <div className="flex bg-white dark:bg-[#111111] border border-black/5 dark:border-border/10 p-1.5 rounded-lg gap-1 shadow-sm">
-               <button
+              <button
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(p => p - 1)}
                 className="px-4 py-2 flex items-center gap-1.5 rounded-lg transition-all disabled:opacity-20 hover:text-foreground text-muted-foreground text-[13px]"
               >
                 Previous
               </button>
-              
+
               <div className="flex items-center px-3.5 text-[13px] font-bold bg-foreground text-background dark:bg-white dark:text-black rounded-md min-w-[32px] justify-center mx-1">
                 {currentPage}
               </div>

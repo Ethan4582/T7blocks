@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Copy } from "lucide-react";
-import { useToast } from "@/components/common/toast-provider";
+import { useToast } from "@/components/providers/toast-provider";
 
 interface CopyPromptDropdownProps {
   componentName: string;
@@ -60,7 +60,7 @@ Copy-paste this component to your project:
   }, []);
 
   return (
-    <div 
+    <div
       className="relative z-[150]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -87,10 +87,10 @@ Copy-paste this component to your project:
                   onClick={() => handleCopyPrompt(item.label)}
                   className="flex items-center gap-2.5 w-full px-2 py-1.5 rounded-md text-[12px] font-bold text-foreground/80 hover:text-foreground hover:bg-black/[0.04] dark:hover:bg-white/5 transition-all text-left pointer-events-auto"
                 >
-                  <img 
-                    src={item.icon} 
-                    className={`w-4 h-4 rounded-sm ${item.bright ? 'dark:brightness-100 brightness-[0.2]' : ''}`} 
-                    alt="" 
+                  <img
+                    src={item.icon}
+                    className={`w-4 h-4 rounded-sm ${item.bright ? 'dark:brightness-100 brightness-[0.2]' : ''}`}
+                    alt=""
                   />
                   <span className="font-bold">{item.label}</span>
                 </button>

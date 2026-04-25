@@ -5,10 +5,10 @@ import Link from "next/link";
 import {
   Search, Lock, Command, Bookmark, Bug, Heart, User, Menu, X
 } from "lucide-react";
-import { useTheme } from "@/components/common/theme-provider";
-import { useSidebar } from "@/components/common/sidebar-provider";
+import { useTheme } from "@/components/providers/theme-provider";
+import { useSidebar } from "@/components/providers/sidebar-provider";
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
-import { KnobToggle } from "@/components/common/KnobToggle";
+import { KnobToggle } from "@/components/ui/button/KnobToggle";
 
 interface ComponentNavbarProps {
   bugReportUrl?: string;
@@ -83,8 +83,8 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
           </Link>
 
           {mounted && (
-            <KnobToggle 
-              defaultChecked={isDark} 
+            <KnobToggle
+              defaultChecked={isDark}
               onChange={toggleTheme}
               primaryColor="#A1FF62"
               className="shrink-0 scale-[0.9]"
@@ -93,7 +93,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
 
           <div className="relative group cursor-pointer h-9 px-1 flex items-center shrink-0">
             <div className="w-9 h-9 rounded-full border border-border/60 flex items-center justify-center bg-muted/20 text-muted-foreground group-hover:bg-muted group-hover:text-foreground group-hover:border-border transition-all overflow-hidden">
-               <User className="w-4 h-4" />
+              <User className="w-4 h-4" />
             </div>
             <div className="absolute top-[calc(100%+4px)] right-0 w-44 bg-card border border-border/60 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 origin-top-right scale-95 group-hover:scale-100 z-50 overflow-hidden">
               <div className="p-1 space-y-0">

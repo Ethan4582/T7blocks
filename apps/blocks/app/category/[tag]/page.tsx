@@ -1,6 +1,6 @@
 import { registry } from "@/lib/registry";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
-import { CategoryTracker } from "@/components/common/category-tracker";
+import { CategoryTracker } from "@/components/features/analytics/category-tracker";
 
 // Required for static export
 export async function generateStaticParams() {

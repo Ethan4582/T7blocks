@@ -1,6 +1,6 @@
 import { registry } from "@/lib/registry";
 import { notFound } from "next/navigation";
-import { DetailView } from "@/components/component-detail/DetailView";
+import { DetailView } from "@/components/features/component-detail/DetailView";
 import { readSourceFile } from "@/lib/readSource";
 
 import { Metadata } from "next";
@@ -16,9 +16,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { type, name } = await params;
   const entry = registry.find(
-    (c) => 
-      c.category.toLowerCase() === "components" && 
-      c.type.toLowerCase() === type.toLowerCase() && 
+    (c) =>
+      c.category.toLowerCase() === "components" &&
+      c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
 
@@ -51,9 +51,9 @@ export default async function ComponentDetailPage({ params }: Props) {
   const { type, name } = await params;
 
   const entry = registry.find(
-    (c) => 
-      c.category.toLowerCase() === "components" && 
-      c.type.toLowerCase() === type.toLowerCase() && 
+    (c) =>
+      c.category.toLowerCase() === "components" &&
+      c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
   if (!entry) return notFound();
@@ -82,7 +82,7 @@ export default async function ComponentDetailPage({ params }: Props) {
       }
     }
   }
-  
+
   // Legacy support for single codeB
   // lock if provided
   if (serializableContent.codeBlockFileName && !serializableContent.codeBlock) {

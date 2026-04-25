@@ -1,7 +1,7 @@
 "use client";
 
 import { ComponentEntry } from "@/lib/registry";
-import { VaultCard } from "@/components/common/VaultCard";
+import { VaultCard } from "@/components/ui/card/VaultCard";
 
 interface RelatedResourcesProps {
   items: ComponentEntry[];

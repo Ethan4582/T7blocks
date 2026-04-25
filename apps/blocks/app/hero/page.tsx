@@ -1,7 +1,7 @@
 "use client";
 
 import { registry } from "@/lib/registry";
-import { VaultCard } from "@/components/common/VaultCard";
+import { VaultCard } from "@/components/ui/card/VaultCard";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -33,7 +33,7 @@ export default function HeroGallery() {
               <VaultCard key={c.name} item={c} />
             ))}
           </div>
-          
+
           {totalPages > 1 && (
             <div className="mt-16 flex items-center justify-end font-medium">
               <div className="flex bg-muted border border-border/40 p-1.5 rounded-xl gap-2 shadow-sm">

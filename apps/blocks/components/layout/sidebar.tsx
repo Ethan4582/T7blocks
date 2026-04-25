@@ -6,28 +6,28 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   ChevronDown,
 } from "lucide-react";
-import { useSidebar } from "@/components/common/sidebar-provider";
+import { useSidebar } from "@/components/providers/sidebar-provider";
 import { NAVIGATION_DATA } from "@/lib/sidebar/navigation";
 import { trackNavIntent } from "@/lib/analytics/analytics";
 
 import { NavItem } from "@/lib/sidebar/navigation";
 
-function SidebarItem({ 
-  item, 
+function SidebarItem({
+  item,
   depth = 0,
   parentTitle
-}: { 
-  item: NavItem; 
+}: {
+  item: NavItem;
   depth?: number;
   parentTitle?: string;
 }) {
   const pathname = usePathname();
   const router = useRouter();
   const { setOpen: setSidebarOpen } = useSidebar();
-  
+
   const itemId = item.title;
   const storageKey = `sidebar-state-${itemId}`;
-  
+
   // Default to true for depth 0 (main sections) to avoid collapse flash
   const [internalIsOpen, setInternalIsOpen] = useState(depth === 0);
 
@@ -39,11 +39,11 @@ function SidebarItem({
       }
     }
   }, [storageKey, depth]);
-  
+
   const isCurrentlyOpen = internalIsOpen;
 
   const hasChildren = item.items && item.items.length > 0;
-  
+
   const isSelected = pathname === item.href;
 
   const handleClick = (e: React.MouseEvent) => {
@@ -52,16 +52,16 @@ function SidebarItem({
       setInternalIsOpen(newState);
       localStorage.setItem(storageKey, newState ? "true" : "false");
     }
-    
+
     if (item.href) {
       trackNavIntent("sidebar", item.title, parentTitle);
-      
+
       if (item.external) {
         window.open(item.href, "_blank", "noopener,noreferrer");
       } else {
         router.push(item.href);
       }
-      
+
       if (!hasChildren && typeof window !== "undefined" && window.innerWidth < 768) {
         setSidebarOpen(false);
       }
@@ -82,19 +82,19 @@ function SidebarItem({
         >
           <div className="flex items-center gap-2.5">
             {item.icon && (
-              <img 
-                src={item.icon} 
-                alt="" 
+              <img
+                src={item.icon}
+                alt=""
                 className={`
                   w-[15px] h-[15px] shrink-0 transition-all 
                   dark:invert
                   ${isSelected ? "opacity-100 scale-110" : "opacity-70 group-hover:opacity-100 group-hover:scale-105"}
-                `} 
+                `}
               />
             )}
             <span className="flex-1 truncate">{item.title}</span>
           </div>
-          
+
           <div className="flex items-center gap-1.5">
             {item.badge && (
               <span className="px-1.5 py-0.5 rounded-md text-[9px] font-bold text-white bg-[#f84131] tracking-wide leading-none">
@@ -110,14 +110,14 @@ function SidebarItem({
           </div>
         </button>
       </div>
-      
+
       {isCurrentlyOpen && hasChildren && item.items && (
         <div className="relative ml-[19px] mt-1 mb-1 space-y-0.5 border-l-[1.5px] border-muted-foreground/40 pl-4">
           {item.items.map((subItem, idx) => (
-            <SidebarItem 
-              key={`${subItem.title}-${idx}`} 
-              item={subItem} 
-              depth={depth + 1} 
+            <SidebarItem
+              key={`${subItem.title}-${idx}`}
+              item={subItem}
+              depth={depth + 1}
               parentTitle={item.title}
             />
           ))}
@@ -151,7 +151,7 @@ export function Sidebar() {
           ${(isOpen && !isCollapsed) ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-     
+
         <div className="pl-5 pr-4 pt-4 pb-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform group" onClick={() => setOpen(false)}>
             <div className="relative">
@@ -161,7 +161,7 @@ export function Sidebar() {
                 className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-105 rounded-[8px] border border-border/10"
               />
             </div>
-            <span 
+            <span
               className="font-display font-medium text-[22px] tracking-tight text-sidebar-foreground uppercase pt-0.5"
               style={{ fontFamily: 'var(--font-display)' }}
             >
@@ -175,7 +175,7 @@ export function Sidebar() {
               className="p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors"
               title="Collapse sidebar"
             >
-                <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-60" alt="Toggle" />
+              <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-60" alt="Toggle" />
             </button>
             <button
               onClick={() => setOpen(false)}
@@ -186,23 +186,23 @@ export function Sidebar() {
           </div>
         </div>
 
-       
+
         <div className="flex-1 overflow-y-auto px-1 space-y-7 pb-10 scrollbar-none">
           {NAVIGATION_DATA.map((section, sIdx) => (
             <div key={section.title || `section-${sIdx}`} className="space-y-2.5">
-            
+
               {section.title && (
                 <h4 className="px-4 text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#404040] dark:text-white">
                   {section.title}
                 </h4>
               )}
 
-         
+
               <div className="px-1 space-y-0.5">
                 {section.items.map((item, iIdx) => (
-                  <SidebarItem 
-                    key={`${item.title}-${iIdx}`} 
-                    item={item} 
+                  <SidebarItem
+                    key={`${item.title}-${iIdx}`}
+                    item={item}
                   />
                 ))}
               </div>
