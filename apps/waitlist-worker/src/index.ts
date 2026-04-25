@@ -11,7 +11,7 @@ type Bindings = {
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.use('*', cors({
-  origin: ['https://t7blocks.com', 'http://localhost:3000'],
+  origin: ['https://t7blocks.xyz', 'http://localhost:3000'],
 }));
 
 app.post('/waitlist', async (c) => {

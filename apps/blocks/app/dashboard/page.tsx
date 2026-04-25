@@ -29,7 +29,7 @@ export default function DashboardPage() {
     setLoading(true);
     setError(null);
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_WAITLIST_URL;
+      const baseUrl = process.env.NEXT_PUBLIC_WAITLIST_URL?.replace(/\/$/, "");
       const credentials = btoa(`${userEmail}:${userPass}`);
       const response = await fetch(`${baseUrl}/dashboard`, {
         headers: {

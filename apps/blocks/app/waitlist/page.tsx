@@ -44,7 +44,7 @@ export default function WaitlistingPage() {
     trackEvent(ANALYTICS_EVENTS.WAITLIST_JOINED, { email });
 
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_WAITLIST_URL;
+      const baseUrl = process.env.NEXT_PUBLIC_WAITLIST_URL?.replace(/\/$/, "");
       const response = await fetch(`${baseUrl}/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
