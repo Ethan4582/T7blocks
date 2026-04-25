@@ -1,5 +1,5 @@
 <div align="center">
-   <img src="apps/blocks/public/black_readme.png" alt="T7" width="280" height="180">
+   <img src="apps/blocks/public/readme_bg.png" alt="T7" width="800" height="270">
 </div>
 
 <p align="center">
@@ -18,9 +18,9 @@
 
 </div>
 
-## What is T7 Blocks?
+## What is T7BLOCKS?
 
-**T7 Blocks** is a premium UI component library built for developers who want agency-quality results without the agency price tag.
+**T7BLOCKS** is a premium UI component library built for developers who want agency-quality results without the agency price tag.
 
 Every block is engineered to match the standard of bespoke landing pages built by top design studios — with refined motion, precise spacing, and production-ready code you fully own.
 

@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description: "High-end animated components for modern web applications.",
     siteName: "T7BLOCKS",
     images: [{
-      url: "/assets/logo.png",
+      url: "/logo.png",
       width: 1200,
       height: 630,
       alt: "T7BLOCKS"
@@ -67,12 +67,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "T7BLOCKS — Premium  Component Library",
     description: "High-end animated components for modern web applications.",
-    images: ["/assets/logo.png"],
+    images: ["/logo2.png"],
     creator: "@t7labs",
   },
   icons: {
-    icon: "/assets/logo.png",
-    apple: "/assets/logo.png",
+    icon: [
+      { url: "/logo.png", sizes: "32x32" },
+      { url: "/logo.png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/logo.png", sizes: "180x180" },
+    ],
   },
 };
 
