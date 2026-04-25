@@ -28,7 +28,7 @@ export function SidebarActions({ demoUrl }: SidebarActionsProps) {
         className="flex items-center justify-center w-8.5 h-8.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 hover:bg-black/[0.08] dark:hover:bg-white/10 transition-all group"
         title="Blog"
       >
-        <img src="/SVG/blog.svg" className="w-4 h-4" alt="Blog" />
+        <img src="/SVG/introduction.svg" className="w-4 h-4" alt="Blog" />
       </a>
 
       <button
