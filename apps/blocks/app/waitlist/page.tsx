@@ -54,7 +54,7 @@ export default function WaitlistingPage() {
       if (response.ok) {
         setSubmitted(true);
       } else {
-        const data = await response.json<{ error?: string }>();
+        const data = (await response.json()) as { error?: string };
         console.error("Waitlist submission failed:", data.error || response.statusText);
       }
     } catch (error) {
