@@ -20,13 +20,23 @@ app.post('/waitlist', async (c) => {
     return c.json({ error: 'Email is required' }, 400);
   }
   try {
-    await c.env.t7blocks_waitlist
-      .prepare('INSERT OR IGNORE INTO waitlist (email, created_at) VALUES (?, ?)')
+    const result = await c.env.t7blocks_waitlist
+      .prepare('INSERT INTO waitlist (email, created_at) VALUES (?, ?)')
       .bind(body.email, new Date().toISOString())
       .run();
-    return c.json({ success: true });
-  } catch {
-    return c.json({ error: 'Something went wrong' }, 500);
+    
+    if (result.success) {
+      return c.json({ success: true });
+    } else {
+      return c.json({ error: 'Database operation failed' }, 500);
+    }
+  } catch (error: any) {
+    // Check for unique constraint violation (code 1555 in D1/SQLite)
+    if (error.message?.includes('UNIQUE constraint failed') || error.cause?.message?.includes('UNIQUE constraint failed')) {
+      return c.json({ success: true, message: 'Already registered' });
+    }
+    console.error('Waitlist Error:', error);
+    return c.json({ error: 'Something went wrong', details: error.message }, 500);
   }
 });
 

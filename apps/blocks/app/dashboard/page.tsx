@@ -120,8 +120,8 @@ export default function DashboardPage() {
   if (!data) return null;
 
   return (
-    <div className="min-h-screen bg-[#151518] text-white p-6 md:p-10 font-sans selection:bg-[#FF8B21]/30">
-      <div className="max-w-6xl mx-auto space-y-10">
+    <div className="min-h-screen w-full bg-[#151518] text-white p-6 md:p-10 font-sans selection:bg-[#FF8B21]/30">
+      <div className="w-full space-y-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-1">

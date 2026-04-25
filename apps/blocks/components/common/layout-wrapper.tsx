@@ -11,7 +11,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { isCollapsed } = useSidebar();
   
-  const isStandalone = pathname === "/" || pathname === "/templates" || pathname === "/waitlisting" || pathname === "/waitlist";
+  const isStandalone = pathname === "/" || pathname === "/templates" || pathname === "/waitlisting" || pathname === "/waitlist" || pathname === "/dashboard";
   const offset = (!isCollapsed && !isStandalone) ? "md:ml-[250px]" : "ml-0";
 
   const segments = pathname.split('/').filter(Boolean);
