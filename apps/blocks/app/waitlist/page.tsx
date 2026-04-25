@@ -41,16 +41,22 @@ export default function WaitlistingPage() {
     e.preventDefault();
     if (!email) return;
     
-    setSubmitted(true);
     trackEvent(ANALYTICS_EVENTS.WAITLIST_JOINED, { email });
 
     try {
       const baseUrl = process.env.NEXT_PUBLIC_WAITLIST_URL;
-      await fetch(`${baseUrl}/waitlist`, {
+      const response = await fetch(`${baseUrl}/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await response.json<{ error?: string }>();
+        console.error("Waitlist submission failed:", data.error || response.statusText);
+      }
     } catch (error) {
       console.error("Waitlist submission failed:", error);
     }
