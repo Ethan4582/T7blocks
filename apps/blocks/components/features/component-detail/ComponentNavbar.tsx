@@ -38,10 +38,14 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
           {isCollapsed && (
             <button
               onClick={toggleCollapsed}
-              className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors shrink-0"
+              className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors shrink-0 group/toggle"
               aria-label="Expand Sidebar"
             >
-              <img src="/SVG/sidebar.svg" alt="Menu" className="w-5 h-5 dark:invert opacity-70" />
+              <img 
+                src="/logo.png" 
+                alt="Menu" 
+                className="w-[20px] h-[20px] transition-transform duration-500 group-hover/toggle:rotate-[360deg] object-contain" 
+              />
             </button>
           )}
 
@@ -123,7 +127,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
             className="flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-lg text-[11px] font-bold transition-all hover:opacity-90 active:scale-[0.98] shrink-0"
           >
             <Lock className="w-3 h-3" />
-            <span>Get All-Access</span>
+            <span>Claim Your Spot</span>
           </Link>
         </div>
 
@@ -138,7 +142,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
           <Link href="/bookmarks" className="block py-3 text-foreground font-medium border-b border-border/30" onClick={() => setMobileMenuOpen(false)}>Bookmarks</Link>
           <a href={bugReportUrl} target="_blank" className="block py-3 text-foreground font-medium border-b border-border/30">Report Bug</a>
           <a href="https://github.com/sponsors/Ethan4582" target="_blank" className="block py-3 text-foreground font-medium border-b border-border/30">Sponsor</a>
-          <Link href="/waitlist" target="_blank" className="block py-3 text-foreground font-bold text-[#A1FF62]" onClick={() => setMobileMenuOpen(false)}>Get All-Access</Link>
+          <Link href="/waitlist" target="_blank" className="block py-3 text-foreground font-bold text-[#A1FF62]" onClick={() => setMobileMenuOpen(false)}>Claim Your Spot</Link>
         </div>
       )}
     </>

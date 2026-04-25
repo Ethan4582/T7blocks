@@ -153,29 +153,26 @@ export function Sidebar() {
       >
 
         <div className="pl-5 pr-4 pt-4 pb-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform group" onClick={() => setOpen(false)}>
-            <div className="relative">
-              <img
-                src="/assets/logo.png"
-                alt="T7"
-                className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-105 rounded-[8px] border border-border/10"
-              />
-            </div>
+          <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform" onClick={() => setOpen(false)}>
             <span
-              className="font-display font-medium text-[22px] tracking-tight text-sidebar-foreground uppercase pt-0.5"
+              className="font-display font-bold text-[22px] tracking-[0.1em] text-sidebar-foreground uppercase pt-0.5"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Blocks
+              T7BLOCKS
             </span>
           </Link>
 
           <div className="flex items-center gap-1">
             <button
               onClick={toggleCollapsed}
-              className="p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors"
+              className="p-1.5 rounded-lg text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-hover transition-colors group/toggle"
               title="Collapse sidebar"
             >
-              <img src="/SVG/sidebar.svg" className="w-[18px] h-[18px] dark:invert opacity-60" alt="Toggle" />
+              <img 
+                src="/logo.png" 
+                className="w-[20px] h-[20px] transition-transform duration-500 group-hover/toggle:rotate-[360deg] object-contain" 
+                alt="Collapse" 
+              />
             </button>
             <button
               onClick={() => setOpen(false)}
