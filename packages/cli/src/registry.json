@@ -29,6 +29,16 @@
     ],
     "dependencies": []
   },
+  "button/bouncy-button": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "BouncyButton.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/button/BouncyButton/BouncyButton.tsx"
+      }
+    ],
+    "dependencies": ["framer-motion"]
+  },
 
 
 
