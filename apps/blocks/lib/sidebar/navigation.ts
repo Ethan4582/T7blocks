@@ -29,13 +29,13 @@ export const NAVIGATION_DATA: NavSection[] = [
     items: [
       {
         title: "Follow for updates",
-        icon: "/SVG/x.svg",
+        icon: "/SVG/x2.png",
         href: "https://twitter.com/ashirwadsingh_",
         external: true,
       },
       {
         title: "Gallery",
-        icon: "/SVG/gallery.png",
+        icon: "/SVG/gallery1.png",
         href: "/gallery",
       },
     ],
@@ -45,7 +45,7 @@ export const NAVIGATION_DATA: NavSection[] = [
     items: [
       {
         title: "Popular",
-        icon: "/SVG/star1.svg",
+        icon: "/SVG/fire.png",
         href: "/gallery/popular",
       },
       {
@@ -110,7 +110,7 @@ export const NAVIGATION_DATA: NavSection[] = [
       },
       {
         title: "Background",
-        icon: "/SVG/image.svg",
+        icon: "/SVG/background.png",
         href: "/gallery/background",
         items: getItemsByType("background", "background"),
       },

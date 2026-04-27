@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  Search, Lock, Command, Bookmark, Bug, Heart, User, Menu, X
+  Search, Lock, Command, Bookmark, Bug, Heart, Menu, X
 } from "lucide-react";
 import { useTheme } from "@/components/providers/theme-provider";
 import { useSidebar } from "@/components/providers/sidebar-provider";
@@ -96,8 +96,9 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
           )}
 
           <div className="relative group cursor-pointer h-9 px-1 flex items-center shrink-0">
-            <div className="w-9 h-9 rounded-full border border-border/60 flex items-center justify-center bg-muted/20 text-muted-foreground group-hover:bg-muted group-hover:text-foreground group-hover:border-border transition-all overflow-hidden">
-              <User className="w-4 h-4" />
+            <div className="w-9 h-9  rounded-lg flex items-center justify-center bg-muted/20 text-muted-foreground group-hover:bg-muted group-hover:text-foreground transition-all overflow-hidden">
+              {/* in darkmode the image should be white and minimal padding */}
+              <img src="/svg/profile.png" alt="User" className="w-6 h-6 dark:invert" />
             </div>
             <div className="absolute top-[calc(100%+4px)] right-0 w-44 bg-card border border-border/60 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 origin-top-right scale-95 group-hover:scale-100 z-50 overflow-hidden">
               <div className="p-1 space-y-0">
@@ -126,7 +127,7 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
             onClick={() => trackEvent(ANALYTICS_EVENTS.UPGRADE_CLICKED, { location: "navbar" })}
             className="flex items-center gap-2 bg-foreground text-background px-4 py-2 rounded-lg text-[11px] font-bold transition-all hover:opacity-90 active:scale-[0.98] shrink-0"
           >
-            <Lock className="w-3 h-3" />
+            <Lock className="w-3.5 h-3.5" />
             <span>Claim Your Spot</span>
           </Link>
         </div>
