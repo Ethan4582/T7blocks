@@ -32,7 +32,9 @@ function GalleryCard({ component }: { component: ComponentData }) {
 
   return (
     <Link
-      href={`/components/${component.category}/${component.id}`}
+      href={component.noSubsection 
+        ? `/${component.type}/${component.id}` 
+        : `/${component.type}/${component.subsection}/${component.id}`}
       className="group flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

@@ -31,7 +31,7 @@ export const toComponentItem = (entry: ComponentEntry): ComponentItem => ({
   isPremium: entry.isPremium,
   tags: entry.tags || [],
   demoUrl: entry.demoUrl ?? undefined
-  
+
 });
 
 export const registry: ComponentEntry[] = [
@@ -53,44 +53,44 @@ export const registry: ComponentEntry[] = [
     id: 2,
     name: "pop-hero",
     displayName: "Pop Hero",
-    category: "hero",
-    type: "section",
+    category: "sections",
+    type: "hero",
     isPremium: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
-    demoUrl: "https://demo.t7blocks.xyz/components/hero/Pop-Hero",
+    demoUrl: "https://demo.t7blocks.xyz/sections/hero/Pop-Hero",
     relatedCategories: [],
   isPopular: false,
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
-    tags: ["hero", "gsap", "nature", "minimal", "framer motion", "framer"],
+    tags: ["hero", "gsap", "nature", "minimal", "framer motion"],
   },
   {
     id: 3,
     name: "scroll-image-pass",
     displayName: "Scroll Image Pass",
-    category: "interaction",
+    category: "interactions",
     type: "scroll",
     isPremium: false,
     relatedCategories: [],
    isPopular: true,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/scroll-image-pass.mp4",
-    demoUrl: "https://demo.t7blocks.xyz/components/scroll/Scroll-Image-Pass",
+    demoUrl: "https://demo.t7blocks.xyz/interactions/scroll/Scroll-Image-Pass",
    
     description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
-    tags: ["scroll", "gsap", "images", "work", "framer motion", "framer"],
+    tags: ["scroll", "gsap", "images", "work", "framer motion"],
   }, {
     id: 4,
     name: "sticky-scroll",
     displayName: "Sticky Scroll",
-    category: "interaction",
+    category: "interactions",
     type: "scroll",
     isPremium: false,
     relatedCategories: [],
   isPopular: true,
     videoUrl: "https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
-    demoUrl: "https://demo.t7blocks.xyz/components/scroll/Sticky-Scroll",
+    demoUrl: "https://demo.t7blocks.xyz/interactions/scroll/Sticky-Scroll",
    
     description: "Sticky scroll with GSAP ScrollTrigger.",
-    tags: ["scroll", "ScrollTrigger", "gsap", "images", "work", "framer motion", "framer"],
+    tags: ["scroll", "ScrollTrigger", "gsap", "images", "work", "framer motion"],
   }, {
     id: 5,
     name: "pull-switch",
@@ -102,7 +102,7 @@ export const registry: ComponentEntry[] = [
      relatedCategories: ["button"],
   isPopular: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
-    demoUrl: "https://demo.t7blocks.xyz/components/misc/pull-switch",
+    demoUrl: "https://demo.t7blocks.xyz/misc/pull-switch",
     description: "Interactive pull-cord switch to toggle light and dark mode",
     tags: ["misc", "gsap", "button", "Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
   }, {
@@ -112,8 +112,8 @@ export const registry: ComponentEntry[] = [
     category: "components",
     type: "button",
     isPremium: false,
-     relatedCategories: ["button"],
-  isPopular: true,
+     relatedCategories: [],
+  isPopular: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/KnobButton.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/button/knob-toggle",
     description: "A knob toggle to switch between light and dark mode with sound effect",

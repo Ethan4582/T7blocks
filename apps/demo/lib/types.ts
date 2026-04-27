@@ -14,6 +14,9 @@ export interface ComponentData {
   longDescription?: string;
   image?: string;
   video: string;
+  type: string;
+  subsection?: string;
+  noSubsection?: boolean;
   category: string;
   date: string;
   tags: string[];

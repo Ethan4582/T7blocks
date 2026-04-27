@@ -4,25 +4,26 @@ import { readSourceFile } from "@/lib/readSource";
 import { Metadata } from "next";
 import { DetailView } from "@/components/features/component-detail/DetailView";
 
-type Props = { params: Promise<{ name: string }> };
+type Props = { params: Promise<{ type: string; name: string }> };
 
 export function generateStaticParams() {
   return registry
-    .filter((c) => c.noSubsection)
-    .map((c) => ({ name: c.name }));
+    .filter((c) => c.category === "sections")
+    .map((c) => ({ type: c.type, name: c.name }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { name } = await params;
+  const { type, name } = await params;
   const entry = registry.find(
     (c) =>
-      c.noSubsection &&
+      c.category.toLowerCase() === "sections" &&
+      c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
 
   if (!entry) return { title: "Component Not Found" };
 
-  const fullUrl = `https://t7blocks.xyz/misc/${name}`;
+  const fullUrl = `https://t7blocks.xyz/sections/${type}/${name}`;
 
   return {
     title: entry.displayName,
@@ -46,42 +47,46 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ComponentDetailPage({ params }: Props) {
-  const { name } = await params;
+  const { type, name } = await params;
 
   const entry = registry.find(
     (c) =>
-      c.noSubsection &&
+      c.category.toLowerCase() === "sections" &&
+      c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
   if (!entry) return notFound();
 
   let allContent: any;
   try {
-    // Misc components are structured directly under lib/content/misc
-    allContent = await import(`@/lib/content/misc/${name}`);
+    // Restoring original dynamic import logic
+    allContent = await import(`@/lib/content/sections/${type}/${name}`);
   } catch (err) {
-    console.error(`[ComponentDetail] Failed to load component: misc/${name}`, err);
+    console.error(`[ComponentDetail] Failed to load component: ${type}/${name}`, err);
     return notFound();
   }
 
+  // Convert module object to plain object for client component serialization
   const serializableContent = { ...allContent };
 
-  // Hydrate raw source code
+  // Hydrate raw source code at build/request time
   for (let i = 1; i <= 10; i++) {
     const fileNameKey = `Code${i}FileName`;
     const codeKey = `Code${i}`;
     if (serializableContent[fileNameKey] && !serializableContent[codeKey]) {
       try {
-        serializableContent[codeKey] = readSourceFile(entry.category, entry.type, serializableContent[fileNameKey]);
+        serializableContent[codeKey] = readSourceFile(entry.category, type, serializableContent[fileNameKey]);
       } catch (err) {
         console.error(`[ComponentDetail] Failed to read source for ${fileNameKey}:`, err);
       }
     }
   }
 
+  // Legacy support for single codeB
+  // lock if provided
   if (serializableContent.codeBlockFileName && !serializableContent.codeBlock) {
     try {
-      serializableContent.codeBlock = readSourceFile(entry.category, entry.type, serializableContent.codeBlockFileName);
+      serializableContent.codeBlock = readSourceFile(entry.category, type, serializableContent.codeBlockFileName);
     } catch (err) {
       console.error(`[ComponentDetail] Failed to read source for codeBlockFileName:`, err);
     }

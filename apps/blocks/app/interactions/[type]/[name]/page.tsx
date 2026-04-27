@@ -1,15 +1,14 @@
 import { registry } from "@/lib/registry";
 import { notFound } from "next/navigation";
-import { DetailView } from "@/components/features/component-detail/DetailView";
 import { readSourceFile } from "@/lib/readSource";
-
 import { Metadata } from "next";
+import { DetailView } from "@/components/features/component-detail/DetailView";
 
 type Props = { params: Promise<{ type: string; name: string }> };
 
 export function generateStaticParams() {
   return registry
-    .filter((c) => c.category === "hero")
+    .filter((c) => c.category === "interactions")
     .map((c) => ({ type: c.type, name: c.name }));
 }
 
@@ -17,14 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { type, name } = await params;
   const entry = registry.find(
     (c) =>
-      c.category.toLowerCase() === "hero" &&
+      c.category.toLowerCase() === "interactions" &&
       c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
 
-  if (!entry) return { title: "Hero Not Found" };
+  if (!entry) return { title: "Component Not Found" };
 
-  const fullUrl = `https://t7blocks.xyz/hero/${type}/${name}`;
+  const fullUrl = `https://t7blocks.xyz/interactions/${type}/${name}`;
 
   return {
     title: entry.displayName,
@@ -47,30 +46,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function HeroDetailPage({ params }: Props) {
+export default async function ComponentDetailPage({ params }: Props) {
   const { type, name } = await params;
 
   const entry = registry.find(
     (c) =>
-      c.category.toLowerCase() === "hero" &&
+      c.category.toLowerCase() === "interactions" &&
       c.type.toLowerCase() === type.toLowerCase() &&
       c.name.toLowerCase() === name.toLowerCase()
   );
   if (!entry) return notFound();
 
-  let allContent: any
+  let allContent: any;
   try {
-
-    allContent = await import(`@/lib/content/components/${type}/${name}`);
+    // Restoring original dynamic import logic
+    allContent = await import(`@/lib/content/interactions/${type}/${name}`);
   } catch (err) {
-    console.error(`[HeroDetail] Failed to load component: ${type}/${name}`, err);
+    console.error(`[ComponentDetail] Failed to load component: ${type}/${name}`, err);
     return notFound();
   }
 
-
+  // Convert module object to plain object for client component serialization
   const serializableContent = { ...allContent };
 
-
+  // Hydrate raw source code at build/request time
   for (let i = 1; i <= 10; i++) {
     const fileNameKey = `Code${i}FileName`;
     const codeKey = `Code${i}`;
@@ -78,17 +77,18 @@ export default async function HeroDetailPage({ params }: Props) {
       try {
         serializableContent[codeKey] = readSourceFile(entry.category, type, serializableContent[fileNameKey]);
       } catch (err) {
-        console.error(`[HeroDetail] Failed to read source for ${fileNameKey}:`, err);
+        console.error(`[ComponentDetail] Failed to read source for ${fileNameKey}:`, err);
       }
     }
   }
 
-
+  // Legacy support for single codeB
+  // lock if provided
   if (serializableContent.codeBlockFileName && !serializableContent.codeBlock) {
     try {
       serializableContent.codeBlock = readSourceFile(entry.category, type, serializableContent.codeBlockFileName);
     } catch (err) {
-      console.error(`[HeroDetail] Failed to read source for codeBlockFileName:`, err);
+      console.error(`[ComponentDetail] Failed to read source for codeBlockFileName:`, err);
     }
   }
 

@@ -29,7 +29,9 @@ export function VaultCard({ item }: { item: ComponentEntry }) {
     }
   }, [isHovered, item.videoUrl, item.imageUrl]);
 
-  const href = `/${item.category === "components" ? "components" : item.category}/${item.type}/${item.name}`;
+  const href = item.noSubsection 
+    ? `/${item.category === "components" ? "components" : item.category}/${item.name}`
+    : `/${item.category === "components" ? "components" : item.category}/${item.type}/${item.name}`;
   const bookmarked = isBookmarked(item.name);
 
   return (

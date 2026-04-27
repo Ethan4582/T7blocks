@@ -4,14 +4,20 @@ import path from "path";
 export function readSourceFile(category: string, type: string, fileName: string): string {
   const getSearchDirectories = (basePath: string) => {
     const dirs = [];
-    if (category === "hero") {
-      // Heroes are structured directly under packages/ui/src/hero
-      dirs.push(path.join(basePath, "packages", "ui", "src", "hero"));
-      // Fallback to components/type just in case
-      dirs.push(path.join(basePath, "packages", "ui", "src", "components", type));
+    const uiPath = path.join(basePath, "packages", "ui", "src");
+    
+    if (category === "misc") {
+      dirs.push(path.join(uiPath, "misc"));
     } else {
-      dirs.push(path.join(basePath, "packages", "ui", "src", "components", type));
+      dirs.push(path.join(uiPath, category, type));
     }
+    
+    // Fallback to legacy structure
+    dirs.push(path.join(uiPath, "components", type));
+    if (category === "sections" && type === "hero") {
+      dirs.push(path.join(uiPath, "hero"));
+    }
+    
     return dirs;
   };
 
