@@ -138,7 +138,7 @@ export const components: ComponentData[] = [
       tags: ["Button", "Interaction", "Bouncy", "Framer Motion"],
       block_url: "https://t7blocks.xyz/components/button/bouncy-button",
       canvas: {
-        background: "#FFFFFF",
+        background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/Moon2011%20(1).png",
         height: "100vh",
         width: "100vw",
         className: "flex items-center justify-center",

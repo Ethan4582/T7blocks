@@ -7,7 +7,7 @@ export const BouncyButtonSchema={
    primaryColor:{
     type:"text",
     label:"Primary Color",
-    default:"#4c2c99ff"
+    default:"#f73f2a"
    },
    width:{
     type:"number",

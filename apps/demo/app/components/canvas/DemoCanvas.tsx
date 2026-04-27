@@ -23,7 +23,9 @@ export default function DemoCanvas({
     <div
       className={`relative flex items-center justify-center overflow-hidden transition-all duration-500 font-sans ${className}`}
       style={{
-        backgroundColor: background,
+        background: background?.startsWith("http")
+          ? `url('${background}') center/cover no-repeat`
+          : background,
         minHeight: height,
         width: width,
       }}
