@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   const categories = Array.from(new Set(registry.map((c) => c.category)));
   const types = Array.from(new Set(registry.map((c) => c.type)));
   
-  const explicitTypes = ["components", "button", "hero", "background", "loader", "transition", "navigation", "text"];
+  const explicitTypes = ["popular", "sections", "utilities", "components", "misc", "background" ];
   
   const allParams = Array.from(new Set([...categories, ...types, ...explicitTypes]))
     .filter(Boolean)
@@ -22,12 +22,14 @@ export async function generateStaticParams() {
 export default async function GalleryTypePage({ params }: Props) {
   const { type } = await params;
 
-  const filteredItems = registry.filter(
-    (c) => 
-      c.category.toLowerCase() === type.toLowerCase() || 
-      c.type.toLowerCase() === type.toLowerCase() ||
-      c.tags?.some(tag => tag.toLowerCase() === type.toLowerCase())
-  );
+  const filteredItems = type.toLowerCase() === "popular"
+    ? registry.filter((c) => c.isPopular)
+    : registry.filter(
+        (c) => 
+          c.category.toLowerCase() === type.toLowerCase() || 
+          c.type.toLowerCase() === type.toLowerCase() ||
+          c.tags?.some(tag => tag.toLowerCase() === type.toLowerCase())
+      );
 
   const displayTitle = type.charAt(0).toUpperCase() + type.slice(1);
 

@@ -29,7 +29,7 @@ export const NAVIGATION_DATA: NavSection[] = [
     items: [
       {
         title: "Follow for updates",
-        icon: "/SVG/x1.svg",
+        icon: "/SVG/x.svg",
         href: "https://twitter.com/ashirwadsingh_",
         external: true,
       },
@@ -44,6 +44,11 @@ export const NAVIGATION_DATA: NavSection[] = [
     title: "Blocks",
     items: [
       {
+        title: "Popular",
+        icon: "/SVG/star1.svg",
+        href: "/gallery/popular",
+      },
+      {
         title: "Components",
         icon: "/SVG/components.svg",
         href: "/gallery/components",
@@ -53,23 +58,55 @@ export const NAVIGATION_DATA: NavSection[] = [
             href: "/gallery/button",
 
           },
-          {
+        ],
+      },
+      {
+        title: "Interactions",
+        icon: "/SVG/interaction.svg",
+        href: "/gallery/interactions",
+        items: [
+           {
             title: "Scroll",
             href: "/gallery/scroll",
             items: getItemsByType("scroll"),
           },
-          {
-            title: "Misc",
-            href: "/gallery/misc",
-            items: getItemsByType("misc"),
-          }
-        ],
+        ]
       },
       {
-        title: "Hero",
-        icon: "/SVG/svg-65.svg",
-        href: "/gallery/hero",
-        items: getItemsByType("section", "hero"),
+        title: "Sections",
+        icon: "/SVG/section.svg",
+        href: "/gallery/sections",
+        items:[
+          {
+            title: "Hero",
+            href: "/gallery/sections/hero",
+            items: getItemsByType("hero", "sections"),
+          },
+        ]
+      },
+      {
+        title:"Utilities",
+        icon:"/SVG/utility.svg",
+        href:"/gallery/utilities",
+       items:[
+        {
+          title:"Loader",
+          href:"/gallery/utilities/loader",
+        },{
+          title:"Cursor",
+          href:"/gallery/utilities/cursor",
+        },
+        {
+          title:"Notifications",
+          href:"/gallery/utilities/notifications",
+        }
+       ]
+      },
+      {
+        title: "Misc",
+        icon: "/SVG/misc.svg",
+        href: "/gallery/misc",
+        items: getItemsByType("misc"),
       },
       {
         title: "Background",
