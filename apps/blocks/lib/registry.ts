@@ -127,10 +127,23 @@ export const registry: ComponentEntry[] = [
     isPremium:false,
     relatedCategories:[],
     isPopular:false,
-    videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/WaveButton.mp4",
+    videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/wavebutton.mp4",
     demoUrl:"https://demo.t7blocks.xyz/components/button/WaveButton",
-    description:"A wave button to switch between light and dark mode with sound effect",
+    description:"A button with a wave animation on hover",
     tags:["Button","Interaction" ,"Framer Motion"],
-  }
+  },{
+    id:8,
+    name:"bouncy-button",
+    displayName:"Bouncy Button",
+    category:"components",
+    type:"button",
+    isPremium:false,
+    relatedCategories:[],
+    isPopular:false,
+    videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/bouncybutton.mp4",
+    demoUrl:"https://demo.t7blocks.xyz/components/button/bouncy-button",
+    description:"A button with a bouncy animation on hover",
+    tags:["Button","Interaction" ,"Framer Motion"],
+  },
 
 ];
