@@ -12,8 +12,8 @@ export { KnobToggle } from "./components/button/KnobToggle";
 
 
 //scroll
-export {ScrollimagePass} from './interaction/scroll/ScrollimagePass/ScrollimagePass';
-export {StickyScroll} from './interaction/scroll/StickyScroll/StickyScroll';
+export {ScrollimagePass} from './interactions/scroll/ScrollimagePass/ScrollimagePass';
+export {StickyScroll} from './interactions/scroll/StickyScroll/StickyScroll';
 
 
 
