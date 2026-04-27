@@ -27,7 +27,7 @@
     "files": [
       {
         "name": "ScrollimagePass.tsx",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/scroll/ScrollimagePass/ScrollimagePass.tsx"
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/interaction/scroll/ScrollimagePass/ScrollimagePass.tsx"
       }
     ],
     "dependencies": ["gsap"]
@@ -38,11 +38,11 @@
     "files": [
       {
         "name": "StickyScroll.tsx",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/scroll/StickyScroll/StickyScroll.tsx"
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/interactions/scroll/StickyScroll/StickyScroll.tsx"
       },
       {
         "name": "StickyScroll.css",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/scroll/StickyScroll/StickyScroll.css"
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/interactions/scroll/StickyScroll/StickyScroll.css"
       }
     ],
     "dependencies": ["gsap"]
@@ -54,7 +54,7 @@
     "files": [
       {
         "name": "PullSwitch.tsx",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/misc/PullSwitch/PullSwitch.tsx"
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/misc/PullSwitch/PullSwitch.tsx"
       }
     ],
     "dependencies": ["gsap"]
@@ -68,11 +68,11 @@
     "files": [
       {
         "name": "PopHero.tsx",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/hero/PopHero/PopHero.tsx"
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/sections/hero/PopHero/PopHero.tsx"
       },
       {
         "name": "PopHero.css",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/hero/PopHero/PopHero.css"
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/sections/hero/PopHero/PopHero.css"
       }
     ],
     "dependencies": ["gsap"]
