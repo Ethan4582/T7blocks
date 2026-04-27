@@ -35,7 +35,7 @@ export const NAVIGATION_DATA: NavSection[] = [
       },
       {
         title: "Gallery",
-        icon: "/SVG/gallery1.png",
+        icon: "/assets/gallery1.png",
         href: "/gallery",
       },
     ],
@@ -45,7 +45,7 @@ export const NAVIGATION_DATA: NavSection[] = [
     items: [
       {
         title: "Popular",
-        icon: "/SVG/fire.png",
+        icon: "/assets/fire.png",
         href: "/gallery/popular",
       },
       {
@@ -110,7 +110,7 @@ export const NAVIGATION_DATA: NavSection[] = [
       },
       {
         title: "Background",
-        icon: "/SVG/background.png",
+        icon: "/assets/background.png",
         href: "/gallery/background",
         items: getItemsByType("background", "background"),
       },

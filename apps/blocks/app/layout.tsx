@@ -67,12 +67,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "T7BLOCKS — Premium  Component Library",
     description: "High-end animated components for modern web applications.",
-    images: ["/logo2.png"],
+    images: ["/logo.png"],
     creator: "@t7labs",
   },
   icons: {
     icon: [
-      { url: "/logo.png", sizes: "32x32" },
+      { url: "/logo.png", sizes: "48x48" },
       { url: "/logo.png", sizes: "192x192" },
     ],
     apple: [
