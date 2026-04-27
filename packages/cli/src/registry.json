@@ -19,6 +19,17 @@
     ],
     "dependencies": []
   },
+    "button/wave-button": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "WaveButton.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/button/WaveButton/WaveButton.tsx"
+      }
+    ],
+    "dependencies": []
+  },
+
 
 
 

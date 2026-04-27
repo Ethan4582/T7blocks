@@ -47,7 +47,7 @@ export const registry: ComponentEntry[] = [
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/launch_button.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button", 
     description: "A minimalist, premium button featuring a grid-based arrow animation",
-    tags: ["Button", "Animation", "framer Motion", "minimal"],
+    tags: ["Button", "Animation", "Framer Motion", "Minimal"],
   },
   {
     id: 2,
@@ -61,7 +61,7 @@ export const registry: ComponentEntry[] = [
     relatedCategories: [],
   isPopular: false,
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
-    tags: ["hero", "gsap", "nature", "minimal", "framer motion"],
+    tags: ["Hero", "GSAP", "Nature", "Minimal", "Framer Motion"],
   },
   {
     id: 3,
@@ -76,7 +76,7 @@ export const registry: ComponentEntry[] = [
     demoUrl: "https://demo.t7blocks.xyz/interactions/scroll/Scroll-Image-Pass",
    
     description: "Staggered vertical image scroll with GSAP ScrollTrigger.",
-    tags: ["scroll", "gsap", "images", "work", "framer motion"],
+    tags: ["Scroll", "GSAP", "Images", "Work", "Framer Motion"],
   }, {
     id: 4,
     name: "sticky-scroll",
@@ -90,7 +90,7 @@ export const registry: ComponentEntry[] = [
     demoUrl: "https://demo.t7blocks.xyz/interactions/scroll/Sticky-Scroll",
    
     description: "Sticky scroll with GSAP ScrollTrigger.",
-    tags: ["scroll", "ScrollTrigger", "gsap", "images", "work", "framer motion"],
+    tags: ["Scroll", "ScrollTrigger", "GSAP", "Images", "Work", "Framer Motion"],
   }, {
     id: 5,
     name: "pull-switch",
@@ -104,7 +104,7 @@ export const registry: ComponentEntry[] = [
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pullswitch.mp4",
     demoUrl: "https://demo.t7blocks.xyz/misc/pull-switch",
     description: "Interactive pull-cord switch to toggle light and dark mode",
-    tags: ["misc", "gsap", "button", "Canvas", "Animation", "Theme", "Dark Mode", "Interaction"],
+    tags: ["Misc", "GSAP", "Button", "Canvas", "Theme", "Dark Mode", "Interaction"],
   }, {
     id: 6,
     name: "knob-toggle",
@@ -117,7 +117,20 @@ export const registry: ComponentEntry[] = [
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/KnobButton.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/button/knob-toggle",
     description: "A knob toggle to switch between light and dark mode with sound effect",
-    tags: ["button", "Animation", "Theme", "Dark Mode", "Interaction", "sound"],
+    tags: ["Button", "Interaction", "Theme", "Dark Mode", "Sound"],
+  },{
+    id:7,
+    name:"wave-button",
+    displayName:"Wave Button",
+    category:"components",
+    type:"button",
+    isPremium:false,
+    relatedCategories:[],
+    isPopular:false,
+    videoUrl:"https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/WaveButton.mp4",
+    demoUrl:"https://demo.t7blocks.xyz/components/button/WaveButton",
+    description:"A wave button to switch between light and dark mode with sound effect",
+    tags:["Button","Interaction" ,"Framer Motion"],
   }
 
 ];

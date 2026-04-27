@@ -9,7 +9,7 @@ import React from "react";
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { isCollapsed } = useSidebar();
+  const { isCollapsed, isOpen } = useSidebar();
 
   const isStandalone = pathname === "/" || pathname === "/templates" || pathname === "/waitlisting" || pathname === "/waitlist" || pathname === "/dashboard";
   const offset = (!isCollapsed && !isStandalone) ? "md:ml-[250px]" : "ml-0";
@@ -38,7 +38,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
       >
         {!isStandalone && <ComponentNavbar />}
 
-        <div className={`flex-1 flex flex-col ${isStandalone ? "" : "px-6 md:px-10 lg:pl-[72px] lg:pr-[12px]"}`}>
+        <div className={`flex-1 flex flex-col ${isStandalone ? "" : "px-6 md:px-10 lg:pl-[40px] lg:pr-[12px]"}`}>
           {children}
         </div>
       </main>

@@ -107,5 +107,23 @@ export const components: ComponentData[] = [
       width: "100vw",
       className: "!block !p-0 !m-0 !overflow-hidden",
     }
+  },{
+    id: "wave-button",
+    name: "Wave Button",
+    shortDescription: "A button with a wave animation",
+    longDescription: "A button with a wave animation that is triggered on hover",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/knobswitch.mp4",
+    type: "components",
+    subsection: "button",
+    category: "button",
+    date: "2026-04-11",
+    tags: ["Button", "Animation", "Theme", "Dark Mode", "Interaction", "sound"],
+    block_url: "https://t7blocks.xyz/components/button/wave-button",
+    canvas: {
+      background: "#FFFFFF",
+      height: "100vh",
+      width: "100vw",
+      className: "flex items-center justify-center",
+    }
   }
 ];
