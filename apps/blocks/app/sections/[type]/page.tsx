@@ -8,32 +8,31 @@ interface Props {
 
 export async function generateStaticParams() {
   const dynamicTypes = registry
-    .filter((c) => c.category === "hero")
+    .filter((c) => c.category === "sections")
     .map((c) => c.type);
   
-  const staticTypes = ["section", "header"];
+  const staticTypes = ["hero"];
   const allTypes = Array.from(new Set([...dynamicTypes, ...staticTypes]));
   
   return allTypes.map((t) => ({ type: t }));
 }
 
-export default async function HeroTypeGallery({ params }: Props) {
+export default async function TypeGallery({ params }: Props) {
   const { type } = await params;
 
   const filteredItems = registry.filter(
-    (c) => c.category === "hero" && c.type === type
+    (c) => c.category === "sections" && c.type === type
   );
 
-  const staticTypes = ["section", "header"];
-  if (filteredItems.length === 0 && !staticTypes.includes(type)) {
+  if (filteredItems.length === 0) {
     notFound();
   }
 
   return (
     <GalleryGrid 
       items={filteredItems}
-      title={`${type} Heroes`}
-      description={`Immersive and premium ${type} sections for your project.`}
+      title={`${type}s`}
+      description={`Explore our collection of high-performance ${type} components.`}
     />
   );
 }

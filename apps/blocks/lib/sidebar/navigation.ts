@@ -20,7 +20,7 @@ const getItemsByType = (type: string, category: string = "components") => {
     .filter((c) => c.category === category && c.type === type)
     .map((c) => ({
       title: c.displayName,
-      href: `/${category}/${c.type}/${c.name}`,
+      href: c.noSubsection ? `/${category}/${c.name}` : `/${category}/${c.type}/${c.name}`,
     }));
 };
 
@@ -29,13 +29,13 @@ export const NAVIGATION_DATA: NavSection[] = [
     items: [
       {
         title: "Follow for updates",
-        icon: "/SVG/x.svg",
+        icon: "/SVG/x2.png",
         href: "https://twitter.com/ashirwadsingh_",
         external: true,
       },
       {
         title: "Gallery",
-        icon: "/SVG/gallery.png",
+        icon: "/SVG/gallery1.png",
         href: "/gallery",
       },
     ],
@@ -45,7 +45,7 @@ export const NAVIGATION_DATA: NavSection[] = [
     items: [
       {
         title: "Popular",
-        icon: "/SVG/star1.svg",
+        icon: "/SVG/fire.png",
         href: "/gallery/popular",
       },
       {
@@ -79,38 +79,38 @@ export const NAVIGATION_DATA: NavSection[] = [
         items:[
           {
             title: "Hero",
-            href: "/gallery/sections/hero",
-            items: getItemsByType("hero", "sections"),
+            href: "/gallery/hero",
+            items: getItemsByType("hero"),
           },
         ]
       },
-      {
-        title:"Utilities",
-        icon:"/SVG/utility.svg",
-        href:"/gallery/utilities",
-       items:[
-        {
-          title:"Loader",
-          href:"/gallery/utilities/loader",
-        },{
-          title:"Cursor",
-          href:"/gallery/utilities/cursor",
-        },
-        {
-          title:"Notifications",
-          href:"/gallery/utilities/notifications",
-        }
-       ]
-      },
+      // {
+      //   title:"Utilities",
+      //   icon:"/SVG/utility.svg",
+      //   href:"/gallery/utilities",
+      //  items:[
+      //   {
+      //     title:"Loader",
+      //     href:"/gallery/utilities/loader",
+      //   },{
+      //     title:"Cursor",
+      //     href:"/gallery/utilities/cursor",
+      //   },
+      //   {
+      //     title:"Notifications",
+      //     href:"/gallery/utilities/notifications",
+      //   }
+      //  ]
+      // },
       {
         title: "Misc",
         icon: "/SVG/misc.svg",
         href: "/gallery/misc",
-        items: getItemsByType("misc"),
+        items: getItemsByType("misc", "misc"),
       },
       {
         title: "Background",
-        icon: "/SVG/image.svg",
+        icon: "/SVG/background.png",
         href: "/gallery/background",
         items: getItemsByType("background", "background"),
       },
