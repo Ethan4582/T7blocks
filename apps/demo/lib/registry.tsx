@@ -1,6 +1,6 @@
-import { Dotlaunchbutton, PopHero, ScrollimagePass, StickyScroll, PullSwitch, KnobToggle, WaveButton, BouncyButton } from "@t7blocks/ui";
-import PullSwitchDemo from "@/app/components/canvas/PullSwitchDemo";
-import KnobToggleDemo from "@/app/components/canvas/KnobToggleDemo";
+import { Dotlaunchbutton, PopHero, ScrollimagePass, StickyScroll, PullSwitch, KnobToggle, WaveButton, BouncyButton, StaggerText } from "@t7blocks/ui";
+import PullSwitchDemo from "@/app/canvas/PullSwitchDemo";
+import KnobToggleDemo from "@/app/canvas/KnobToggleDemo";
 import { launchButtonSchema } from "./prop-schemas/components/button/Launch-Button";
 import { scrollImagePassSchema } from "./prop-schemas/interactions/scroll/ScrollimagePass";
 import { stickyScrollSchema } from "./prop-schemas/interactions/scroll/StickyScroll";
@@ -8,6 +8,7 @@ import { pullSwitchSchema } from "./prop-schemas/misc/PullSwitch";
 import { knobToggleSchema } from "./prop-schemas/components/button/KnobToggle";
 import { waveButtonSchema } from "./prop-schemas/components/button/WaveButton";
 import { BouncyButtonSchema } from "./prop-schemas/components/button/BouncyButton";
+import { staggertextSchema } from "./prop-schemas/components/text/staggertext";
 
 export const registry: Record<string, {
   component: React.ComponentType<any>;
@@ -37,13 +38,17 @@ export const registry: Record<string, {
     component: KnobToggleDemo,
     schema: knobToggleSchema,
   },
-    "wave-button": {
+  "wave-button": {
     component: WaveButton,
     schema: waveButtonSchema,
   },
   "bouncy-button": {
     component: BouncyButton,
     schema: BouncyButtonSchema,
+  },
+  "stagger-text": {
+    component: StaggerText,
+    schema: staggertextSchema,
   },
 };
 

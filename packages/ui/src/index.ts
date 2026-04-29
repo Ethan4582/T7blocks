@@ -6,6 +6,8 @@ export { WaveButton } from "./components/button/WaveButton"
 export { BouncyButton } from "./components/button/BouncyButton";
 
 
+//text
+export { StaggerText } from './components/text/StaggerText';
 
 
 

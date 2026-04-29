@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { components } from "@/lib/gallery";
-import ComponentDemoClient from "@/app/components/canvas/ComponentDemoClient";
+import ComponentDemoClient from "@/canvas/ComponentDemoClient";
 
 type Props = {
   params: Promise<{ type: string; slug: string }>;

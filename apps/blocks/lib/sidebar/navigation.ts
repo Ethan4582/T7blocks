@@ -58,6 +58,10 @@ export const NAVIGATION_DATA: NavSection[] = [
             href: "/gallery/button",
 
           },
+           {
+            title: "Text",
+            href: "/gallery/text",
+          },
         ],
       },
       {
