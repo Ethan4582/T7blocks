@@ -12,6 +12,7 @@ export const installCommand = `pnpm add framer-motion`;
 export const setupCode1FileName="page.tsx";
 
 export const setupCode1=`import { BouncyButton } from "@/components/T7blocks/BouncyButton";
+
 export default function Home() {
   return (
     <div className="h-screen flex items-center justify-center">

@@ -107,7 +107,7 @@ export const components: ComponentData[] = [
       width: "100vw",
       className: "!block !p-0 !m-0 !overflow-hidden",
     }
-  },{
+  }, {
     id: "wave-button",
     name: "Wave Button",
     shortDescription: "A button with a wave animation",
@@ -125,23 +125,41 @@ export const components: ComponentData[] = [
       width: "100vw",
       className: "flex items-center justify-center",
     },
-  },{
-      id: "bouncy-button",
-      name: "Bouncy Button",
-      shortDescription: "A button with a bouncy animation",
-      longDescription: "A button with a bouncy animation that is triggered on hover",
-      video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/bouncybutton.mp4",
-      type: "components",
-      subsection: "button",
-      category: "button",
-      date: "2026-04-11",
-      tags: ["Button", "Interaction", "Bouncy", "Framer Motion"],
-      block_url: "https://t7blocks.xyz/components/button/bouncy-button",
-      canvas: {
-        background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/Moon2011%20(1).png",
-        height: "100vh",
-        width: "100vw",
-        className: "flex items-center justify-center",
-      },
-    }
+  }, {
+    id: "bouncy-button",
+    name: "Bouncy Button",
+    shortDescription: "A button with a bouncy animation",
+    longDescription: "A button with a bouncy animation that is triggered on hover",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/bouncybutton.mp4",
+    type: "components",
+    subsection: "button",
+    category: "button",
+    date: "2026-04-11",
+    tags: ["Button", "Interaction", "Bouncy", "Framer Motion"],
+    block_url: "https://t7blocks.xyz/components/button/bouncy-button",
+    canvas: {
+      background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/Moon2011%20(1).png",
+      height: "100vh",
+      width: "100vw",
+      className: "flex items-center justify-center",
+    },
+  }, {
+    id: "stagger-text",
+    name: "Stagger Text",
+    shortDescription: "A text with a stagger animation on hover",
+    longDescription: "A text with a stagger animation that is triggered on hover",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/staggertext.mp4",
+    type: "components",
+    subsection: "text",
+    category: "text",
+    date: "2026-04-11",
+    tags: ["Text", "Animation", "Hover", "Interactive", "Typography"],
+    block_url: "https://t7blocks.xyz/components/text/staggertext",
+    canvas: {
+      background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/blue_orange.png",
+      height: "100vh",
+      width: "100vw",
+      className: "flex items-center justify-center",
+    },
+  }
 ];

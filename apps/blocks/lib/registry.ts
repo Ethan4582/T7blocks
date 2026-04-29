@@ -145,5 +145,19 @@ export const registry: ComponentEntry[] = [
     description:"A button with a bouncy animation on hover",
     tags:["Button","Interaction" ,"Framer Motion"],
   },
+  {
+    id: 9,
+    name: "staggertext",
+    displayName: "Stagger Text",
+    category: "components",
+    type: "text",
+    isPremium: false,
+    relatedCategories: [],
+    isPopular: false,
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/staggertext.mp4",
+    demoUrl: "https://demo.t7blocks.xyz/components/text/stagger-text",
+    description: "A text with a stagger animation on hover",
+    tags: ["Text", "Animation", "Hover", "Interactive", "Typography"],
+  },
 
 ];
