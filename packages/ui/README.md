@@ -4,7 +4,7 @@ Premium-grade UI components for React. The kind you see on high-end landing page
 
 [![npm version](https://img.shields.io/npm/v/@t7blocks/ui?style=flat-square)](https://www.npmjs.com/package/@t7blocks/ui)
 [![npm downloads](https://img.shields.io/npm/dm/@t7blocks/ui?style=flat-square)](https://www.npmjs.com/package/@t7blocks/ui)
-[![license](https://img.shields.io/badge/license-Custom-blue?style=flat-square)](https://github.com/Ethan4582/t7block-free/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-Custom-blue?style=flat-square)](https://github.com/Ethan4582/t7blocks/blob/master/LICENSE)
 
 ---
 
@@ -75,4 +75,4 @@ Hero sections, background effects, and advanced blocks are available to Pro memb
 
 Copyright © 2025 Ashirwad Singh. Free components are available under a custom license that permits personal and commercial use with attribution. Redistribution as a standalone library or template kit is not permitted.
 
-Read the full license → [LICENSE](https://github.com/Ethan4582/t7block-free/blob/master/LICENSE)
+Read the full license → [LICENSE](https://github.com/Ethan4582/t7blocks/blob/master/LICENSE)

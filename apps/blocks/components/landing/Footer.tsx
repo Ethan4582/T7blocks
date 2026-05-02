@@ -19,7 +19,7 @@ const footerLinks = {
   ],
   Support: [
     { name: "Contact Us", href: "#" },
-    { name: "Contribute", href: "https://github.com/Ethan4582/t7block" },
+    { name: "Contribute", href: "https://github.com/Ethan4582/t7blocks" },
     { name: "FAQs", href: "#" },
   ],
 };
@@ -170,7 +170,7 @@ export function Footer() {
             <p className="text-xs text-[#9a9a9a]">
               Building in public at{" "}
               <a
-                href="https://github.com/Ethan4582/t7block"
+                href="https://github.com/Ethan4582/t7blocks"
                 target="_blank"
                 rel="noreferrer"
                 className="text-accent hover:underline font-semibold"

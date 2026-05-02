@@ -92,7 +92,7 @@ function getFilePath(category: string, type: string, fileName: string): string {
   };
 
   const localDirs = getSearchDirectories(path.join(/*turbopackIgnore: true*/ process.cwd()));
-  const fallbackDirs = getSearchDirectories(path.join(/*turbopackIgnore: true*/ process.cwd(), "..", ".."));
+  const fallbackDirs = getSearchDirectories(path.resolve(/*turbopackIgnore: true*/ process.cwd(), "../../"));
   
   const allDirs = [...localDirs, ...fallbackDirs];
 

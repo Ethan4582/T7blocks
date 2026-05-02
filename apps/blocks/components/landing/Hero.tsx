@@ -192,7 +192,7 @@ export function Hero() {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </Link>
           <a
-            href="https://github.com/Ethan4582/t7block"
+            href="https://github.com/Ethan4582/t7blocks"
             target="_blank"
             rel="noreferrer"
             className="px-8 py-3.5 bg-transparent text-foreground border border-border hover:border-foreground/30 rounded-full font-semibold text-[15px] hover:bg-foreground/5 transition-all"

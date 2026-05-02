@@ -4,7 +4,7 @@ The official CLI for [T7blocks](https://t7blocks.xyz). Drop premium-quality anim
 
 [![npm version](https://img.shields.io/npm/v/@t7blocks/cli?style=flat-square)](https://www.npmjs.com/package/@t7blocks/cli)
 [![npm downloads](https://img.shields.io/npm/dm/@t7blocks/cli?style=flat-square)](https://www.npmjs.com/package/@t7blocks/cli)
-[![license](https://img.shields.io/badge/license-Custom-blue?style=flat-square)](https://github.com/Ethan4582/t7block-free/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-Custom-blue?style=flat-square)](https://github.com/Ethan4582/t7blocks/blob/master/LICENSE)
 
 ---
 
@@ -60,7 +60,7 @@ The file is written to `./components/ui/Button1.tsx`. It belongs to your project
 
 ## How it works
 
-The CLI fetches component source files from the [T7blocks repository](https://github.com/Ethan4582/t7block-free) and writes them into your project. No compilation, no wrappers — just the raw `.tsx` file.
+The CLI fetches component source files from the [T7blocks repository](https://github.com/Ethan4582/t7blocks) and writes them into your project. No compilation, no wrappers — just the raw `.tsx` file.
 
 This is intentionally similar to how [shadcn/ui](https://ui.shadcn.com) works.
 
@@ -92,4 +92,4 @@ See [@t7blocks/ui](https://www.npmjs.com/package/@t7blocks/ui) for the full list
 
 Copyright © 2025 Ashirwad Singh.
 
-Read the full license → [LICENSE](https://github.com/Ethan4582/t7block-free/blob/master/LICENSE)
+Read the full license → [LICENSE](https://github.com/Ethan4582/t7blocks/blob/master/LICENSE)
