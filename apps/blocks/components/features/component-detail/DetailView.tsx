@@ -12,8 +12,8 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
   const [activeSection, setActiveSection] = useState("install");
   const [docMode, setDocMode] = useState<"CLI" | "Code">("CLI");
 
-  const codeBlocks: { label: string; code: string }[] = [];
-  const setupBlocks: { label: string; code: string }[] = [];
+  const codeBlocks: { label: string; code: string; jsxCode?: string }[] = [];
+  const setupBlocks: { label: string; code: string; jsxCode?: string }[] = [];
 
   for (let i = 1; i <= 10; i++) {
     const code = allContent[`Code${i}`];
