@@ -78,14 +78,14 @@ export function Footer() {
             <div className="col-span-2 md:col-span-4 flex flex-col gap-5">
               <div className="flex items-center gap-3">
                 <Image
-                  src="/assets/logo.png"
-                  alt="T7block logo"
+                  src="/logo.png"
+                  alt="T7Blocks logo"
                   width={32}
                   height={32}
                   className="rounded-lg"
                 />
                 <span className="text-lg font-semibold tracking-tight text-white">
-                  T7block
+                  T7Blocks
                 </span>
               </div>
               <p className="type-body-xs text-[#9a9a9a] max-w-[280px] leading-relaxed">
@@ -94,13 +94,13 @@ export function Footer() {
               </p>
               <div className="flex items-center gap-3 mt-1">
                 <a
-                  href="https://github.com/Ethan4582/t7block"
+                  href="https://github.com/Ethan4582/t7blocks"
                   target="_blank"
                   rel="noreferrer"
                   className="w-8 h-8 rounded-md bg-white/[0.06] flex items-center justify-center text-[#9a9a9a] hover:text-white hover:bg-white/[0.1] transition-colors"
                 >
                   <Image
-                    src="/SVG/Twitter-X--Streamline-Bootstrap.svg"
+                    src="/SVG/x.svg"
                     alt="X (Twitter)"
                     width={13}
                     height={13}
@@ -164,7 +164,7 @@ export function Footer() {
           <div className="max-w-7xl mx-auto px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-[#9a9a9a]">
               © {new Date().getFullYear()}{" "}
-              <span className="text-accent font-semibold">T7block</span>. All
+              <span className="text-accent font-semibold">T7Blocks</span>. All
               rights reserved.
             </p>
             <p className="text-xs text-[#9a9a9a]">
