@@ -1,41 +1,108 @@
-# Waitlist Dashboard — Premium Refactor Plan
+# JSX/TSX Source Display Toggle Plan
 
-## Folder structure
-```
-apps/blocks/app/dashboard/
-├── page.tsx                     ← entry point, fetches data, composes layout
-
-
-├── components/
-├── Dashboard/
-│   ├── DashboardHeader.tsx      ← title, refresh button, logout
-│   ├── StatCard.tsx             ← reusable metric card (total, 24h, 7d, 30d)
-│   ├── GrowthChart.tsx          ← signup trend over time
-│   ├── HourlyChart.tsx          ← signups by hour of day (bar chart)
-│   ├── SignupTable.tsx          ← paginated email + timestamp table
-│   └── TablePagination.tsx      ← prev/next controls, page indicator
-└── lib/
-    └── transform.ts             ← pure functions: group by day, group by hour
-```
+## Scope
+- `apps/blocks` only
+- No changes to `packages/ui`, `packages/cli`, or `apps/demo`
+- CLI ships TypeScript only, nothing changes there
 
 ---
 
-1. **`transform.ts`** — write two pure functions: `groupByDay(signups)` buckets signups into daily counts for the last 30 days filling gaps with zero, and `groupByHour(signups)` buckets signups by hour of day (0–23). No fetch logic here — only data transformation. Both functions take the raw signups array from the `/dashboard` endpoint.
+## What changes
 
-2. **`StatCard.tsx`** — single reusable card accepting `label`, `value`, and `icon` props. Render a large number, subtle label, and a small percentage change badge comparing current period to previous period (e.g. 24h vs previous 24h). Derive the comparison delta inside the component from the values passed — no additional fetch.
+### 1. `apps/blocks/lib/readSource.ts`
 
-3. **`GrowthChart.tsx`** — cumulative signup growth line chart using the daily grouped data from `transform.ts`. Use **Recharts** `AreaChart` with a gradient fill — dark background, a glowing accent stroke, custom tooltip showing date and count. No axes clutter — only bottom date labels and a minimal left axis. This is the hero visual of the dashboard.
+Current: reads raw file content and returns it as-is.
 
-4. **`HourlyChart.tsx`** — bar chart showing signups by hour of day using `groupByHour` data. Use Recharts `BarChart` with rounded bars and the same dark theme. This reveals when users are most active — useful insight from data already in the DB without any schema changes.
+Add a second exported function `getComponentSourceAsJsx(relativePath)` that:
+- Reads the file the same way as `getComponentSource`
+- Passes the content through a transform function that strips TypeScript syntax
+- Returns the cleaned JavaScript string
 
-5. **`SignupTable.tsx`** — renders the current page of signups as a clean table with `EMAIL ADDRESS` and `JOINED AT` columns. Accepts `data`, `currentPage`, `totalPages`, `onPageChange` as props. No fetch logic inside — purely presentational. Format the timestamp as relative time (e.g. "2 hours ago") using `Intl.RelativeTimeFormat`.
+The transform must handle:
+- Interface and type declarations (`interface Foo {}`, `type Foo = ...`)
+- Type annotations on props (`prop: string` → `prop`)
+- Generic type parameters on functions (`function Foo<T>` → `function Foo`)
+- Import type statements (`import type { X }` → remove entire line)
+- Type assertions (`value as string` → `value`)
+- Return type annotations (`: JSX.Element` → remove)
+- The `satisfies` operator if used
 
-6. **`TablePagination.tsx`** — standalone pagination controls: previous button, page X of Y indicator, next button. Accepts `currentPage`, `totalPages`, `onPageChange`. Disable prev on page 1 and next on last page. Page size is 20 rows. Total pages derived from `Math.ceil(total / 20)` passed from parent.
+Use the `sucrase` package for this transform — it is designed exactly for stripping TypeScript syntax to produce valid JavaScript. It is lightweight, fast, and handles all edge cases above correctly. Do not write a regex-based stripper — it will break on complex components.
 
-7. **`DashboardHeader.tsx`** — title, subtitle, refresh button that calls a passed `onRefresh` callback, and logout button. Keep this purely presentational — no state or fetch logic inside.
+```bash
+pnpm add sucrase --filter blocks
+```
 
-8. **`page.tsx`** — owns all state: `data`, `loading`, `currentPage`. Fetches `/dashboard` on mount and on refresh. Passes transformed data down to chart and table components. Handles Basic Auth header. Computes pagination slice as `signups.slice(currentPage * 20, (currentPage + 1) * 20)` before passing to `SignupTable`. Reset `currentPage` to 0 on every refresh.
+Sucrase's `transform` function with `transforms: ['typescript', 'jsx']` produces clean JSX output from TSX source.
 
-9. **Chart theme** — both charts share a consistent dark theme: `#010101` background, single accent colour matching the existing blocks site colour token, no grid lines on the growth chart, subtle dotted grid on the hourly chart. Define chart theme constants in `transform.ts` and import into both chart components so colour never diverges.
+### 2. `apps/blocks/lib/readSource.ts` — updated shape
 
-10. **No new dependencies beyond Recharts** — Recharts is lightweight, tree-shakeable, and sufficient for both chart types. Do not install a separate charting library for each chart. Do not add any animation library to the dashboard — Recharts has built-in entrance animations that are sufficient.
+```ts
+// existing - unchanged
+export function getComponentSource(relativePath: string): string
+
+// new
+export function getComponentSourceAsJsx(relativePath: string): string
+```
+
+Both functions resolve the file path the same way. `getComponentSourceAsJsx` just passes the result through sucrase before returning.
+
+---
+
+### 3. Component showcase pages
+
+Every individual component page that currently renders a code block gets a tab switcher UI above the code block.
+
+Default tab: **JavaScript** (JSX)
+Second tab: **TypeScript** (TSX)
+
+The page fetches both versions at build time since it is a server component:
+
+```ts
+const tsxSource = getComponentSource(path)
+const jsxSource = getComponentSourceAsJsx(path)
+```
+
+Both strings are passed as props to the code block component. The tab switcher is a `"use client"` component that toggles which string is displayed. No additional server calls on tab switch — both strings are already in the page.
+
+Only the **source code block** changes on tab switch. These do not change:
+- Install command
+- Usage snippet (`<Button text="hello" />`)
+- Props table
+- CLI command
+- Demo link
+
+---
+
+### 4. `apps/blocks/components/ui/CodeBlock.tsx`
+
+Update to accept `jsxCode` and `tsxCode` as separate props instead of a single `code` prop. Renders the tab switcher internally. The switcher is minimal — two buttons, active state styling. No external tab library needed.
+
+---
+
+### 5. Hero section pages
+
+Hero sections have two files — TSX and CSS. The CSS file has no TypeScript so it does not need a toggle. Only the TSX tab gets the JSX/TSX switcher. The CSS tab is always the same.
+
+---
+
+## What does not change
+
+- `getComponentSource` function signature and behaviour
+- CLI — ships `.tsx` only, no detection, no changes
+- Props table data
+- Usage snippet code blocks
+- Demo links and video previews
+- Any page structure or layout
+- `packages/ui` source files
+
+---
+
+## Implementation order
+
+1. Install sucrase in `apps/blocks`
+2. Add `getComponentSourceAsJsx` to `source.ts`
+3. Test the transform locally on one complex component to verify it produces valid JS
+4. Update `CodeBlock.tsx` to accept both strings and render the tab switcher
+5. Update component pages to pass both strings
+6. Update hero pages for the TSX file tab only

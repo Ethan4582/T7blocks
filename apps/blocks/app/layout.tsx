@@ -84,6 +84,7 @@ export const metadata: Metadata = {
 import { SidebarProvider } from "@/components/providers/sidebar-provider";
 import { BookmarksProvider } from "@/components/providers/bookmarks-context";
 import { ToastProvider } from "@/components/providers/toast-provider";
+import { CodePreferenceProvider } from "@/components/providers/code-preference-provider";
 
 export default function RootLayout({
   children,
@@ -102,13 +103,15 @@ export default function RootLayout({
       <body className="antialiased bg-background text-foreground scrollbar-hide">
         <ThemeProvider>
           <ToastProvider>
-            <BookmarksProvider>
-              <SidebarProvider>
-                <div className="flex w-full min-h-screen bg-background">
-                  <LayoutWrapper>{children}</LayoutWrapper>
-                </div>
-              </SidebarProvider>
-            </BookmarksProvider>
+            <CodePreferenceProvider>
+              <BookmarksProvider>
+                <SidebarProvider>
+                  <div className="flex w-full min-h-screen bg-background">
+                    <LayoutWrapper>{children}</LayoutWrapper>
+                  </div>
+                </SidebarProvider>
+              </BookmarksProvider>
+            </CodePreferenceProvider>
           </ToastProvider>
         </ThemeProvider>
       </body>

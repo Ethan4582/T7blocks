@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/components/providers/theme-provider";
 import { useSidebar } from "@/components/providers/sidebar-provider";
+import { useCodePreference } from "@/components/providers/code-preference-provider";
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics/analytics";
 import { KnobToggle } from "@/components/ui/button/KnobToggle";
 import Image from "next/image";
@@ -17,6 +18,7 @@ interface ComponentNavbarProps {
 export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T7blocks/issues" }: ComponentNavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const { isCollapsed, toggleCollapsed } = useSidebar();
+  const { preference, setPreference } = useCodePreference();
   const [mounted, setMounted] = useState(false);
   const [stars, setStars] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -105,10 +107,29 @@ export function ComponentNavbar({ bugReportUrl = "https://github.com/Ethan4582/T
                   <Bookmark className="w-3.5 h-3.5 text-theme-accent" />
                   <span>Bookmarks</span>
                 </Link>
-                <a href={bugReportUrl} target="_blank" className="flex items-center gap-2.5 px-3 py-1.5 text-[12px] font-medium text-foreground hover:bg-muted rounded transition-all">
-                  <Bug className="w-3.5 h-3.5 text-rose-500" />
-                  <span>Report bug</span>
-                </a>
+                
+                <div className="mx-2 my-1 h-px bg-border/30" />
+                <div className="px-3 py-2 space-y-1.5">
+                  <div className="text-[10px] font-bold text-muted-foreground/50 uppercase tracking-widest">Code Preference</div>
+                  <div className="flex items-center p-1 bg-muted/30 rounded-lg gap-0.5">
+                    <button
+                      onClick={() => setPreference("jsx")}
+                      className={`flex-1 py-1 text-[10px] font-bold rounded-md transition-all ${preference === "jsx" 
+                        ? "bg-white dark:bg-[#2a2a2a] text-foreground shadow-sm border border-black/5 dark:border-white/5" 
+                        : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      JSX
+                    </button>
+                    <button
+                      onClick={() => setPreference("tsx")}
+                      className={`flex-1 py-1 text-[10px] font-bold rounded-md transition-all ${preference === "tsx" 
+                        ? "bg-white dark:bg-[#2a2a2a] text-foreground shadow-sm border border-black/5 dark:border-white/5" 
+                        : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      TSX
+                    </button>
+                  </div>
+                </div>
                 <div className="mx-2 my-1 h-px bg-border/30" />
                 <a href="https://github.com/sponsors/Ethan4582" target="_blank"
                   onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "sponsor", location: "navbar" })}
