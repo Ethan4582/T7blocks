@@ -17,21 +17,24 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
 
   for (let i = 1; i <= 10; i++) {
     const code = allContent[`Code${i}`];
+    const jsxCode = allContent[`Code${i}Jsx`];
     const fileName = allContent[`Code${i}FileName`];
-    if (code) codeBlocks.push({ label: fileName || (i === 1 ? "Component" : `Module ${i}`), code });
+    if (code) codeBlocks.push({ label: fileName || (i === 1 ? "Component" : `Module ${i}`), code, jsxCode });
   }
 
   if (codeBlocks.length === 0) {
     const legacyCode = allContent.codeBlock || allContent.heroTsxSource || allContent.componentCode || "";
-    if (legacyCode) codeBlocks.push({ label: "Component", code: legacyCode });
+    const legacyJsxCode = allContent.codeBlockJsx || "";
+    if (legacyCode) codeBlocks.push({ label: "Component", code: legacyCode, jsxCode: legacyJsxCode });
     const legacyCss = allContent.heroCssSource || allContent.cssSource;
     if (legacyCss) codeBlocks.push({ label: "CSS", code: legacyCss });
   }
 
   for (let i = 1; i <= 10; i++) {
     const code = allContent[`setupCode${i}`];
+    const jsxCode = allContent[`setupCode${i}Jsx`];
     const fileName = allContent[`setupCode${i}FileName`];
-    if (code) setupBlocks.push({ label: fileName || `Step ${i}`, code });
+    if (code) setupBlocks.push({ label: fileName || `Step ${i}`, code, jsxCode });
   }
 
   const detail: ComponentDetailData = {

@@ -1,6 +1,6 @@
 import { registry } from "@/lib/registry";
 import { notFound } from "next/navigation";
-import { readSourceFile } from "@/lib/readSource";
+import { readSourceFile, readSourceFileAsJsx } from "@/lib/readSource";
 import { Metadata } from "next";
 import { DetailView } from "@/components/features/component-detail/DetailView";
 
@@ -73,6 +73,7 @@ export default async function ComponentDetailPage({ params }: Props) {
     if (serializableContent[fileNameKey] && !serializableContent[codeKey]) {
       try {
         serializableContent[codeKey] = readSourceFile(entry.category, entry.type, serializableContent[fileNameKey]);
+        serializableContent[`${codeKey}Jsx`] = readSourceFileAsJsx(entry.category, entry.type, serializableContent[fileNameKey]);
       } catch (err) {
         console.error(`[ComponentDetail] Failed to read source for ${fileNameKey}:`, err);
       }
@@ -82,6 +83,7 @@ export default async function ComponentDetailPage({ params }: Props) {
   if (serializableContent.codeBlockFileName && !serializableContent.codeBlock) {
     try {
       serializableContent.codeBlock = readSourceFile(entry.category, entry.type, serializableContent.codeBlockFileName);
+      serializableContent.codeBlockJsx = readSourceFileAsJsx(entry.category, entry.type, serializableContent.codeBlockFileName);
     } catch (err) {
       console.error(`[ComponentDetail] Failed to read source for codeBlockFileName:`, err);
     }

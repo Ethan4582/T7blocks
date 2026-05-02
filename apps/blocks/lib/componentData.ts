@@ -20,10 +20,12 @@ export interface ComponentDetailData {
   codeBlocks: Array<{
     label: string;
     code: string;
+    jsxCode?: string;
   }>;
   setupBlocks?: Array<{
     label: string;
     code: string;
+    jsxCode?: string;
   }>;
   props?: string;
   propsTable?: string;
