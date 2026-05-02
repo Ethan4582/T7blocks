@@ -108,12 +108,39 @@ export function DetailView({ entry, allContent }: DetailViewProps) {
 
             <div className="space-y-24">
               <DocumentationSection detail={detail} component={componentItem} onModeChange={setDocMode} />
-              {relatedItems.length > 0 && (
-                <section className="space-y-10 pt-4 border-t border-white/5" aria-label="Related resources">
-                  <h2 className="text-[28px] md:text-[32px] font-medium tracking-tight text-foreground font-serif">Related resources</h2>
-                  <RelatedResources items={relatedItems} />
-                </section>
-              )}
+              
+              <div className="space-y-12">
+                {entry.credits && (
+                  <div id="inspiration" className="space-y-4">
+                    <h3 className="text-[28px] md:text-[32px] font-medium tracking-tight text-foreground font-serif">Inspiration</h3>
+                    <div className="text-[15px] text-muted-foreground/80 font-medium">
+                      This component is inspired by{" "}
+                      {entry.credits.blockUrl ? (
+                        <a href={entry.credits.blockUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline text-foreground hover:text-accent transition-colors">
+                          {entry.credits.blockName}
+                        </a>
+                      ) : (
+                        <span className="font-bold text-foreground">{entry.credits.blockName}</span>
+                      )}
+                      {" "}by{" "}
+                      {entry.credits.creatorUrl || entry.credits.blockUrl ? (
+                        <a href={entry.credits.creatorUrl || entry.credits.blockUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline text-foreground hover:text-accent transition-colors">
+                          {entry.credits.creatorName}
+                        </a>
+                      ) : (
+                        <span className="font-bold text-foreground">{entry.credits.creatorName}</span>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {relatedItems.length > 0 && (
+                  <section className="space-y-10 pt-4 border-t border-white/5" aria-label="Related resources">
+                    <h2 className="text-[28px] md:text-[32px] font-medium tracking-tight text-foreground font-serif">Related resources</h2>
+                    <RelatedResources items={relatedItems} />
+                  </section>
+                )}
+              </div>
             </div>
           </div>
         </article>

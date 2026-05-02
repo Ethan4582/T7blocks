@@ -17,6 +17,12 @@ export type ComponentEntry = {
   relatedCategories: string[];
   isPopular: boolean;
   noSubsection?: boolean;
+  credits?: {
+    creatorName:string;
+    creatorUrl?:string;
+    blockName:string;
+    blockUrl?:string;
+  }
 };
 
 export const toComponentItem = (entry: ComponentEntry): ComponentItem => ({
@@ -30,8 +36,8 @@ export const toComponentItem = (entry: ComponentEntry): ComponentItem => ({
   publishedDate: "Recent",
   isPremium: entry.isPremium,
   tags: entry.tags || [],
-  demoUrl: entry.demoUrl ?? undefined
-
+  demoUrl: entry.demoUrl ?? undefined,
+  credits: entry.credits
 });
 
 export const registry: ComponentEntry[] = [
@@ -60,9 +66,13 @@ export const registry: ComponentEntry[] = [
   isPopular: true,
     videoUrl: "https://pub-4b0a8f18a97e4b44914872dd0d22870b.r2.dev/blog_demo/scroll_trigger_demo_compress.mp4",
     demoUrl: "https://demo.t7blocks.xyz/interactions/scroll/Sticky-Scroll",
-   
     description: "Sticky scroll with GSAP ScrollTrigger.",
     tags: ["Scroll", "ScrollTrigger", "GSAP", "Images", "Work", "Framer Motion"],
+    credits: {
+      creatorName: "MadeByKing",
+      blockName: "Sticky Scroll",
+      blockUrl:"https://madebykin.co.uk/web",
+    }
   }, 
   {
     id: 3,
@@ -77,6 +87,12 @@ export const registry: ComponentEntry[] = [
     demoUrl: "https://demo.t7blocks.xyz/components/button/Launch-Button", 
     description: "A minimalist, premium button featuring a grid-based arrow animation",
     tags: ["Button", "Animation", "Framer Motion", "Minimal"],
+    credits:{
+      creatorName:"Praveen Kumar",
+      blockName:"Launch Button",
+      blockUrl:"https://x.com/praveenisomer/status/2040029044666745100",
+      creatorUrl:"https://x.com/praveenisomer"
+    }
   },
   {
     id: 4,
@@ -132,6 +148,12 @@ export const registry: ComponentEntry[] = [
     demoUrl:"https://demo.t7blocks.xyz/components/button/WaveButton",
     description:"A button with a wave animation on hover",
     tags:["Button","Interaction" ,"Framer Motion"],
+    credits:{
+      creatorName:"Imesh Dilshan",
+      blockName:"Icon Slide In Button",
+      blockUrl:"https://www.framer.com/marketplace/components/icon-slide-in-button/",
+      creatorUrl:"https://x.com/imeshdilshan102"
+    }
   },{
     id:8,
     name:"bouncy-button",
@@ -145,6 +167,12 @@ export const registry: ComponentEntry[] = [
     demoUrl:"https://demo.t7blocks.xyz/components/button/bouncy-button",
     description:"A button with a bouncy animation on hover",
     tags:["Button","Interaction" ,"Framer Motion"],
+    credits:{
+      creatorName:"Soyeb",
+      blockName:"Bouncy Button",
+      blockUrl:"https://www.framer.com/marketplace/components/shift-button/",
+      creatorUrl:"https://x.com/sekhsoyebali"
+    }
   },
   {
     id: 9,
