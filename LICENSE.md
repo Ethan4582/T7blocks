@@ -8,21 +8,16 @@ in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, and distribute the Software **as part of
 an application, website, or product**, subject to the following conditions:
 
-
-
-## 1. Attribution Requirement
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-If you use these components in a **public-facing project**, you must include
-visible credit in at least one [Optional] of the following ways:
+## 1. Attributiom
 
-- A "Built with T7blocks" notice in your site footer, README, or credits page
-- A link to [t7blocks.xyz](https://t7blocks.xyz) in your project documentation
+The copyright notice above must be retained in all copies or substantial
+portions of the Software.
 
-Removing, hiding, or obfuscating authorship information to avoid this
-requirement is a violation of this license.
+Giving credit to T7blocks in your project (footer, README, or credits page)
+is appreciated but not required.
 
 
 
@@ -43,7 +38,6 @@ you do not**:
   being sold or distributed
 
 
-
 ## 3. Permitted Uses
 
 For clarity, the following are explicitly permitted:
@@ -54,13 +48,12 @@ For clarity, the following are explicitly permitted:
 - Deploying projects that use these components for commercial purposes
 
 
-
 ## 4. AI and Automated Systems
 
 You may not use the source code of these components, in whole or in part, to
 train, fine-tune, or build machine learning models, AI code generation tools,
-or automated component generation systems that are distributed or sold to
-third parties.
+or automated component generation systems — whether distributed, sold to third
+parties, or used internally for commercial advantage.
 
 
 ## 5. No Warranty
@@ -74,4 +67,4 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---
 
-For licensing inquiries: hello.t7labs@gmail.com
+For inquiries: hello.t7labs@gmail.com

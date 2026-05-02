@@ -106,31 +106,56 @@ export function MetadataSidebar({
             href="https://github.com/Ethan4582/T7blocks/issues/new?template=3-new-block.md&title=[NEW%20BLOCK]%20"
             target="_blank"
             className="flex items-center gap-3 text-[#5a5a5a] dark:text-[#bdbdbd] hover:text-foreground transition-all duration-200"
-          >
-            <SquarePen className="w-3.5 h-3.5 text-blue-400/70" />
+          > 
+            <div 
+              className="w-3.5 h-3.5 bg-blue-400/70"
+              style={{
+                maskImage: 'url(/SVG/write.svg)',
+                maskRepeat: 'no-repeat',
+                maskSize: 'contain',
+                WebkitMaskImage: 'url(/SVG/write.svg)',
+                WebkitMaskRepeat: 'no-repeat',
+                WebkitMaskSize: 'contain'
+              }}
+            />
             <span className="text-[13px] font-medium tracking-tight">
               Add new block
             </span>
           </a>
         </div>
       </div>
+      
+      <div className="space-y-1 -mt-2">
+        {component.credits && (
+          <div className="px-1">
+            <a
+              href="#inspiration"
+              className="flex items-center gap-2.5 text-foreground/65 dark:text-foreground/90 hover:text-foreground transition-all duration-200 group"
+            >
+              <span className="text-[11px] font-bold tracking-[0.1em] uppercase">
+                Credits
+              </span>
+            </a>
+          </div>
+        )}
 
-      <div className="px-1 mt-2 mb-1">
-        <div className="border-t border-black/10 dark:border-white/15" />
-      </div>
+        <div className="px-1">
+          <div className="border-t border-black/10 dark:border-white/15" />
+        </div>
 
-      <div className="px-1 mt-0">
-        <a
-          href="https://github.com/sponsors/Ethan4582/"
-          target="_blank"
-          onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "sponsor", location: "metadata_sidebar" })}
-          className="flex items-center justify-center gap-2 w-full h-10 bg-black/[0.05] hover:bg-black/[0.08] dark:bg-white/5 dark:hover:bg-white/10 border border-black/5 dark:border-white/5 rounded-[8px] transition-all duration-300 group shadow-sm text-foreground no-underline"
-        >
-          <Heart className="w-3.5 h-3.5 text-[#A1FF62] fill-[#A1FF62] group-hover:scale-110 transition-transform duration-300" />
-          <span className="text-[13px] font-semibold tracking-tight">
-            Sponsor
-          </span>
-        </a>
+        <div className="px-1">
+          <a
+            href="https://github.com/sponsors/Ethan4582/"
+            target="_blank"
+            onClick={() => trackEvent(ANALYTICS_EVENTS.SOCIAL_CLICKED, { platform: "sponsor", location: "metadata_sidebar" })}
+            className="flex items-center justify-center gap-2 w-full h-10 bg-black/[0.05] hover:bg-black/[0.08] dark:bg-white/5 dark:hover:bg-white/10 border border-black/5 dark:border-white/5 rounded-[8px] transition-all duration-300 group shadow-sm text-foreground no-underline"
+          >
+            <Heart className="w-3.5 h-3.5 text-[#A1FF62] fill-[#A1FF62] group-hover:scale-110 transition-transform duration-300" />
+            <span className="text-[13px] font-semibold tracking-tight">
+              Sponsor
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   );

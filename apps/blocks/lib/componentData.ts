@@ -10,6 +10,12 @@ export interface ComponentItem {
   isPremium: boolean;
   tags: string[];
   demoUrl?: string;
+  credits?: {
+    creatorName: string;
+    blockName: string;
+    blockUrl?: string;
+    creatorUrl?: string;
+  };
 }
 
 export interface ComponentDetailData {
