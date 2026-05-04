@@ -1,8 +1,8 @@
 export const T7blocksCliCommand={
-    pnpmCommand: "pnpm dlx @t7blocks/cli add fallingtext",
-    npmCommand: "npx @t7blocks/cli add fallingtext",
-    yarnCommand: "yarn dlx @t7blocks/cli add fallingtext",
-    bunCommand: "bunx @t7blocks/cli add fallingtext",
+    pnpmCommand: "pnpm dlx @t7blocks/cli add falling-text",
+    npmCommand: "npx @t7blocks/cli add falling-text",
+    yarnCommand: "yarn dlx @t7blocks/cli add falling-text",
+    bunCommand: "bunx @t7blocks/cli add falling-text",
 }
 
 export const installCommand = `pnpm add gsap`;

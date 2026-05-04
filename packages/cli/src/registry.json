@@ -39,7 +39,7 @@
     ],
     "dependencies": ["framer-motion"]
   },
-  "text/staggertext":{
+  "text/stagger-text":{
     "isPremium": false,
     "files": [
       {
@@ -49,7 +49,7 @@
     ],
     "dependencies": []
   },
-  "text/falling-text": {
+  "text/fallingtext": {
     "isPremium": false,
     "files": [
       {
