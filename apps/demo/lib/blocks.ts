@@ -176,5 +176,23 @@ export const components: ComponentData[] = [
     canvas: {
       background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/bg_blue.png",
     },
+  },{
+    id: "lottietext",
+    name: "Lottie Text",
+    shortDescription: "A a lottie animation embedded in the text",
+    longDescription: "This text block combines plain text with lottie animations that seamlessly integrate into words.",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/lottietext.mp4",
+    type: "components",
+    subsection: "text",
+    category: "text",
+    date: "2026-04-11",
+    tags: ["Text", "Animation", "Hover", "Interactive", "Typography"],
+    block_url: "https://t7blocks.xyz/components/text/lottietext",
+    canvas: {
+      background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/ornage_flow.webp",
+       height: "100vh",
+      width: "100vw",
+      className: "min-h-screen flex items-center justify-center bg-white",
+    },
   }
 ];

@@ -1,6 +1,6 @@
 {
   "name": "@t7blocks/ui",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -21,6 +21,9 @@
     "react": "^18.0.0 || ^19.0.0",
     "gsap": "^3.14.2"
   },
+  "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.19.0"
+  },
   "devDependencies": {
     "@t7blocks/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.2.2",
@@ -28,9 +31,9 @@
     "@types/react-dom": "^18.0.0 || ^19.0.0",
     "framer-motion": "^12.38.0",
     "gsap": "^3.14.2",
+    "next": "16.2.2",
     "postcss": "^8.5.9",
     "tailwindcss": "^4.2.2",
-    "next": "16.2.2",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   }
