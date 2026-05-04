@@ -189,7 +189,7 @@ export const components: ComponentData[] = [
     tags: ["Text", "Animation", "Hover", "Interactive", "Typography"],
     block_url: "https://t7blocks.xyz/components/text/lottietext",
     canvas: {
-      background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/ornage_flow.webp",
+      background: "https://images.unsplash.com/photo-1724942462164-7c30f103d91c",
        height: "100vh",
       width: "100vw",
       className: "min-h-screen flex items-center justify-center bg-white",
