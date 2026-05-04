@@ -59,6 +59,16 @@
     ],
     "dependencies": ["gsap"]
   },
+  "text/lottie-text": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "Lottietext.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/text/Lottietext/Lottietext.tsx"
+      }
+    ],
+    "dependencies": ["@lottiefiles/dotlottie-react@latest"]
+  },
 
 
 
