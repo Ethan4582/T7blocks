@@ -161,5 +161,20 @@ export const components: ComponentData[] = [
       width: "100vw",
       className: "flex items-center justify-center",
     },
+  },{
+    id: "falling-text",
+    name: "Falling Text",
+    shortDescription: "A text with a falling animation",
+    longDescription: "A text with a falling animation that is triggered on scroll",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/fallingtext.mp4",
+    type: "components",
+    subsection: "text",
+    category: "text",
+    date: "2026-04-11",
+    tags: ["Text", "Animation", "Hover", "Interactive", "Typography"],
+    block_url: "https://t7blocks.xyz/components/text/fallingtext",
+    canvas: {
+      background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/bg_blue.png",
+    },
   }
 ];

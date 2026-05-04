@@ -49,6 +49,16 @@
     ],
     "dependencies": []
   },
+  "text/falling-text": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "FallingText.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/text/FallingText/FallingText.tsx"
+      }
+    ],
+    "dependencies": ["gsap"]
+  },
 
 
 

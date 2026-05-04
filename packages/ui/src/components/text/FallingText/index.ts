@@ -1,0 +1,1 @@
+export { FallingText } from "./FallingText";
