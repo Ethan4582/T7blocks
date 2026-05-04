@@ -1,5 +1,5 @@
 <div align="center">
-   <img src="apps/blocks/public/readme_bg.png" alt="T7" width="800" height="270">
+   <img src="apps/blocks/public/readme_bg.png" alt="T7" width="900" height="270">
 </div>
 
 <p align="center">
@@ -44,7 +44,7 @@ npm install @t7blocks/ui
 ## CLI — Own the Source
 
 ```bash
-npx @t7blocks/cli add button-1
+npx @t7blocks/cli add sticky-scroll
 ```
 
 Instantly pull the raw `.tsx` source directly into your repo. Clean, fully customizable code that belongs to you from day one.

@@ -1,8 +1,8 @@
 export const T7blocksCliCommand = {
-    pnpmCommand: "pnpm dlx @t7blocks/cli add staggertext",
-    npmCommand: "npx @t7blocks/cli add staggertext",
-    yarnCommand: "yarn dlx @t7blocks/cli add staggertext",
-    bunCommand: "bunx @t7blocks/cli add staggertext",
+    pnpmCommand: "pnpm dlx @t7blocks/cli add stagger-text",
+    npmCommand: "npx @t7blocks/cli add stagger-text",
+    yarnCommand: "yarn dlx @t7blocks/cli add stagger-text",
+    bunCommand: "bunx @t7blocks/cli add stagger-text",
 };
 
 export const Code1FileName="Staggertext.tsx";
