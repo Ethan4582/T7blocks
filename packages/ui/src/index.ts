@@ -9,7 +9,7 @@ export { BouncyButton } from "./components/button/BouncyButton";
 //text
 export { StaggerText } from './components/text/StaggerText';
 export { FallingText } from "./components/text/FallingText";
-
+export { LottieText } from "./components/text/LottieText";
 
 
 

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.19.1",
     "@t7blocks/cli": "workspace:*",
     "@t7blocks/eslint-config": "workspace:*",
     "@t7blocks/typescript-config": "workspace:*",
