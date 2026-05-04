@@ -188,5 +188,19 @@ export const registry: ComponentEntry[] = [
     description: "A text with a stagger animation on hover",
     tags: ["Text", "Animation", "Hover", "Interactive", "Typography"],
   },
-
+  {
+    id: 10,
+    name: "fallingtext",
+    displayName: "Falling Text",
+    category: "components",
+    type: "text",
+    isPremium: false,
+    relatedCategories: [],
+    isPopular: false,
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/fallingtext.mp4",
+    demoUrl: "https://demo.t7blocks.xyz/components/text/falling-text",
+    description: "A text with a falling animation when scrolled",
+    tags: ["Text", "Animation", "ScrollTrigger", "GSAP" , "Scroll "],
+    
+  },
 ];

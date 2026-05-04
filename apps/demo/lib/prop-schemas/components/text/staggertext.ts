@@ -4,5 +4,4 @@ export const staggertextSchema={
     fontWeight: { type: "string", label: "Font Weight", default: "400" },
     offsetIncrement: { type: "number", label: "Offset Increment", default: "0.01" },
     color: { type: "color", label: "Color", default: "#eee8e8ff" },
-
 }
