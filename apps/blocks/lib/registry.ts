@@ -94,22 +94,8 @@ export const registry: ComponentEntry[] = [
       creatorUrl:"https://x.com/praveenisomer"
     }
   },
-  {
-    id: 4,
-    name: "pop-hero",
-    displayName: "Pop Hero",
-    category: "sections",
-    type: "hero",
-    isPremium: false,
-    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
-    demoUrl: "https://demo.t7blocks.xyz/sections/hero/Pop-Hero",
-    relatedCategories: [],
-  isPopular: false,
-    description: "GSAP animated hero section with pop-up animation to set up your hero section.",
-    tags: ["Hero", "GSAP", "Nature", "Minimal", "Framer Motion"],
-  },
  {
-    id: 5,
+    id: 4,
     name: "pull-switch",
     displayName: "Pull Switch",
     category: "misc",
@@ -123,7 +109,7 @@ export const registry: ComponentEntry[] = [
     description: "Interactive pull-cord switch to toggle light and dark mode",
     tags: ["Misc", "GSAP", "Button", "Canvas", "Theme", "Dark Mode", "Interaction"],
   }, {
-    id: 6,
+    id: 5,
     name: "knob-toggle",
     displayName: "Knob Toggle",
     category: "components",
@@ -136,7 +122,7 @@ export const registry: ComponentEntry[] = [
     description: "A knob toggle to switch between light and dark mode with sound effect",
     tags: ["Button", "Interaction", "Theme", "Dark Mode", "Sound"],
   },{
-    id:7,
+    id:6,
     name:"wave-button",
     displayName:"Wave Button",
     category:"components",
@@ -154,6 +140,20 @@ export const registry: ComponentEntry[] = [
       blockUrl:"https://www.framer.com/marketplace/components/icon-slide-in-button/",
       creatorUrl:"https://x.com/imeshdilshan102"
     }
+  },
+  {
+    id: 7,
+    name: "pop-hero",
+    displayName: "Pop Hero",
+    category: "sections",
+    type: "hero",
+    isPremium: false,
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/pop_hero.mp4",
+    demoUrl: "https://demo.t7blocks.xyz/sections/hero/Pop-Hero",
+    relatedCategories: [],
+  isPopular: false,
+    description: "GSAP animated hero section with pop-up animation to set up your hero section.",
+    tags: ["Hero", "GSAP", "Nature", "Minimal", "Framer Motion"],
   },{
     id:8,
     name:"bouncy-button",
