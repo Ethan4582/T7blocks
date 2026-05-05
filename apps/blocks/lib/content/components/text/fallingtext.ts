@@ -25,10 +25,12 @@ export default function Home() {
           },
           { lines: ["Words crumble", "when you look away"], },
           { lines: ["The Animation Ends"],},
+        ]}
       />  
     </div>
   );
 }
+
 `
 
 export const propsTable=`

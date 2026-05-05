@@ -177,7 +177,7 @@ export const components: ComponentData[] = [
       background: "https://pub-30f77b34698b4af9acb780d4dfe7ee4d.r2.dev/good_bg/bg_blue.png",
     },
   },{
-    id: "lottietext",
+    id: "lottie-text",
     name: "Lottie Text",
     shortDescription: "A a lottie animation embedded in the text",
     longDescription: "This text block combines plain text with lottie animations that seamlessly integrate into words.",
@@ -193,6 +193,25 @@ export const components: ComponentData[] = [
        height: "100vh",
       width: "100vw",
       className: "min-h-screen flex items-center justify-center bg-white",
+    },
+  }, {
+    id: "stagger-button",
+    name: "Stagger Button",
+    shortDescription: "A button with a stagger animation on hover",
+    longDescription: "A button with a stagger animation that is triggered on hover",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/staggerbutton.mp4",
+    type: "components",
+    subsection: "button",
+    category: "button",
+    date: "2026-04-11",
+    tags: ["Button", "Animation", "Hover", "Interactive", "Typography" ,"Text"],
+    block_url: "https://t7blocks.xyz/components/button/staggertext",
+    canvas: {
+       background: "#1a1a1a",
+      
+      height: "100vh",
+      width: "100vw",
+      className: "flex items-center justify-center",
     },
   }
 ];

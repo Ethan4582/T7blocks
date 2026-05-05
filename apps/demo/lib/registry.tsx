@@ -1,4 +1,4 @@
-import { Dotlaunchbutton, PopHero, ScrollimagePass, StickyScroll, PullSwitch, KnobToggle, WaveButton, BouncyButton, StaggerText, FallingText, LottieText } from "@t7blocks/ui";
+import { Dotlaunchbutton, PopHero, ScrollimagePass, StickyScroll, PullSwitch, KnobToggle, WaveButton, BouncyButton, StaggerText, FallingText, LottieText, StaggerButton } from "@t7blocks/ui";
 import PullSwitchDemo from "@/app/canvas/PullSwitchDemo";
 import KnobToggleDemo from "@/app/canvas/KnobToggleDemo";
 import { launchButtonSchema } from "./prop-schemas/components/button/Launch-Button";
@@ -8,9 +8,12 @@ import { pullSwitchSchema } from "./prop-schemas/misc/PullSwitch";
 import { knobToggleSchema } from "./prop-schemas/components/button/KnobToggle";
 import { waveButtonSchema } from "./prop-schemas/components/button/WaveButton";
 import { BouncyButtonSchema } from "./prop-schemas/components/button/BouncyButton";
-import { staggertextSchema } from "./prop-schemas/components/text/staggertext";
-import { fallingtextSchema } from "./prop-schemas/components/text/fallingtext";
-import { lottietextSchema } from "./prop-schemas/components/text/lottietext";
+import { staggertextSchema } from "./prop-schemas/components/text/StaggerText";
+import { fallingtextSchema } from "./prop-schemas/components/text/FallingText";
+import { lottietextSchema } from "./prop-schemas/components/text/LottieText";
+import { staggerbuttonSchema } from "./prop-schemas/components/button/StaggerButton";
+
+
 
 export const registry: Record<string, {
   component: React.ComponentType<any>;
@@ -56,9 +59,13 @@ export const registry: Record<string, {
     component: FallingText,
     schema: fallingtextSchema,
   },
-  "lottietext": {
+  "lottie-text": {
     component: LottieText,
     schema: lottietextSchema,
+  },
+  "stagger-button": {
+    component: StaggerButton,
+    schema: staggerbuttonSchema,
   },
 };
 
