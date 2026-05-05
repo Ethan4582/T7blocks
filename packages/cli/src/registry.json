@@ -9,6 +9,16 @@
     ],
     "dependencies": ["framer-motion"]
   },
+  "button/stagger-button": {
+    "isPremium": false,
+    "files": [
+      {
+        "name": "StaggerButton.tsx",
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packagesui/src/components/button/StaggerButton/StaggerButton.tsx"
+      }
+    ],
+    "dependencies": []
+  },
   "button/knob-toggle": {
     "isPremium": false,
     "files": [

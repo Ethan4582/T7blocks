@@ -199,7 +199,7 @@ export const components: ComponentData[] = [
     name: "Stagger Button",
     shortDescription: "A button with a stagger animation on hover",
     longDescription: "A button with a stagger animation that is triggered on hover",
-    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/staggertext.mp4",
+    video: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/staggerbutton.mp4",
     type: "components",
     subsection: "button",
     category: "button",

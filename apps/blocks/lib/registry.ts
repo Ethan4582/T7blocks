@@ -133,7 +133,7 @@ export const registry: ComponentEntry[] = [
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/staggerbutton.mp4",
     demoUrl: "https://demo.t7blocks.xyz/components/button/stagger-button",
     description: "A button with a stagger animation on hover",
-    tags: ["Button", "GSAP", "Button", "Canvas", "Theme", "Dark Mode", "Interaction"],
+    tags: ["Button", "Text" , "Hover", "Animation"],
   },
   {
     id:7,
