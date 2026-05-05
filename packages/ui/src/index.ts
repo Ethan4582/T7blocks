@@ -4,7 +4,7 @@ export { Dotlaunchbutton } from './components/button/DotLaunch';
 export { KnobToggle } from "./components/button/KnobToggle";
 export { WaveButton } from "./components/button/WaveButton"
 export { BouncyButton } from "./components/button/BouncyButton";
-
+export { StaggerButton } from "./components/button/StaggerButton";
 
 //text
 export { StaggerText } from './components/text/StaggerText';

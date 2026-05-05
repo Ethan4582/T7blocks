@@ -122,7 +122,21 @@ export const registry: ComponentEntry[] = [
     description: "A knob toggle to switch between light and dark mode with sound effect",
     tags: ["Button", "Interaction", "Theme", "Dark Mode", "Sound"],
   },{
-    id:6,
+    id: 6,
+    name: "stagger-button",
+    displayName: "Stagger Button",
+    category: "components",
+    type: "button",
+    isPremium: false,
+    relatedCategories: ["text"],
+  isPopular: false,
+    videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/staggerbutton.mp4",
+    demoUrl: "https://demo.t7blocks.xyz/components/button/stagger-button",
+    description: "A button with a stagger animation on hover",
+    tags: ["Button", "GSAP", "Button", "Canvas", "Theme", "Dark Mode", "Interaction"],
+  },
+  {
+    id:7,
     name:"wave-button",
     displayName:"Wave Button",
     category:"components",
@@ -142,7 +156,7 @@ export const registry: ComponentEntry[] = [
     }
   },
   {
-    id: 7,
+    id: 8,
     name: "pop-hero",
     displayName: "Pop Hero",
     category: "sections",
@@ -155,7 +169,7 @@ export const registry: ComponentEntry[] = [
     description: "GSAP animated hero section with pop-up animation to set up your hero section.",
     tags: ["Hero", "GSAP", "Nature", "Minimal", "Framer Motion"],
   },{
-    id:8,
+    id:9,
     name:"bouncy-button",
     displayName:"Bouncy Button",
     category:"components",
@@ -175,7 +189,7 @@ export const registry: ComponentEntry[] = [
     }
   },
   {
-    id: 9,
+    id: 10,
     name: "staggertext",
     displayName: "Stagger Text",
     category: "components",
@@ -189,7 +203,7 @@ export const registry: ComponentEntry[] = [
     tags: ["Text", "Animation", "Hover", "Interactive", "Typography"],
   },
   {
-    id: 10,
+    id: 11,
     name: "fallingtext",
     displayName: "Falling Text",
     category: "components",
@@ -203,7 +217,7 @@ export const registry: ComponentEntry[] = [
     tags: ["Text", "Animation", "ScrollTrigger", "GSAP" , "Scroll "],
   },
   {
-    id: 11,
+    id: 12,
     name: "lottietext",
     displayName: "Lottie Text",
     category: "components",
@@ -212,8 +226,8 @@ export const registry: ComponentEntry[] = [
     relatedCategories: [],
     isPopular: false,
     videoUrl: "https://pub-ce7c82a074d24c96a153a74a9158dc02.r2.dev/blocks_demo/lottietext.mp4",
-    demoUrl: "https://demo.t7blocks.xyz/components/text/lottietext",
+    demoUrl: "https://demo.t7blocks.xyz/components/text/lottie-text",
     description: "A text with a lottie animation ",
     tags: ["Text", "Animation", "Lottie"],
-  },
+  }
 ];
