@@ -14,7 +14,7 @@
     "files": [
       {
         "name": "StaggerButton.tsx",
-        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packagesui/src/components/button/StaggerButton/StaggerButton.tsx"
+        "url": "https://raw.githubusercontent.com/Ethan4582/T7blocks/master/packages/ui/src/components/button/StaggerButton/StaggerButton.tsx"
       }
     ],
     "dependencies": []
